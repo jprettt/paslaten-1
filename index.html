@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website resmi Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon, Sulawesi Utara.">
+    <title>Paslaten 1 — Kelurahan Paslaten 1, Kota Tomohon</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <!--
+        Navbar dimulai transparan di atas hero.
+        Setelah scroll, JS menambah class "scrolled" yang mengaktifkan background hijau.
+    -->
+    <header id="site-header">
+        <nav id="navbar" aria-label="Navigasi utama">
+            <div class="navbar-inner">
+
+                <!-- BRAND / LOGO -->
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="assets/images/hero/logo tomohon.png" alt="Logo Kota Tomohon" class="nav-logo-img">
+                        <div class="nav-brand-text">
+                            <span class="nav-brand-title">PASLATEN 1</span>
+                            <span class="nav-brand-subtitle">Tomohon Timur</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- MENU DESKTOP -->
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html" class="active">Beranda</a></li>
+                    <li><a href="pages/tentang.html">Tentang Paslaten</a></li>
+                    <li><a href="pages/sejarah.html">Sejarah</a></li>
+                    <li><a href="pages/galeri.html">Galeri</a></li>
+                    <li><a href="pages/kontak.html">Kontak</a></li>
+                </ul>
+
+                <!-- HAMBURGER (mobile) -->
+                <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main>
+
+        <!-- ======================================================
+             HERO — FULL SCREEN SLIDESHOW
+             Foto disimpan di: assets/images/hero/
+             Tambahkan foto baru dengan menambah .hero-slide baru
+             ====================================================== -->
+        <section id="hero" aria-label="Halaman utama Paslaten 1">
+
+            <!-- SLIDESHOW BACKGROUND -->
+            <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
+
+                <!-- Slide 1 — ganti src dengan foto asli -->
+                <div class="hero-slide active"
+                     style="background-image: url('assets/images/hero/alpha.jpg');"
+                     data-caption="Kelurahan Paslaten 1">
+                </div>
+
+                <!-- Slide 2 — ganti src dengan foto asli -->
+                <div class="hero-slide"
+                     style="background-image: url('assets/images/hero/omega.jpg');"
+                     data-caption="Wilayah Paslaten 1, Kota Tomohon">
+                </div>
+
+                <!-- Slide 3 — tambahkan foto berikutnya di sini -->
+                <!-- <div class="hero-slide"
+                     style="background-image: url('assets/images/hero/foto3.jpg');"
+                     data-caption="[Keterangan foto]">
+                </div> -->
+
+            </div>
+
+            <!-- OVERLAY GELAP -->
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <!-- TEKS UTAMA HERO -->
+            <div class="hero-content">
+                <div class="container">
+                    <div class="hero-text" id="hero-text">
+                        <p class="hero-welcome">SELAMAT DATANG DI</p>
+                        <h1 class="hero-title">Paslaten 1</h1>
+                        <p class="hero-location">
+                            Kelurahan Paslaten 1 &nbsp;&mdash;&nbsp;
+                            Kecamatan Tomohon Timur, Kota Tomohon
+                        </p>
+                        <a href="pages/tentang.html" class="btn btn-gold hero-btn">
+                            Kenali Paslaten 1
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAPTION FOTO (berubah mengikuti slide) -->
+            <div class="hero-caption" id="hero-caption" aria-live="polite">
+                <span id="hero-caption-text">Kelurahan Paslaten 1</span>
+            </div>
+
+            <!-- SLIDE DOTS -->
+            <div class="hero-dots" id="hero-dots" aria-label="Navigasi slide" aria-hidden="true">
+                <button class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
+                <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+                <!-- Tambahkan dot jika ada foto baru -->
+            </div>
+
+            <!-- SCROLL INDICATOR -->
+            <div class="hero-scroll-indicator" id="hero-scroll-indicator" role="button" tabindex="0" aria-label="Jelajahi konten di bawah">
+                <span class="scroll-label">Jelajahi Paslaten 1</span>
+                <div class="scroll-arrow" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+        </section>
+        <!-- END HERO -->
+
+        <!-- ======================================================
+             SECTION-SECTION BERIKUTNYA — TIDAK DIUBAH
+             ====================================================== -->
+
+        <!-- TENTANG SINGKAT -->
+        <section id="tentang-singkat">
+            <div class="container">
+                <div class="intro-inner">
+                    <div class="intro-text">
+                        <span class="section-label">Tentang</span>
+                        <h2>Tentang Paslaten 1</h2>
+                        <span class="section-divider"></span>
+                        <p>
+                            Kelurahan Paslaten 1 berada di wilayah Kecamatan Tomohon Timur,
+                            Kota Tomohon, Provinsi Sulawesi Utara, dengan kode pos 95446. Wilayah
+                            ini memiliki luas sekitar 2,96 km² dan berada pada ketinggian ±927 mdpl,
+                            menjadikannya bagian dari kawasan dataran tinggi Kota Tomohon.
+                        </p>
+                        <p>
+                            Kehidupan masyarakatnya mencerminkan nilai-nilai kekeluargaan dan
+                            gotong royong yang kuat, sebagaimana tradisi Minahasa yang dikenal
+                            dengan sistem <em>mapalus</em>.
+                        </p>
+                        <a href="pages/tentang.html" class="btn btn-outline">Selengkapnya</a>
+                    </div>
+                    <div class="intro-image-placeholder" role="img" aria-label="Foto Paslaten 1">
+                        [Foto akan diisi]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATISTIK -->
+        <section id="statistik">
+            <div class="container">
+                <span class="section-label" style="display:block; text-align:center;">Data Kelurahan</span>
+                <h2>Sekilas Paslaten 1</h2>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <span class="stat-value">2,96</span>
+                        <span class="stat-label">km² Luas Wilayah</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">±927</span>
+                        <span class="stat-label">mdpl Ketinggian</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">3.488</span>
+                        <span class="stat-label">Jiwa Penduduk</span>
+                        <span class="stat-note">Data 2021</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">2021</span>
+                        <span class="stat-label">Tahun Data Penduduk</span>
+                        <span class="stat-note">Data terbaru akan diperbarui</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEJARAH SINGKAT -->
+        <section id="sejarah-singkat">
+            <div class="container">
+                <div class="sejarah-singkat-inner">
+                    <span class="section-label">Sejarah</span>
+                    <h2>Jejak Sejarah Paslaten</h2>
+                    <span class="section-divider"></span>
+                    <p>
+                        Paslaten 1 memiliki sejarah yang berkaitan erat dengan sejarah
+                        masyarakat Minahasa di wilayah Kota Tomohon. Perkembangan wilayah ini
+                        tidak terlepas dari dinamika sosial, budaya, dan administratif yang
+                        terjadi di Kecamatan Tomohon Timur.
+                    </p>
+                    <p>
+                        Narasi sejarah lengkap dan berbagai peristiwa penting akan diuraikan
+                        secara terperinci pada halaman Sejarah.
+                    </p>
+                    <a href="pages/sejarah.html" class="btn btn-outline">Baca Sejarah</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERI PREVIEW -->
+        <section id="galeri-preview">
+            <div class="container">
+                <div class="galeri-preview-header">
+                    <span class="section-label">Dokumentasi</span>
+                    <h2>Galeri Paslaten</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-placeholder">[Foto akan diisi]</div>
+                    <div class="gallery-placeholder">[Foto akan diisi]</div>
+                    <div class="gallery-placeholder">[Foto akan diisi]</div>
+                    <div class="gallery-placeholder">[Foto akan diisi]</div>
+                </div>
+                <div class="gallery-footer">
+                    <a href="pages/galeri.html" class="btn btn-outline">Lihat Semua Galeri</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="cta">
+            <div class="container">
+                <span class="section-label">Lebih Lanjut</span>
+                <h2>Kenali Paslaten 1 Lebih Dekat</h2>
+                <p>Pelajari informasi lengkap mengenai wilayah, pemerintahan, dan kehidupan masyarakat Paslaten 1.</p>
+                <a href="pages/tentang.html" class="btn btn-primary">Tentang Paslaten 1</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <h3>Kelurahan Paslaten 1</h3>
+                    <p>Kecamatan Tomohon Timur, Kota Tomohon<br>Sulawesi Utara — Kode Pos 95446</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+                        Website Profil — KKT 149 UNSRAT Posko Paslaten 1
+                    </p>
+                </div>
+                <nav class="footer-nav" aria-label="Navigasi footer">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="pages/tentang.html">Tentang Paslaten</a></li>
+                        <li><a href="pages/sejarah.html">Sejarah</a></li>
+                        <li><a href="pages/galeri.html">Galeri</a></li>
+                        <li><a href="pages/kontak.html">Kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko Paslaten 1, Kota Tomohon</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

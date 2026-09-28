@@ -1,0 +1,1258 @@
+/* =====================================================
+   style.css
+   Website Profil Kelurahan Paslaten Satu
+   KKT 149 UNSRAT – Posko Paslaten 1, Kota Tomohon
+   ===================================================== */
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =====================================================
+   DESIGN TOKENS — Palét Final
+   4 warna referensi dari palét resmi website
+   ===================================================== */
+
+:root {
+    /*
+     * PALÉT UTAMA (dari atas ke bawah gambar referensi)
+     * 1. Darkest  — navy teal pekat:   #0d1f2a
+     * 2. Dark     — teal hijau:         #1a5c50
+     * 3. Medium   — hijau sedang:       #2d906e
+     * 4. Light    — sage hijau muda:    #8ec1a2
+     */
+    --color-darkest:      #0d1f2a;  /* navbar, footer, hero bg */
+    --color-green-dark:   #1a5c50;  /* section aksen gelap, page-header */
+    --color-green:        #2d906e;  /* tombol utama, link, aksen */
+    --color-green-light:  #5aaa87;  /* hover, border aksen */
+    --color-green-pale:   #c8e6d8;  /* background CTA, highlight ringan */
+    --color-sage:         #8ec1a2;  /* elemen dekoratif, badge */
+
+    /* Emas / aksen — dipertahankan */
+    --color-gold:         #c9a84c;
+    --color-gold-light:   #f0d080;
+
+    /* Netral */
+    --color-white:        #ffffff;
+    --color-off-white:    #f5f8f6;
+    --color-light-gray:   #e2ebe6;
+    --color-mid-gray:     #5a7068;
+    --color-dark:         #0d1f2a;  /* sama dengan darkest untuk konsistensi teks */
+
+    /* Typography */
+    --font-body:    Georgia, 'Times New Roman', serif;
+    --font-heading: 'Trebuchet MS', Arial, sans-serif;
+
+    /* Spacing */
+    --space-xs:  0.5rem;
+    --space-sm:  1rem;
+    --space-md:  1.5rem;
+    --space-lg:  2.5rem;
+    --space-xl:  4rem;
+
+    /* Layout */
+    --container-width: 1100px;
+    --navbar-height:   64px;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: var(--color-dark);
+    /*
+     * Background pola batik halus — berlaku di seluruh halaman.
+     * Path relatif terhadap css/style.css.
+     * Section hijau/gelap akan menutupi pola ini dengan background-color solid mereka.
+     */
+    background-color: var(--color-white);
+    background-image: url('../assets/images/hero/bg putih.png');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* =====================================================
+   TYPOGRAPHY
+   ===================================================== */
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    line-height: 1.3;
+    color: var(--color-green-dark);
+}
+
+h1 { font-size: 2.2rem; margin-bottom: var(--space-sm); }
+h2 { font-size: 1.6rem; margin-bottom: var(--space-xs); }
+h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+
+p {
+    margin-bottom: 0.85rem;
+    color: #2c3e30;
+}
+
+a {
+    color: var(--color-green);
+}
+
+a:hover {
+    color: var(--color-green-light);
+}
+
+/* =====================================================
+   CONTAINER
+   ===================================================== */
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border-color: var(--color-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    color: var(--color-white);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-green);
+    border-color: var(--color-green);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+.btn-gold {
+    background-color: var(--color-gold);
+    color: var(--color-dark);
+    border-color: var(--color-gold);
+}
+
+.btn-gold:hover {
+    background-color: var(--color-gold-light);
+    border-color: var(--color-gold-light);
+    color: var(--color-darkest);
+}
+
+/* =====================================================
+   SECTION LABEL
+   ===================================================== */
+
+.section-label {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+}
+
+/* =====================================================
+   SECTION DIVIDER
+   ===================================================== */
+
+.section-divider {
+    display: block;
+    width: 48px;
+    height: 3px;
+    background-color: var(--color-gold);
+    margin: 0.6rem 0 var(--space-sm) 0;
+}
+
+/* =====================================================
+   NAVBAR
+   Transparan di atas hero, solid hijau setelah scroll
+   ===================================================== */
+
+/* Header di beranda (index.html) — fixed di atas hero */
+#site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+}
+
+/* Header di halaman dalam (pages/) — sticky biasa */
+header:not(#site-header) {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background-color: var(--color-green-dark);  /* hijau teal */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#navbar {
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    /* Kondisi awal: transparan (khusus beranda, diubah JS saat scroll) */
+    background-color: transparent;
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Kondisi setelah scroll — class ditambahkan oleh JS */
+/* Juga aktif secara instan di halaman selain beranda */
+#navbar.scrolled {
+    background-color: var(--color-green-dark);  /* hijau teal */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    gap: var(--space-sm);
+}
+
+/* BRAND */
+.nav-brand {
+    flex-shrink: 0;
+}
+
+.nav-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+}
+
+/* Logo placeholder — ganti dengan <img> setelah logo tersedia */
+.nav-logo-placeholder {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-gold);
+    color: var(--color-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.nav-brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--color-white);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.nav-brand-name strong {
+    color: var(--color-gold);
+    font-weight: 700;
+}
+
+/* Teks brand dua baris: nama besar + subtitle kecil */
+.nav-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.nav-brand-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-white);       /* putih — kontras terhadap hijau tua */
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.nav-brand-subtitle {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65); /* putih redup */
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Logo asli — gambar logo Kota Tomohon */
+.nav-logo-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* MENU */
+.nav-menu {
+    display: flex;
+    gap: 0.15rem;
+    align-items: center;
+}
+
+.nav-menu li a {
+    display: block;
+    padding: 0.4rem 0.85rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.88);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+}
+
+/* HAMBURGER BUTTON */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: var(--color-white);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+}
+
+/* Hamburger state: open (X) */
+.nav-hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =====================================================
+   HERO — FULL SCREEN SLIDESHOW
+   ===================================================== */
+
+/* Animasi fade-in untuk teks hero */
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi bounce untuk scroll indicator */
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
+}
+
+/* Animasi crossfade slide */
+@keyframes slideKenburn {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.06); }
+}
+
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 480px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    /* Hero di bawah navbar yang fixed */
+    margin-top: 0;
+    border-bottom: 3px solid var(--color-gold);
+}
+
+/* SLIDESHOW */
+.hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    /* Ken Burns ringan */
+    animation: slideKenburn 12s ease-in-out infinite alternate;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+/* OVERLAY GELAP TRANSPARAN */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(13, 31, 42, 0.40) 0%,
+        rgba(13, 31, 42, 0.22) 55%,
+        rgba(13, 31, 42, 0.55) 100%
+    );
+}
+
+/* TEKS UTAMA */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-top: var(--navbar-height);
+}
+
+.hero-text {
+    max-width: 680px;
+    padding: var(--space-md) 0;
+    /* Animasi fade-in saat halaman pertama dibuka */
+    animation: heroFadeUp 0.9s ease both;
+}
+
+.hero-welcome {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+    animation: heroFadeUp 0.9s 0.1s ease both;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    animation: heroFadeUp 0.9s 0.2s ease both;
+}
+
+.hero-location {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: var(--space-md);
+    animation: heroFadeUp 0.9s 0.3s ease both;
+}
+
+.hero-btn {
+    animation: heroFadeUp 0.9s 0.45s ease both;
+}
+
+/* CAPTION FOTO */
+.hero-caption {
+    position: absolute;
+    bottom: 72px;
+    left: var(--space-md);
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.45);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.75rem;
+    border-left: 2px solid var(--color-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    max-width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* DOTS NAVIGASI */
+.hero-dots {
+    position: absolute;
+    bottom: 80px;
+    right: var(--space-md);
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.25s, transform 0.25s;
+}
+
+.hero-dot.active {
+    background-color: var(--color-gold);
+    transform: scale(1.3);
+}
+
+/* SCROLL INDICATOR */
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.hero-scroll-indicator:hover,
+.hero-scroll-indicator:focus {
+    color: var(--color-white);
+    outline: none;
+}
+
+.scroll-label {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.scroll-arrow {
+    animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+/* =====================================================
+   INTRO SECTION
+   ===================================================== */
+
+#tentang-singkat {
+    padding: var(--space-xl) 0;
+    background-color: transparent; /* pola body terlihat */
+}
+
+.intro-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.intro-text p {
+    margin-bottom: var(--space-sm);
+}
+
+.intro-image-placeholder {
+    background-color: var(--color-light-gray);
+    border: 2px dashed #bbb;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-mid-gray);
+    font-size: 0.9rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    padding: var(--space-sm);
+}
+
+/* =====================================================
+   STATISTIK CARDS
+   ===================================================== */
+
+#statistik {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-darkest);  /* warna 1 — paling gelap */
+    border-top: 3px solid var(--color-gold);
+    border-bottom: 3px solid var(--color-gold);
+}
+
+#statistik h2 {
+    color: var(--color-white);
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+}
+
+.stat-card {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-sm);
+    text-align: center;
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+}
+
+.stat-note {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+/* =====================================================
+   SEJARAH SINGKAT (BERANDA)
+   ===================================================== */
+
+#sejarah-singkat {
+    padding: var(--space-xl) 0;
+    background-color: transparent; /* pola body terlihat */
+}
+
+.sejarah-singkat-inner {
+    max-width: 720px;
+}
+
+/* =====================================================
+   GALERI PREVIEW (BERANDA)
+   ===================================================== */
+
+#galeri-preview {
+    padding: var(--space-xl) 0;
+    background-color: transparent; /* pola body terlihat */
+}
+
+#galeri-preview h2 {
+    text-align: center;
+}
+
+.galeri-preview-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.gallery-placeholder {
+    background-color: var(--color-light-gray);
+    border: 2px dashed #bbb;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-mid-gray);
+    font-size: 0.82rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    padding: var(--space-xs);
+}
+
+.gallery-item .gallery-placeholder {
+    min-height: 180px;
+}
+
+.gallery-item figcaption {
+    font-size: 0.82rem;
+    color: var(--color-mid-gray);
+    margin-top: 0.4rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.gallery-footer {
+    text-align: center;
+}
+
+/* =====================================================
+   CTA SECTION (BERANDA)
+   ===================================================== */
+
+#cta {
+    padding: var(--space-xl) 0;
+    background-color: rgba(216, 243, 220, 0.70); /* hijau pucat transparan, pola tetap terlihat */
+    text-align: center;
+    border-top: 3px solid var(--color-gold);
+}
+
+#cta h2 {
+    margin-bottom: var(--space-xs);
+}
+
+#cta p {
+    margin-bottom: var(--space-md);
+    color: var(--color-mid-gray);
+}
+
+/* =====================================================
+   PAGE HEADER (halaman dalam)
+   ===================================================== */
+
+.page-header {
+    /* Background dihilangkan — pola batik body terlihat */
+    background-color: transparent;
+    padding: var(--space-lg) 0 var(--space-md) 0;
+    border-bottom: 3px solid var(--color-gold); /* pemisah emas dipertahankan */
+}
+
+.page-header h1 {
+    color: var(--color-darkest); /* gelap — terbaca di atas pola batik putih */
+    margin-bottom: 0.25rem;
+}
+
+.page-header p {
+    color: var(--color-mid-gray); /* abu hijau — terbaca di pola batik */
+    margin: 0;
+}
+
+/* =====================================================
+   SECTION GENERIC (halaman dalam)
+   ===================================================== */
+
+.page-section {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.page-section:last-of-type {
+    border-bottom: none;
+}
+
+/* =====================================================
+   DATA / INFO GRID (halaman Tentang)
+   ===================================================== */
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.data-card {
+    background-color: var(--color-green-dark);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-sm);
+    text-align: center;
+}
+
+.data-card .stat-value {
+    font-size: 1.7rem;
+}
+
+.data-note {
+    font-size: 0.82rem;
+    color: var(--color-mid-gray);
+    font-style: italic;
+    margin-top: var(--space-xs);
+}
+
+/* =====================================================
+   INFO LIST (halaman Tentang — identitas wilayah)
+   ===================================================== */
+
+.info-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm) var(--space-lg);
+    margin-top: var(--space-sm);
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.info-row dt {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-mid-gray);
+}
+
+.info-row dd {
+    font-size: 1rem;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+/* =====================================================
+   PEMERINTAHAN (halaman Tentang)
+   ===================================================== */
+
+.pemerintahan-card {
+    background-color: var(--color-off-white);
+    border: 1px solid var(--color-light-gray);
+    border-left: 4px solid var(--color-green);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-xs);
+}
+
+.pemerintahan-card h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-mid-gray);
+    margin-bottom: 0.2rem;
+}
+
+.pemerintahan-card p {
+    font-size: 1rem;
+    color: var(--color-dark);
+    margin: 0;
+}
+
+/* =====================================================
+   TIMELINE (halaman Sejarah)
+   ===================================================== */
+
+.timeline-list {
+    position: relative;
+    margin-top: var(--space-md);
+    padding-left: var(--space-md);
+}
+
+.timeline-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-green-light);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-md);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    border: 2px solid var(--color-white);
+}
+
+.timeline-tahun {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    background-color: var(--color-green-pale);
+    color: var(--color-green-dark);
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.35rem;
+}
+
+.timeline-item h3 {
+    color: var(--color-green-dark);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-item p {
+    color: #3d4f40;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* =====================================================
+   GALERI GRID (halaman Galeri)
+   ===================================================== */
+
+.gallery-full-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.gallery-full-grid .gallery-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-full-grid .gallery-placeholder {
+    min-height: 180px;
+    flex: 1;
+}
+
+/* =====================================================
+   KONTAK (halaman Kontak)
+   ===================================================== */
+
+.kontak-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.kontak-card {
+    background-color: var(--color-off-white);
+    border: 1px solid var(--color-light-gray);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+}
+
+.kontak-card h3 {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-green);
+    margin-bottom: 0.35rem;
+}
+
+.kontak-card p {
+    margin: 0;
+    color: var(--color-dark);
+}
+
+.map-placeholder {
+    margin-top: var(--space-sm);
+    background-color: var(--color-light-gray);
+    border: 2px dashed #bbb;
+    min-height: 280px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-mid-gray);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: var(--space-sm);
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    background-color: var(--color-green-dark);  /* hijau teal — sama dengan navbar */
+    color: rgba(255, 255, 255, 0.85);
+    padding: var(--space-lg) 0 var(--space-sm) 0;
+    border-top: 3px solid var(--color-gold);
+}
+
+.footer-inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: var(--space-sm);
+}
+
+.footer-brand h3 {
+    font-size: 1.2rem;
+    color: var(--color-white);
+    margin-bottom: 0.25rem;
+}
+
+.footer-brand p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+}
+
+.footer-nav h4 {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+}
+
+.footer-nav ul li {
+    margin-bottom: 0.35rem;
+}
+
+.footer-nav ul li a {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-white);
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+    text-align: center;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+/* Tablet: max-width 768px */
+@media (max-width: 768px) {
+
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.35rem; }
+
+    /* Hero title — tablet */
+    .hero-title { font-size: 2.8rem; }
+
+    .intro-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .data-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-full-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-list {
+        grid-template-columns: 1fr;
+    }
+
+    .kontak-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+}
+
+/* Mobile: max-width 640px — hamburger menu aktif */
+@media (max-width: 640px) {
+
+    /* Hamburger muncul */
+    .nav-hamburger {
+        display: flex;
+    }
+
+    /* Menu desktop disembunyikan, muncul saat open */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--navbar-height);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background-color: var(--color-green-dark);  /* hijau teal — konsisten dengan navbar */
+        padding: var(--space-xs) 0 var(--space-sm) 0;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .nav-menu li a {
+        padding: 0.75rem var(--space-md);
+        font-size: 0.95rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-menu li:last-child a {
+        border-bottom: none;
+    }
+
+    /* Hero title — mobile */
+    .hero-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.04em;
+    }
+
+    .hero-welcome {
+        font-size: 0.75rem;
+    }
+
+    .hero-location {
+        font-size: 0.9rem;
+    }
+
+    /* Caption — lebih pendek di mobile */
+    .hero-caption {
+        max-width: 200px;
+        font-size: 0.72rem;
+    }
+
+    /* Dots — sejajarkan dengan caption */
+    .hero-dots {
+        bottom: 76px;
+    }
+
+}
+
+/* Mobile kecil: max-width 400px */
+@media (max-width: 400px) {
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-full-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}

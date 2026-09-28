@@ -1,0 +1,13 @@
+{
+  "nama": "",
+  "namaSingkat": "",
+  "kecamatan": "",
+  "kota": "",
+  "provinsi": "",
+  "kodePos": "",
+  "alamat": "",
+  "koordinat": {
+    "latitude": "",
+    "longitude": ""
+  }
+}
