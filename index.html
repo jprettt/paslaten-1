@@ -162,21 +162,33 @@
             <!-- OVERLAY GELAP -->
             <div class="hero-overlay" aria-hidden="true"></div>
 
-            <!-- TEKS UTAMA HERO — centered dengan variasi pill -->
+            <!-- TEKS UTAMA HERO — hierarki modern -->
             <div class="hero-content hero-content--center">
+                <!-- Scrim radial halus di belakang teks (bukan box) -->
+                <div class="hero-text-scrim" aria-hidden="true"></div>
+
                 <div class="hero-text hero-text--center" id="hero-text">
-                    <p class="hero-welcome">SELAMAT DATANG DI</p>
-                    <!-- Judul dua baris -->
-                    <h1 class="hero-title hero-title--mixed">
-                        <span class="hero-word hero-word--pill">Kelurahan Paslaten 1</span>
-                        <span class="hero-word">Tomohon Timur</span>
+
+                    <!-- 1. Eyebrow -->
+                    <p class="hero-eyebrow">SELAMAT DATANG DI</p>
+
+                    <!-- 2 & 3. Kelurahan + Paslaten 1 -->
+                    <h1 class="hero-heading-group">
+                        <span class="hero-sub">Kelurahan</span>
+                        <span class="hero-main">Paslaten 1</span>
                     </h1>
-                    <p class="hero-location">
-                        Kota Tomohon &mdash; Sulawesi Utara
-                    </p>
+
+                    <!-- 4. Tomohon Timur -->
+                    <p class="hero-secondary">Tomohon Timur</p>
+
+                    <!-- 5. Lokasi kecil -->
+                    <p class="hero-location-small">Kota Tomohon &middot; Sulawesi Utara</p>
+
+                    <!-- CTA -->
                     <button class="btn-hero-jelajahi hero-btn" id="btn-kenali" type="button">
-                        Kenali Paslaten 1
+                        Kenali Paslaten 1 &rarr;
                     </button>
+
                 </div>
             </div>
 
@@ -358,13 +370,6 @@
                                 src="assets/images/intro/gerbang.png"
                                 alt="Gerbang Kelurahan Paslaten 1"
                                 class="ob-img-primary"
-                                loading="eager"
-                            >
-                            <!-- Gambar pendukung: Gereja —  pojok kiri bawah -->
-                            <img
-                                src="assets/images/intro/gereja.png"
-                                alt="Gereja di Paslaten 1"
-                                class="ob-img-secondary ob-img-secondary--left"
                                 loading="eager"
                             >
                         </div>
