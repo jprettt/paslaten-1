@@ -50,38 +50,45 @@ a {
      * 3. Medium   — hijau sedang:       #2d906e
      * 4. Light    — sage hijau muda:    #8ec1a2
      */
-    --color-darkest:      #0d1f2a;  /* navbar, footer, hero bg */
-    --color-green-dark:   #1a5c50;  /* section aksen gelap, page-header */
-    --color-green:        #2d906e;  /* tombol utama, link, aksen */
-    --color-green-light:  #5aaa87;  /* hover, border aksen */
-    --color-green-pale:   #c8e6d8;  /* background CTA, highlight ringan */
-    --color-sage:         #8ec1a2;  /* elemen dekoratif, badge */
+    --color-darkest: #0d1f2a;
+    /* navbar, footer, hero bg */
+    --color-green-dark: #1a5c50;
+    /* section aksen gelap, page-header */
+    --color-green: #2d906e;
+    /* tombol utama, link, aksen */
+    --color-green-light: #5aaa87;
+    /* hover, border aksen */
+    --color-green-pale: #c8e6d8;
+    /* background CTA, highlight ringan */
+    --color-sage: #8ec1a2;
+    /* elemen dekoratif, badge */
 
     /* Emas / aksen — dipertahankan */
-    --color-gold:         #c9a84c;
-    --color-gold-light:   #f0d080;
+    --color-gold: #c9a84c;
+    --color-gold-light: #f0d080;
 
     /* Netral */
-    --color-white:        #ffffff;
-    --color-off-white:    #f5f8f6;
-    --color-light-gray:   #e2ebe6;
-    --color-mid-gray:     #5a7068;
-    --color-dark:         #0d1f2a;  /* sama dengan darkest untuk konsistensi teks */
+    --color-white: #ffffff;
+    --color-off-white: #f5f8f6;
+    --color-light-gray: #e2ebe6;
+    --color-mid-gray: #5a7068;
+    --color-dark: #0d1f2a;
+    /* sama dengan darkest untuk konsistensi teks */
 
     /* Typography */
-    --font-body:    Georgia, 'Times New Roman', serif;
+    --font-body: Georgia, 'Times New Roman', serif;
     --font-heading: 'Trebuchet MS', Arial, sans-serif;
 
     /* Spacing */
-    --space-xs:  0.5rem;
-    --space-sm:  1rem;
-    --space-md:  1.5rem;
-    --space-lg:  2.5rem;
-    --space-xl:  4rem;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
 
     /* Layout */
     --container-width: 1100px;
-    --navbar-height:   64px;
+    --navbar-height: 64px;
 
     /* Radius */
     --radius-sm: 4px;
@@ -119,15 +126,29 @@ main {
    TYPOGRAPHY
    ===================================================== */
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-heading);
     line-height: 1.3;
     color: var(--color-green-dark);
 }
 
-h1 { font-size: 2.2rem; margin-bottom: var(--space-sm); }
-h2 { font-size: 1.6rem; margin-bottom: var(--space-xs); }
-h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: var(--space-sm);
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: var(--space-xs);
+}
+
+h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+}
 
 p {
     margin-bottom: 0.85rem;
@@ -165,19 +186,89 @@ a:hover {
     font-weight: 600;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    /* Transisi lengkap untuk semua efek */
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease,
+                opacity 0.15s ease;
+    will-change: transform;
+    /* Hapus tap highlight bawaan browser di mobile */
+    -webkit-tap-highlight-color: transparent;
 }
 
+/* ---- MOBILE & TOUCH: efek :active (saat jari menekan) ---- */
+/* Ini yang benar-benar berfungsi di HP */
+.btn:active {
+    transform: scale(0.96);
+    opacity: 0.88;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.btn-primary:active {
+    background-color: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    box-shadow: 0 2px 10px rgba(45, 144, 110, 0.5);
+    opacity: 1;
+}
+
+.btn-outline:active {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(45, 144, 110, 0.4);
+    opacity: 1;
+}
+
+.btn-gold:active {
+    background-color: var(--color-gold-light);
+    border-color: var(--color-gold-light);
+    color: var(--color-darkest);
+    box-shadow: 0 2px 10px rgba(201, 168, 76, 0.55);
+    opacity: 1;
+}
+
+/* ---- DESKTOP/MOUSE ONLY: efek :hover ---- */
+/* @media (hover: hover) = hanya device yang punya true hover (mouse/trackpad) */
+/* Di HP touchscreen, blok ini diabaikan sepenuhnya */
+@media (hover: hover) and (pointer: fine) {
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn:active {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--color-green-dark);
+        border-color: var(--color-green-dark);
+        color: var(--color-white);
+        box-shadow: 0 6px 20px rgba(45, 144, 110, 0.40);
+    }
+
+    .btn-outline:hover {
+        background-color: var(--color-green);
+        color: var(--color-white);
+        box-shadow: 0 6px 20px rgba(45, 144, 110, 0.30);
+    }
+
+    .btn-gold:hover {
+        background-color: var(--color-gold-light);
+        border-color: var(--color-gold-light);
+        color: var(--color-darkest);
+        box-shadow: 0 6px 20px rgba(201, 168, 76, 0.45);
+    }
+
+}
+
+/* Warna default tombol (berlaku di semua device) */
 .btn-primary {
     background-color: var(--color-green);
     color: var(--color-white);
     border-color: var(--color-green);
-}
-
-.btn-primary:hover {
-    background-color: var(--color-green-dark);
-    border-color: var(--color-green-dark);
-    color: var(--color-white);
 }
 
 .btn-outline {
@@ -186,21 +277,10 @@ a:hover {
     border-color: var(--color-green);
 }
 
-.btn-outline:hover {
-    background-color: var(--color-green);
-    color: var(--color-white);
-}
-
 .btn-gold {
     background-color: var(--color-gold);
     color: var(--color-dark);
     border-color: var(--color-gold);
-}
-
-.btn-gold:hover {
-    background-color: var(--color-gold-light);
-    border-color: var(--color-gold-light);
-    color: var(--color-darkest);
 }
 
 /* =====================================================
@@ -249,7 +329,8 @@ header:not(#site-header) {
     position: sticky;
     top: 0;
     z-index: 200;
-    background-color: var(--color-green-dark);  /* hijau teal */
+    background-color: var(--color-green-dark);
+    /* hijau teal */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -265,7 +346,8 @@ header:not(#site-header) {
 /* Kondisi setelah scroll — class ditambahkan oleh JS */
 /* Juga aktif secara instan di halaman selain beranda */
 #navbar.scrolled {
-    background-color: var(--color-green-dark);  /* hijau teal */
+    background-color: var(--color-green-dark);
+    /* hijau teal */
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -278,6 +360,38 @@ header:not(#site-header) {
     margin: 0 auto;
     padding: 0 var(--space-md);
     gap: var(--space-sm);
+}
+
+/* Hero navbar: hanya tampilkan logo (kiri) + hamburger (kanan) */
+/* Menu desktop disembunyikan, hamburger selalu tampil */
+.navbar-inner--hero .nav-menu {
+    display: none;
+}
+
+.navbar-inner--hero .nav-hamburger {
+    display: flex;
+}
+
+/* Teks brand di beranda — tersembunyi saat transparan, muncul saat solid */
+/* Modifier khusus: .nav-brand-text--hero */
+.nav-brand-text--hero {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    /* Animasi: fade + expand dari kiri */
+    transition:
+        opacity 0.3s ease 0.05s,
+        max-width 0.35s ease;
+    /* Pointer events off agar tidak blok klik saat tersembunyi */
+    pointer-events: none;
+}
+
+/* Saat navbar sudah scrolled (solid) — teks muncul */
+#navbar.scrolled .nav-brand-text--hero {
+    opacity: 1;
+    max-width: 180px;
+    pointer-events: auto;
 }
 
 /* BRAND */
@@ -333,7 +447,8 @@ header:not(#site-header) {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--color-white);       /* putih — kontras terhadap hijau tua */
+    color: var(--color-white);
+    /* putih — kontras terhadap hijau tua */
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -342,7 +457,8 @@ header:not(#site-header) {
     font-family: var(--font-heading);
     font-size: 0.7rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.65); /* putih redup */
+    color: rgba(255, 255, 255, 0.65);
+    /* putih redup */
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -410,9 +526,11 @@ header:not(#site-header) {
 .nav-hamburger.open span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
+
 .nav-hamburger.open span:nth-child(2) {
     opacity: 0;
 }
+
 .nav-hamburger.open span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
@@ -427,6 +545,7 @@ header:not(#site-header) {
         opacity: 0;
         transform: translateY(24px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -435,14 +554,26 @@ header:not(#site-header) {
 
 /* Animasi bounce untuk scroll indicator */
 @keyframes scrollBounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(7px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
 }
 
 /* Animasi crossfade slide */
 @keyframes slideKenburn {
-    0%   { transform: scale(1); }
-    100% { transform: scale(1.06); }
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.06);
+    }
 }
 
 #hero {
@@ -486,12 +617,10 @@ header:not(#site-header) {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-        to bottom,
-        rgba(13, 31, 42, 0.40) 0%,
-        rgba(13, 31, 42, 0.22) 55%,
-        rgba(13, 31, 42, 0.55) 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(13, 31, 42, 0.40) 0%,
+            rgba(13, 31, 42, 0.22) 55%,
+            rgba(13, 31, 42, 0.55) 100%);
 }
 
 /* TEKS UTAMA */
@@ -502,11 +631,33 @@ header:not(#site-header) {
     padding-top: var(--navbar-height);
 }
 
+/* HERO CENTER — layout terpusat seperti referensi */
+.hero-content--center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
 .hero-text {
     max-width: 680px;
     padding: var(--space-md) 0;
     /* Animasi fade-in saat halaman pertama dibuka */
     animation: heroFadeUp 0.9s ease both;
+}
+
+/* Hero text centered */
+.hero-text--center {
+    text-align: center;
+    max-width: 100%;
+    padding: var(--space-md) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-welcome {
@@ -528,8 +679,48 @@ header:not(#site-header) {
     letter-spacing: 0.06em;
     line-height: 1.1;
     margin-bottom: 0.75rem;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
     animation: heroFadeUp 0.9s 0.2s ease both;
+}
+
+/* Judul hero dengan variasi pill — seperti referensi Gaskuy */
+.hero-title--mixed {
+    font-size: 2.6rem;
+    line-height: 1.25;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.65rem;
+}
+
+/* Kata biasa di judul */
+.hero-word {
+    display: inline-block;
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 0.82em;      /* lebih kecil dari pill — hirarki jelas */
+    opacity: 0.82;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+/* Kata dengan pill/badge style — ini yang jadi fokus */
+.hero-word--pill {
+    background-color: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.30);
+    border-radius: 100px;
+    padding: 0.12em 0.65em;
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
 
 .hero-location {
@@ -540,8 +731,42 @@ header:not(#site-header) {
     animation: heroFadeUp 0.9s 0.3s ease both;
 }
 
-.hero-btn {
-    animation: heroFadeUp 0.9s 0.45s ease both;
+/* Tombol Kenali Paslaten 1 — glassmorphism, menyatu dengan hero */
+.btn-hero-jelajahi {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.92);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.7rem 1.9rem;
+    border-radius: 100px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: background-color 0.2s ease, transform 0.15s ease,
+                box-shadow 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-hero-jelajahi:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.65);
+    color: var(--color-white);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-hero-jelajahi:active {
+    transform: scale(0.96);
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* CAPTION FOTO */
@@ -631,7 +856,8 @@ header:not(#site-header) {
 
 #tentang-singkat {
     padding: var(--space-xl) 0;
-    background-color: transparent; /* pola body terlihat */
+    background-color: transparent;
+    /* pola body terlihat */
 }
 
 .intro-inner {
@@ -665,7 +891,8 @@ header:not(#site-header) {
 
 #statistik {
     padding: var(--space-xl) 0;
-    background-color: var(--color-darkest);  /* warna 1 — paling gelap */
+    background-color: var(--color-darkest);
+    /* warna 1 — paling gelap */
     border-top: 3px solid var(--color-gold);
     border-bottom: 3px solid var(--color-gold);
 }
@@ -720,7 +947,8 @@ header:not(#site-header) {
 
 #sejarah-singkat {
     padding: var(--space-xl) 0;
-    background-color: transparent; /* pola body terlihat */
+    background-color: transparent;
+    /* pola body terlihat */
 }
 
 .sejarah-singkat-inner {
@@ -733,7 +961,8 @@ header:not(#site-header) {
 
 #galeri-preview {
     padding: var(--space-xl) 0;
-    background-color: transparent; /* pola body terlihat */
+    background-color: transparent;
+    /* pola body terlihat */
 }
 
 #galeri-preview h2 {
@@ -788,7 +1017,8 @@ header:not(#site-header) {
 
 #cta {
     padding: var(--space-xl) 0;
-    background-color: rgba(216, 243, 220, 0.70); /* hijau pucat transparan, pola tetap terlihat */
+    background-color: rgba(216, 243, 220, 0.70);
+    /* hijau pucat transparan, pola tetap terlihat */
     text-align: center;
     border-top: 3px solid var(--color-gold);
 }
@@ -810,16 +1040,19 @@ header:not(#site-header) {
     /* Background dihilangkan — pola batik body terlihat */
     background-color: transparent;
     padding: var(--space-lg) 0 var(--space-md) 0;
-    border-bottom: 3px solid var(--color-gold); /* pemisah emas dipertahankan */
+    border-bottom: 3px solid var(--color-gold);
+    /* pemisah emas dipertahankan */
 }
 
 .page-header h1 {
-    color: var(--color-darkest); /* gelap — terbaca di atas pola batik putih */
+    color: var(--color-darkest);
+    /* gelap — terbaca di atas pola batik putih */
     margin-bottom: 0.25rem;
 }
 
 .page-header p {
-    color: var(--color-mid-gray); /* abu hijau — terbaca di pola batik */
+    color: var(--color-mid-gray);
+    /* abu hijau — terbaca di pola batik */
     margin: 0;
 }
 
@@ -1061,7 +1294,8 @@ header:not(#site-header) {
    ===================================================== */
 
 footer {
-    background-color: var(--color-green-dark);  /* hijau teal — sama dengan navbar */
+    background-color: var(--color-green-dark);
+    /* hijau teal — sama dengan navbar */
     color: rgba(255, 255, 255, 0.85);
     padding: var(--space-lg) 0 var(--space-sm) 0;
     border-top: 3px solid var(--color-gold);
@@ -1131,11 +1365,18 @@ footer {
 /* Tablet: max-width 768px */
 @media (max-width: 768px) {
 
-    h1 { font-size: 1.75rem; }
-    h2 { font-size: 1.35rem; }
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
 
     /* Hero title — tablet */
-    .hero-title { font-size: 2.8rem; }
+    .hero-title {
+        font-size: 2.8rem;
+    }
 
     .intro-inner {
         grid-template-columns: 1fr;
@@ -1175,6 +1416,17 @@ footer {
 /* Mobile: max-width 640px — hamburger menu aktif */
 @media (max-width: 640px) {
 
+    /* Background batik portrait — khusus mobile
+       Tampil ukuran asli (auto) lalu tile/repeat mengisi background
+       JANGAN pakai cover — itu yang bikin terlalu zoom */
+    body {
+        background-image: url('../assets/images/hero/bg putih pt.png');
+        background-size: 120%;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-position: top left;
+    }
+
     /* Hamburger muncul */
     .nav-hamburger {
         display: flex;
@@ -1189,9 +1441,10 @@ footer {
         right: 0;
         flex-direction: column;
         gap: 0;
-        background-color: var(--color-green-dark);  /* hijau teal — konsisten dengan navbar */
+        background-color: var(--color-green-dark);
+        /* hijau teal — konsisten dengan navbar */
         padding: var(--space-xs) 0 var(--space-sm) 0;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
 
     .nav-menu.open {
@@ -1202,7 +1455,7 @@ footer {
         padding: 0.75rem var(--space-md);
         font-size: 0.95rem;
         border-radius: 0;
-        border-bottom: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
 
     .nav-menu li:last-child a {
@@ -1255,4 +1508,646 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 
+}
+
+/* =====================================================
+   ONBOARDING OVERLAY
+   Mobile-first, full-screen, 3-slide introduction
+   ===================================================== */
+
+/* --- Overlay container --- */
+.ob-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    /* Warna default = slide pertama */
+    background-color: #0d2235;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Hidden by default — dipicu oleh JS saat tombol diklik */
+    opacity: 0;
+    pointer-events: none;
+    /* Transisi: fade masuk + ganti warna slide halus */
+    transition: opacity 0.35s ease, background-color 0.45s ease;
+}
+
+.ob-overlay.ob-active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Warna per slide — ditoggle oleh JS via obGoTo() */
+/* Slide 0 (1) — navy teal dengan sentuhan emas */
+.ob-overlay.ob-at-0 {
+    background-color: #0d2235;
+    background-image: radial-gradient(
+        ellipse 55% 40% at 85% 8%,
+        rgba(201, 168, 76, 0.10) 0%,
+        transparent 65%
+    );
+}
+
+/* Slide 1 (2) — hijau hutan tua */
+.ob-overlay.ob-at-1 {
+    background-color: #0a2218;
+    background-image: radial-gradient(
+        ellipse 60% 45% at 18% 15%,
+        rgba(45, 144, 110, 0.15) 0%,
+        transparent 65%
+    );
+}
+
+/* Slide 2 (3) — plum/ungu malam, jelas berbeda dari dua slide lain */
+.ob-overlay.ob-at-2 {
+    background-color: #1a0f2e;
+    background-image: radial-gradient(
+        ellipse 60% 50% at 50% 90%,
+        rgba(140, 90, 200, 0.12) 0%,
+        transparent 65%
+    );
+}
+
+/* --- Top bar (tombol Lewati) --- */
+.ob-topbar {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.9rem 1.25rem 0.5rem;
+    z-index: 10;
+}
+
+.ob-skip-btn {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: color 0.2s, background-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ob-skip-btn:hover {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ob-skip-btn:active {
+    transform: scale(0.96);
+}
+
+/* --- Slides wrapper (clips overflow) --- */
+.ob-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-height: 0; /* fix flex overflow in some browsers */
+}
+
+/* --- Slides track (horizontal scroll via transform) --- */
+.ob-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* --- Single slide --- */
+.ob-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Slide sendiri transparan — warna dari .ob-overlay */
+    background-color: transparent;
+}
+
+/* --- Visual / illustration area --- */
+.ob-visual {
+    flex: 0 0 52%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    /* JANGAN pakai overflow:hidden — akan memotong gambar */
+    overflow: visible;
+    padding: 0.5rem 1rem 0;
+}
+
+/* SVG slides (slide 3) */
+.ob-visual svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Gradient fade bawah — hanya dekorasi, tidak memotong gambar */
+.ob-visual::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, var(--color-darkest));
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* ============================================================
+   IMAGE STAGE — container gambar slide 1 & 2
+   Pendekatan: gambar utama adalah elemen flow biasa (bukan absolute)
+   Gambar pendukung: absolute relatif ke .ob-img-stage
+   ============================================================ */
+
+.ob-img-stage {
+    position: relative;
+    width: 100%;
+    /* Tinggi dihitung agar proporsional di semua mobile */
+    height: clamp(160px, 40vh, 260px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* Gambar utama — flow normal, besar, terpusat */
+.ob-img-primary {
+    display: block;
+    width: clamp(200px, 80%, 320px);
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5));
+    position: relative;
+    z-index: 2;
+}
+
+/* Gambar pendukung — absolute dalam .ob-img-stage */
+.ob-img-secondary {
+    position: absolute;
+    bottom: 0;
+    width: clamp(80px, 32%, 130px);
+    height: auto;
+    max-height: 55%;
+    object-fit: contain;
+    object-position: bottom;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+    z-index: 3;
+    opacity: 0.95;
+}
+
+/* Slide 1: gereja di kiri bawah */
+.ob-img-secondary--left  {
+    left: 0;
+}
+
+/* Slide 2: bank sampah di kanan bawah */
+.ob-img-secondary--right {
+    right: 0;
+}
+
+/* Glow dekoratif — di belakang stage */
+.ob-glow {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.ob-glow--gold {
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.20) 0%, transparent 68%);
+}
+
+.ob-glow--green {
+    background: radial-gradient(circle, rgba(45, 144, 110, 0.20) 0%, transparent 68%);
+}
+
+
+/* --- Text content area --- */
+.ob-content {
+    flex: 1;
+    padding: 1.25rem 1.75rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-height: 0;
+}
+
+.ob-label {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.ob-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.ob-title strong {
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.ob-desc {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* --- Bottom controls --- */
+.ob-bottom {
+    flex-shrink: 0;
+    padding: 0.75rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: center;
+}
+
+/* --- Pagination dots --- */
+.ob-dots {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+.ob-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.22);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease, width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ob-dot.active {
+    background-color: var(--color-gold);
+    width: 26px;
+}
+
+/* --- Nav buttons row --- */
+.ob-nav-row {
+    display: flex;
+    width: 100%;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+/* Kembali */
+.ob-back-btn {
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 100px;
+    padding: 0.72rem 1.3rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s, opacity 0.25s ease, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ob-back-btn:hover {
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.ob-back-btn:active {
+    transform: scale(0.96);
+}
+
+/* Sembunyikan tombol Kembali di slide pertama */
+.ob-back-btn.ob-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Selanjutnya / Mulai Jelajahi */
+.ob-next-btn {
+    flex: 1;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-darkest);
+    background-color: var(--color-gold);
+    border: none;
+    border-radius: 100px;
+    padding: 0.78rem 1.5rem;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .ob-next-btn:hover {
+        background-color: var(--color-gold-light);
+        box-shadow: 0 4px 16px rgba(201, 168, 76, 0.4);
+    }
+}
+
+.ob-next-btn:active {
+    transform: scale(0.97);
+    background-color: var(--color-gold-light);
+}
+
+/* --- Responsive adjustments --- */
+
+/* Tablet & desktop: side-by-side layout */
+@media (min-width: 640px) {
+    .ob-slide {
+        flex-direction: row;
+    }
+
+    .ob-visual {
+        flex: 0 0 50%;
+    }
+
+    .ob-visual::after {
+        /* Gradient arah kanan (bukan bawah) */
+        background: linear-gradient(to right, transparent, var(--color-darkest));
+        top: 0;
+        left: auto;
+        right: 0;
+        width: 80px;
+        height: 100%;
+    }
+
+    .ob-content {
+        justify-content: center;
+        padding: 2rem 2.5rem;
+    }
+
+    .ob-title {
+        font-size: 2.4rem;
+    }
+
+    .ob-desc {
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile kecil 375px: sedikit kurangi padding & font */
+@media (max-width: 390px) {
+    .ob-title {
+        font-size: 1.75rem;
+    }
+
+    .ob-content {
+        padding: 1rem 1.35rem 0.25rem;
+    }
+
+    .ob-bottom {
+        padding: 0.5rem 1.25rem 1.25rem;
+        gap: 0.65rem;
+    }
+
+    .ob-desc {
+        font-size: 0.82rem;
+    }
+}
+
+/* =================================================================
+   DRAWER MENU — slide dari kanan, 55% lebar layar
+   ================================================================= */
+
+/* --- Backdrop gelap semi-transparan --- */
+.drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 8000;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.drawer-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* --- Drawer panel --- */
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 62%;          /* ~55–62% layar mobile */
+    max-width: 300px;
+    z-index: 8100;
+    /* Sama dengan navbar scrolled: var(--color-green-dark) = #1a5c50 */
+    background-color: var(--color-green-dark);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Slide dari kanan */
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Border kiri tipis emas */
+    border-left: 1px solid rgba(201, 168, 76, 0.25);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.45);
+}
+
+.drawer.drawer-open {
+    transform: translateX(0);
+}
+
+/* --- Header drawer --- */
+.drawer-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1rem 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    /* Sedikit lebih terang dari body drawer */
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.drawer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.drawer-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.drawer-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.drawer-brand-title {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.drawer-brand-sub {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Tombol tutup (×) */
+.drawer-close {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.drawer-close:hover {
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--color-gold);
+}
+
+.drawer-close:active {
+    transform: scale(0.93);
+}
+
+/* --- Navigation list --- */
+.drawer-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.drawer-item {
+    margin: 0;
+}
+
+/* Setiap link menu */
+.drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.82rem 1.1rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.drawer-link:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* State aktif (halaman sekarang) */
+.drawer-link.active {
+    color: var(--color-gold);
+    background-color: rgba(201, 168, 76, 0.15);
+    border-left-color: var(--color-gold);
+    font-weight: 700;
+}
+
+/* Ikon tiap menu */
+.drawer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+
+.drawer-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+.drawer-link.active .drawer-icon {
+    background-color: rgba(201, 168, 76, 0.18);
+    color: var(--color-gold);
+}
+
+.drawer-link:hover .drawer-icon {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.drawer-link-text {
+    flex: 1;
+}
+
+/* --- Footer drawer --- */
+.drawer-footer {
+    flex-shrink: 0;
+    padding: 0.85rem 1.1rem 1.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.drawer-footer p {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+}
+
+/* --- Desktop: sembunyikan drawer, tampilkan nav biasa --- */
+@media (min-width: 768px) {
+    .drawer,
+    .drawer-backdrop {
+        display: none !important;
+    }
 }
