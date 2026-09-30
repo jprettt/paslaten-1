@@ -1,137 +1,123 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kontak Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon.">
-    <title>Kontak — Kelurahan Paslaten 1, Kota Tomohon</title>
-    <link rel="stylesheet" href="../css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Kontak Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon." name="description"/>
+<title>Kontak — Kelurahan Paslaten 1, Kota Tomohon</title>
+<link href="../css/style.css" rel="stylesheet"/>
 </head>
-<body>
-
-    <!-- ==================== NAVBAR ==================== -->
-    <header>
-        <nav id="navbar" aria-label="Navigasi utama">
-            <div class="navbar-inner">
-                <div class="nav-brand">
-                    <a href="../index.html" class="nav-brand-link">
-                        <img src="../assets/images/hero/logo tomohon.png" alt="Logo Kota Tomohon" class="nav-logo-img">
-                        <div class="nav-brand-text"><span class="nav-brand-title">PASLATEN 1</span><span class="nav-brand-subtitle">Tomohon Timur</span></div>
-                    </a>
-                </div>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="../index.html">Beranda</a></li>
-                    <li><a href="tentang.html">Tentang Paslaten</a></li>
-                    <li><a href="sejarah.html">Sejarah</a></li>
-                    <li><a href="galeri.html">Galeri</a></li>
-                    <li><a href="kontak.html" class="active">Kontak</a></li>
-                </ul>
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer-menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- DRAWER MENU -->
-    <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
-    <aside class="drawer" id="drawer-menu" aria-label="Menu navigasi" aria-hidden="true" role="dialog">
-        <div class="drawer-header">
-            <div class="drawer-brand">
-                <img src="../assets/images/hero/logo tomohon.png" alt="Logo Tomohon" class="drawer-logo">
-                <div class="drawer-brand-text"><span class="drawer-brand-title">Paslaten 1</span><span class="drawer-brand-sub">Kota Tomohon</span></div>
-            </div>
-            <button class="drawer-close" id="drawer-close" aria-label="Tutup menu"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-        </div>
-        <nav aria-label="Menu halaman">
-            <ul class="drawer-nav">
-                <li class="drawer-item"><a href="../index.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21V12h6v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="drawer-link-text">Beranda</span></a></li>
-                <li class="drawer-item"><a href="tentang.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="drawer-link-text">Tentang Paslaten</span></a></li>
-                <li class="drawer-item"><a href="sejarah.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="drawer-link-text">Sejarah</span></a></li>
-                <li class="drawer-item"><a href="galeri.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="drawer-link-text">Galeri</span></a></li>
-                <li class="drawer-item"><a href="kontak.html" class="drawer-link active"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="drawer-link-text">Kontak</span></a></li>
-            </ul>
-        </nav>
-        <div class="drawer-footer"><p>Kelurahan Paslaten 1</p><p>Kecamatan Tomohon Timur</p></div>
-    </aside>
-
-    <!-- ==================== MAIN ==================== -->
-    <main>
-
-        <!-- PAGE HEADER -->
-        <div class="page-header">
-            <div class="container">
-                <h1>Kontak</h1>
-                <p>Informasi kontak Kelurahan Paslaten 1</p>
-            </div>
-        </div>
-
-        <!-- INFORMASI KONTAK -->
-        <section id="kontak" class="page-section">
-            <div class="container">
-                <h2>Informasi Kontak</h2>
-                <span class="section-divider"></span>
-                <div class="kontak-grid">
-
-                    <article class="kontak-card">
-                        <h3>Alamat</h3>
-                        <p>Jl. Kalooran<br>Kelurahan Paslaten 1<br>Kecamatan Tomohon Timur<br>Kota Tomohon, Sulawesi Utara 95446</p>
-                    </article>
-
-                    <article class="kontak-card">
-                        <h3>Telepon</h3>
-                        <p>[Akan dilengkapi]</p>
-                    </article>
-
-                    <article class="kontak-card">
-                        <h3>Email</h3>
-                        <p>[Akan dilengkapi]</p>
-                    </article>
-
-                    <article class="kontak-card">
-                        <h3>Media Sosial</h3>
-                        <p>[Akan dilengkapi]</p>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- LOKASI -->
-        <section id="lokasi" class="page-section">
-            <div class="container">
-                <h2>Lokasi</h2>
-                <span class="section-divider"></span>
-                <p>
-                    Kantor Kelurahan Paslaten 1 berlokasi di Jl. Kalooran,
-                    Kecamatan Tomohon Timur, Kota Tomohon.
-                </p>
-                <div class="map-placeholder">
-                    [Peta akan ditambahkan pada tahap berikutnya]
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <h3>Kelurahan Paslaten 1</h3>
-                    <p>Kecamatan Tomohon Timur, Kota Tomohon<br>Sulawesi Utara — Kode Pos 95446</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+<body class="contact-page modern-inner-page">
+<!-- ==================== NAVBAR ==================== -->
+<header>
+<nav aria-label="Navigasi utama" id="navbar">
+<div class="navbar-inner">
+<div class="nav-brand">
+<a class="nav-brand-link" href="../index.html">
+<img alt="Logo Kota Tomohon" class="nav-logo-img" src="../assets/images/hero/logo tomohon.png"/>
+<div class="nav-brand-text"><span class="nav-brand-title">PASLATEN 1</span><span class="nav-brand-subtitle">Tomohon Timur</span></div>
+</a>
+</div>
+<ul class="nav-menu" id="nav-menu">
+<li><a href="../index.html">Beranda</a></li>
+<li><a href="tentang.html">Tentang Paslaten</a></li>
+<li><a href="sejarah.html">Sejarah</a></li>
+<li><a href="statistik.html">Statistik</a></li>
+<li><a href="galeri.html">Galeri</a></li>
+<li><a class="active" href="kontak.html">Kontak</a></li>
+</ul>
+<button aria-controls="drawer-menu" aria-expanded="false" aria-label="Buka menu" class="nav-hamburger" id="nav-hamburger">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+</header>
+<!-- DRAWER MENU -->
+<div aria-hidden="true" class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside aria-hidden="true" aria-label="Menu navigasi" class="drawer" id="drawer-menu" role="dialog">
+<div class="drawer-header">
+<div class="drawer-brand">
+<img alt="Logo Tomohon" class="drawer-logo" src="../assets/images/hero/logo tomohon.png"/>
+<div class="drawer-brand-text"><span class="drawer-brand-title">Paslaten 1</span><span class="drawer-brand-sub">Kota Tomohon</span></div>
+</div>
+<button aria-label="Tutup menu" class="drawer-close" id="drawer-close"><svg fill="none" height="22" viewbox="0 0 22 22" width="22"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></button>
+</div>
+<nav aria-label="Menu halaman">
+<ul class="drawer-nav">
+<li class="drawer-item"><a class="drawer-link" href="../index.html"><span class="drawer-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M3 12L12 3l9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M9 21V12h6v9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></span><span class="drawer-link-text">Beranda</span></a></li>
+<li class="drawer-item"><a class="drawer-link" href="tentang.html"><span class="drawer-icon"><svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></span><span class="drawer-link-text">Tentang Paslaten</span></a></li>
+<li class="drawer-item"><a class="drawer-link" href="sejarah.html"><span class="drawer-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"></path><path d="M12 6v6l4 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></span><span class="drawer-link-text">Sejarah</span></a></li>
+<li class="drawer-item"><a class="drawer-link" href="statistik.html"><span class="drawer-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M5 19V11M12 19V5M19 19V8" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path><path d="M3 19h18" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></span><span class="drawer-link-text">Statistik</span></a></li>
+<li class="drawer-item"><a class="drawer-link" href="galeri.html"><span class="drawer-icon"><svg fill="none" viewbox="0 0 24 24"><rect height="18" rx="3" stroke="currentColor" stroke-width="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"></circle><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></span><span class="drawer-link-text">Galeri</span></a></li>
+<li class="drawer-item"><a class="drawer-link active" href="kontak.html"><span class="drawer-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></span><span class="drawer-link-text">Kontak</span></a></li>
+</ul>
+</nav>
+<div class="drawer-footer"><p>Kelurahan Paslaten 1</p><p>Kecamatan Tomohon Timur</p></div>
+</aside>
+<!-- ==================== MAIN ==================== -->
+<main>
+<section aria-labelledby="contact-title" class="editorial-hero contact-modern-hero">
+<div class="container editorial-hero-inner">
+<div class="editorial-hero-copy">
+<span class="editorial-eyebrow">HUBUNGI KELURAHAN</span>
+<h1 id="contact-title">Kontak</h1>
+<p class="editorial-hero-subtitle">Paslaten 1 · Tomohon Timur</p>
+<span aria-hidden="true" class="editorial-hero-divider"></span>
+</div>
+<div aria-hidden="true" class="contact-hero-visual">
+<div class="contact-hero-ring"></div>
+<svg fill="none" viewbox="0 0 120 120"><path d="M60 104s34-31 34-59a34 34 0 10-68 0c0 28 34 59 34 59z" stroke="currentColor" stroke-width="6"></path><circle cx="60" cy="45" r="12" stroke="currentColor" stroke-width="6"></circle></svg>
+</div>
+</div>
+</section>
+<section class="editorial-section contact-info-section" id="kontak">
+<div class="container">
+<div class="editorial-heading">
+<span class="editorial-kicker">INFORMASI KONTAK</span>
+<h2>Terhubung dengan Kelurahan</h2>
+</div>
+<div class="contact-modern-grid">
+<article class="contact-modern-card contact-modern-card--featured"><span class="contact-card-label">Alamat</span><h3>Jl. Kalooran</h3><p>Kelurahan Paslaten 1<br/>Kecamatan Tomohon Timur<br/>Kota Tomohon, Sulawesi Utara 95446</p><div class="contact-card-mark">01</div></article>
+<article class="contact-modern-card"><span class="contact-card-label">Telepon</span><h3>[Akan dilengkapi]</h3><div class="contact-card-mark">02</div></article>
+<article class="contact-modern-card"><span class="contact-card-label">Email</span><h3>[Akan dilengkapi]</h3><div class="contact-card-mark">03</div></article>
+<article class="contact-modern-card"><span class="contact-card-label">Media Sosial</span><h3>[Akan dilengkapi]</h3><div class="contact-card-mark">04</div></article>
+</div>
+</div>
+</section>
+<section class="editorial-section editorial-section--soft" id="lokasi">
+<div class="container contact-location-grid">
+<div class="contact-location-copy">
+<span class="editorial-kicker">LOKASI</span>
+<h2>Temukan Kantor Kelurahan</h2>
+<span aria-hidden="true" class="editorial-hero-divider contact-divider"></span>
+<p>Kantor Kelurahan Paslaten 1 berlokasi di Jl. Kalooran, Kecamatan Tomohon Timur, Kota Tomohon.</p>
+</div>
+<div aria-label="Peta akan ditambahkan pada tahap berikutnya" class="contact-map-placeholder" role="img">
+<div aria-hidden="true" class="contact-map-grid"></div>
+<div aria-hidden="true" class="contact-map-pin"><span></span></div>
+<p>[Peta akan ditambahkan pada tahap berikutnya]</p>
+</div>
+</div>
+</section>
+</main>
+<!-- ==================== FOOTER ==================== -->
+<footer>
+<div class="footer-inner">
+<div class="footer-main">
+<div class="footer-brand">
+<h3>Kelurahan Paslaten 1</h3>
+<p>Kecamatan Tomohon Timur, Kota Tomohon<br/>Sulawesi Utara — Kode Pos 95446</p>
+<p style="margin-top: 0.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
                         Website Profil — KKT 149 UNSRAT Posko Paslaten 1
                     </p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko Paslaten 1, Kota Tomohon</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/main.js"></script>
+</div>
+</div>
+<div class="footer-bottom">
+<p>Website Profil Kelurahan Paslaten 1 — KKT 149 UNSRAT Posko Paslaten 1, Kota Tomohon</p>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
 </body>
 </html>
