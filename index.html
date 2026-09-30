@@ -1,52 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Website resmi Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon, Sulawesi Utara.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Website resmi Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon, Sulawesi Utara."
+    />
     <title>Paslaten 1 — Kelurahan Paslaten 1, Kota Tomohon</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!-- ==================== NAVBAR ==================== -->
     <!--
         Navbar dimulai transparan di atas hero.
         Setelah scroll, JS menambah class "scrolled" yang mengaktifkan background hijau.
     -->
     <header id="site-header">
-        <nav id="navbar" aria-label="Navigasi utama">
-            <div class="navbar-inner navbar-inner--hero">
+      <nav id="navbar" aria-label="Navigasi utama">
+        <div class="navbar-inner navbar-inner--hero">
+          <!-- LOGO + Teks brand (teks muncul saat navbar solid/scrolled) -->
+          <div class="nav-brand">
+            <a href="index.html" class="nav-brand-link">
+              <img
+                src="assets/images/hero/logo tomohon.png"
+                alt="Logo Kota Tomohon"
+                class="nav-logo-img"
+              />
+              <div class="nav-brand-text nav-brand-text--hero">
+                <span class="nav-brand-title">PASLATEN 1</span>
+                <span class="nav-brand-subtitle">Tomohon Timur</span>
+              </div>
+            </a>
+          </div>
 
-                <!-- LOGO + Teks brand (teks muncul saat navbar solid/scrolled) -->
-                <div class="nav-brand">
-                    <a href="index.html" class="nav-brand-link">
-                        <img src="assets/images/hero/logo tomohon.png" alt="Logo Kota Tomohon" class="nav-logo-img">
-                        <div class="nav-brand-text nav-brand-text--hero">
-                            <span class="nav-brand-title">PASLATEN 1</span>
-                            <span class="nav-brand-subtitle">Tomohon Timur</span>
-                        </div>
-                    </a>
-                </div>
+          <!-- MENU DESKTOP (tersembunyi di mobile) -->
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html" class="active">Beranda</a></li>
+            <li><a href="pages/tentang.html">Tentang Paslaten</a></li>
+            <li><a href="pages/sejarah.html">Sejarah</a></li>
+            <li><a href="pages/galeri.html">Galeri</a></li>
+            <li><a href="pages/kontak.html">Kontak</a></li>
+          </ul>
 
-                <!-- MENU DESKTOP (tersembunyi di mobile) -->
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="index.html" class="active">Beranda</a></li>
-                    <li><a href="pages/tentang.html">Tentang Paslaten</a></li>
-                    <li><a href="pages/sejarah.html">Sejarah</a></li>
-                    <li><a href="pages/galeri.html">Galeri</a></li>
-                    <li><a href="pages/kontak.html">Kontak</a></li>
-                </ul>
-
-                <!-- HAMBURGER (kanan) -->
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-            </div>
-        </nav>
+          <!-- HAMBURGER (kanan) -->
+          <button
+            class="nav-hamburger"
+            id="nav-hamburger"
+            aria-label="Buka menu"
+            aria-expanded="false"
+            aria-controls="drawer-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
     </header>
 
     <!-- ==================== DRAWER MENU ==================== -->
@@ -54,428 +64,794 @@
     <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
 
     <!-- Drawer panel dari kanan -->
-    <aside class="drawer" id="drawer-menu" aria-label="Menu navigasi" aria-hidden="true" role="dialog">
+    <aside
+      class="drawer"
+      id="drawer-menu"
+      aria-label="Menu navigasi"
+      aria-hidden="true"
+      role="dialog"
+    >
+      <!-- Header drawer: logo + tombol tutup -->
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <img
+            src="assets/images/hero/logo tomohon.png"
+            alt="Logo Tomohon"
+            class="drawer-logo"
+          />
+          <div class="drawer-brand-text">
+            <span class="drawer-brand-title">Paslaten 1</span>
+            <span class="drawer-brand-sub">Kota Tomohon</span>
+          </div>
+        </div>
+        <button class="drawer-close" id="drawer-close" aria-label="Tutup menu">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path
+              d="M5 5l12 12M17 5L5 17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
 
-        <!-- Header drawer: logo + tombol tutup -->
-        <div class="drawer-header">
-            <div class="drawer-brand">
-                <img src="assets/images/hero/logo tomohon.png" alt="Logo Tomohon" class="drawer-logo">
-                <div class="drawer-brand-text">
-                    <span class="drawer-brand-title">Paslaten 1</span>
-                    <span class="drawer-brand-sub">Kota Tomohon</span>
-                </div>
-            </div>
-            <button class="drawer-close" id="drawer-close" aria-label="Tutup menu">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <!-- Menu items dengan icon -->
+      <nav aria-label="Menu halaman">
+        <ul class="drawer-nav">
+          <li class="drawer-item">
+            <a href="index.html" class="drawer-link active">
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3 12L12 3l9 9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 21V12h6v9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
-            </button>
-        </div>
+              </span>
+              <span class="drawer-link-text">Beranda</span>
+            </a>
+          </li>
+          <li class="drawer-item">
+            <a href="pages/tentang.html" class="drawer-link">
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="8"
+                    r="4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M4 20c0-4 3.6-7 8-7s8 3 8 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="drawer-link-text">Tentang Paslaten</span>
+            </a>
+          </li>
+          <li class="drawer-item">
+            <a href="pages/sejarah.html" class="drawer-link">
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2a10 10 0 100 20A10 10 0 0012 2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M12 6v6l4 2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="drawer-link-text">Sejarah</span>
+            </a>
+          </li>
+          <li class="drawer-item">
+            <a href="pages/galeri.html" class="drawer-link">
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="8.5"
+                    cy="8.5"
+                    r="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M21 15l-5-5L5 21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="drawer-link-text">Galeri</span>
+            </a>
+          </li>
+          <li class="drawer-item">
+            <a href="pages/kontak.html" class="drawer-link">
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="drawer-link-text">Kontak</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Menu items dengan icon -->
-        <nav aria-label="Menu halaman">
-            <ul class="drawer-nav">
-                <li class="drawer-item">
-                    <a href="index.html" class="drawer-link active">
-                        <span class="drawer-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21V12h6v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="drawer-link-text">Beranda</span>
-                    </a>
-                </li>
-                <li class="drawer-item">
-                    <a href="pages/tentang.html" class="drawer-link">
-                        <span class="drawer-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="drawer-link-text">Tentang Paslaten</span>
-                    </a>
-                </li>
-                <li class="drawer-item">
-                    <a href="pages/sejarah.html" class="drawer-link">
-                        <span class="drawer-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="drawer-link-text">Sejarah</span>
-                    </a>
-                </li>
-                <li class="drawer-item">
-                    <a href="pages/galeri.html" class="drawer-link">
-                        <span class="drawer-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="drawer-link-text">Galeri</span>
-                    </a>
-                </li>
-                <li class="drawer-item">
-                    <a href="pages/kontak.html" class="drawer-link">
-                        <span class="drawer-icon">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                        <span class="drawer-link-text">Kontak</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Footer drawer -->
-        <div class="drawer-footer">
-            <p>Kelurahan Paslaten 1</p>
-            <p>Kecamatan Tomohon Timur</p>
-        </div>
-
+      <!-- Footer drawer -->
+      <div class="drawer-footer">
+        <p>Kelurahan Paslaten 1</p>
+        <p>Kecamatan Tomohon Timur</p>
+      </div>
     </aside>
 
     <!-- ==================== MAIN ==================== -->
     <main>
-
-        <!-- ======================================================
+      <!-- ======================================================
              HERO — FULL SCREEN SLIDESHOW
              Foto disimpan di: assets/images/hero/
              Tambahkan foto baru dengan menambah .hero-slide baru
              ====================================================== -->
-        <section id="hero" aria-label="Halaman utama Paslaten 1">
+      <section id="hero" aria-label="Halaman utama Paslaten 1">
+        <!-- SLIDESHOW BACKGROUND -->
+        <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
+          <!-- Slide 1 — ganti src dengan foto asli -->
+          <div
+            class="hero-slide active"
+            style="
+              background-image: url(&quot;assets/images/hero/alpha.jpg&quot;);
+            "
+            data-caption="Kelurahan Paslaten 1"
+          ></div>
 
-            <!-- SLIDESHOW BACKGROUND -->
-            <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
+          <!-- Slide 2 — ganti src dengan foto asli -->
+          <div
+            class="hero-slide"
+            style="
+              background-image: url(&quot;assets/images/hero/omega.jpg&quot;);
+            "
+            data-caption="Wilayah Paslaten 1, Kota Tomohon"
+          ></div>
 
-                <!-- Slide 1 — ganti src dengan foto asli -->
-                <div class="hero-slide active"
-                     style="background-image: url('assets/images/hero/alpha.jpg');"
-                     data-caption="Kelurahan Paslaten 1">
-                </div>
-
-                <!-- Slide 2 — ganti src dengan foto asli -->
-                <div class="hero-slide"
-                     style="background-image: url('assets/images/hero/omega.jpg');"
-                     data-caption="Wilayah Paslaten 1, Kota Tomohon">
-                </div>
-
-                <!-- Slide 3 — tambahkan foto berikutnya di sini -->
-                <!-- <div class="hero-slide"
+          <!-- Slide 3 — tambahkan foto berikutnya di sini -->
+          <!-- <div class="hero-slide"
                      style="background-image: url('assets/images/hero/foto3.jpg');"
                      data-caption="[Keterangan foto]">
                 </div> -->
+        </div>
 
-            </div>
+        <!-- OVERLAY GELAP -->
+        <div class="hero-overlay" aria-hidden="true"></div>
 
-            <!-- OVERLAY GELAP -->
-            <div class="hero-overlay" aria-hidden="true"></div>
+        <!-- TEKS UTAMA HERO — hierarki modern -->
+        <div class="hero-content hero-content--center">
+          <!-- Scrim radial halus di belakang teks (bukan box) -->
+          <div class="hero-text-scrim" aria-hidden="true"></div>
 
-            <!-- TEKS UTAMA HERO — hierarki modern -->
-            <div class="hero-content hero-content--center">
-                <!-- Scrim radial halus di belakang teks (bukan box) -->
-                <div class="hero-text-scrim" aria-hidden="true"></div>
+          <div class="hero-text hero-text--center" id="hero-text">
+            <!-- 1. Eyebrow -->
+            <p class="hero-eyebrow">SELAMAT DATANG DI</p>
 
-                <div class="hero-text hero-text--center" id="hero-text">
+            <!-- 2 & 3. Kelurahan + Paslaten 1 -->
+            <h1 class="hero-heading-group">
+              <span class="hero-sub">Kelurahan</span>
+              <span class="hero-main">Paslaten 1</span>
+            </h1>
 
-                    <!-- 1. Eyebrow -->
-                    <p class="hero-eyebrow">SELAMAT DATANG DI</p>
+            <!-- 4. Tomohon Timur -->
+            <p class="hero-secondary">Tomohon Timur</p>
 
-                    <!-- 2 & 3. Kelurahan + Paslaten 1 -->
-                    <h1 class="hero-heading-group">
-                        <span class="hero-sub">Kelurahan</span>
-                        <span class="hero-main">Paslaten 1</span>
-                    </h1>
+            <!-- 5. Lokasi kecil -->
+            <p class="hero-location-small">
+              Kota Tomohon &middot; Sulawesi Utara
+            </p>
 
-                    <!-- 4. Tomohon Timur -->
-                    <p class="hero-secondary">Tomohon Timur</p>
+            <!-- CTA -->
+            <button
+              class="btn-hero-jelajahi hero-btn"
+              id="btn-kenali"
+              type="button"
+            >
+              Kenali Paslaten 1 &rarr;
+            </button>
+          </div>
+        </div>
 
-                    <!-- 5. Lokasi kecil -->
-                    <p class="hero-location-small">Kota Tomohon &middot; Sulawesi Utara</p>
+        <!-- SLIDE DOTS -->
+        <div
+          class="hero-dots"
+          id="hero-dots"
+          aria-label="Navigasi slide"
+          aria-hidden="true"
+        >
+          <button
+            class="hero-dot active"
+            data-index="0"
+            aria-label="Slide 1"
+          ></button>
+          <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+          <!-- Tambahkan dot jika ada foto baru -->
+        </div>
 
-                    <!-- CTA -->
-                    <button class="btn-hero-jelajahi hero-btn" id="btn-kenali" type="button">
-                        Kenali Paslaten 1 &rarr;
-                    </button>
+        <!-- SCROLL INDICATOR -->
+        <div
+          class="hero-scroll-indicator"
+          id="hero-scroll-indicator"
+          role="button"
+          tabindex="0"
+          aria-label="Jelajahi konten di bawah"
+        >
+          <span class="scroll-label">Jelajahi Paslaten 1</span>
+          <div class="scroll-arrow" aria-hidden="true">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 3v14M4 11l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </section>
+      <!-- END HERO -->
 
-                </div>
-            </div>
-
-            <!-- SLIDE DOTS -->
-            <div class="hero-dots" id="hero-dots" aria-label="Navigasi slide" aria-hidden="true">
-                <button class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
-                <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
-                <!-- Tambahkan dot jika ada foto baru -->
-            </div>
-
-            <!-- SCROLL INDICATOR -->
-            <div class="hero-scroll-indicator" id="hero-scroll-indicator" role="button" tabindex="0" aria-label="Jelajahi konten di bawah">
-                <span class="scroll-label">Jelajahi Paslaten 1</span>
-                <div class="scroll-arrow" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-            </div>
-
-        </section>
-        <!-- END HERO -->
-
-        <!-- ======================================================
+      <!-- ======================================================
              SECTION-SECTION BERIKUTNYA — TIDAK DIUBAH
              ====================================================== -->
 
-        <!-- TENTANG SINGKAT -->
-        <section id="tentang-singkat">
-            <div class="container">
-                <div class="intro-inner">
-                    <div class="intro-text">
-                        <span class="section-label">Tentang</span>
-                        <h2>Tentang Paslaten 1</h2>
-                        <span class="section-divider"></span>
-                        <p>
-                            Kelurahan Paslaten 1 berada di wilayah Kecamatan Tomohon Timur,
-                            Kota Tomohon, Provinsi Sulawesi Utara, dengan kode pos 95446. Wilayah
-                            ini memiliki luas sekitar 2,96 km² dan berada pada ketinggian ±927 mdpl,
-                            menjadikannya bagian dari kawasan dataran tinggi Kota Tomohon.
-                        </p>
-                        <p>
-                            Kehidupan masyarakatnya mencerminkan nilai-nilai kekeluargaan dan
-                            gotong royong yang kuat, sebagaimana tradisi Minahasa yang dikenal
-                            dengan sistem <em>mapalus</em>.
-                        </p>
-                        <a href="pages/tentang.html" class="btn btn-outline">Selengkapnya</a>
-                    </div>
-                    <div class="intro-image-placeholder" role="img" aria-label="Foto Paslaten 1">
-                        [Foto akan diisi]
-                    </div>
-                </div>
+      <!-- TENTANG SINGKAT -->
+      <section id="tentang-singkat">
+        <div class="container">
+          <div class="intro-inner">
+            <div class="intro-text">
+              <h2>Tentang Paslaten 1</h2>
+              <span class="section-divider"></span>
+              <p>
+                Kelurahan Paslaten 1 berada di wilayah Kecamatan Tomohon Timur,
+                Kota Tomohon, Provinsi Sulawesi Utara, dengan kode pos 95446.
+                Wilayah ini memiliki luas sekitar 2,96 km² dan berada pada
+                ketinggian ±927 mdpl, menjadikannya bagian dari kawasan dataran
+                tinggi Kota Tomohon.
+              </p>
+              <p>
+                Kehidupan masyarakatnya mencerminkan nilai-nilai kekeluargaan
+                dan gotong royong yang kuat, sebagaimana tradisi Minahasa yang
+                dikenal dengan sistem <em>mapalus</em>.
+              </p>
+              <a href="pages/tentang.html" class="btn btn-outline"
+                >Selengkapnya</a
+              >
             </div>
-        </section>
-
-        <!-- STATISTIK -->
-        <section id="statistik">
-            <div class="container">
-                <span class="section-label" style="display:block; text-align:center;">Data Kelurahan</span>
-                <h2>Sekilas Paslaten 1</h2>
-                <div class="stat-grid">
-                    <div class="stat-card">
-                        <span class="stat-value">2,96</span>
-                        <span class="stat-label">km² Luas Wilayah</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-value">±927</span>
-                        <span class="stat-label">mdpl Ketinggian</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-value">3.488</span>
-                        <span class="stat-label">Jiwa Penduduk</span>
-                        <span class="stat-note">Data 2021</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-value">2021</span>
-                        <span class="stat-label">Tahun Data Penduduk</span>
-                        <span class="stat-note">Data terbaru akan diperbarui</span>
-                    </div>
-                </div>
+            <div
+              class="intro-image-placeholder"
+              role="img"
+              aria-label="Foto Paslaten 1"
+            >
+              [Foto akan diisi]
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- SEJARAH SINGKAT -->
-        <section id="sejarah-singkat">
-            <div class="container">
-                <div class="sejarah-singkat-inner">
-                    <span class="section-label">Sejarah</span>
-                    <h2>Jejak Sejarah Paslaten</h2>
-                    <span class="section-divider"></span>
-                    <p>
-                        Paslaten 1 memiliki sejarah yang berkaitan erat dengan sejarah
-                        masyarakat Minahasa di wilayah Kota Tomohon. Perkembangan wilayah ini
-                        tidak terlepas dari dinamika sosial, budaya, dan administratif yang
-                        terjadi di Kecamatan Tomohon Timur.
-                    </p>
-                    <p>
-                        Narasi sejarah lengkap dan berbagai peristiwa penting akan diuraikan
-                        secara terperinci pada halaman Sejarah.
-                    </p>
-                    <a href="pages/sejarah.html" class="btn btn-outline">Baca Sejarah</a>
-                </div>
+      <!-- STATISTIK -->
+      <section id="statistik">
+        <div class="container">
+          <div class="population-header">
+            <h2>Sekilas Paslaten 1</h2>
+          </div>
+          <div class="population-summary">
+            <div class="population-feature">
+              <span class="population-total-value">3.488</span>
+              <span class="population-total-label">Jiwa Penduduk</span>
+              <span class="population-total-meta">Data 2021</span>
             </div>
-        </section>
-
-        <!-- GALERI PREVIEW -->
-        <section id="galeri-preview">
-            <div class="container">
-                <div class="galeri-preview-header">
-                    <span class="section-label">Dokumentasi</span>
-                    <h2>Galeri Paslaten</h2>
+            <div class="population-supporting">
+              <article class="population-stat">
+                <div class="population-stat-value">
+                  <span>2,96</span>
+                  <span class="population-stat-unit">km²</span>
                 </div>
-                <div class="gallery-grid">
-                    <div class="gallery-placeholder">[Foto akan diisi]</div>
-                    <div class="gallery-placeholder">[Foto akan diisi]</div>
-                    <div class="gallery-placeholder">[Foto akan diisi]</div>
-                    <div class="gallery-placeholder">[Foto akan diisi]</div>
+                <span class="population-stat-label">Luas Wilayah</span>
+              </article>
+              <article class="population-stat">
+                <div class="population-stat-value">
+                  <span>±927</span>
+                  <span class="population-stat-unit">mdpl</span>
                 </div>
-                <div class="gallery-footer">
-                    <a href="pages/galeri.html" class="btn btn-outline">Lihat Semua Galeri</a>
-                </div>
+                <span class="population-stat-label">Ketinggian</span>
+              </article>
+              <article class="population-stat">
+                <div class="population-stat-value">2021</div>
+                <span class="population-stat-label">Tahun Data</span>
+              </article>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- CTA -->
-        <section id="cta">
-            <div class="container">
-                <span class="section-label">Lebih Lanjut</span>
-                <h2>Kenali Paslaten 1 Lebih Dekat</h2>
-                <p>Pelajari informasi lengkap mengenai wilayah, pemerintahan, dan kehidupan masyarakat Paslaten 1.</p>
-                <a href="pages/tentang.html" class="btn btn-primary">Tentang Paslaten 1</a>
-            </div>
-        </section>
+      <!-- SEJARAH SINGKAT -->
+      <section id="sejarah-singkat">
+        <div class="container">
+          <div class="sejarah-singkat-inner">
+            <h2>Jejak Sejarah Paslaten</h2>
+            <span class="section-divider"></span>
+            <p>
+              Paslaten 1 memiliki sejarah yang berkaitan erat dengan sejarah
+              masyarakat Minahasa di wilayah Kota Tomohon. Perkembangan wilayah
+              ini tidak terlepas dari dinamika sosial, budaya, dan administratif
+              yang terjadi di Kecamatan Tomohon Timur.
+            </p>
+            <p>
+              Narasi sejarah lengkap dan berbagai peristiwa penting akan
+              diuraikan secara terperinci pada halaman Sejarah.
+            </p>
+            <a href="pages/sejarah.html" class="btn btn-outline"
+              >Baca Sejarah</a
+            >
+          </div>
+        </div>
+      </section>
 
+      <!-- GALERI PREVIEW -->
+      <section id="galeri-preview">
+        <div class="container">
+          <div class="galeri-preview-header">
+            <h2>Galeri Paslaten</h2>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-placeholder">[Foto akan diisi]</div>
+            <div class="gallery-placeholder">[Foto akan diisi]</div>
+            <div class="gallery-placeholder">[Foto akan diisi]</div>
+            <div class="gallery-placeholder">[Foto akan diisi]</div>
+          </div>
+          <div class="gallery-footer">
+            <a href="pages/galeri.html" class="btn btn-outline"
+              >Lihat Semua Galeri</a
+            >
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ==================== FOOTER ==================== -->
     <footer>
-        <div class="footer-inner">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <h3>Kelurahan Paslaten 1</h3>
-                    <p>Kecamatan Tomohon Timur, Kota Tomohon<br>Sulawesi Utara — Kode Pos 95446</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
-                        Website Profil — KKT 149 UNSRAT Posko Paslaten 1
-                    </p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko Paslaten 1, Kota Tomohon</p>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <h3>Kelurahan Paslaten 1</h3>
+            <p>
+              Kecamatan Tomohon Timur, Kota Tomohon<br />Sulawesi Utara — Kode
+              Pos 95446
+            </p>
+            <p
+              style="
+                margin-top: 0.5rem;
+                font-size: 0.85rem;
+                color: rgba(255, 255, 255, 0.5);
+              "
+            >
+              Website Profil — KKT 149 UNSRAT Posko Paslaten 1
+            </p>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>
+            Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko
+            Paslaten 1, Kota Tomohon
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script src="js/main.js"></script>
 
     <!-- ==================== ONBOARDING OVERLAY ==================== -->
-    <div id="onboarding" class="ob-overlay" role="dialog" aria-modal="true"
-         aria-label="Pengenalan Kelurahan Paslaten 1" aria-hidden="true">
+    <div
+      id="onboarding"
+      class="ob-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Pengenalan Kelurahan Paslaten 1"
+      aria-hidden="true"
+    >
+      <!-- TOP BAR -->
+      <div class="ob-topbar">
+        <button class="ob-skip-btn" id="ob-skip" type="button">Lewati</button>
+      </div>
 
-        <!-- TOP BAR -->
-        <div class="ob-topbar">
-            <button class="ob-skip-btn" id="ob-skip" type="button">Lewati</button>
-        </div>
-
-        <!-- SLIDES WRAPPER -->
-        <div class="ob-wrapper">
-            <div class="ob-track" id="ob-track">
-
-                <!-- ===== SLIDE 1: Kenali Paslaten 1 ===== -->
-                <article class="ob-slide">
-                    <div class="ob-visual ob-visual--1" aria-hidden="true">
-                        <!-- Glow dekoratif -->
-                        <div class="ob-glow ob-glow--gold"></div>
-                        <!-- Layout gambar: flex column, utama di atas, pendukung di bawah-kiri -->
-                        <div class="ob-img-stage">
-                            <!-- Gambar utama: Gerbang -->
-                            <img
-                                src="assets/images/intro/gerbang.png"
-                                alt="Gerbang Kelurahan Paslaten 1"
-                                class="ob-img-primary"
-                                loading="eager"
-                            >
-                        </div>
-                    </div>
-                    <div class="ob-content">
-                        <span class="ob-label">Selamat Datang</span>
-                        <h2 class="ob-title"><strong>Kenali Paslaten 1</strong></h2>
-                        <p class="ob-desc">Kenali lebih dekat Kelurahan Paslaten 1, lingkungan, serta berbagai hal yang menjadi bagian dari kehidupan masyarakatnya.</p>
-                    </div>
-                </article>
-
-                <!-- ===== SLIDE 2: Pemerintahan & Program Warga ===== -->
-                <article class="ob-slide">
-                    <div class="ob-visual ob-visual--2" aria-hidden="true">
-                        <!-- Glow dekoratif -->
-                        <div class="ob-glow ob-glow--green"></div>
-                        <!-- Layout gambar slide 2 -->
-                        <div class="ob-img-stage">
-                            <!-- Gambar utama: Kantor Lurah -->
-                            <img
-                                src="assets/images/intro/kantor%20lurah.png"
-                                alt="Kantor Lurah Paslaten 1"
-                                class="ob-img-primary"
-                                loading="eager"
-                            >
-                            <!-- Gambar pendukung: Bank Sampah — pojok kanan bawah -->
-                            <img
-                                src="assets/images/intro/bank%20sampah.png"
-                                alt="Bank Sampah Paslaten 1"
-                                class="ob-img-secondary ob-img-secondary--right"
-                                loading="eager"
-                            >
-                        </div>
-                    </div>
-                    <div class="ob-content">
-                        <span class="ob-label">Pemerintahan</span>
-                        <h2 class="ob-title"><strong>Pemerintahan &amp;<br>Program Warga</strong></h2>
-                        <p class="ob-desc">Kenali pusat pelayanan kelurahan serta program lingkungan yang mendukung kehidupan masyarakat Paslaten 1.</p>
-                    </div>
-                </article>
-
-                <!-- ===== SLIDE 3: Informasi Website ===== -->
-                <article class="ob-slide">
-                    <div class="ob-visual ob-visual--3" aria-hidden="true">
-                        <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Phone frame -->
-                            <rect x="108" y="20" width="104" height="196" rx="16" fill="#1a5c50"/>
-                            <rect x="116" y="38" width="88" height="160" rx="5" fill="#0d1f2a"/>
-                            <!-- Status bar -->
-                            <rect x="130" y="30" width="60" height="6" rx="3" fill="#2d906e" opacity="0.5"/>
-                            <!-- Screen: header bar -->
-                            <rect x="120" y="46" width="80" height="18" rx="3" fill="#c9a84c" opacity="0.85"/>
-                            <text x="160" y="59" text-anchor="middle" font-size="8" fill="#0d1f2a" font-weight="bold">Paslaten 1</text>
-                            <!-- Screen: content rows -->
-                            <rect x="122" y="72" width="56" height="7" rx="2" fill="white" opacity="0.35"/>
-                            <rect x="122" y="84" width="72" height="7" rx="2" fill="white" opacity="0.2"/>
-                            <rect x="122" y="96" width="48" height="7" rx="2" fill="white" opacity="0.2"/>
-                            <!-- Screen: cards grid -->
-                            <rect x="122" y="112" width="36" height="30" rx="4" fill="#2d906e"/>
-                            <rect x="164" y="112" width="36" height="30" rx="4" fill="#1a5c50"/>
-                            <text x="140" y="131" text-anchor="middle" font-size="7" fill="white">Profil</text>
-                            <text x="182" y="131" text-anchor="middle" font-size="7" fill="#c9a84c">Gov</text>
-                            <!-- Screen: map placeholder -->
-                            <rect x="122" y="150" width="78" height="32" rx="4" fill="#1a3a2a"/>
-                            <rect x="128" y="155" width="66" height="22" rx="2" fill="#2d906e" opacity="0.3"/>
-                            <!-- Home indicator -->
-                            <rect x="148" y="204" width="24" height="5" rx="2.5" fill="#5aaa87" opacity="0.6"/>
-                            <!-- Floating badge: Profil -->
-                            <rect x="34" y="64" width="60" height="24" rx="12" fill="#c9a84c"/>
-                            <text x="64" y="80" text-anchor="middle" font-size="8.5" fill="#0d1f2a" font-weight="bold">Profil</text>
-                            <!-- Floating badge: Struktur -->
-                            <rect x="224" y="100" width="66" height="24" rx="12" fill="#2d906e"/>
-                            <text x="257" y="116" text-anchor="middle" font-size="8" fill="white">Struktur</text>
-                            <!-- Floating badge: Lingkungan -->
-                            <rect x="28" y="154" width="74" height="24" rx="12" fill="#1a5c50"/>
-                            <text x="65" y="170" text-anchor="middle" font-size="8" fill="white">Lingkungan</text>
-                            <!-- Connector lines (dashed look) -->
-                            <line x1="94" y1="76" x2="108" y2="90" stroke="#c9a84c" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
-                            <line x1="224" y1="112" x2="204" y2="127" stroke="#5aaa87" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
-                            <line x1="102" y1="166" x2="116" y2="166" stroke="#5aaa87" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
-                        </svg>
-                    </div>
-                    <div class="ob-content">
-                        <span class="ob-label">Informasi Website</span>
-                        <h2 class="ob-title">Semua Ada<br><strong>di Sini</strong></h2>
-                        <p class="ob-desc">Temukan profil kelurahan, struktur pemerintahan, dan informasi tiap lingkungan Paslaten 1 &#8212; dalam satu website yang mudah diakses.</p>
-                    </div>
-                </article>
-
-            </div><!-- end ob-track -->
-        </div><!-- end ob-wrapper -->
-
-        <!-- BOTTOM CONTROLS -->
-        <div class="ob-bottom">
-            <div class="ob-dots" role="tablist" aria-label="Progres slide">
-                <button class="ob-dot active" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-                <button class="ob-dot" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-                <button class="ob-dot" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+      <!-- SLIDES WRAPPER -->
+      <div class="ob-wrapper">
+        <div class="ob-track" id="ob-track">
+          <!-- ===== SLIDE 1: Kenali Paslaten 1 ===== -->
+          <article class="ob-slide">
+            <div class="ob-visual ob-visual--1" aria-hidden="true">
+              <!-- Glow dekoratif -->
+              <div class="ob-glow ob-glow--gold"></div>
+              <!-- Layout gambar: flex column, utama di atas, pendukung di bawah-kiri -->
+              <div class="ob-img-stage">
+                <!-- Gambar utama: Gerbang -->
+                <img
+                  src="assets/images/intro/gerbang.png"
+                  alt="Gerbang Kelurahan Paslaten 1"
+                  class="ob-img-primary"
+                  loading="eager"
+                />
+              </div>
             </div>
-            <div class="ob-nav-row">
-                <button class="ob-back-btn ob-hidden" id="ob-back" type="button">Kembali</button>
-                <button class="ob-next-btn" id="ob-next" type="button">Selanjutnya</button>
+            <div class="ob-content">
+              <span class="ob-label">Selamat Datang</span>
+              <h2 class="ob-title"><strong>Kenali Paslaten 1</strong></h2>
+              <p class="ob-desc">
+                Kenali lebih dekat Kelurahan Paslaten 1, lingkungan, serta
+                berbagai hal yang menjadi bagian dari kehidupan masyarakatnya.
+              </p>
             </div>
+          </article>
+
+          <!-- ===== SLIDE 2: Pemerintahan & Program Warga ===== -->
+          <article class="ob-slide">
+            <div class="ob-visual ob-visual--2" aria-hidden="true">
+              <!-- Glow dekoratif -->
+              <div class="ob-glow ob-glow--green"></div>
+              <!-- Layout gambar slide 2 -->
+              <div class="ob-img-stage">
+                <!-- Gambar utama: Kantor Lurah -->
+                <img
+                  src="assets/images/intro/kantor%20lurah.png"
+                  alt="Kantor Lurah Paslaten 1"
+                  class="ob-img-primary"
+                  loading="eager"
+                />
+                <!-- Gambar pendukung: Bank Sampah — pojok kanan bawah -->
+                <img
+                  src="assets/images/intro/bank%20sampah.png"
+                  alt="Bank Sampah Paslaten 1"
+                  class="ob-img-secondary ob-img-secondary--right"
+                  loading="eager"
+                />
+              </div>
+            </div>
+            <div class="ob-content">
+              <span class="ob-label">Pemerintahan</span>
+              <h2 class="ob-title">
+                <strong>Pemerintahan &amp;<br />Program Warga</strong>
+              </h2>
+              <p class="ob-desc">
+                Kenali pusat pelayanan kelurahan serta program lingkungan yang
+                mendukung kehidupan masyarakat Paslaten 1.
+              </p>
+            </div>
+          </article>
+
+          <!-- ===== SLIDE 3: Informasi Website ===== -->
+          <article class="ob-slide">
+            <div class="ob-visual ob-visual--3" aria-hidden="true">
+              <svg
+                viewBox="0 0 320 260"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- Phone frame -->
+                <rect
+                  x="108"
+                  y="20"
+                  width="104"
+                  height="196"
+                  rx="16"
+                  fill="#1a5c50"
+                />
+                <rect
+                  x="116"
+                  y="38"
+                  width="88"
+                  height="160"
+                  rx="5"
+                  fill="#0d1f2a"
+                />
+                <!-- Status bar -->
+                <rect
+                  x="130"
+                  y="30"
+                  width="60"
+                  height="6"
+                  rx="3"
+                  fill="#2d906e"
+                  opacity="0.5"
+                />
+                <!-- Screen: header bar -->
+                <rect
+                  x="120"
+                  y="46"
+                  width="80"
+                  height="18"
+                  rx="3"
+                  fill="#c9a84c"
+                  opacity="0.85"
+                />
+                <text
+                  x="160"
+                  y="59"
+                  text-anchor="middle"
+                  font-size="8"
+                  fill="#0d1f2a"
+                  font-weight="bold"
+                >
+                  Paslaten 1
+                </text>
+                <!-- Screen: content rows -->
+                <rect
+                  x="122"
+                  y="72"
+                  width="56"
+                  height="7"
+                  rx="2"
+                  fill="white"
+                  opacity="0.35"
+                />
+                <rect
+                  x="122"
+                  y="84"
+                  width="72"
+                  height="7"
+                  rx="2"
+                  fill="white"
+                  opacity="0.2"
+                />
+                <rect
+                  x="122"
+                  y="96"
+                  width="48"
+                  height="7"
+                  rx="2"
+                  fill="white"
+                  opacity="0.2"
+                />
+                <!-- Screen: cards grid -->
+                <rect
+                  x="122"
+                  y="112"
+                  width="36"
+                  height="30"
+                  rx="4"
+                  fill="#2d906e"
+                />
+                <rect
+                  x="164"
+                  y="112"
+                  width="36"
+                  height="30"
+                  rx="4"
+                  fill="#1a5c50"
+                />
+                <text
+                  x="140"
+                  y="131"
+                  text-anchor="middle"
+                  font-size="7"
+                  fill="white"
+                >
+                  Profil
+                </text>
+                <text
+                  x="182"
+                  y="131"
+                  text-anchor="middle"
+                  font-size="7"
+                  fill="#c9a84c"
+                >
+                  Gov
+                </text>
+                <!-- Screen: map placeholder -->
+                <rect
+                  x="122"
+                  y="150"
+                  width="78"
+                  height="32"
+                  rx="4"
+                  fill="#1a3a2a"
+                />
+                <rect
+                  x="128"
+                  y="155"
+                  width="66"
+                  height="22"
+                  rx="2"
+                  fill="#2d906e"
+                  opacity="0.3"
+                />
+                <!-- Home indicator -->
+                <rect
+                  x="148"
+                  y="204"
+                  width="24"
+                  height="5"
+                  rx="2.5"
+                  fill="#5aaa87"
+                  opacity="0.6"
+                />
+                <!-- Floating badge: Profil -->
+                <rect
+                  x="34"
+                  y="64"
+                  width="60"
+                  height="24"
+                  rx="12"
+                  fill="#c9a84c"
+                />
+                <text
+                  x="64"
+                  y="80"
+                  text-anchor="middle"
+                  font-size="8.5"
+                  fill="#0d1f2a"
+                  font-weight="bold"
+                >
+                  Profil
+                </text>
+                <!-- Floating badge: Struktur -->
+                <rect
+                  x="224"
+                  y="100"
+                  width="66"
+                  height="24"
+                  rx="12"
+                  fill="#2d906e"
+                />
+                <text
+                  x="257"
+                  y="116"
+                  text-anchor="middle"
+                  font-size="8"
+                  fill="white"
+                >
+                  Struktur
+                </text>
+                <!-- Floating badge: Lingkungan -->
+                <rect
+                  x="28"
+                  y="154"
+                  width="74"
+                  height="24"
+                  rx="12"
+                  fill="#1a5c50"
+                />
+                <text
+                  x="65"
+                  y="170"
+                  text-anchor="middle"
+                  font-size="8"
+                  fill="white"
+                >
+                  Lingkungan
+                </text>
+                <!-- Connector lines (dashed look) -->
+                <line
+                  x1="94"
+                  y1="76"
+                  x2="108"
+                  y2="90"
+                  stroke="#c9a84c"
+                  stroke-width="1"
+                  stroke-dasharray="3,2"
+                  opacity="0.5"
+                />
+                <line
+                  x1="224"
+                  y1="112"
+                  x2="204"
+                  y2="127"
+                  stroke="#5aaa87"
+                  stroke-width="1"
+                  stroke-dasharray="3,2"
+                  opacity="0.5"
+                />
+                <line
+                  x1="102"
+                  y1="166"
+                  x2="116"
+                  y2="166"
+                  stroke="#5aaa87"
+                  stroke-width="1"
+                  stroke-dasharray="3,2"
+                  opacity="0.5"
+                />
+              </svg>
+            </div>
+            <div class="ob-content">
+              <span class="ob-label">Informasi Website</span>
+              <h2 class="ob-title">Semua Ada<br /><strong>di Sini</strong></h2>
+              <p class="ob-desc">
+                Temukan profil kelurahan, struktur pemerintahan, dan informasi
+                tiap lingkungan Paslaten 1 &#8212; dalam satu website yang mudah
+                diakses.
+              </p>
+            </div>
+          </article>
         </div>
+        <!-- end ob-track -->
+      </div>
+      <!-- end ob-wrapper -->
 
-    </div><!-- end #onboarding -->
-
-</body>
+      <!-- BOTTOM CONTROLS -->
+      <div class="ob-bottom">
+        <div class="ob-dots" role="tablist" aria-label="Progres slide">
+          <button
+            class="ob-dot active"
+            data-index="0"
+            role="tab"
+            aria-selected="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            class="ob-dot"
+            data-index="1"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            class="ob-dot"
+            data-index="2"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="ob-nav-row">
+          <button class="ob-back-btn ob-hidden" id="ob-back" type="button">
+            Kembali
+          </button>
+          <button class="ob-next-btn" id="ob-next" type="button">
+            Selanjutnya
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- end #onboarding -->
+  </body>
 </html>
