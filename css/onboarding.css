@@ -1,0 +1,1558 @@
+/* ============================================================
+   PASLATEN 1
+   BALANCED MINIMAL ONBOARDING
+   ============================================================ */
+
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+
+#onboarding {
+  --ob-bg: #17584d;
+
+  --ob-accent: #e0bd64;
+
+  --ob-text: #ffffff;
+
+  --ob-muted: rgba(255,255,255,.55);
+
+  --ob-line: rgba(255,255,255,.1);
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9000;
+
+  width: 100%;
+
+  height: 100dvh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  color: var(--ob-text);
+
+  background: var(--ob-bg);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity .3s ease,
+    visibility .3s ease,
+    background-color .5s ease;
+}
+
+
+#onboarding.ob-active {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* ============================================================
+   BACKGROUND COLORS
+   ============================================================ */
+
+
+/* SLIDE 1 */
+
+#onboarding.ob-at-0 {
+  --ob-bg: #17584d;
+
+  --ob-accent: #e0bd64;
+
+  background:
+    radial-gradient(
+      circle at 86% 15%,
+      rgba(224,189,100,.08),
+      transparent 30%
+    ),
+    #17584d;
+}
+
+
+/* SLIDE 2 */
+
+#onboarding.ob-at-1 {
+  --ob-bg: #294a60;
+
+  --ob-accent: #a9d2c3;
+
+  background:
+    radial-gradient(
+      circle at 12% 86%,
+      rgba(169,210,195,.08),
+      transparent 31%
+    ),
+    #294a60;
+}
+
+
+/* SLIDE 3 */
+
+#onboarding.ob-at-2 {
+  --ob-bg: #654b3e;
+
+  --ob-accent: #e6c56e;
+
+  background:
+    radial-gradient(
+      circle at 87% 14%,
+      rgba(230,197,110,.09),
+      transparent 31%
+    ),
+    #654b3e;
+}
+
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+#onboarding .ob-topbar {
+  position: relative;
+
+  z-index: 30;
+
+  flex-shrink: 0;
+
+  min-height: 63px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding:
+    max(
+      .85rem,
+      env(safe-area-inset-top)
+    )
+    1.2rem
+    .55rem;
+}
+
+
+/* ============================================================
+   BRAND TEXT
+   ============================================================ */
+
+#onboarding .ob-brand-mini {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  line-height: 1.08;
+}
+
+
+#onboarding .ob-brand-mini strong {
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+
+  font-size: .68rem;
+
+  font-weight: 700;
+
+  letter-spacing: .075em;
+}
+
+
+#onboarding .ob-brand-mini span {
+  margin-top: 3px;
+
+  color: rgba(255,255,255,.40);
+
+  font-family: var(--font-body);
+
+  font-size: .5rem;
+}
+
+
+/* ============================================================
+   SKIP
+   ============================================================ */
+
+#onboarding .ob-skip-btn {
+  padding:
+    .42rem
+    .2rem;
+
+  border: 0;
+
+  background: transparent;
+
+  color: rgba(255,255,255,.62);
+
+  font-family: var(--font-body);
+
+  font-size: .65rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SLIDER
+   ============================================================ */
+
+#onboarding .ob-wrapper {
+  position: relative;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+
+#onboarding .ob-track {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  transition:
+    transform .55s
+    cubic-bezier(.22,1,.36,1);
+}
+
+
+#onboarding .ob-slide {
+  flex: 0 0 100%;
+
+  width: 100%;
+
+  min-width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   SLIDE BODY
+   ============================================================ */
+
+#onboarding .ob-slide-body {
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    1rem
+    0
+    .9rem;
+
+  overflow: hidden;
+}
+
+
+/* Large subtle decoration */
+
+#onboarding .ob-slide-body::before {
+  content: "";
+
+  position: absolute;
+
+  z-index: 0;
+
+  width: 210px;
+
+  height: 210px;
+
+  left: -135px;
+
+  bottom: -120px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.04);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   MAIN GROUP
+   ============================================================ */
+
+#onboarding .ob-slide-group {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1.15rem;
+}
+
+
+/* ============================================================
+   WATERMARK
+   ============================================================ */
+
+#onboarding .ob-watermark {
+  position: absolute;
+
+  z-index: 0;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  filter:
+    grayscale(1)
+    brightness(1.55);
+
+  opacity: .045;
+}
+
+
+/* SLIDE 1 */
+
+#onboarding .ob-watermark--one {
+  width: 310px;
+
+  height: 235px;
+
+  top: 1rem;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+/* SLIDE 2 */
+
+#onboarding .ob-watermark--two {
+  width: 320px;
+
+  height: 235px;
+
+  top: 1.1rem;
+
+  right: -70px;
+}
+
+
+/* SLIDE 3 */
+
+#onboarding .ob-watermark--three {
+  width: 270px;
+
+  height: 230px;
+
+  top: 1rem;
+
+  left: -65px;
+}
+
+
+/* ============================================================
+   MAIN CARD
+   ============================================================ */
+
+#onboarding .ob-main-card {
+  position: relative;
+
+  width:
+    calc(100% - 2rem);
+
+  max-width: 390px;
+
+  margin: 0 auto;
+
+  padding: 1.25rem;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(--ob-line);
+
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,.052);
+
+  box-shadow:
+    0 16px 38px
+    rgba(0,0,0,.055);
+
+  backdrop-filter:
+    blur(2px);
+
+  -webkit-backdrop-filter:
+    blur(2px);
+}
+
+
+/* circle */
+
+#onboarding .ob-main-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 145px;
+
+  height: 145px;
+
+  right: -70px;
+
+  bottom: -70px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.065);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   CARD HEADER
+   ============================================================ */
+
+#onboarding .ob-card-heading {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+
+
+#onboarding .ob-card-heading > div {
+  min-width: 0;
+}
+
+
+/* Kicker */
+
+#onboarding .ob-card-kicker {
+  display: block;
+
+  color: var(--ob-accent);
+
+  font-family: var(--font-body);
+
+  font-size: .48rem;
+
+  font-weight: 700;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+}
+
+
+/* Card Title */
+
+#onboarding .ob-card-heading h3 {
+  margin:
+    .58rem
+    0
+    0;
+
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+
+  font-size: 1.68rem;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -.04em;
+}
+
+
+/* Subtitle */
+
+#onboarding .ob-card-heading p {
+  margin:
+    .42rem
+    0
+    0;
+
+  color:
+    rgba(255,255,255,.44);
+
+  font-family: var(--font-body);
+
+  font-size: .59rem;
+}
+
+
+/* Year */
+
+#onboarding .ob-card-year {
+  display: block;
+
+  margin-top: .4rem;
+
+  color:
+    rgba(255,255,255,.42);
+
+  font-family: var(--font-body);
+
+  font-size: .56rem;
+}
+
+
+/* Big index */
+
+#onboarding .ob-card-number {
+  flex-shrink: 0;
+
+  color:
+    rgba(255,255,255,.13);
+
+  font-family: var(--font-heading);
+
+  font-size: 2.5rem;
+
+  font-weight: 700;
+
+  line-height: .9;
+}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+#onboarding .ob-card-divider {
+  width: 31px;
+
+  height: 2px;
+
+  margin:
+    .9rem
+    0;
+
+  background: var(--ob-accent);
+}
+
+
+/* ============================================================
+   FACT GRID
+   ============================================================ */
+
+#onboarding .ob-fact-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap: .5rem;
+}
+
+
+#onboarding .ob-fact {
+  min-width: 0;
+
+  padding: .7rem;
+
+  border:
+    1px solid
+    rgba(255,255,255,.075);
+
+  border-radius: 10px;
+
+  background:
+    rgba(0,0,0,.025);
+}
+
+
+#onboarding .ob-fact strong {
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+
+  font-size: 1rem;
+
+  font-weight: 700;
+}
+
+
+#onboarding .ob-fact > span {
+  margin-left: 2px;
+
+  color: var(--ob-accent);
+
+  font-family: var(--font-body);
+
+  font-size: .42rem;
+}
+
+
+#onboarding .ob-fact small {
+  display: block;
+
+  margin-top: 4px;
+
+  color:
+    rgba(255,255,255,.32);
+
+  font-family: var(--font-body);
+
+  font-size: .41rem;
+}
+
+
+/* ============================================================
+   TOPIC ROW
+   ============================================================ */
+
+#onboarding .ob-topic-row {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: .4rem;
+
+  margin-top: .75rem;
+}
+
+
+#onboarding .ob-topic-row span {
+  padding:
+    .28rem
+    .5rem;
+
+  border:
+    1px solid
+    rgba(255,255,255,.07);
+
+  border-radius: 999px;
+
+  background:
+    rgba(0,0,0,.02);
+
+  color:
+    rgba(255,255,255,.43);
+
+  font-family: var(--font-body);
+
+  font-size: .42rem;
+
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   POPULATION TOTAL
+   ============================================================ */
+
+#onboarding .ob-population-total {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: .35rem;
+
+  margin-top: .85rem;
+}
+
+
+#onboarding .ob-population-total strong {
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+
+  font-size:
+    clamp(
+      2.3rem,
+      10vw,
+      2.9rem
+    );
+
+  font-weight: 700;
+
+  line-height: .95;
+
+  letter-spacing: -.055em;
+}
+
+
+#onboarding .ob-population-total span {
+  color: var(--ob-accent);
+
+  font-family: var(--font-body);
+
+  font-size: .57rem;
+
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   GENDER
+   ============================================================ */
+
+#onboarding .ob-gender-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  margin-top: .8rem;
+
+  padding-top: .75rem;
+
+  border-top:
+    1px solid
+    var(--ob-line);
+}
+
+
+#onboarding
+.ob-gender-grid > div + div {
+  padding-left: .8rem;
+
+  border-left:
+    1px solid
+    var(--ob-line);
+}
+
+
+#onboarding .ob-gender-grid strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+
+  font-size: .88rem;
+}
+
+
+#onboarding .ob-gender-grid span {
+  display: block;
+
+  margin-top: 3px;
+
+  color:
+    rgba(255,255,255,.36);
+
+  font-family: var(--font-body);
+
+  font-size: .43rem;
+}
+
+
+#onboarding .ob-gender-grid small {
+  display: block;
+
+  margin-top: 2px;
+
+  color:
+    rgba(255,255,255,.52);
+
+  font-family: var(--font-body);
+
+  font-size: .42rem;
+}
+
+
+/* ============================================================
+   GENDER BAR
+   ============================================================ */
+
+#onboarding .ob-gender-bar {
+  width: 100%;
+
+  height: 5px;
+
+  display: flex;
+
+  margin-top: .65rem;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.1);
+}
+
+
+#onboarding .ob-gender-male {
+  width: 49.7%;
+
+  background: var(--ob-accent);
+}
+
+
+#onboarding .ob-gender-female {
+  flex: 1;
+
+  background:
+    rgba(255,255,255,.29);
+}
+
+
+/* ============================================================
+   DATA BOTTOM
+   ============================================================ */
+
+#onboarding .ob-data-bottom {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap: .5rem;
+
+  margin-top: .75rem;
+}
+
+
+#onboarding .ob-data-bottom > div {
+  padding: .62rem;
+
+  border:
+    1px solid
+    rgba(255,255,255,.065);
+
+  border-radius: 9px;
+
+  background:
+    rgba(0,0,0,.02);
+}
+
+
+#onboarding .ob-data-bottom strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+
+  font-size: .78rem;
+}
+
+
+#onboarding .ob-data-bottom span {
+  display: block;
+
+  margin-top: 3px;
+
+  color:
+    rgba(255,255,255,.34);
+
+  font-family: var(--font-body);
+
+  font-size: .4rem;
+}
+
+
+/* ============================================================
+   FEATURE LIST
+   ============================================================ */
+
+#onboarding .ob-feature-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: .45rem;
+
+  margin-top: .8rem;
+}
+
+
+#onboarding .ob-feature {
+  min-height: 49px;
+
+  display: grid;
+
+  grid-template-columns:
+    26px
+    minmax(0,1fr);
+
+  align-items: center;
+
+  gap: .65rem;
+
+  padding:
+    .62rem
+    .65rem;
+
+  border:
+    1px solid
+    rgba(255,255,255,.075);
+
+  border-radius: 10px;
+
+  background:
+    rgba(0,0,0,.022);
+}
+
+
+#onboarding .ob-feature-index {
+  color: var(--ob-accent);
+
+  font-family: var(--font-heading);
+
+  font-size: .45rem;
+
+  font-weight: 700;
+}
+
+
+#onboarding .ob-feature > div {
+  min-width: 0;
+}
+
+
+#onboarding .ob-feature strong {
+  display: block;
+
+  color:
+    rgba(255,255,255,.88);
+
+  font-family: var(--font-heading);
+
+  font-size: .62rem;
+
+  font-weight: 600;
+}
+
+
+#onboarding .ob-feature p {
+  margin:
+    3px
+    0
+    0;
+
+  color:
+    rgba(255,255,255,.34);
+
+  font-family: var(--font-body);
+
+  font-size: .4rem;
+
+  line-height: 1.3;
+}
+
+
+/* ============================================================
+   CARD MINI FOOTER
+   ============================================================ */
+
+#onboarding .ob-card-footer {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap:
+    .3rem
+    .4rem;
+
+  margin-top: .7rem;
+
+  padding-top: .65rem;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.065);
+}
+
+
+#onboarding .ob-card-footer span {
+  color:
+    rgba(255,255,255,.36);
+
+  font-family: var(--font-body);
+
+  font-size: .39rem;
+}
+
+
+#onboarding .ob-card-footer i {
+  width: 2px;
+
+  height: 2px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: var(--ob-accent);
+
+  opacity: .7;
+}
+
+
+/* ============================================================
+   COPY
+   ============================================================ */
+
+#onboarding .ob-copy {
+  width:
+    calc(100% - 2.5rem);
+
+  max-width: 390px;
+
+  margin: 0 auto;
+}
+
+
+/* LABEL */
+
+#onboarding .ob-copy-label {
+  display: block;
+
+  color: var(--ob-accent);
+
+  font-family: var(--font-body);
+
+  font-size: .47rem;
+
+  font-weight: 700;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+}
+
+
+/* TITLE */
+
+#onboarding .ob-copy h2 {
+  max-width: 340px;
+
+  margin:
+    .43rem
+    0
+    0;
+
+  color:
+    rgba(255,255,255,.56);
+
+  font-family: var(--font-heading);
+
+  font-size:
+    clamp(
+      1.38rem,
+      6vw,
+      1.78rem
+    );
+
+  font-weight: 600;
+
+  line-height: 1.06;
+
+  letter-spacing: -.035em;
+}
+
+
+#onboarding .ob-copy h2 strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+
+/* DESCRIPTION */
+
+#onboarding .ob-copy > p {
+  max-width: 340px;
+
+  margin:
+    .55rem
+    0
+    0;
+
+  color: var(--ob-muted);
+
+  font-family: var(--font-body);
+
+  font-size: .59rem;
+
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   BOTTOM AREA
+   ============================================================ */
+
+#onboarding .ob-bottom {
+  position: relative;
+
+  z-index: 30;
+
+  flex-shrink: 0;
+
+  padding:
+    .5rem
+    1rem
+    max(
+      .9rem,
+      env(safe-area-inset-bottom)
+    );
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.045);
+
+  background:
+    rgba(0,0,0,.018);
+}
+
+
+/* ============================================================
+   DOTS
+   ============================================================ */
+
+#onboarding .ob-dots {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: .32rem;
+
+  margin-bottom: .55rem;
+}
+
+
+#onboarding .ob-dot {
+  width: 5px;
+
+  height: 5px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.2);
+
+  cursor: pointer;
+
+  transition:
+    width .3s ease,
+    background-color .3s ease;
+}
+
+
+#onboarding .ob-dot.active {
+  width: 20px;
+
+  background: var(--ob-accent);
+}
+
+
+/* ============================================================
+   BUTTON ROW
+   ============================================================ */
+
+#onboarding .ob-nav-row {
+  width:
+    min(100%,460px);
+
+  display: flex;
+
+  margin: 0 auto;
+
+  gap: .5rem;
+}
+
+
+#onboarding .ob-back-btn,
+#onboarding .ob-next-btn {
+  min-height: 42px;
+
+  border-radius: 999px;
+
+  font-family: var(--font-body);
+
+  font-size: .66rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform .15s ease,
+    background-color .2s ease,
+    border-color .2s ease;
+}
+
+
+/* BACK */
+
+#onboarding .ob-back-btn {
+  padding:
+    .62rem
+    .95rem;
+
+  border:
+    1px solid
+    var(--ob-line);
+
+  background: transparent;
+
+  color:
+    rgba(255,255,255,.61);
+}
+
+
+#onboarding .ob-back-btn.ob-hidden {
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* NEXT */
+
+#onboarding .ob-next-btn {
+  flex: 1;
+
+  padding:
+    .62rem
+    1.15rem;
+
+  border: 0;
+
+  background: var(--ob-accent);
+
+  color: #18221f;
+}
+
+
+#onboarding .ob-next-btn:active,
+#onboarding .ob-back-btn:active {
+  transform: scale(.98);
+}
+
+
+/* ============================================================
+   TALL MOBILE
+   ============================================================ */
+
+@media
+(max-width: 430px)
+and
+(min-height: 780px) {
+
+  #onboarding .ob-slide-group {
+    gap: 1.3rem;
+  }
+
+
+  #onboarding .ob-main-card {
+    padding: 1.35rem;
+  }
+
+}
+
+
+/* ============================================================
+   SHORT SCREEN
+   ============================================================ */
+
+@media
+(max-height: 700px) {
+
+  #onboarding .ob-slide-body {
+    align-items: flex-start;
+
+    padding-top: .55rem;
+  }
+
+
+  #onboarding .ob-slide-group {
+    gap: .75rem;
+  }
+
+
+  #onboarding .ob-main-card {
+    padding: 1rem;
+  }
+
+
+  #onboarding .ob-card-heading h3 {
+    font-size: 1.45rem;
+  }
+
+
+  #onboarding .ob-card-number {
+    font-size: 2.1rem;
+  }
+
+
+  #onboarding .ob-copy h2 {
+    font-size: 1.25rem;
+  }
+
+
+  #onboarding .ob-copy > p {
+    font-size: .54rem;
+  }
+
+
+  #onboarding .ob-feature {
+    min-height: 43px;
+
+    padding:
+      .5rem
+      .6rem;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media
+(max-width: 374px) {
+
+  #onboarding .ob-main-card {
+    width:
+      calc(100% - 1.3rem);
+
+    padding: 1.05rem;
+  }
+
+
+  #onboarding .ob-copy {
+    width:
+      calc(100% - 2rem);
+  }
+
+
+  #onboarding .ob-copy h2 {
+    font-size: 1.3rem;
+  }
+
+
+  #onboarding .ob-feature {
+    min-height: 45px;
+  }
+
+}
+
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+
+@media
+(min-width: 700px) {
+
+  #onboarding .ob-slide-body {
+    padding:
+      2rem
+      max(
+        2rem,
+        calc(
+          (100vw - 1180px) / 2
+        )
+      );
+  }
+
+
+  #onboarding .ob-slide-group {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(350px,.9fr)
+      minmax(420px,1.1fr);
+
+    align-items: center;
+
+    gap: 4rem;
+  }
+
+
+  #onboarding .ob-main-card {
+    width:
+      min(100%,450px);
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 2rem;
+  }
+
+
+  #onboarding .ob-copy {
+    width: auto;
+
+    max-width: 520px;
+
+    margin: 0;
+  }
+
+
+  #onboarding .ob-card-heading h3 {
+    font-size: 2.35rem;
+  }
+
+
+  #onboarding .ob-card-number {
+    font-size: 3.2rem;
+  }
+
+
+  #onboarding .ob-copy h2 {
+    max-width: 500px;
+
+    font-size:
+      clamp(
+        2.3rem,
+        4vw,
+        3.5rem
+      );
+  }
+
+
+  #onboarding .ob-copy > p {
+    max-width: 430px;
+
+    font-size: .85rem;
+  }
+
+
+  #onboarding .ob-feature {
+    min-height: 63px;
+  }
+
+
+  #onboarding .ob-feature strong {
+    font-size: .78rem;
+  }
+
+
+  #onboarding .ob-feature p {
+    font-size: .53rem;
+  }
+
+
+  #onboarding .ob-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+      .8rem
+      max(
+        2rem,
+        calc(
+          (100vw - 1180px) / 2
+        )
+      );
+  }
+
+
+  #onboarding .ob-dots {
+    margin: 0;
+  }
+
+
+  #onboarding .ob-nav-row {
+    width: auto;
+
+    margin: 0;
+  }
+
+
+  #onboarding .ob-next-btn {
+    min-width: 180px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+  #onboarding,
+  #onboarding .ob-track,
+  #onboarding .ob-dot,
+  #onboarding .ob-back-btn,
+  #onboarding .ob-next-btn {
+    transition: none;
+  }
+
+}

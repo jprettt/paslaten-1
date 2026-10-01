@@ -3,14 +3,182 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
       content="Statistik Kelurahan Paslaten 1 — data wilayah, pemerintahan, penduduk, layanan, fasilitas, infrastruktur, dan ekonomi."
     />
+
     <title>Statistik Paslaten 1 — Kelurahan Paslaten 1, Kota Tomohon</title>
+
     <link rel="stylesheet" href="../css/style.css" />
+
+    <style>
+      /* =====================================================
+         CARD PENDUDUK PER LINGKUNGAN
+
+         Tampilan default:
+         - Total jiwa
+         - Laki-laki
+         - Perempuan
+         - Kartu Keluarga
+         - Bar persentase gender
+
+         Tampilan expanded:
+         - Total Penduduk
+         - Kartu Keluarga
+         - Pie Chart L / P
+         ===================================================== */
+
+      .stats-page .environment-card-summary .environment-breakdown {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+
+        margin-top: 0.95rem;
+      }
+
+      .stats-page .environment-card-summary .environment-breakdown span {
+        min-width: 0;
+
+        color: var(--color-mid-gray);
+
+        font-size: 0.56rem;
+        line-height: 1.35;
+      }
+
+      .stats-page .environment-card-summary .environment-breakdown b {
+        display: block;
+
+        margin-bottom: 2px;
+
+        color: var(--color-green);
+
+        font-family: var(--font-heading);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      /* =====================================================
+         BAR KOMPOSISI GENDER
+         ===================================================== */
+
+      .stats-page .environment-card-summary .environment-gender-compare {
+        margin-top: 0.9rem;
+        padding-top: 0.8rem;
+
+        border-top: 1px solid rgba(26, 92, 80, 0.08);
+      }
+
+      .stats-page .environment-gender-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 10px;
+
+        color: var(--color-mid-gray);
+
+        font-size: 0.58rem;
+        line-height: 1.35;
+      }
+
+      .stats-page .environment-gender-labels strong {
+        color: var(--color-green-dark);
+
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .stats-page .environment-gender-track {
+        display: flex;
+
+        height: 7px;
+
+        margin-top: 0.5rem;
+
+        overflow: hidden;
+
+        border-radius: 999px;
+
+        background: var(--color-green-pale);
+      }
+
+      .stats-page .environment-gender-male {
+        width: var(--male-share);
+        flex: 0 0 var(--male-share);
+
+        background: var(--color-green-dark);
+      }
+
+      .stats-page .environment-gender-female {
+        flex: 1;
+
+        background: var(--color-green-light);
+      }
+
+      /* =====================================================
+         SAAT CARD DIBUKA
+
+         Data default disembunyikan.
+         Header Lingkungan tetap terlihat.
+         ===================================================== */
+
+      .stats-page
+        .environment-card.is-expanded
+        .environment-card-summary
+        > .environment-population,
+      .stats-page
+        .environment-card.is-expanded
+        .environment-card-summary
+        > .environment-breakdown,
+      .stats-page
+        .environment-card.is-expanded
+        .environment-card-summary
+        > .environment-gender-compare {
+        display: none;
+      }
+
+      .stats-page .environment-card.is-expanded .environment-card-summary {
+        min-height: 0;
+      }
+
+      .stats-page .environment-card.is-expanded .environment-toggle-label {
+        margin-top: 0.7rem;
+      }
+
+      /* =====================================================
+         MOBILE
+         ===================================================== */
+
+      @media (max-width: 640px) {
+        .stats-page .environment-card-summary .environment-breakdown {
+          gap: 5px;
+
+          margin-top: 0.85rem;
+        }
+
+        .stats-page .environment-card-summary .environment-breakdown b {
+          font-size: 0.82rem;
+        }
+
+        .stats-page .environment-gender-labels {
+          font-size: 0.55rem;
+        }
+
+        .stats-page .environment-gender-labels strong {
+          font-size: 0.65rem;
+        }
+      }
+    </style>
   </head>
+
   <body class="stats-page">
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
     <header>
       <nav id="navbar" aria-label="Navigasi utama">
         <div class="navbar-inner">
@@ -21,20 +189,41 @@
                 alt="Logo Kota Tomohon"
                 class="nav-logo-img"
               />
+
               <div class="nav-brand-text">
-                <span class="nav-brand-title">PASLATEN 1</span>
-                <span class="nav-brand-subtitle">Tomohon Timur</span>
+                <span class="nav-brand-title"> PASLATEN 1 </span>
+
+                <span class="nav-brand-subtitle"> Tomohon Timur </span>
               </div>
             </a>
           </div>
+
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="../index.html">Beranda</a></li>
-            <li><a href="tentang.html">Tentang Paslaten</a></li>
-            <li><a href="sejarah.html">Sejarah</a></li>
-            <li><a href="statistik.html" class="active">Statistik</a></li>
-            <li><a href="galeri.html">Galeri</a></li>
-            <li><a href="kontak.html">Kontak</a></li>
+            <li>
+              <a href="../index.html"> Beranda </a>
+            </li>
+
+            <li>
+              <a href="tentang.html"> Tentang Paslaten </a>
+            </li>
+
+            <li>
+              <a href="sejarah.html"> Sejarah </a>
+            </li>
+
+            <li>
+              <a href="statistik.html" class="active"> Statistik </a>
+            </li>
+
+            <li>
+              <a href="galeri.html"> Galeri </a>
+            </li>
+
+            <li>
+              <a href="kontak.html"> Kontak </a>
+            </li>
           </ul>
+
           <button
             class="nav-hamburger"
             id="nav-hamburger"
@@ -42,13 +231,24 @@
             aria-expanded="false"
             aria-controls="drawer-menu"
           >
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
       </nav>
     </header>
 
+    <!-- =====================================================
+         DRAWER BACKDROP
+         ===================================================== -->
+
     <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+
+    <!-- =====================================================
+         DRAWER MENU
+         ===================================================== -->
+
     <aside
       class="drawer"
       id="drawer-menu"
@@ -63,83 +263,237 @@
             alt="Logo Tomohon"
             class="drawer-logo"
           />
+
           <div class="drawer-brand-text">
-            <span class="drawer-brand-title">Paslaten 1</span>
-            <span class="drawer-brand-sub">Kota Tomohon</span>
+            <span class="drawer-brand-title"> Paslaten 1 </span>
+
+            <span class="drawer-brand-sub"> Kota Tomohon </span>
           </div>
         </div>
+
         <button class="drawer-close" id="drawer-close" aria-label="Tutup menu">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path
+              d="M5 5l12 12M17 5L5 17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
           </svg>
         </button>
       </div>
+
       <nav aria-label="Menu halaman">
         <ul class="drawer-nav">
+          <!-- BERANDA -->
+
           <li class="drawer-item">
             <a href="../index.html" class="drawer-link">
-              <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21V12h6v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span class="drawer-link-text">Beranda</span>
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3 12L12 3l9 9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <path
+                    d="M9 21V12h6v9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="drawer-link-text"> Beranda </span>
             </a>
           </li>
+
+          <!-- TENTANG -->
+
           <li class="drawer-item">
             <a href="tentang.html" class="drawer-link">
-              <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-              <span class="drawer-link-text">Tentang Paslaten</span>
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="8"
+                    r="4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+
+                  <path
+                    d="M4 20c0-4 3.6-7 8-7s8 3 8 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="drawer-link-text"> Tentang Paslaten </span>
             </a>
           </li>
+
+          <!-- SEJARAH -->
+
           <li class="drawer-item">
             <a href="sejarah.html" class="drawer-link">
-              <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-              <span class="drawer-link-text">Sejarah</span>
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2a10 10 0 100 20A10 10 0 0012 2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+
+                  <path
+                    d="M12 6v6l4 2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="drawer-link-text"> Sejarah </span>
             </a>
           </li>
+
+          <!-- STATISTIK -->
+
           <li class="drawer-item">
             <a href="statistik.html" class="drawer-link active">
-              <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 19h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-              <span class="drawer-link-text">Statistik</span>
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M5 19V11M12 19V5M19 19V8"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+
+                  <path
+                    d="M3 19h18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="drawer-link-text"> Statistik </span>
             </a>
           </li>
+
+          <!-- GALERI -->
+
           <li class="drawer-item">
             <a href="galeri.html" class="drawer-link">
-              <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span class="drawer-link-text">Galeri</span>
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+
+                  <circle
+                    cx="8.5"
+                    cy="8.5"
+                    r="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M21 15l-5-5L5 21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="drawer-link-text"> Galeri </span>
             </a>
           </li>
+
+          <!-- KONTAK -->
+
           <li class="drawer-item">
             <a href="kontak.html" class="drawer-link">
-              <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span class="drawer-link-text">Kontak</span>
+              <span class="drawer-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="drawer-link-text"> Kontak </span>
             </a>
           </li>
         </ul>
       </nav>
+
       <div class="drawer-footer">
         <p>Kelurahan Paslaten 1</p>
         <p>Kecamatan Tomohon Timur</p>
       </div>
     </aside>
 
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
     <main>
+      <!-- ===================================================
+           HERO STATISTIK
+           =================================================== -->
+
       <section class="stats-hero" aria-labelledby="stats-title">
         <div class="container stats-hero-inner">
           <div class="stats-hero-copy">
-            <span class="stats-eyebrow">DATA KELURAHAN</span>
+            <span class="stats-eyebrow"> DATA KELURAHAN </span>
+
             <h1 id="stats-title">Statistik</h1>
+
             <p class="stats-hero-subtitle">Paslaten 1 · Tomohon Timur</p>
+
             <span class="stats-hero-divider" aria-hidden="true"></span>
+
             <p class="stats-hero-description">
-              Ringkasan data wilayah, penduduk, layanan, infrastruktur, dan ekonomi
-              Kelurahan Paslaten 1.
+              Ringkasan data wilayah, penduduk, layanan, infrastruktur, dan
+              ekonomi Kelurahan Paslaten 1.
             </p>
           </div>
+
           <div class="stats-hero-visual" aria-hidden="true">
             <div class="stats-hero-orbit stats-hero-orbit--outer"></div>
+
             <div class="stats-hero-orbit stats-hero-orbit--inner"></div>
+
             <div class="stats-hero-number">
               <span>3.213</span>
-              <small>jiwa · 2026</small>
+
+              <small> jiwa · 2026 </small>
             </div>
+
             <div class="stats-hero-bars">
               <i style="--h: 38%"></i>
               <i style="--h: 62%"></i>
@@ -151,406 +505,1664 @@
         </div>
       </section>
 
+      <!-- ===================================================
+           OVERVIEW
+           =================================================== -->
+
       <section class="stats-overview" aria-labelledby="overview-title">
         <div class="container">
           <div class="stats-section-heading">
-            <span class="stats-kicker">SEKILAS DATA</span>
+            <span class="stats-kicker"> SEKILAS DATA </span>
+
             <h2 id="overview-title">Paslaten 1 dalam angka</h2>
-            <p>Data penduduk terbaru pada halaman ini menggunakan data tahun 2026.</p>
+
+            <p>
+              Data penduduk terbaru pada halaman ini menggunakan data tahun
+              2026.
+            </p>
           </div>
+
           <div class="stats-overview-grid">
+            <!-- TOTAL PENDUDUK -->
+
             <article class="stats-overview-card stats-overview-card--primary">
-              <span class="stats-card-year">2026</span>
-              <strong>3.213</strong>
-              <span>Total Penduduk</span>
-              <small>jiwa</small>
+              <span class="stats-card-year"> 2026 </span>
+
+              <strong> 3.213 </strong>
+
+              <span> Total Penduduk </span>
+
+              <small> jiwa </small>
             </article>
+
+            <!-- TOTAL KK -->
+
             <article class="stats-overview-card">
-              <span class="stats-card-year stats-card-year--green">2026</span>
-              <strong>1.208</strong>
-              <span>Total KK</span>
-              <small>kepala keluarga</small>
+              <span class="stats-card-year stats-card-year--green"> 2026 </span>
+
+              <strong> 1.078 </strong>
+
+              <span> Total Kartu Keluarga </span>
+
+              <small> KK · Data 2026 </small>
             </article>
+
+            <!-- LUAS -->
+
             <article class="stats-overview-card">
-              <strong>2,96</strong>
-              <span>Luas Wilayah</span>
-              <small>km² · data 2024</small>
+              <strong> 2,96 </strong>
+
+              <span> Luas Wilayah </span>
+
+              <small> km² · data 2024 </small>
             </article>
+
+            <!-- LINGKUNGAN -->
+
             <article class="stats-overview-card">
-              <span class="stats-card-year stats-card-year--green">2026</span>
-              <strong>7</strong>
-              <span>Lingkungan</span>
-              <small>wilayah administrasi</small>
+              <span class="stats-card-year stats-card-year--green"> 2026 </span>
+
+              <strong> 7 </strong>
+
+              <span> Lingkungan </span>
+
+              <small> wilayah administrasi </small>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- ===================================================
+           QUICK NAVIGATION
+           =================================================== -->
+
       <nav class="stats-jump" aria-label="Navigasi kategori statistik">
         <div class="container stats-jump-inner">
-          <a href="#penduduk">Penduduk</a>
-          <a href="#lingkungan">Per Lingkungan</a>
-          <a href="#wilayah">Wilayah</a>
-          <a href="#layanan">Layanan</a>
-          <a href="#ibadah">Ibadah</a>
-          <a href="#infrastruktur">Infrastruktur</a>
-          <a href="#ekonomi">Ekonomi</a>
+          <a href="#penduduk"> Penduduk </a>
+
+          <a href="#lingkungan"> Per Lingkungan </a>
+
+          <a href="#wilayah"> Wilayah </a>
+
+          <a href="#layanan"> Layanan </a>
+
+          <a href="#ibadah"> Ibadah </a>
+
+          <a href="#infrastruktur"> Infrastruktur </a>
+
+          <a href="#ekonomi"> Ekonomi </a>
         </div>
       </nav>
+
+      <!-- ===================================================
+           PENDUDUK
+           =================================================== -->
 
       <section id="penduduk" class="stats-section">
         <div class="container">
           <div class="stats-section-heading stats-section-heading--row">
             <div>
-              <span class="stats-kicker">PENDUDUK</span>
+              <span class="stats-kicker"> PENDUDUK </span>
+
               <h2>Komposisi Penduduk</h2>
+
               <p>Data kependudukan terbaru Kelurahan Paslaten 1.</p>
             </div>
-            <span class="stats-year-badge">Data 2026</span>
+
+            <span class="stats-year-badge"> Data 2026 </span>
           </div>
 
           <div class="stats-population-layout stats-population-layout--2026">
+            <!-- FEATURE -->
+
             <article class="stats-population-feature">
-              <span class="stats-card-label">Total Penduduk</span>
-              <strong>3.213</strong>
-              <span class="stats-card-unit">jiwa</span>
+              <span class="stats-card-label"> Total Penduduk </span>
+
+              <strong> 3.213 </strong>
+
+              <span class="stats-card-unit"> jiwa </span>
+
               <div class="stats-gender-row">
                 <div>
-                  <span>Laki-laki</span>
-                  <b>1.596</b>
-                  <small>49,7%</small>
+                  <span> Laki-laki </span>
+
+                  <b> 1.596 </b>
+
+                  <small> 49,7% </small>
                 </div>
+
                 <div>
-                  <span>Perempuan</span>
-                  <b>1.617</b>
-                  <small>50,3%</small>
+                  <span> Perempuan </span>
+
+                  <b> 1.617 </b>
+
+                  <small> 50,3% </small>
                 </div>
               </div>
-              <div class="stats-gender-bar" role="img" aria-label="Laki-laki 49,7 persen, perempuan 50,3 persen">
+
+              <div
+                class="stats-gender-bar"
+                role="img"
+                aria-label="
+                  Laki-laki 49,7 persen,
+                  perempuan 50,3 persen
+                "
+              >
                 <span class="stats-gender-male stats-gender-male--2026"></span>
+
                 <span class="stats-gender-female"></span>
               </div>
             </article>
 
+            <!-- METRIC STACK -->
+
             <div class="stats-metric-stack stats-metric-stack--population">
               <article class="stats-metric-card stats-metric-card--featured">
-                <span>Total Kepala Keluarga</span>
-                <strong>1.208</strong>
-                <small>KK · Data 2026</small>
+                <span> Total Kartu Keluarga </span>
+
+                <strong> 1.078 </strong>
+
+                <small> KK · Data 2026 </small>
               </article>
+
               <article class="stats-metric-card">
-                <span>Laki-laki</span>
-                <strong>1.596</strong>
-                <small>jiwa · 49,7%</small>
+                <span> Laki-laki </span>
+
+                <strong> 1.596 </strong>
+
+                <small> jiwa · 49,7% </small>
               </article>
+
               <article class="stats-metric-card">
-                <span>Perempuan</span>
-                <strong>1.617</strong>
-                <small>jiwa · 50,3%</small>
+                <span> Perempuan </span>
+
+                <strong> 1.617 </strong>
+
+                <small> jiwa · 50,3% </small>
               </article>
             </div>
           </div>
+
+          <!-- ===============================================
+               INDIKATOR DATA 2024
+               =============================================== -->
 
           <div class="stats-legacy-indicators">
             <div class="stats-legacy-head">
-              <span>Indikator Kependudukan</span>
-              <span class="stats-year-badge stats-year-badge--muted">Data 2024</span>
+              <span> Indikator Kependudukan </span>
+
+              <span class="stats-year-badge stats-year-badge--muted">
+                Data 2024
+              </span>
             </div>
+
             <div class="stats-legacy-grid">
               <article>
-                <span>Persentase Penduduk Kecamatan</span>
-                <strong>25,11%</strong>
+                <span> Persentase Penduduk Kecamatan </span>
+
+                <strong> 25,11% </strong>
               </article>
+
               <article>
-                <span>Kepadatan Penduduk</span>
-                <strong>867,57</strong>
-                <small>jiwa/km²</small>
+                <span> Kepadatan Penduduk </span>
+
+                <strong> 867,57 </strong>
+
+                <small> jiwa/km² </small>
               </article>
+
               <article>
-                <span>Rasio Jenis Kelamin</span>
-                <strong>102,05</strong>
+                <span> Rasio Jenis Kelamin </span>
+
+                <strong> 102,05 </strong>
               </article>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- ===================================================
+           PENDUDUK PER LINGKUNGAN
+           =================================================== -->
 
       <section id="lingkungan" class="stats-section stats-section--soft">
         <div class="container">
+          <!-- HEADER -->
+
           <div class="stats-section-heading stats-section-heading--row">
             <div>
-              <span class="stats-kicker">PENDUDUK PER LINGKUNGAN</span>
+              <span class="stats-kicker"> PENDUDUK PER LINGKUNGAN </span>
+
               <h2>Statistik 7 Lingkungan</h2>
-              <p>Rincian jumlah penduduk dan kepala keluarga di setiap lingkungan.</p>
+
+              <p>
+                Rincian jumlah penduduk, laki-laki, perempuan, serta Kartu
+                Keluarga (KK) di setiap lingkungan.
+              </p>
             </div>
-            <span class="stats-year-badge">Data 2026</span>
+
+            <span class="stats-year-badge"> Data 2026 </span>
           </div>
 
-          <div class="environment-summary" aria-label="Ringkasan data penduduk seluruh lingkungan">
-            <div><strong>3.213</strong><span>Penduduk</span></div>
-            <div><strong>1.596</strong><span>Laki-laki</span></div>
-            <div><strong>1.617</strong><span>Perempuan</span></div>
-            <div><strong>1.208</strong><span>KK</span></div>
+          <!-- SUMMARY -->
+
+          <div
+            class="environment-summary"
+            aria-label="
+              Ringkasan data penduduk
+              seluruh lingkungan
+            "
+          >
+            <div>
+              <strong>3.213</strong>
+              <span>Penduduk</span>
+            </div>
+
+            <div>
+              <strong>1.596</strong>
+              <span>Laki-laki</span>
+            </div>
+
+            <div>
+              <strong>1.617</strong>
+              <span>Perempuan</span>
+            </div>
+
+            <div>
+              <strong>1.078</strong>
+              <span>Kartu Keluarga</span>
+            </div>
           </div>
+
+          <!-- =================================================
+               GRID LINGKUNGAN
+               ================================================= -->
 
           <div class="environment-grid">
-            <article class="environment-card">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>01</strong></div>
-              <div class="environment-population"><strong>274</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>123</b>Laki-laki</span><span><b>151</b>Perempuan</span><span><b>104</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:28.3%"></i></div>
+            <!-- =============================================
+                 LINGKUNGAN 1
+                 ============================================= -->
+
+            <article
+              class="environment-card"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 1,
+                274 jiwa,
+                104 Kartu Keluarga.
+                Klik untuk melihat komposisi
+                laki-laki dan perempuan.
+              "
+            >
+              <!-- DEFAULT / COLLAPSED -->
+
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 01 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 274 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>123</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>151</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>104</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <!-- BAR PERSENTASE -->
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>44,9%</strong>
+                    </span>
+
+                    <span>
+                      <strong>55,1%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 44,9 persen,
+                      perempuan 55,1 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 44.9%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <!-- EXPANDED -->
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <!-- LEFT -->
+
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 274 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 104 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <!-- RIGHT -->
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 44.9%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 1:
+                      laki-laki 44,9 persen
+                      dan perempuan 55,1 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+
+                      <b>123</b>
+
+                      Laki-laki
+
+                      <small> 44,9% </small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+
+                      <b>151</b>
+
+                      Perempuan
+
+                      <small> 55,1% </small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="environment-card">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>02</strong></div>
-              <div class="environment-population"><strong>381</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>179</b>Laki-laki</span><span><b>202</b>Perempuan</span><span><b>130</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:39.4%"></i></div>
+
+            <!-- =============================================
+                 LINGKUNGAN 2
+                 ============================================= -->
+
+            <article
+              class="environment-card"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 2,
+                381 jiwa,
+                130 Kartu Keluarga.
+                Klik untuk melihat komposisi.
+              "
+            >
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 02 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 381 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>179</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>202</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>130</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>47,0%</strong>
+                    </span>
+
+                    <span>
+                      <strong>53,0%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 47 persen,
+                      perempuan 53 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 47%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 381 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 130 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 47%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 2:
+                      laki-laki 47 persen,
+                      perempuan 53 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+                      <b>179</b>
+                      Laki-laki
+                      <small>47,0%</small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+                      <b>202</b>
+                      Perempuan
+                      <small>53,0%</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="environment-card">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>03</strong></div>
-              <div class="environment-population"><strong>483</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>251</b>Laki-laki</span><span><b>232</b>Perempuan</span><span><b>160</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:49.9%"></i></div>
+
+            <!-- =============================================
+                 LINGKUNGAN 3
+                 ============================================= -->
+
+            <article
+              class="environment-card"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 3,
+                483 jiwa,
+                160 Kartu Keluarga.
+                Klik untuk melihat komposisi.
+              "
+            >
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 03 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 483 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>251</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>232</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>160</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>52,0%</strong>
+                    </span>
+
+                    <span>
+                      <strong>48,0%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 52 persen,
+                      perempuan 48 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 52%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 483 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 160 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 52%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 3:
+                      laki-laki 52 persen,
+                      perempuan 48 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+                      <b>251</b>
+                      Laki-laki
+                      <small>52,0%</small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+                      <b>232</b>
+                      Perempuan
+                      <small>48,0%</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="environment-card">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>04</strong></div>
-              <div class="environment-population"><strong>263</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>127</b>Laki-laki</span><span><b>136</b>Perempuan</span><span><b>219</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:27.2%"></i></div>
+
+            <!-- =============================================
+                 LINGKUNGAN 4
+                 ============================================= -->
+
+            <article
+              class="environment-card"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 4,
+                263 jiwa,
+                89 Kartu Keluarga.
+                Klik untuk melihat komposisi.
+              "
+            >
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 04 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 263 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>127</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>136</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>89</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>48,3%</strong>
+                    </span>
+
+                    <span>
+                      <strong>51,7%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 48,3 persen,
+                      perempuan 51,7 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 48.3%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 263 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 89 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 48.3%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 4:
+                      laki-laki 48,3 persen,
+                      perempuan 51,7 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+                      <b>127</b>
+                      Laki-laki
+                      <small>48,3%</small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+                      <b>136</b>
+                      Perempuan
+                      <small>51,7%</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="environment-card">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>05</strong></div>
-              <div class="environment-population"><strong>340</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>174</b>Laki-laki</span><span><b>166</b>Perempuan</span><span><b>115</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:35.2%"></i></div>
+
+            <!-- =============================================
+                 LINGKUNGAN 5
+                 ============================================= -->
+
+            <article
+              class="environment-card"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 5,
+                340 jiwa,
+                115 Kartu Keluarga.
+                Klik untuk melihat komposisi.
+              "
+            >
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 05 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 340 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>174</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>166</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>115</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>51,2%</strong>
+                    </span>
+
+                    <span>
+                      <strong>48,8%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 51,2 persen,
+                      perempuan 48,8 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 51.2%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 340 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 115 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 51.2%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 5:
+                      laki-laki 51,2 persen,
+                      perempuan 48,8 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+                      <b>174</b>
+                      Laki-laki
+                      <small>51,2%</small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+                      <b>166</b>
+                      Perempuan
+                      <small>48,8%</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="environment-card environment-card--largest">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>06</strong></div>
-              <div class="environment-population"><strong>967</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>495</b>Laki-laki</span><span><b>472</b>Perempuan</span><span><b>316</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:100%"></i></div>
+
+            <!-- =============================================
+                 LINGKUNGAN 6
+                 ============================================= -->
+
+            <article
+              class="environment-card environment-card--largest"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 6,
+                967 jiwa,
+                316 Kartu Keluarga.
+                Klik untuk melihat komposisi.
+              "
+            >
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 06 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 967 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>495</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>472</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>316</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>51,2%</strong>
+                    </span>
+
+                    <span>
+                      <strong>48,8%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 51,2 persen,
+                      perempuan 48,8 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 51.2%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 967 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 316 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 51.2%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 6:
+                      laki-laki 51,2 persen,
+                      perempuan 48,8 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+                      <b>495</b>
+                      Laki-laki
+                      <small>51,2%</small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+                      <b>472</b>
+                      Perempuan
+                      <small>48,8%</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="environment-card">
-              <div class="environment-card-head"><span>Lingkungan</span><strong>07</strong></div>
-              <div class="environment-population"><strong>505</strong><span>jiwa</span></div>
-              <div class="environment-breakdown"><span><b>247</b>Laki-laki</span><span><b>258</b>Perempuan</span><span><b>164</b>KK</span></div>
-              <div class="environment-bar"><i style="--environment-width:52.2%"></i></div>
+
+            <!-- =============================================
+                 LINGKUNGAN 7
+                 ============================================= -->
+
+            <article
+              class="environment-card"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="
+                Lingkungan 7,
+                505 jiwa,
+                164 Kartu Keluarga.
+                Klik untuk melihat komposisi.
+              "
+            >
+              <div class="environment-card-summary">
+                <div class="environment-card-head">
+                  <span> Lingkungan </span>
+
+                  <strong> 07 </strong>
+                </div>
+
+                <div class="environment-population">
+                  <strong> 505 </strong>
+
+                  <span> jiwa </span>
+                </div>
+
+                <div class="environment-breakdown">
+                  <span>
+                    <b>247</b>
+                    Laki-laki
+                  </span>
+
+                  <span>
+                    <b>258</b>
+                    Perempuan
+                  </span>
+
+                  <span>
+                    <b>164</b>
+                    Kartu Keluarga
+                  </span>
+                </div>
+
+                <div class="environment-gender-compare">
+                  <div class="environment-gender-labels">
+                    <span>
+                      Laki-laki
+                      <strong>48,9%</strong>
+                    </span>
+
+                    <span>
+                      <strong>51,1%</strong>
+                      Perempuan
+                    </span>
+                  </div>
+
+                  <div
+                    class="environment-gender-track"
+                    role="img"
+                    aria-label="
+                      Laki-laki 48,9 persen,
+                      perempuan 51,1 persen
+                    "
+                  >
+                    <span
+                      class="environment-gender-male"
+                      style="--male-share: 48.9%"
+                    ></span>
+
+                    <span class="environment-gender-female"></span>
+                  </div>
+                </div>
+
+                <span class="environment-toggle-label">
+                  Lihat komposisi
+                  <span aria-hidden="true"> ↗ </span>
+                </span>
+              </div>
+
+              <div class="environment-card-detail" aria-hidden="true">
+                <div class="environment-detail-left">
+                  <div
+                    class="environment-detail-metric environment-detail-metric--primary"
+                  >
+                    <span> Total Penduduk </span>
+
+                    <strong> 505 </strong>
+
+                    <small> jiwa </small>
+                  </div>
+
+                  <div class="environment-detail-metric">
+                    <span> Kartu Keluarga </span>
+
+                    <strong> 164 </strong>
+
+                    <small> KK </small>
+                  </div>
+                </div>
+
+                <div class="environment-pie-panel">
+                  <div
+                    class="environment-pie"
+                    style="--male-share: 48.9%"
+                    role="img"
+                    aria-label="
+                      Pie chart Lingkungan 7:
+                      laki-laki 48,9 persen,
+                      perempuan 51,1 persen
+                    "
+                  ></div>
+
+                  <div class="environment-pie-legend">
+                    <span class="environment-legend-male">
+                      <i></i>
+                      <b>247</b>
+                      Laki-laki
+                      <small>48,9%</small>
+                    </span>
+
+                    <span class="environment-legend-female">
+                      <i></i>
+                      <b>258</b>
+                      Perempuan
+                      <small>51,1%</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </article>
           </div>
 
-          <p class="environment-note">Panjang indikator pada setiap kartu menunjukkan perbandingan jumlah penduduk relatif terhadap Lingkungan 6 sebagai lingkungan dengan jumlah penduduk terbesar.</p>
+          <p class="environment-note">
+            Bar pada setiap kartu menunjukkan perbandingan persentase laki-laki
+            dan perempuan. Klik salah satu kartu untuk membuka pie chart dan
+            melihat komposisi penduduk secara lebih visual.
+          </p>
         </div>
       </section>
+
+      <!-- ===================================================
+           WILAYAH & PEMERINTAHAN
+           =================================================== -->
 
       <section id="wilayah" class="stats-section stats-section--soft">
         <div class="container">
           <div class="stats-section-heading stats-section-heading--row">
             <div>
-              <span class="stats-kicker">WILAYAH & PEMERINTAHAN</span>
+              <span class="stats-kicker"> WILAYAH & PEMERINTAHAN </span>
+
               <h2>Jangkauan dan Administrasi</h2>
             </div>
-            <span class="stats-year-badge">Data 2024</span>
+
+            <span class="stats-year-badge"> Data 2024 </span>
           </div>
 
           <div class="stats-detail-grid">
             <article class="stats-detail-card stats-detail-card--wide">
-              <span class="stats-detail-label">Luas Wilayah</span>
-              <strong>2,96 <small>km²</small></strong>
+              <span class="stats-detail-label"> Luas Wilayah </span>
+
+              <strong>
+                2,96
+                <small>km²</small>
+              </strong>
+
               <p>Setara 20,9% dari luas kecamatan.</p>
             </article>
+
             <article class="stats-detail-card">
-              <span class="stats-detail-label">Ke Ibukota Kecamatan</span>
-              <strong>0,1 <small>km</small></strong>
+              <span class="stats-detail-label"> Ke Ibukota Kecamatan </span>
+
+              <strong>
+                0,1
+                <small>km</small>
+              </strong>
             </article>
+
             <article class="stats-detail-card">
-              <span class="stats-detail-label">Ke Ibukota Kota</span>
-              <strong>2,0 <small>km</small></strong>
+              <span class="stats-detail-label"> Ke Ibukota Kota </span>
+
+              <strong>
+                2,0
+                <small>km</small>
+              </strong>
             </article>
+
             <article class="stats-detail-card">
-              <span class="stats-detail-label">Jumlah Lingkungan</span>
-              <strong>7</strong>
+              <span class="stats-detail-label"> Jumlah Lingkungan </span>
+
+              <strong> 7 </strong>
             </article>
+
             <article class="stats-detail-card stats-detail-card--staff">
-              <span class="stats-detail-label">Pegawai Pemerintah Kelurahan</span>
-              <strong>5 <small>orang</small></strong>
+              <span class="stats-detail-label">
+                Pegawai Pemerintah Kelurahan
+              </span>
+
+              <strong>
+                5
+                <small>orang</small>
+              </strong>
+
               <div class="stats-staff-split">
-                <span>3 laki-laki</span>
-                <span>2 perempuan</span>
+                <span> 3 laki-laki </span>
+
+                <span> 2 perempuan </span>
               </div>
             </article>
           </div>
         </div>
       </section>
+
+      <!-- ===================================================
+           KESEHATAN & PERUMAHAN
+           =================================================== -->
 
       <section id="layanan" class="stats-section">
         <div class="container">
           <div class="stats-section-heading stats-section-heading--row">
             <div>
-              <span class="stats-kicker">KESEHATAN & PERUMAHAN</span>
+              <span class="stats-kicker"> KESEHATAN & PERUMAHAN </span>
+
               <h2>Kondisi Dasar Warga</h2>
             </div>
-            <span class="stats-year-badge stats-year-badge--muted">Data 2023</span>
+
+            <span class="stats-year-badge stats-year-badge--muted">
+              Data 2023
+            </span>
           </div>
 
           <div class="stats-status-grid">
             <article class="stats-status-card stats-status-card--good">
               <span class="stats-status-dot" aria-hidden="true"></span>
+
               <div>
-                <span>Warga Kekurangan Gizi</span>
-                <strong>Tidak ada</strong>
+                <span> Warga Kekurangan Gizi </span>
+
+                <strong> Tidak ada </strong>
               </div>
             </article>
+
             <article class="stats-status-card">
-              <span class="stats-status-number">1.079</span>
+              <span class="stats-status-number"> 1.079 </span>
+
               <div>
-                <span>Keluarga Pengguna Listrik PLN</span>
-                <small>Non-PLN: 0 keluarga</small>
+                <span> Keluarga Pengguna Listrik PLN </span>
+
+                <small> Non-PLN: 0 keluarga </small>
               </div>
             </article>
           </div>
         </div>
       </section>
+
+      <!-- ===================================================
+           TEMPAT IBADAH
+           =================================================== -->
 
       <section id="ibadah" class="stats-section stats-section--dark">
         <div class="container">
-          <div class="stats-section-heading stats-section-heading--row stats-section-heading--light">
+          <div
+            class="stats-section-heading stats-section-heading--row stats-section-heading--light"
+          >
             <div>
-              <span class="stats-kicker">TEMPAT IBADAH</span>
+              <span class="stats-kicker"> TEMPAT IBADAH </span>
+
               <h2>Fasilitas Keagamaan</h2>
             </div>
-            <span class="stats-year-badge stats-year-badge--dark">Data 2023</span>
+
+            <span class="stats-year-badge stats-year-badge--dark">
+              Data 2023
+            </span>
           </div>
 
           <div class="stats-worship-grid">
-            <article><strong>3</strong><span>Mushola</span></article>
-            <article><strong>5</strong><span>Gereja Protestan</span></article>
-            <article><strong>1</strong><span>Gereja Katolik</span></article>
-            <article><strong>0</strong><span>Masjid</span></article>
-            <article><strong>0</strong><span>Pura</span></article>
-            <article><strong>0</strong><span>Vihara</span></article>
+            <article>
+              <strong>3</strong>
+              <span>Mushola</span>
+            </article>
+
+            <article>
+              <strong>5</strong>
+              <span>Gereja Protestan</span>
+            </article>
+
+            <article>
+              <strong>1</strong>
+              <span>Gereja Katolik</span>
+            </article>
+
+            <article>
+              <strong>0</strong>
+              <span>Masjid</span>
+            </article>
+
+            <article>
+              <strong>0</strong>
+              <span>Pura</span>
+            </article>
+
+            <article>
+              <strong>0</strong>
+              <span>Vihara</span>
+            </article>
           </div>
         </div>
       </section>
+
+      <!-- ===================================================
+           INFRASTRUKTUR
+           =================================================== -->
 
       <section id="infrastruktur" class="stats-section">
         <div class="container">
           <div class="stats-section-heading">
-            <span class="stats-kicker">INFRASTRUKTUR & KONEKTIVITAS</span>
+            <span class="stats-kicker"> INFRASTRUKTUR & KONEKTIVITAS </span>
+
             <h2>Akses dan Layanan</h2>
-            <p>Data fasilitas transportasi, pos, telekomunikasi, dan pariwisata tahun 2023.</p>
+
+            <p>
+              Data fasilitas transportasi, pos, telekomunikasi, dan pariwisata
+              tahun 2023.
+            </p>
           </div>
 
           <div class="stats-info-groups">
-            <article class="stats-info-group">
-              <div class="stats-info-group-head">
-                <span>Pariwisata</span><span class="stats-year-badge stats-year-badge--muted">2023</span>
-              </div>
-              <div class="stats-info-row"><span>Hotel</span><strong>2</strong></div>
-              <div class="stats-info-row"><span>Penginapan</span><strong>0</strong></div>
-            </article>
+            <!-- PARIWISATA -->
 
             <article class="stats-info-group">
               <div class="stats-info-group-head">
-                <span>Transportasi</span><span class="stats-year-badge stats-year-badge--muted">2023</span>
+                <span> Pariwisata </span>
+
+                <span class="stats-year-badge stats-year-badge--muted">
+                  2023
+                </span>
               </div>
-              <div class="stats-info-row"><span>Angkutan umum</span><strong>Tidak ada</strong></div>
-              <div class="stats-info-row"><span>Permukaan jalan terluas</span><strong>Aspal</strong></div>
-              <div class="stats-info-row"><span>Dilalui kendaraan roda 4+</span><strong>Sepanjang tahun</strong></div>
+
+              <div class="stats-info-row">
+                <span> Hotel </span>
+
+                <strong> 2 </strong>
+              </div>
+
+              <div class="stats-info-row">
+                <span> Penginapan </span>
+
+                <strong> 0 </strong>
+              </div>
             </article>
+
+            <!-- TRANSPORTASI -->
 
             <article class="stats-info-group">
               <div class="stats-info-group-head">
-                <span>Pos</span><span class="stats-year-badge stats-year-badge--muted">2023</span>
+                <span> Transportasi </span>
+
+                <span class="stats-year-badge stats-year-badge--muted">
+                  2023
+                </span>
               </div>
-              <div class="stats-info-row"><span>Kantor pos / pos pembantu</span><strong>Beroperasi</strong></div>
-              <div class="stats-info-row"><span>Pos keliling / agen ekspedisi</span><strong>Tidak ada</strong></div>
+
+              <div class="stats-info-row">
+                <span> Angkutan umum </span>
+
+                <strong> Tidak ada </strong>
+              </div>
+
+              <div class="stats-info-row">
+                <span> Permukaan jalan terluas </span>
+
+                <strong> Aspal </strong>
+              </div>
+
+              <div class="stats-info-row">
+                <span> Dilalui kendaraan roda 4+ </span>
+
+                <strong> Sepanjang tahun </strong>
+              </div>
             </article>
+
+            <!-- POS -->
+
+            <article class="stats-info-group">
+              <div class="stats-info-group-head">
+                <span> Pos </span>
+
+                <span class="stats-year-badge stats-year-badge--muted">
+                  2023
+                </span>
+              </div>
+
+              <div class="stats-info-row">
+                <span> Kantor pos / pos pembantu </span>
+
+                <strong> Beroperasi </strong>
+              </div>
+
+              <div class="stats-info-row">
+                <span> Pos keliling / agen ekspedisi </span>
+
+                <strong> Tidak ada </strong>
+              </div>
+            </article>
+
+            <!-- TELEKOMUNIKASI -->
 
             <article class="stats-info-group stats-info-group--signal">
               <div class="stats-info-group-head">
-                <span>Telekomunikasi</span><span class="stats-year-badge stats-year-badge--muted">2023</span>
+                <span> Telekomunikasi </span>
+
+                <span class="stats-year-badge stats-year-badge--muted">
+                  2023
+                </span>
               </div>
+
               <div class="stats-signal-summary">
-                <div><strong>1</strong><span>Menara BTS</span></div>
-                <div><strong>1</strong><span>Operator Seluler</span></div>
-                <div><strong>Kuat</strong><span>Kekuatan Sinyal</span></div>
-                <div><strong>4G-LTE</strong><span>Internet</span></div>
+                <div>
+                  <strong>1</strong>
+                  <span>Menara BTS</span>
+                </div>
+
+                <div>
+                  <strong>1</strong>
+                  <span>Operator Seluler</span>
+                </div>
+
+                <div>
+                  <strong>Kuat</strong>
+                  <span>Kekuatan Sinyal</span>
+                </div>
+
+                <div>
+                  <strong>4G-LTE</strong>
+                  <span>Internet</span>
+                </div>
               </div>
             </article>
           </div>
         </div>
       </section>
+
+      <!-- ===================================================
+           EKONOMI
+           =================================================== -->
 
       <section id="ekonomi" class="stats-section stats-section--soft">
         <div class="container">
           <div class="stats-section-heading stats-section-heading--row">
             <div>
-              <span class="stats-kicker">EKONOMI</span>
+              <span class="stats-kicker"> EKONOMI </span>
+
               <h2>Aktivitas Ekonomi Lokal</h2>
             </div>
-            <span class="stats-year-badge stats-year-badge--muted">Data 2023</span>
+
+            <span class="stats-year-badge stats-year-badge--muted">
+              Data 2023
+            </span>
           </div>
 
           <div class="stats-economy-grid">
             <article class="stats-economy-card stats-economy-card--featured">
-              <span>Minimarket / Swalayan / Supermarket</span>
-              <strong>4</strong>
+              <span> Minimarket / Swalayan / Supermarket </span>
+
+              <strong> 4 </strong>
             </article>
+
             <article class="stats-economy-card">
-              <span>Bank Umum Pemerintah</span>
-              <strong>2</strong>
-              <small>Swasta: 0 · BPR: 0</small>
+              <span> Bank Umum Pemerintah </span>
+
+              <strong> 2 </strong>
+
+              <small> Swasta: 0 · BPR: 0 </small>
             </article>
+
             <article class="stats-economy-card">
-              <span>Koperasi Simpan Pinjam</span>
-              <strong>1</strong>
-              <small>KUD / Kopinkra / lainnya: 0</small>
+              <span> Koperasi Simpan Pinjam </span>
+
+              <strong> 1 </strong>
+
+              <small> KUD / Kopinkra / lainnya: 0 </small>
             </article>
+
             <article class="stats-economy-card">
-              <span>Kelompok Pertokoan</span>
-              <strong>1</strong>
+              <span> Kelompok Pertokoan </span>
+
+              <strong> 1 </strong>
             </article>
+
             <article class="stats-economy-card">
-              <span>Pasar Bangunan Permanen</span>
-              <strong>1</strong>
-              <small>Semi permanen / tanpa bangunan: 0</small>
+              <span> Pasar Bangunan Permanen </span>
+
+              <strong> 1 </strong>
+
+              <small> Semi permanen / tanpa bangunan: 0 </small>
             </article>
+
             <article class="stats-economy-card">
-              <span>Restoran / Rumah Makan</span>
-              <strong>0</strong>
+              <span> Restoran / Rumah Makan </span>
+
+              <strong> 0 </strong>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- ===================================================
+           CATATAN DATA
+           =================================================== -->
+
       <section class="stats-note-section">
         <div class="container">
           <div class="stats-note">
-            <span class="stats-note-mark" aria-hidden="true">i</span>
+            <span class="stats-note-mark" aria-hidden="true"> i </span>
+
             <p>
               Tahun data berbeda antar kategori. Data jumlah penduduk, komposisi
-              laki-laki/perempuan, kepala keluarga, dan rincian per lingkungan
-              menggunakan data tahun 2026. Data wilayah, pemerintahan, serta indikator
-              kependudukan tertentu menggunakan tahun 2024; kategori lainnya menggunakan tahun 2023.
+              laki-laki/perempuan, Kartu Keluarga (KK), dan rincian per
+              lingkungan menggunakan data tahun 2026. Data wilayah,
+              pemerintahan, serta indikator kependudukan tertentu menggunakan
+              tahun 2024; kategori lainnya menggunakan tahun 2023.
             </p>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
     <footer>
       <div class="footer-inner">
         <div class="footer-main">
           <div class="footer-brand">
             <h3>Kelurahan Paslaten 1</h3>
-            <p>Kecamatan Tomohon Timur, Kota Tomohon<br />Sulawesi Utara — Kode Pos 95446</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5);">
+
+            <p>
+              Kecamatan Tomohon Timur, Kota Tomohon
+              <br />
+
+              Sulawesi Utara — Kode Pos 95446
+            </p>
+
+            <p
+              style="
+                margin-top: 0.5rem;
+                font-size: 0.85rem;
+                color: rgba(255, 255, 255, 0.5);
+              "
+            >
               Website Profil — KKT 149 UNSRAT Posko Paslaten 1
             </p>
           </div>
         </div>
+
         <div class="footer-bottom">
-          <p>Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko Paslaten 1, Kota Tomohon</p>
+          <p>
+            Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko
+            Paslaten 1, Kota Tomohon
+          </p>
         </div>
       </div>
     </footer>

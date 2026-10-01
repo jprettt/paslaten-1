@@ -1,0 +1,580 @@
+/* ============================================================
+   PASLATEN 1
+   HOME REFINEMENT
+   MOBILE-FIRST AERIAL MAP HERO
+   HORIZONTAL LEFT-RIGHT SCAN
+   SLOWER VERSION
+   ============================================================ */
+
+
+/* ============================================================
+   HERO BASE
+   ============================================================ */
+
+#hero.hero-editorial {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #0d1f2a;
+  isolation: isolate;
+}
+
+
+/* ============================================================
+   HERO PANORAMA WRAPPER
+   ============================================================ */
+
+#hero .hero-panorama {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0d1f2a;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   HERO IMAGE
+   ============================================================ */
+
+#hero .hero-panorama-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  max-width: none;
+
+  object-fit: cover;
+
+  /*
+   * Mulai dari sisi kiri gambar.
+   */
+  object-position: 10% 50%;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  will-change: object-position;
+
+  /*
+   * 6.5 detik satu arah:
+   *
+   * kiri -> kanan = 6.5 detik
+   * kanan -> kiri = 6.5 detik
+   *
+   * total loop bolak-balik = 13 detik
+   */
+  animation-name: heroHorizontalScan;
+  animation-duration: 6.5s;
+
+  /*
+   * Smooth perlambatan ketika mencapai ujung,
+   * lalu balik dengan lembut.
+   */
+  animation-timing-function: ease-in-out;
+
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+}
+
+
+/* ============================================================
+   HORIZONTAL MOVEMENT
+
+   Tidak ada gerakan vertical.
+   Tidak ada zoom.
+   Tidak ada rotation.
+   ============================================================ */
+
+@keyframes heroHorizontalScan {
+  0% {
+    object-position: 10% 50%;
+  }
+
+  100% {
+    object-position: 90% 50%;
+  }
+}
+
+
+/* ============================================================
+   HERO OVERLAY
+   ============================================================ */
+
+#hero .hero-overlay--editorial {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(4, 24, 21, 0.38) 0%,
+      rgba(5, 30, 26, 0.18) 45%,
+      rgba(4, 25, 22, 0.05) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(4, 24, 21, 0.90) 0%,
+      rgba(4, 24, 21, 0.56) 30%,
+      rgba(4, 24, 21, 0.18) 58%,
+      rgba(4, 24, 21, 0.03) 84%,
+      transparent 100%
+    );
+}
+
+
+/* ============================================================
+   HERO WORDMARK
+   ============================================================ */
+
+.hero-navbar-wordmark {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  line-height: 1.05;
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   HERO NAVBAR STATE
+   ============================================================ */
+
+#navbar:not(.scrolled) .hero-navbar-wordmark {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#navbar:not(.scrolled) .nav-brand {
+  display: none !important;
+}
+
+
+/* ============================================================
+   SCROLLED NAVBAR STATE
+   ============================================================ */
+
+#navbar.scrolled .hero-navbar-wordmark {
+  display: none !important;
+}
+
+#navbar.scrolled .nav-brand {
+  display: flex !important;
+}
+
+
+/* ============================================================
+   WORDMARK TYPOGRAPHY
+   ============================================================ */
+
+.hero-navbar-wordmark strong {
+  display: block;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.hero-navbar-wordmark span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.54);
+  font-family: var(--font-body);
+  font-size: 0.51rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+
+#hero .hero-content--editorial {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+#hero .hero-editorial-inner {
+  width: 100%;
+  padding-top: calc(var(--navbar-height) + 3rem);
+  padding-bottom: 7.2rem;
+}
+
+.hero-editorial-copy {
+  max-width: 620px;
+  pointer-events: auto;
+}
+
+
+/* ============================================================
+   HERO TITLE
+   ============================================================ */
+
+.hero-editorial-title {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.70);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.hero-editorial-title strong {
+  display: block;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   HERO LOCATION
+   ============================================================ */
+
+.hero-editorial-location {
+  margin: 1rem 0 0;
+  color: var(--color-gold-light);
+  font-family: var(--font-body);
+  font-size: 0.77rem;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   HERO DESCRIPTION
+   ============================================================ */
+
+.hero-editorial-description {
+  max-width: 450px;
+  margin: 0.7rem 0 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem, 1.5vw, 0.92rem);
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   HERO ACTIONS
+   ============================================================ */
+
+.hero-editorial-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 1.35rem;
+}
+
+
+/* ============================================================
+   PRIMARY CTA
+   ============================================================ */
+
+.hero-primary-action {
+  min-height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px;
+  background: var(--color-gold);
+  color: #16251f;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 9px 22px rgba(0, 0, 0, 0.12);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-primary-action span {
+  font-size: 1rem;
+}
+
+.hero-primary-action:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 13px 27px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
+
+#hero .hero-scroll-indicator--editorial {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+  transform: translateX(-50%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#hero .hero-scroll-indicator--editorial .scroll-label {
+  color: rgba(255, 255, 255, 0.68);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+#hero .hero-scroll-indicator--editorial .scroll-arrow {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 50%;
+  background: rgba(11, 44, 37, 0.26);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#hero .hero-scroll-indicator--editorial:hover .scroll-arrow {
+  color: #17251f;
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+  transform: translateY(3px);
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+  #hero .hero-panorama-image {
+    animation-duration: 10s;
+  }
+
+  #hero .hero-overlay--editorial {
+    background:
+      linear-gradient(
+        to right,
+        rgba(5, 29, 25, 0.36),
+        rgba(6, 31, 27, 0.08)
+      ),
+      linear-gradient(
+        to top,
+        rgba(5, 24, 21, 0.91) 0%,
+        rgba(5, 24, 21, 0.50) 40%,
+        rgba(5, 24, 21, 0.14) 66%,
+        transparent 86%
+      );
+  }
+
+  #hero .hero-editorial-inner {
+    padding-bottom: 7rem;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  #hero.hero-editorial {
+    min-height: 100svh;
+  }
+
+  #hero .hero-panorama-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    /*
+     * Mobile:
+     *
+     * 6.5 detik kiri -> kanan
+     * 6.5 detik kanan -> kiri
+     */
+    animation-duration: 6.5s;
+  }
+
+  #hero .hero-editorial-inner {
+    padding:
+      calc(var(--navbar-height) + 1.5rem)
+      1.2rem
+      6.7rem;
+  }
+
+  .hero-editorial-copy {
+    max-width: 330px;
+  }
+
+  .hero-navbar-wordmark strong {
+    font-size: 0.68rem;
+  }
+
+  .hero-navbar-wordmark span {
+    margin-top: 3px;
+    font-size: 0.48rem;
+  }
+
+  .hero-editorial-title {
+    max-width: 320px;
+    font-size: clamp(2.85rem, 13vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .hero-editorial-location {
+    margin-top: 0.8rem;
+    font-size: 0.68rem;
+  }
+
+  .hero-editorial-description {
+    max-width: 310px;
+    margin-top: 0.55rem;
+    font-size: 0.71rem;
+    line-height: 1.6;
+  }
+
+  .hero-editorial-actions {
+    margin-top: 1.1rem;
+  }
+
+  .hero-primary-action {
+    min-height: 43px;
+    padding: 0.68rem 1rem;
+    font-size: 0.67rem;
+  }
+
+  #hero .hero-scroll-indicator--editorial {
+    bottom: 0.82rem;
+  }
+
+  #hero .hero-scroll-indicator--editorial .scroll-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  #hero .hero-scroll-indicator--editorial .scroll-label {
+    font-size: 0.46rem;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 374px) {
+  #hero .hero-panorama-image {
+    /*
+     * Sedikit lebih lambat untuk layar kecil.
+     */
+    animation-duration: 7s;
+  }
+
+  #hero .hero-editorial-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .hero-editorial-title {
+    font-size: 2.55rem;
+  }
+
+  .hero-editorial-description {
+    max-width: 285px;
+  }
+}
+
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+
+@media (min-width: 901px) {
+  #hero .hero-panorama-image {
+    animation-name: heroHorizontalScanDesktop;
+
+    /*
+     * Desktop sedikit lebih lambat.
+     */
+    animation-duration: 8s;
+
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+  }
+}
+
+
+/* ============================================================
+   DESKTOP HORIZONTAL SCAN
+   ============================================================ */
+
+@keyframes heroHorizontalScanDesktop {
+  0% {
+    object-position: 18% 50%;
+  }
+
+  100% {
+    object-position: 82% 50%;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  #hero .hero-panorama-image {
+    animation: none;
+    object-position: 50% 50%;
+  }
+
+  .hero-primary-action,
+  #hero .hero-scroll-indicator--editorial .scroll-arrow {
+    transition: none;
+  }
+}
