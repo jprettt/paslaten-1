@@ -698,9 +698,15 @@
   /* ========================================================
      MENGENAI WEBSITE
      KANAN
+
+     DITURUNKAN agar sejajar tombol Jelajahi.
      ======================================================== */
 
   .hero-primary-action {
+    position: relative;
+
+    top: 1.45rem;
+
     min-height: 43px;
 
     height: 43px;
@@ -713,10 +719,6 @@
 
     flex-shrink: 0;
 
-    /*
-       Memberi ruang di kiri untuk
-       Jelajahi Paslaten 1.
-    */
     margin-left: 153px;
   }
 
@@ -729,9 +731,6 @@
   /* ========================================================
      JELAJAHI PASLATEN 1
      KIRI
-
-     Posisi dinaikkan agar BENAR-BENAR SEJAJAR
-     dengan tombol Mengenai Website.
      ======================================================== */
 
   #hero .hero-scroll-indicator--editorial {
@@ -741,13 +740,6 @@
 
     right: auto;
 
-    /*
-       SEBELUMNYA:
-       bottom: 6.7rem;
-
-       Sekarang dinaikkan sekitar 1.45rem
-       agar sejajar dengan tombol gold.
-    */
     bottom:
       calc(
         6.7rem
@@ -1047,6 +1039,10 @@
      ======================================================== */
 
   .hero-primary-action {
+    position: relative;
+
+    top: 1.45rem;
+
     min-height: 42px;
 
     height: 42px;
