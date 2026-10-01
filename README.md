@@ -20,8 +20,27 @@ yang berlokasi di Posko Paslaten 1.
 - CSS3
 - Vanilla JavaScript
 
-Tidak menggunakan framework, library, database, atau backend.
+Tidak menggunakan framework, database, atau backend. Section peta 3D menggunakan Google Maps JavaScript API.
 Website ini berjalan sepenuhnya sebagai **static website**.
+
+## Peta 3D Interaktif
+
+Section **Paslaten 1 dari Udara** berada di `pages/kontak.html`, pada section lokasi (`#lokasi`) sebelum footer.
+
+1. Buat project Google Cloud, aktifkan billing dan **Maps JavaScript API**.
+2. Buat API key untuk website. Batasi HTTP referrers ke domain website dan alamat server lokal yang digunakan, serta batasi API ke Maps JavaScript API.
+3. Isi `apiKey` di `js/maps-config.js`. Key browser memang terlihat di browser; pembatasan domain dilakukan melalui Google Cloud.
+4. Jalankan website melalui server HTTP lokal (misalnya Live Server dari IDE), bukan membuka file melalui `file://`.
+
+Dokumentasi: https://developers.google.com/maps/documentation/javascript/get-api-key
+
+SDK dimuat saat 20% area peta terlihat. Setelah peta siap dan masih terlihat, kamera terbang sekali selama 6000 ms dari range 18 km ke 3,2 km, tilt 15 ke 62 derajat, heading akhir 325 derajat. Fokus akhir memakai altitude 25 m relatif ke tanah. Marker pada `1.32778, 124.85722` ditambahkan setelah event `gmp-animationend`. Marker SVG dirender oleh Google sehingga fade/scale CSS pada elemen tidak digunakan.
+
+Kontrol: Satelit/Peta, 3D, Pusatkan, zoom, utara, dan fullscreen jika didukung browser. Channel `alpha` diperlukan untuk mode `ROADMAP` pada Maps 3D; jika mode tersebut tidak tersedia, tombol Peta disembunyikan. Atribusi Google tetap terlihat. Detail terrain dan bangunan mengikuti cakupan citra Google; koordinat tidak mendefinisikan batas administratif kelurahan.
+
+Tanpa key atau jika layanan gagal, section menampilkan pesan beserta tautan Google Maps. Animasi dilewati untuk preferensi reduced motion. Tinggi peta 600 px di desktop dan 480 px di mobile.
+
+Validasi logika lokal (SDK mock): `node --test tests/paslaten-map.test.cjs`. Rendering satelit, framing akhir, dan akses layanan harus diuji lagi setelah key aktif.
 
 ---
 

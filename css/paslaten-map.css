@@ -1,0 +1,76 @@
+.paslaten-map-section { background: #f8f5ec; }
+.paslaten-map-heading { max-width: 660px; margin-bottom: 2rem; }
+.paslaten-map-heading h2 {
+  margin: .6rem 0 1rem;
+  color: var(--color-green-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+.paslaten-map-heading p { color: var(--color-mid-gray); font-size: .9rem; line-height: 1.8; }
+.paslaten-map-frame {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(26, 92, 80, .12);
+  border-radius: 24px;
+  background: #eaf0e9;
+  box-shadow: 0 10px 30px rgba(16, 63, 56, .07);
+}
+.paslaten-map-canvas, .paslaten-map-canvas gmp-map-3d { display: block; width: 100%; height: 100%; }
+.paslaten-map-toolbar, .paslaten-map-navigation { position: absolute; z-index: 2; display: flex; gap: 8px; }
+.paslaten-map-toolbar { top: 16px; left: 16px; right: 68px; flex-wrap: wrap; }
+.paslaten-map-modes { display: flex; border-radius: 12px; overflow: hidden; }
+.paslaten-map-frame button {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #fbfcf8;
+  color: #103f38;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+  font: 700 .78rem var(--font-body);
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+.paslaten-map-modes button { border-radius: 0; }
+.paslaten-map-frame button[aria-pressed="true"] { background: #103f38; color: #f0d080; }
+.paslaten-map-frame button:hover:not(:disabled) { background: #e4eddf; color: #103f38; }
+.paslaten-map-frame button:focus-visible { outline: 3px solid #c9a84c; outline-offset: 3px; }
+.paslaten-map-frame button:disabled { cursor: default; opacity: .55; }
+.paslaten-map-navigation { right: 16px; top: 16px; flex-direction: column; gap: 4px; }
+.paslaten-map-navigation button { width: 40px; min-height: 40px; padding: 0; border-radius: 10px; font-size: 1.4rem; }
+.paslaten-map-status {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 100px 24px 40px;
+  background: #eaf0e9;
+  text-align: center;
+  color: #103f38;
+}
+.paslaten-map-status[hidden] { display: none; }
+.paslaten-map-status-icon { color: #a88732; font-size: 3.5rem; }
+.paslaten-map-status strong { font: 600 1.5rem var(--font-heading); }
+.paslaten-map-status p { max-width: 360px; color: var(--color-mid-gray); font-size: .85rem; line-height: 1.7; }
+.paslaten-map-status a { border-bottom: 1px solid #c9a84c; padding-bottom: 4px; font-size: .78rem; font-weight: 700; }
+.paslaten-map-caption { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: .72rem; line-height: 1.7; }
+.paslaten-map-caption span { color: var(--color-green-dark); font-weight: 700; }
+.paslaten-map-caption p { color: var(--color-mid-gray); }
+.paslaten-map-frame:fullscreen { height: 100%; width: 100%; border-radius: 0; }
+@media (max-width: 640px) {
+  .paslaten-map-frame { height: 480px; border-radius: 20px; }
+  .paslaten-map-heading { margin-bottom: 1.5rem; }
+  .paslaten-map-toolbar { top: 12px; left: 12px; right: 56px; gap: 6px; }
+  .paslaten-map-frame button { padding: 0 11px; min-height: 40px; font-size: .7rem; }
+  .paslaten-map-navigation { top: 12px; right: 10px; }
+  .paslaten-map-navigation button { width: 36px; padding: 0; font-size: 1.3rem; }
+  .paslaten-map-caption { flex-direction: column; gap: 4px; }
+}

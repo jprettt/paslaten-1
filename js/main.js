@@ -5,6 +5,38 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Buka komposisi penduduk melalui klik atau keyboard.
+    document.querySelectorAll('.environment-card').forEach(function (card, index) {
+        var detail = card.querySelector('.environment-card-detail');
+        var label = card.querySelector('.environment-toggle-label');
+        if (!detail) return;
+
+        detail.id = detail.id || 'environment-detail-' + (index + 1);
+        card.setAttribute('aria-controls', detail.id);
+
+        function setExpanded(expanded) {
+            card.classList.toggle('is-expanded', expanded);
+            card.setAttribute('aria-expanded', String(expanded));
+            detail.setAttribute('aria-hidden', String(!expanded));
+            if (label && label.firstChild) {
+                label.firstChild.textContent = expanded ? 'Tutup komposisi ' : 'Lihat komposisi ';
+            }
+        }
+
+        setExpanded(false);
+        card.addEventListener('click', function () {
+            setExpanded(!card.classList.contains('is-expanded'));
+        });
+        card.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setExpanded(!card.classList.contains('is-expanded'));
+            } else if (event.key === 'Escape') {
+                setExpanded(false);
+            }
+        });
+    });
+
     console.log(
         '[Paslaten 1] JavaScript terhubung. Halaman:',
         document.title
