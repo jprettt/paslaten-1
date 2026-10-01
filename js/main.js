@@ -1,1335 +1,1062 @@
 /*
- * ================================================================
  * main.js
  * Website Profil Kelurahan Paslaten 1
- * ================================================================
  */
 
-document.addEventListener(
-    'DOMContentLoaded',
-    function () {
+document.addEventListener('DOMContentLoaded', function () {
+
+    console.log(
+        '[Paslaten 1] JavaScript terhubung. Halaman:',
+        document.title
+    );
 
 
-        // ============================================================
-        // 1. NAVBAR
-        // ============================================================
+    // ================================================================
+    // 1. HERO ACTION BUTTONS
+    //
+    // Masukkan tombol "Jelajahi Paslaten 1"
+    // dan "Mengenai website" ke dalam parent yang sama.
+    //
+    // Hasil:
+    //
+    // [ Jelajahi Paslaten 1 ↓ ] [ Mengenai website → ]
+    //
+    // Karena berada dalam Flexbox yang sama,
+    // kedua tombol akan benar-benar sejajar.
+    // ================================================================
 
-        var navbar =
-            document.getElementById(
-                'navbar'
+    var heroActions =
+        document.querySelector(
+            '.hero-editorial-actions'
+        );
+
+    var exploreButton =
+        document.getElementById(
+            'hero-scroll-indicator'
+        );
+
+    var kenaliButton =
+        document.getElementById(
+            'btn-kenali'
+        );
+
+
+    if (
+        heroActions &&
+        exploreButton &&
+        kenaliButton
+    ) {
+
+        // ------------------------------------------------------------
+        // Pindahkan tombol Jelajahi ke parent yang sama
+        // ------------------------------------------------------------
+
+        if (
+            exploreButton.parentElement !==
+            heroActions
+        ) {
+
+            heroActions.insertBefore(
+                exploreButton,
+                kenaliButton
             );
-
-
-        var heroSection =
-            document.getElementById(
-                'hero'
-            );
-
-
-        var SCROLL_THRESHOLD =
-            60;
-
-
-        function handleNavbarScroll() {
-
-            if (!navbar) {
-                return;
-            }
-
-
-            if (
-                window.scrollY >
-                SCROLL_THRESHOLD
-            ) {
-
-                navbar.classList.add(
-                    'scrolled'
-                );
-
-            } else {
-
-                navbar.classList.remove(
-                    'scrolled'
-                );
-
-            }
 
         }
 
 
-        if (navbar) {
+        // ------------------------------------------------------------
+        // Tambahkan class khusus
+        // ------------------------------------------------------------
 
-            /*
-             * BERANDA
-             */
-
-            if (heroSection) {
-
-                window.addEventListener(
-                    'scroll',
-                    handleNavbarScroll,
-                    {
-                        passive: true
-                    }
-                );
+        heroActions.classList.add(
+            'hero-actions-unified'
+        );
 
 
-                handleNavbarScroll();
+        // ------------------------------------------------------------
+        // CSS override khusus tombol hero
+        // ------------------------------------------------------------
+
+        var heroActionStyle =
+            document.createElement(
+                'style'
+            );
+
+
+        heroActionStyle.id =
+            'hero-actions-alignment-fix';
+
+
+        heroActionStyle.textContent = `
+
+            /* =====================================================
+               HERO ACTION CONTAINER
+               ===================================================== */
+
+            #hero .hero-actions-unified {
+
+                position: relative !important;
+
+                width: 100% !important;
+
+                display: flex !important;
+
+                flex-direction: row !important;
+
+                align-items: stretch !important;
+
+                justify-content: flex-start !important;
+
+                gap: 0.65rem !important;
+
+                margin-top: 1.1rem !important;
 
             }
 
-            /*
-             * HALAMAN LAIN
-             */
 
-            else {
+            /* =====================================================
+               RESET POSISI KEDUA TOMBOL
 
-                navbar.classList.add(
-                    'scrolled'
-                );
+               Menghapus positioning lama supaya
+               keduanya mengikuti Flexbox yang sama.
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator,
+
+            #hero .hero-actions-unified
+            #btn-kenali {
+
+                position: relative !important;
+
+                top: auto !important;
+
+                bottom: auto !important;
+
+                left: auto !important;
+
+                right: auto !important;
+
+                margin: 0 !important;
+
+                transform: none !important;
+
+                box-sizing: border-box !important;
+
+                align-self: stretch !important;
 
             }
 
+
+            /* =====================================================
+               BUTTON 1
+               JELAJAHI PASLATEN 1
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator {
+
+                order: 1 !important;
+
+                display: inline-flex !important;
+
+                flex-direction: row !important;
+
+                align-items: center !important;
+
+                justify-content: center !important;
+
+                gap: 0.55rem !important;
+
+                width: auto !important;
+
+                min-width: 0 !important;
+
+                height: 45px !important;
+
+                min-height: 45px !important;
+
+                padding:
+                    0
+                    1.05rem !important;
+
+                margin: 0 !important;
+
+                border:
+                    1px solid
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.42
+                    ) !important;
+
+                border-radius:
+                    999px !important;
+
+                background:
+                    rgba(
+                        11,
+                        56,
+                        47,
+                        0.78
+                    ) !important;
+
+                color:
+                    #ffffff !important;
+
+                box-shadow:
+                    0
+                    8px
+                    22px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.15
+                    ) !important;
+
+                backdrop-filter:
+                    blur(9px) !important;
+
+                -webkit-backdrop-filter:
+                    blur(9px) !important;
+
+                white-space:
+                    nowrap !important;
+
+                cursor:
+                    pointer !important;
+
+            }
+
+
+            /* =====================================================
+               LABEL JELAJAHI
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator
+            .scroll-label {
+
+                display:
+                    inline-flex !important;
+
+                align-items:
+                    center !important;
+
+                color:
+                    #ffffff !important;
+
+                font-family:
+                    var(--font-body) !important;
+
+                font-weight:
+                    650 !important;
+
+                letter-spacing:
+                    0 !important;
+
+                text-transform:
+                    none !important;
+
+                line-height:
+                    1 !important;
+
+                /*
+                 * Hilangkan teks lama:
+                 * LIHAT SELENGKAPNYA
+                 */
+
+                font-size:
+                    0 !important;
+
+            }
+
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator
+            .scroll-label::before {
+
+                content:
+                    "Jelajahi Paslaten 1";
+
+                font-size:
+                    0.67rem !important;
+
+                line-height:
+                    1 !important;
+
+                white-space:
+                    nowrap !important;
+
+            }
+
+
+            /* =====================================================
+               ARROW JELAJAHI
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator
+            .scroll-arrow {
+
+                width:
+                    auto !important;
+
+                height:
+                    auto !important;
+
+                display:
+                    inline-flex !important;
+
+                align-items:
+                    center !important;
+
+                justify-content:
+                    center !important;
+
+                flex-shrink:
+                    0 !important;
+
+                color:
+                    #ffffff !important;
+
+                border:
+                    none !important;
+
+                border-radius:
+                    0 !important;
+
+                background:
+                    transparent !important;
+
+                backdrop-filter:
+                    none !important;
+
+                -webkit-backdrop-filter:
+                    none !important;
+
+                animation:
+                    none !important;
+
+                transform:
+                    none !important;
+
+            }
+
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator
+            .scroll-arrow svg {
+
+                width:
+                    17px !important;
+
+                height:
+                    17px !important;
+
+            }
+
+
+            /* =====================================================
+               BUTTON 2
+               MENGENAI WEBSITE
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #btn-kenali {
+
+                order: 2 !important;
+
+                display: inline-flex !important;
+
+                align-items: center !important;
+
+                justify-content: center !important;
+
+                gap: 0.7rem !important;
+
+                width: auto !important;
+
+                min-width: 0 !important;
+
+                height: 45px !important;
+
+                min-height: 45px !important;
+
+                padding:
+                    0
+                    1.15rem !important;
+
+                margin: 0 !important;
+
+                border:
+                    1px solid
+                    var(--color-gold) !important;
+
+                border-radius:
+                    999px !important;
+
+                background:
+                    var(--color-gold) !important;
+
+                color:
+                    #16251f !important;
+
+                font-family:
+                    var(--font-body) !important;
+
+                font-size:
+                    0.70rem !important;
+
+                font-weight:
+                    700 !important;
+
+                line-height:
+                    1 !important;
+
+                white-space:
+                    nowrap !important;
+
+                cursor:
+                    pointer !important;
+
+                box-shadow:
+                    0
+                    9px
+                    22px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.12
+                    ) !important;
+
+            }
+
+
+            #hero .hero-actions-unified
+            #btn-kenali span {
+
+                display:
+                    inline-flex !important;
+
+                align-items:
+                    center !important;
+
+                line-height:
+                    1 !important;
+
+            }
+
+
+            /* =====================================================
+               HOVER
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator:hover {
+
+                background:
+                    rgba(
+                        18,
+                        77,
+                        64,
+                        0.96
+                    ) !important;
+
+                border-color:
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.68
+                    ) !important;
+
+                transform:
+                    translateY(-2px) !important;
+
+            }
+
+
+            #hero .hero-actions-unified
+            #btn-kenali:hover {
+
+                background:
+                    var(--color-gold-light) !important;
+
+                border-color:
+                    var(--color-gold-light) !important;
+
+                transform:
+                    translateY(-2px) !important;
+
+            }
+
+
+            /* =====================================================
+               ACTIVE
+               ===================================================== */
+
+            #hero .hero-actions-unified
+            #hero-scroll-indicator:active,
+
+            #hero .hero-actions-unified
+            #btn-kenali:active {
+
+                transform:
+                    scale(0.97) !important;
+
+            }
+
+
+            /* =====================================================
+               MOBILE
+               ===================================================== */
+
+            @media (max-width: 640px) {
+
+                #hero .hero-actions-unified {
+
+                    width: 100% !important;
+
+                    display: flex !important;
+
+                    flex-direction: row !important;
+
+                    align-items: stretch !important;
+
+                    justify-content: flex-start !important;
+
+                    gap: 0.55rem !important;
+
+                    margin-top: 1.1rem !important;
+
+                }
+
+
+                /* =================================================
+                   KEDUA TOMBOL
+                   TINGGI SAMA
+                   ================================================= */
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator,
+
+                #hero .hero-actions-unified
+                #btn-kenali {
+
+                    position:
+                        relative !important;
+
+                    top:
+                        auto !important;
+
+                    bottom:
+                        auto !important;
+
+                    left:
+                        auto !important;
+
+                    right:
+                        auto !important;
+
+                    margin:
+                        0 !important;
+
+                    height:
+                        44px !important;
+
+                    min-height:
+                        44px !important;
+
+                    align-self:
+                        stretch !important;
+
+                    transform:
+                        none !important;
+
+                    box-sizing:
+                        border-box !important;
+
+                }
+
+
+                /* =================================================
+                   JELAJAHI
+                   ================================================= */
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator {
+
+                    flex:
+                        1 1 0 !important;
+
+                    min-width:
+                        0 !important;
+
+                    padding:
+                        0
+                        0.8rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator
+                .scroll-label::before {
+
+                    font-size:
+                        0.61rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator
+                .scroll-arrow svg {
+
+                    width:
+                        16px !important;
+
+                    height:
+                        16px !important;
+
+                }
+
+
+                /* =================================================
+                   MENGENAI WEBSITE
+                   ================================================= */
+
+                #hero .hero-actions-unified
+                #btn-kenali {
+
+                    flex:
+                        1 1 0 !important;
+
+                    min-width:
+                        0 !important;
+
+                    padding:
+                        0
+                        0.8rem !important;
+
+                    font-size:
+                        0.63rem !important;
+
+                }
+
+            }
+
+
+            /* =====================================================
+               SMALL MOBILE
+               ===================================================== */
+
+            @media (max-width: 374px) {
+
+                #hero .hero-actions-unified {
+
+                    gap:
+                        0.4rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator,
+
+                #hero .hero-actions-unified
+                #btn-kenali {
+
+                    height:
+                        42px !important;
+
+                    min-height:
+                        42px !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator {
+
+                    padding:
+                        0
+                        0.55rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #btn-kenali {
+
+                    padding:
+                        0
+                        0.55rem !important;
+
+                    font-size:
+                        0.55rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator
+                .scroll-label::before {
+
+                    font-size:
+                        0.53rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator
+                .scroll-arrow svg {
+
+                    width:
+                        14px !important;
+
+                    height:
+                        14px !important;
+
+                }
+
+            }
+
+
+            /* =====================================================
+               VERY SMALL MOBILE
+               ===================================================== */
+
+            @media (max-width: 340px) {
+
+                #hero .hero-actions-unified {
+
+                    gap:
+                        0.32rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator {
+
+                    padding:
+                        0
+                        0.42rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #btn-kenali {
+
+                    padding:
+                        0
+                        0.42rem !important;
+
+                    font-size:
+                        0.51rem !important;
+
+                }
+
+
+                #hero .hero-actions-unified
+                #hero-scroll-indicator
+                .scroll-label::before {
+
+                    font-size:
+                        0.49rem !important;
+
+                }
+
+            }
+
+        `;
+
+
+        document.head.appendChild(
+            heroActionStyle
+        );
+
+    }
+
+
+    // ================================================================
+    // 2. NAVBAR
+    // Transparan di hero, solid setelah scroll.
+    // ================================================================
+
+    var navbar =
+        document.getElementById(
+            'navbar'
+        );
+
+
+    var SCROLL_THRESHOLD = 60;
+
+
+    function handleNavbarScroll() {
+
+        if (!navbar) {
+            return;
         }
 
 
+        if (
+            window.scrollY >
+            SCROLL_THRESHOLD
+        ) {
 
-        // ============================================================
-        // 2. DRAWER MENU
-        // ============================================================
+            navbar.classList.add(
+                'scrolled'
+            );
 
-        var hamburger =
-            document.getElementById(
-                'nav-hamburger'
+        } else {
+
+            navbar.classList.remove(
+                'scrolled'
+            );
+
+        }
+
+    }
+
+
+    var heroSection =
+        document.getElementById(
+            'hero'
+        );
+
+
+    if (navbar) {
+
+        if (heroSection) {
+
+            window.addEventListener(
+                'scroll',
+                handleNavbarScroll,
+                {
+                    passive: true
+                }
             );
 
 
-        var drawer =
-            document.getElementById(
-                'drawer-menu'
+            handleNavbarScroll();
+
+        } else {
+
+            navbar.classList.add(
+                'scrolled'
             );
 
+        }
 
-        var backdrop =
-            document.getElementById(
-                'drawer-backdrop'
-            );
+    }
 
 
-        var drawerClose =
-            document.getElementById(
-                'drawer-close'
-            );
+    // ================================================================
+    // 3. MOBILE DRAWER
+    // ================================================================
+
+    var hamburger =
+        document.getElementById(
+            'nav-hamburger'
+        );
 
 
-        function drawerOpen() {
+    var drawer =
+        document.getElementById(
+            'drawer-menu'
+        );
 
-            if (!drawer) {
-                return;
-            }
+
+    var drawerBackdrop =
+        document.getElementById(
+            'drawer-backdrop'
+        );
 
 
-            drawer.classList.add(
+    var drawerClose =
+        document.getElementById(
+            'drawer-close'
+        );
+
+
+    function openDrawer() {
+
+        if (!drawer) {
+            return;
+        }
+
+
+        drawer.classList.add(
+            'drawer-open'
+        );
+
+
+        drawer.setAttribute(
+            'aria-hidden',
+            'false'
+        );
+
+
+        if (drawerBackdrop) {
+
+            drawerBackdrop.classList.add(
                 'drawer-open'
             );
 
 
-            drawer.setAttribute(
+            drawerBackdrop.setAttribute(
                 'aria-hidden',
                 'false'
             );
 
-
-            if (backdrop) {
-
-                backdrop.classList.add(
-                    'drawer-open'
-                );
-
-
-                backdrop.setAttribute(
-                    'aria-hidden',
-                    'false'
-                );
-
-            }
-
-
-            if (hamburger) {
-
-                hamburger.setAttribute(
-                    'aria-expanded',
-                    'true'
-                );
-
-            }
-
-
-            document.body.style.overflow =
-                'hidden';
-
-
-            if (drawerClose) {
-
-                drawerClose.focus();
-
-            }
-
         }
 
-
-        function drawerCloseFn() {
-
-            if (!drawer) {
-                return;
-            }
-
-
-            drawer.classList.remove(
-                'drawer-open'
-            );
-
-
-            drawer.setAttribute(
-                'aria-hidden',
-                'true'
-            );
-
-
-            if (backdrop) {
-
-                backdrop.classList.remove(
-                    'drawer-open'
-                );
-
-
-                backdrop.setAttribute(
-                    'aria-hidden',
-                    'true'
-                );
-
-            }
-
-
-            if (hamburger) {
-
-                hamburger.setAttribute(
-                    'aria-expanded',
-                    'false'
-                );
-
-            }
-
-
-            document.body.style.overflow =
-                '';
-
-
-            if (hamburger) {
-
-                hamburger.focus();
-
-            }
-
-        }
-
-
-        /*
-         * Hamburger
-         */
 
         if (hamburger) {
 
-            hamburger.addEventListener(
-                'click',
-                function () {
-
-                    var isOpen =
-                        drawer &&
-                        drawer.classList.contains(
-                            'drawer-open'
-                        );
-
-
-                    if (isOpen) {
-
-                        drawerCloseFn();
-
-                    } else {
-
-                        drawerOpen();
-
-                    }
-
-                }
+            hamburger.setAttribute(
+                'aria-expanded',
+                'true'
             );
 
         }
 
 
-        /*
-         * Close Button
-         */
+        document.body.style.overflow =
+            'hidden';
+
 
         if (drawerClose) {
 
-            drawerClose.addEventListener(
-                'click',
-                drawerCloseFn
-            );
+            drawerClose.focus();
 
         }
 
+    }
 
-        /*
-         * Backdrop
-         */
 
-        if (backdrop) {
+    function closeDrawer() {
 
-            backdrop.addEventListener(
-                'click',
-                drawerCloseFn
-            );
-
+        if (!drawer) {
+            return;
         }
 
 
-        /*
-         * Drawer Links
-         */
-
-        if (drawer) {
-
-            drawer
-                .querySelectorAll(
-                    '.drawer-link'
-                )
-                .forEach(
-                    function (link) {
-
-                        link.addEventListener(
-                            'click',
-                            function () {
-
-                                drawerCloseFn();
-
-                            }
-                        );
-
-                    }
-                );
-
-        }
-
-
-        /*
-         * Escape
-         */
-
-        document.addEventListener(
-            'keydown',
-            function (e) {
-
-                if (
-                    e.key ===
-                    'Escape' &&
-
-                    drawer &&
-
-                    drawer
-                        .classList
-                        .contains(
-                            'drawer-open'
-                        )
-                ) {
-
-                    drawerCloseFn();
-
-                }
-
-            }
+        drawer.classList.remove(
+            'drawer-open'
         );
 
 
-
-        // ============================================================
-        // 3. HERO PANORAMA
-        //
-        // Tidak membutuhkan JavaScript.
-        //
-        // Animasi:
-        // kiri → kanan → kiri
-        //
-        // dijalankan sepenuhnya melalui CSS:
-        //
-        // @keyframes heroPanHorizontal
-        // ============================================================
-
-
-
-        // ============================================================
-        // 4. HERO SCROLL INDICATOR
-        // ============================================================
-
-        var scrollIndicator =
-            document.getElementById(
-                'hero-scroll-indicator'
-            );
-
-
-        if (
-            scrollIndicator &&
-            heroSection
-        ) {
-
-            function scrollPastHero() {
-
-                var targetY =
-                    heroSection.offsetTop +
-                    heroSection.offsetHeight;
-
-
-                window.scrollTo(
-                    {
-                        top: targetY,
-                        behavior: 'smooth'
-                    }
-                );
-
-            }
-
-
-            /*
-             * CLICK
-             */
-
-            scrollIndicator.addEventListener(
-                'click',
-                scrollPastHero
-            );
-
-
-            /*
-             * KEYBOARD
-             */
-
-            scrollIndicator.addEventListener(
-                'keydown',
-                function (e) {
-
-                    if (
-                        e.key ===
-                        'Enter' ||
-
-                        e.key ===
-                        ' '
-                    ) {
-
-                        e.preventDefault();
-
-
-                        scrollPastHero();
-
-                    }
-
-                }
-            );
-
-        }
-
-
-
-        // ============================================================
-        // 5. ACTIVE NAV LINK
-        // ============================================================
-
-        var currentPath =
-            window.location.pathname;
-
-
-        var navLinks =
-            document.querySelectorAll(
-                '.nav-menu a'
-            );
-
-
-        navLinks.forEach(
-            function (link) {
-
-                link.classList.remove(
-                    'active'
-                );
-
-
-                var linkHref =
-                    link.getAttribute(
-                        'href'
-                    ) || '';
-
-
-                /*
-                 * Halaman normal
-                 */
-
-                if (
-                    linkHref &&
-                    (
-                        currentPath.endsWith(
-                            linkHref
-                        ) ||
-
-                        currentPath.endsWith(
-                            linkHref.replace(
-                                '../',
-                                ''
-                            )
-                        )
-                    )
-                ) {
-
-                    link.classList.add(
-                        'active'
-                    );
-
-                }
-
-
-                /*
-                 * Beranda
-                 */
-
-                if (
-                    (
-                        currentPath ===
-                        '/' ||
-
-                        currentPath.endsWith(
-                            '/index.html'
-                        )
-                    )
-                    &&
-                    (
-                        linkHref ===
-                        'index.html' ||
-
-                        linkHref ===
-                        '../index.html'
-                    )
-                ) {
-
-                    link.classList.add(
-                        'active'
-                    );
-
-                }
-
-            }
+        drawer.setAttribute(
+            'aria-hidden',
+            'true'
         );
 
 
+        if (drawerBackdrop) {
 
-        // ============================================================
-        // 6. ONBOARDING
-        // ============================================================
-
-        var kenaliBtn =
-            document.getElementById(
-                'btn-kenali'
+            drawerBackdrop.classList.remove(
+                'drawer-open'
             );
 
 
-        var obOverlay =
-            document.getElementById(
-                'onboarding'
-            );
-
-
-        var obTrack =
-            document.getElementById(
-                'ob-track'
-            );
-
-
-        var obSkipBtn =
-            document.getElementById(
-                'ob-skip'
-            );
-
-
-        var obBackBtn =
-            document.getElementById(
-                'ob-back'
-            );
-
-
-        var obNextBtn =
-            document.getElementById(
-                'ob-next'
-            );
-
-
-        var obDotBtns =
-            document.querySelectorAll(
-                '.ob-dot'
-            );
-
-
-        var OB_TOTAL =
-            3;
-
-
-        var obCurrent =
-            0;
-
-
-        var obTouchX0 =
-            0;
-
-
-        var obTouchY0 =
-            0;
-
-
-
-        // ============================================================
-        // OPEN ONBOARDING
-        // ============================================================
-
-        function obOpen() {
-
-            if (!obOverlay) {
-                return;
-            }
-
-
-            obGoTo(0);
-
-
-            obOverlay.classList.add(
-                'ob-active'
-            );
-
-
-            obOverlay.setAttribute(
-                'aria-hidden',
-                'false'
-            );
-
-
-            document.body.style.overflow =
-                'hidden';
-
-
-            if (obSkipBtn) {
-
-                obSkipBtn.focus();
-
-            }
-
-        }
-
-
-
-        // ============================================================
-        // CLOSE ONBOARDING
-        // ============================================================
-
-        function obClose() {
-
-            if (!obOverlay) {
-                return;
-            }
-
-
-            obOverlay.classList.remove(
-                'ob-active'
-            );
-
-
-            obOverlay.setAttribute(
+            drawerBackdrop.setAttribute(
                 'aria-hidden',
                 'true'
             );
 
-
-            document.body.style.overflow =
-                '';
+        }
 
 
-            if (kenaliBtn) {
+        if (hamburger) {
 
-                kenaliBtn.focus();
-
-            }
+            hamburger.setAttribute(
+                'aria-expanded',
+                'false'
+            );
 
         }
 
 
+        document.body.style.overflow =
+            '';
 
-        // ============================================================
-        // MOVE ONBOARDING SLIDE
-        // ============================================================
-
-        function obGoTo(index) {
-
-            /*
-             * Prevent invalid slide
-             */
-
-            if (index < 0) {
-
-                index = 0;
-
-            }
+    }
 
 
-            if (
-                index >
-                OB_TOTAL - 1
-            ) {
+    if (hamburger) {
 
-                index =
-                    OB_TOTAL - 1;
+        hamburger.addEventListener(
+            'click',
+            function () {
 
-            }
-
-
-            obCurrent =
-                index;
-
-
-            /*
-             * Move track
-             */
-
-            if (obTrack) {
-
-                obTrack.style.transform =
-                    'translateX(-' +
-                    (
-                        index *
-                        100
-                    ) +
-                    '%)';
-
-            }
-
-
-            /*
-             * Background
-             */
-
-            if (obOverlay) {
-
-                obOverlay
-                    .classList
-                    .remove(
-                        'ob-at-0',
-                        'ob-at-1',
-                        'ob-at-2'
+                var isOpen =
+                    drawer &&
+                    drawer.classList.contains(
+                        'drawer-open'
                     );
 
 
-                obOverlay
-                    .classList
-                    .add(
-                        'ob-at-' +
-                        index
-                    );
+                if (isOpen) {
 
-            }
-
-
-            /*
-             * Dots
-             */
-
-            obDotBtns.forEach(
-                function (
-                    dot,
-                    i
-                ) {
-
-                    var isActive =
-                        i ===
-                        index;
-
-
-                    dot.classList.toggle(
-                        'active',
-                        isActive
-                    );
-
-
-                    dot.setAttribute(
-                        'aria-selected',
-                        isActive
-                            ? 'true'
-                            : 'false'
-                    );
-
-                }
-            );
-
-
-            /*
-             * Back button
-             */
-
-            if (obBackBtn) {
-
-                obBackBtn
-                    .classList
-                    .toggle(
-                        'ob-hidden',
-                        index === 0
-                    );
-
-            }
-
-
-            /*
-             * Next label
-             */
-
-            if (obNextBtn) {
-
-                if (
-                    index ===
-                    OB_TOTAL - 1
-                ) {
-
-                    obNextBtn.textContent =
-                        'Mulai Jelajahi';
+                    closeDrawer();
 
                 } else {
 
-                    obNextBtn.textContent =
-                        'Selanjutnya';
-
-                }
-
-            }
-
-        }
-
-
-
-        // ============================================================
-        // OPEN BUTTON
-        // ============================================================
-
-        if (
-            kenaliBtn &&
-            obOverlay
-        ) {
-
-            kenaliBtn.addEventListener(
-                'click',
-                obOpen
-            );
-
-        }
-
-
-
-        // ============================================================
-        // SKIP
-        // ============================================================
-
-        if (obSkipBtn) {
-
-            obSkipBtn.addEventListener(
-                'click',
-                obClose
-            );
-
-        }
-
-
-
-        // ============================================================
-        // BACK
-        // ============================================================
-
-        if (obBackBtn) {
-
-            obBackBtn.addEventListener(
-                'click',
-                function () {
-
-                    if (
-                        obCurrent >
-                        0
-                    ) {
-
-                        obGoTo(
-                            obCurrent - 1
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-
-        // ============================================================
-        // NEXT
-        // ============================================================
-
-        if (obNextBtn) {
-
-            obNextBtn.addEventListener(
-                'click',
-                function () {
-
-                    /*
-                     * Masih ada slide berikutnya
-                     */
-
-                    if (
-                        obCurrent <
-                        OB_TOTAL - 1
-                    ) {
-
-                        obGoTo(
-                            obCurrent + 1
-                        );
-
-                    }
-
-                    /*
-                     * Slide terakhir
-                     */
-
-                    else {
-
-                        obClose();
-
-
-                        var firstSection =
-                            document
-                                .getElementById(
-                                    'tentang-singkat'
-                                );
-
-
-                        if (firstSection) {
-
-                            setTimeout(
-                                function () {
-
-                                    firstSection
-                                        .scrollIntoView(
-                                            {
-                                                behavior:
-                                                    'smooth'
-                                            }
-                                        );
-
-                                },
-                                350
-                            );
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-
-
-
-        // ============================================================
-        // DOT NAVIGATION
-        // ============================================================
-
-        obDotBtns.forEach(
-            function (dot) {
-
-                dot.addEventListener(
-                    'click',
-                    function () {
-
-                        var index =
-                            parseInt(
-                                dot.getAttribute(
-                                    'data-index'
-                                ),
-                                10
-                            );
-
-
-                        if (
-                            !isNaN(
-                                index
-                            )
-                        ) {
-
-                            obGoTo(
-                                index
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-
-        // ============================================================
-        // ONBOARDING SWIPE
-        // ============================================================
-
-        if (obOverlay) {
-
-            /*
-             * TOUCH START
-             */
-
-            obOverlay.addEventListener(
-                'touchstart',
-                function (e) {
-
-                    if (
-                        !e.changedTouches ||
-                        !e.changedTouches.length
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    obTouchX0 =
-                        e.changedTouches[0]
-                            .screenX;
-
-
-                    obTouchY0 =
-                        e.changedTouches[0]
-                            .screenY;
-
-                },
-                {
-                    passive: true
-                }
-            );
-
-
-            /*
-             * TOUCH END
-             */
-
-            obOverlay.addEventListener(
-                'touchend',
-                function (e) {
-
-                    if (
-                        !e.changedTouches ||
-                        !e.changedTouches.length
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    var x1 =
-                        e.changedTouches[0]
-                            .screenX;
-
-
-                    var y1 =
-                        e.changedTouches[0]
-                            .screenY;
-
-
-                    var diffX =
-                        obTouchX0 -
-                        x1;
-
-
-                    var diffY =
-                        obTouchY0 -
-                        y1;
-
-
-                    /*
-                     * Hanya horizontal swipe
-                     */
-
-                    if (
-                        Math.abs(
-                            diffX
-                        ) >
-                        48
-                        &&
-                        Math.abs(
-                            diffX
-                        ) >
-                        Math.abs(
-                            diffY
-                        )
-                    ) {
-
-                        /*
-                         * Swipe kiri
-                         */
-
-                        if (
-                            diffX >
-                            0
-                            &&
-                            obCurrent <
-                            OB_TOTAL - 1
-                        ) {
-
-                            obGoTo(
-                                obCurrent +
-                                1
-                            );
-
-                        }
-
-
-                        /*
-                         * Swipe kanan
-                         */
-
-                        else if (
-                            diffX <
-                            0
-                            &&
-                            obCurrent >
-                            0
-                        ) {
-
-                            obGoTo(
-                                obCurrent -
-                                1
-                            );
-
-                        }
-
-                    }
-
-                },
-                {
-                    passive: true
-                }
-            );
-
-        }
-
-
-
-        // ============================================================
-        // ESCAPE
-        // ============================================================
-
-        document.addEventListener(
-            'keydown',
-            function (e) {
-
-                if (
-                    e.key ===
-                    'Escape'
-                    &&
-                    obOverlay
-                    &&
-                    obOverlay
-                        .classList
-                        .contains(
-                            'ob-active'
-                        )
-                ) {
-
-                    obClose();
+                    openDrawer();
 
                 }
 
             }
         );
 
+    }
 
 
-        // ============================================================
-        // 7. KARTU LINGKUNGAN INTERAKTIF
-        // ============================================================
+    if (drawerClose) {
 
-        var environmentCards =
-            document.querySelectorAll(
-                '.environment-card'
+        drawerClose.addEventListener(
+            'click',
+            closeDrawer
+        );
+
+    }
+
+
+    if (drawerBackdrop) {
+
+        drawerBackdrop.addEventListener(
+            'click',
+            closeDrawer
+        );
+
+    }
+
+
+    if (drawer) {
+
+        var drawerLinks =
+            drawer.querySelectorAll(
+                '.drawer-link'
             );
 
 
-        function setEnvironmentCardState(
-            card,
-            expanded
-        ) {
+        drawerLinks.forEach(
+            function (link) {
 
-            if (!card) {
-                return;
-            }
-
-
-            card.classList.toggle(
-                'is-expanded',
-                expanded
-            );
-
-
-            card.setAttribute(
-                'aria-expanded',
-                expanded
-                    ? 'true'
-                    : 'false'
-            );
-
-
-            var detail =
-                card.querySelector(
-                    '.environment-card-detail'
-                );
-
-
-            if (detail) {
-
-                detail.setAttribute(
-                    'aria-hidden',
-                    expanded
-                        ? 'false'
-                        : 'true'
-                );
-
-            }
-
-
-            var label =
-                card.querySelector(
-                    '.environment-toggle-label'
-                );
-
-
-            if (
-                label &&
-                label.firstChild
-            ) {
-
-                label.firstChild.nodeValue =
-                    expanded
-                        ? 'Tutup komposisi '
-                        : 'Lihat komposisi ';
-
-            }
-
-        }
-
-
-
-        function toggleEnvironmentCard(
-            card
-        ) {
-
-            var willOpen =
-                !card
-                    .classList
-                    .contains(
-                        'is-expanded'
-                    );
-
-
-            /*
-             * Tutup card lain
-             */
-
-            environmentCards.forEach(
-                function (
-                    otherCard
-                ) {
-
-                    if (
-                        otherCard !==
-                        card
-                    ) {
-
-                        setEnvironmentCardState(
-                            otherCard,
-                            false
-                        );
-
-                    }
-
-                }
-            );
-
-
-            /*
-             * Toggle current card
-             */
-
-            setEnvironmentCardState(
-                card,
-                willOpen
-            );
-
-        }
-
-
-
-        environmentCards.forEach(
-            function (card) {
-
-                /*
-                 * CLICK
-                 */
-
-                card.addEventListener(
+                link.addEventListener(
                     'click',
                     function () {
 
-                        toggleEnvironmentCard(
-                            card
-                        );
-
-                    }
-                );
-
-
-                /*
-                 * KEYBOARD
-                 */
-
-                card.addEventListener(
-                    'keydown',
-                    function (e) {
-
-                        if (
-                            e.key ===
-                            'Enter'
-                            ||
-                            e.key ===
-                            ' '
-                        ) {
-
-                            e.preventDefault();
-
-
-                            toggleEnvironmentCard(
-                                card
-                            );
-
-                        }
+                        closeDrawer();
 
                     }
                 );
@@ -1338,4 +1065,652 @@ document.addEventListener(
         );
 
     }
-);
+
+
+    document.addEventListener(
+        'keydown',
+        function (event) {
+
+            if (
+                event.key ===
+                    'Escape' &&
+                drawer &&
+                drawer.classList.contains(
+                    'drawer-open'
+                )
+            ) {
+
+                closeDrawer();
+
+            }
+
+        }
+    );
+
+
+    // ================================================================
+    // 4. HERO SCROLL BUTTON
+    // ================================================================
+
+    var scrollIndicator =
+        document.getElementById(
+            'hero-scroll-indicator'
+        );
+
+
+    heroSection =
+        document.getElementById(
+            'hero'
+        );
+
+
+    if (
+        scrollIndicator &&
+        heroSection
+    ) {
+
+        function scrollPastHero() {
+
+            var firstSection =
+                document.getElementById(
+                    'tentang-singkat'
+                );
+
+
+            if (firstSection) {
+
+                firstSection.scrollIntoView(
+                    {
+                        behavior:
+                            'smooth',
+
+                        block:
+                            'start'
+                    }
+                );
+
+
+                return;
+
+            }
+
+
+            var targetY =
+                heroSection.offsetTop +
+                heroSection.offsetHeight;
+
+
+            window.scrollTo(
+                {
+                    top:
+                        targetY,
+
+                    behavior:
+                        'smooth'
+                }
+            );
+
+        }
+
+
+        scrollIndicator.addEventListener(
+            'click',
+            scrollPastHero
+        );
+
+
+        scrollIndicator.addEventListener(
+            'keydown',
+            function (event) {
+
+                if (
+                    event.key ===
+                        'Enter' ||
+                    event.key ===
+                        ' '
+                ) {
+
+                    event.preventDefault();
+
+                    scrollPastHero();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ================================================================
+    // 5. ACTIVE NAVIGATION LINK
+    // ================================================================
+
+    var currentPath =
+        window.location.pathname;
+
+
+    var navLinks =
+        document.querySelectorAll(
+            '.nav-menu a'
+        );
+
+
+    navLinks.forEach(
+        function (link) {
+
+            link.classList.remove(
+                'active'
+            );
+
+
+            var linkHref =
+                link.getAttribute(
+                    'href'
+                ) || '';
+
+
+            if (
+                linkHref &&
+                (
+                    currentPath.endsWith(
+                        linkHref
+                    ) ||
+                    currentPath.endsWith(
+                        linkHref.replace(
+                            '../',
+                            ''
+                        )
+                    )
+                )
+            ) {
+
+                link.classList.add(
+                    'active'
+                );
+
+            }
+
+
+            if (
+                (
+                    currentPath === '/' ||
+                    currentPath.endsWith(
+                        '/index.html'
+                    )
+                ) &&
+                (
+                    linkHref ===
+                        'index.html' ||
+                    linkHref ===
+                        '../index.html'
+                )
+            ) {
+
+                link.classList.add(
+                    'active'
+                );
+
+            }
+
+        }
+    );
+
+
+    // ================================================================
+    // 6. ONBOARDING
+    // ================================================================
+
+    var kenaliBtn =
+        document.getElementById(
+            'btn-kenali'
+        );
+
+
+    var onboarding =
+        document.getElementById(
+            'onboarding'
+        );
+
+
+    var onboardingTrack =
+        document.getElementById(
+            'ob-track'
+        );
+
+
+    var onboardingSkip =
+        document.getElementById(
+            'ob-skip'
+        );
+
+
+    var onboardingBack =
+        document.getElementById(
+            'ob-back'
+        );
+
+
+    var onboardingNext =
+        document.getElementById(
+            'ob-next'
+        );
+
+
+    var onboardingDots =
+        document.querySelectorAll(
+            '.ob-dot'
+        );
+
+
+    var ONBOARDING_TOTAL = 3;
+
+    var onboardingCurrent = 0;
+
+    var touchStartX = 0;
+
+
+    function openOnboarding() {
+
+        if (!onboarding) {
+            return;
+        }
+
+
+        goToOnboardingSlide(
+            0
+        );
+
+
+        onboarding.classList.add(
+            'ob-active'
+        );
+
+
+        onboarding.setAttribute(
+            'aria-hidden',
+            'false'
+        );
+
+
+        document.body.style.overflow =
+            'hidden';
+
+
+        if (onboardingSkip) {
+
+            onboardingSkip.focus();
+
+        }
+
+    }
+
+
+    function closeOnboarding() {
+
+        if (!onboarding) {
+            return;
+        }
+
+
+        onboarding.classList.remove(
+            'ob-active'
+        );
+
+
+        onboarding.setAttribute(
+            'aria-hidden',
+            'true'
+        );
+
+
+        document.body.style.overflow =
+            '';
+
+
+        if (kenaliBtn) {
+
+            kenaliBtn.focus();
+
+        }
+
+    }
+
+
+    function goToOnboardingSlide(
+        index
+    ) {
+
+        onboardingCurrent =
+            index;
+
+
+        if (onboardingTrack) {
+
+            onboardingTrack.style.transform =
+                'translateX(-' +
+                (
+                    index *
+                    100
+                ) +
+                '%)';
+
+        }
+
+
+        if (onboarding) {
+
+            onboarding.classList.remove(
+                'ob-at-0',
+                'ob-at-1',
+                'ob-at-2'
+            );
+
+
+            onboarding.classList.add(
+                'ob-at-' +
+                index
+            );
+
+        }
+
+
+        onboardingDots.forEach(
+            function (
+                dot,
+                dotIndex
+            ) {
+
+                var isActive =
+                    dotIndex ===
+                    index;
+
+
+                dot.classList.toggle(
+                    'active',
+                    isActive
+                );
+
+
+                dot.setAttribute(
+                    'aria-selected',
+                    isActive
+                        ? 'true'
+                        : 'false'
+                );
+
+            }
+        );
+
+
+        if (onboardingBack) {
+
+            onboardingBack.classList.toggle(
+                'ob-hidden',
+                index === 0
+            );
+
+        }
+
+
+        if (onboardingNext) {
+
+            onboardingNext.textContent =
+                index ===
+                ONBOARDING_TOTAL - 1
+                    ? 'Mulai Jelajahi'
+                    : 'Selanjutnya';
+
+        }
+
+    }
+
+
+    if (
+        kenaliBtn &&
+        onboarding
+    ) {
+
+        kenaliBtn.addEventListener(
+            'click',
+            openOnboarding
+        );
+
+    }
+
+
+    if (onboardingSkip) {
+
+        onboardingSkip.addEventListener(
+            'click',
+            closeOnboarding
+        );
+
+    }
+
+
+    if (onboardingBack) {
+
+        onboardingBack.addEventListener(
+            'click',
+            function () {
+
+                if (
+                    onboardingCurrent >
+                    0
+                ) {
+
+                    goToOnboardingSlide(
+                        onboardingCurrent -
+                        1
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (onboardingNext) {
+
+        onboardingNext.addEventListener(
+            'click',
+            function () {
+
+                if (
+                    onboardingCurrent <
+                    ONBOARDING_TOTAL - 1
+                ) {
+
+                    goToOnboardingSlide(
+                        onboardingCurrent +
+                        1
+                    );
+
+                } else {
+
+                    closeOnboarding();
+
+
+                    var firstSection =
+                        document.getElementById(
+                            'tentang-singkat'
+                        );
+
+
+                    if (firstSection) {
+
+                        setTimeout(
+                            function () {
+
+                                firstSection.scrollIntoView(
+                                    {
+                                        behavior:
+                                            'smooth',
+
+                                        block:
+                                            'start'
+                                    }
+                                );
+
+                            },
+                            300
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    onboardingDots.forEach(
+        function (dot) {
+
+            dot.addEventListener(
+                'click',
+                function () {
+
+                    var slideIndex =
+                        parseInt(
+                            dot.getAttribute(
+                                'data-index'
+                            ),
+                            10
+                        );
+
+
+                    if (
+                        !isNaN(
+                            slideIndex
+                        )
+                    ) {
+
+                        goToOnboardingSlide(
+                            slideIndex
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    // ================================================================
+    // 7. ONBOARDING SWIPE
+    // ================================================================
+
+    if (onboarding) {
+
+        onboarding.addEventListener(
+            'touchstart',
+            function (event) {
+
+                touchStartX =
+                    event.changedTouches[0]
+                        .screenX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        onboarding.addEventListener(
+            'touchend',
+            function (event) {
+
+                var touchEndX =
+                    event.changedTouches[0]
+                        .screenX;
+
+
+                var difference =
+                    touchStartX -
+                    touchEndX;
+
+
+                if (
+                    Math.abs(
+                        difference
+                    ) <
+                    48
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    difference >
+                    0 &&
+                    onboardingCurrent <
+                    ONBOARDING_TOTAL - 1
+                ) {
+
+                    goToOnboardingSlide(
+                        onboardingCurrent +
+                        1
+                    );
+
+                }
+
+
+                if (
+                    difference <
+                    0 &&
+                    onboardingCurrent >
+                    0
+                ) {
+
+                    goToOnboardingSlide(
+                        onboardingCurrent -
+                        1
+                    );
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    }
+
+
+    // ================================================================
+    // 8. ESCAPE ONBOARDING
+    // ================================================================
+
+    document.addEventListener(
+        'keydown',
+        function (event) {
+
+            if (
+                event.key ===
+                    'Escape' &&
+                onboarding &&
+                onboarding.classList.contains(
+                    'ob-active'
+                )
+            ) {
+
+                closeOnboarding();
+
+            }
+
+        }
+    );
+
+});
