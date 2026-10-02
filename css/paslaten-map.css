@@ -1,76 +1,53 @@
 .paslaten-map-section { background: #f8f5ec; }
 .paslaten-map-heading { max-width: 660px; margin-bottom: 2rem; }
-.paslaten-map-heading h2 {
-  margin: .6rem 0 1rem;
-  color: var(--color-green-dark);
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  line-height: 1.08;
-  letter-spacing: -.045em;
-}
+.paslaten-map-heading h2 { margin: .6rem 0 1rem; color: var(--color-green-dark); font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.08; letter-spacing: -.045em; }
 .paslaten-map-heading p { color: var(--color-mid-gray); font-size: .9rem; line-height: 1.8; }
-.paslaten-map-frame {
-  position: relative;
-  height: 600px;
-  overflow: hidden;
-  isolation: isolate;
-  border: 1px solid rgba(26, 92, 80, .12);
-  border-radius: 24px;
-  background: #eaf0e9;
-  box-shadow: 0 10px 30px rgba(16, 63, 56, .07);
-}
-.paslaten-map-canvas, .paslaten-map-canvas gmp-map-3d { display: block; width: 100%; height: 100%; }
-.paslaten-map-toolbar, .paslaten-map-navigation { position: absolute; z-index: 2; display: flex; gap: 8px; }
-.paslaten-map-toolbar { top: 16px; left: 16px; right: 68px; flex-wrap: wrap; }
-.paslaten-map-modes { display: flex; border-radius: 12px; overflow: hidden; }
-.paslaten-map-frame button {
-  min-height: 42px;
-  padding: 0 16px;
-  border: 0;
-  border-radius: 12px;
-  background: #fbfcf8;
-  color: #103f38;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
-  font: 700 .78rem var(--font-body);
-  cursor: pointer;
-  transition: background-color .2s, color .2s;
-}
-.paslaten-map-modes button { border-radius: 0; }
-.paslaten-map-frame button[aria-pressed="true"] { background: #103f38; color: #f0d080; }
-.paslaten-map-frame button:hover:not(:disabled) { background: #e4eddf; color: #103f38; }
-.paslaten-map-frame button:focus-visible { outline: 3px solid #c9a84c; outline-offset: 3px; }
-.paslaten-map-frame button:disabled { cursor: default; opacity: .55; }
-.paslaten-map-navigation { right: 16px; top: 16px; flex-direction: column; gap: 4px; }
-.paslaten-map-navigation button { width: 40px; min-height: 40px; padding: 0; border-radius: 10px; font-size: 1.4rem; }
-.paslaten-map-status {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 100px 24px 40px;
-  background: #eaf0e9;
-  text-align: center;
-  color: #103f38;
-}
+.paslaten-map-frame { position: relative; height: 560px; min-width: 0; overflow: hidden; isolation: isolate; border: 1px solid rgba(26,92,80,.12); border-radius: 24px; background: #eaf0e9; box-shadow: 0 10px 30px rgba(16,63,56,.07); }
+.paslaten-map-canvas { width: 100%; height: 100%; font-family: var(--font-body); }
+.paslaten-map-toolbar { position: absolute; top: 12px; left: 58px; right: 12px; z-index: 2; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; pointer-events: none; }
+.paslaten-map-toolbar button { pointer-events: auto; min-height: 38px; padding: 0 14px; border: 0; border-radius: 8px; background: var(--color-green-dark); color: white; font: 600 .75rem var(--font-body); cursor: pointer; }
+.paslaten-map-toolbar > button { margin-left: auto; }
+.paslaten-map-segment { display: flex; padding: 2px; border: 1px solid rgba(26,92,80,.18); border-radius: 10px; background: rgba(255,255,255,.95); box-shadow: 0 2px 8px rgba(13,31,42,.1); pointer-events: auto; }
+.paslaten-map-segment button { min-height: 36px; padding: 0 10px; border-radius: 7px; background: transparent; color: #173f38; font-size: 12px; }
+.paslaten-map-segment button[aria-pressed="true"] { background: #165e52; color: white; box-shadow: inset 0 -2px 0 var(--color-gold); }
+.paslaten-map-segment button:hover:not(:disabled):not([aria-pressed="true"]) { background: #e9f0ec; }
+.paslaten-map-toolbar button:hover:not(:disabled) { background: #12473e; }
+.paslaten-map-toolbar button:disabled { opacity: .55; cursor: default; }
+.paslaten-map-frame :focus-visible { outline: 3px solid var(--color-gold); outline-offset: 2px; }
+.paslaten-map-status { position: absolute; inset: 0; z-index: 900; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; background: var(--color-green-dark); text-align: center; color: white; transition: opacity .3s ease; }
 .paslaten-map-status[hidden] { display: none; }
-.paslaten-map-status-icon { color: #a88732; font-size: 3.5rem; }
-.paslaten-map-status strong { font: 600 1.5rem var(--font-heading); }
-.paslaten-map-status p { max-width: 360px; color: var(--color-mid-gray); font-size: .85rem; line-height: 1.7; }
-.paslaten-map-status a { border-bottom: 1px solid #c9a84c; padding-bottom: 4px; font-size: .78rem; font-weight: 700; }
+.paslaten-map-status strong { font: 600 1.15rem var(--font-heading); }
+.paslaten-map-status p { color: #d5e7dd; font-size: .8rem; line-height: 1.7; }
 .paslaten-map-caption { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: .72rem; line-height: 1.7; }
 .paslaten-map-caption span { color: var(--color-green-dark); font-weight: 700; }
 .paslaten-map-caption p { color: var(--color-mid-gray); }
-.paslaten-map-frame:fullscreen { height: 100%; width: 100%; border-radius: 0; }
+.paslaten-map-status.is-ready { opacity: 0; pointer-events: none; }
+.lingkungan-marker { width: var(--marker-size, 22px); height: var(--marker-size, 22px); padding: 0; border: 0; background: transparent; cursor: pointer; }
+.lingkungan-marker-face { display: flex; align-items: center; justify-content: center; width: var(--marker-size, 22px); height: var(--marker-size, 22px); box-sizing: border-box; border: var(--marker-border, 1.5px) solid var(--color-gold); border-radius: 50%; background: var(--color-green-dark); color: white; text-align: center; font: 700 var(--marker-font, 10px)/1 var(--font-body); opacity: 0; transform: scale(.85); transition: opacity .3s ease, transform .3s ease; }
+.map-markers-visible .lingkungan-marker-face { opacity: 1; transform: scale(1); }
+.lingkungan-marker:hover .lingkungan-marker-face { background: #12473e; }
+.lingkungan-marker:hover, .lingkungan-marker:focus-visible, .lingkungan-marker.is-selected { z-index: 5; }
+.lingkungan-marker:disabled { pointer-events: none; }
+.map-intro-running .maplibregl-ctrl-top-left { pointer-events: none; opacity: .55; }
+.paslaten-map-frame .maplibregl-ctrl-group { border-radius: 8px; box-shadow: 0 2px 8px rgba(13,31,42,.12); }
+.paslaten-map-frame .maplibregl-ctrl-group button { width: 36px; height: 36px; }
+.paslaten-map-frame .maplibregl-ctrl-attrib { max-width: calc(100% - 12px); font: 10px/1.5 var(--font-body); }
+.paslaten-map-frame .maplibregl-ctrl-attrib a { color: var(--color-green-dark); }
+.paslaten-statistics-popup { z-index: 10; max-width: calc(100% - 20px); }
+.paslaten-statistics-popup .maplibregl-popup-content { padding: 16px; border-radius: 12px; box-shadow: 0 3px 12px rgba(13,31,42,.12); }
+.paslaten-statistics-popup .maplibregl-popup-close-button { width: 28px; height: 28px; font-size: 20px; color: var(--color-green-dark); }
+.lingkungan-popup { color: var(--color-mid-gray); font: 12px/1.6 var(--font-body); }
+.lingkungan-popup h3 { margin: 0; color: var(--color-green-dark); font: 700 14px/1.4 var(--font-heading); }
+.lingkungan-popup p { margin: 3px 0 12px; }
+.lingkungan-popup dl { margin: 0; }
+.lingkungan-popup dl div { display: flex; justify-content: space-between; gap: 12px; margin: 5px 0; }
+.lingkungan-popup dd { margin: 0; font-weight: 700; color: var(--color-darkest); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lingkungan-popup small { display: block; margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--color-light-gray); font-size: 10px; }
+@media (max-width: 900px) { .paslaten-map-frame { height: 500px; } }
 @media (max-width: 640px) {
-  .paslaten-map-frame { height: 480px; border-radius: 20px; }
+  .paslaten-map-frame { height: 450px; border-radius: 20px; }
   .paslaten-map-heading { margin-bottom: 1.5rem; }
-  .paslaten-map-toolbar { top: 12px; left: 12px; right: 56px; gap: 6px; }
-  .paslaten-map-frame button { padding: 0 11px; min-height: 40px; font-size: .7rem; }
-  .paslaten-map-navigation { top: 12px; right: 10px; }
-  .paslaten-map-navigation button { width: 36px; padding: 0; font-size: 1.3rem; }
   .paslaten-map-caption { flex-direction: column; gap: 4px; }
 }
+
+@media (prefers-reduced-motion: reduce) { .paslaten-map-status, .lingkungan-marker-face { transition: none; } }

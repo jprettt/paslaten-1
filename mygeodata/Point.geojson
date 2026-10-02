@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "Titik lingkungan",
+"features": [
+{ "type": "Feature", "properties": { "Name": "Lingkungan 5", "FID": 0, "Field_1": "Lingkungan 5", "NAMOBJ": "Lingkungan 5", "ORIG_FID": 0, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.8401453, 1.3259438, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Lingkungan 1", "FID": 1, "Field_1": "Lingkungan 1", "NAMOBJ": "Lingkungan 1", "ORIG_FID": 1, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.839182, 1.3244318, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Lingkungan 3", "FID": 2, "Field_1": "Lingkungan 3", "NAMOBJ": "Lingkungan 3", "ORIG_FID": 2, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.8407483, 1.3242299, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Lingkungan 4", "FID": 3, "Field_1": "Lingkungan 4", "NAMOBJ": "Lingkungan 4", "ORIG_FID": 3, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.8415357, 1.3244627, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Lingkungan 7", "FID": 4, "Field_1": "Lingkungan 7", "NAMOBJ": "Lingkungan 7", "ORIG_FID": 4, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.8613392, 1.3252101, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Lingkungan 6", "FID": 5, "Field_1": "Lingkungan 6", "NAMOBJ": "Lingkungan 6", "ORIG_FID": 5, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.8561124, 1.3293925, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Lingkungan 2", "FID": 6, "Field_1": "Lingkungan 2", "NAMOBJ": "Lingkungan 2", "ORIG_FID": 6, "WADMKC": "Tomohon Timur", "WADMKD": "Paslaten Satu", "WADMKK": "Kota Tomohon" }, "geometry": { "type": "Point", "coordinates": [ 124.8401234, 1.3243712, 0.0 ] } }
+]
+}

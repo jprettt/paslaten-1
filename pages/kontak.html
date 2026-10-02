@@ -13,6 +13,7 @@
     <title>Kontak — Kelurahan Paslaten 1, Kota Tomohon</title>
 
     <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css" />
     <link rel="stylesheet" href="../css/paslaten-map.css" />
 
     <!-- =====================================================
@@ -1406,37 +1407,32 @@
         <div class="container">
           <div class="paslaten-map-heading">
             <span class="editorial-kicker">JELAJAHI WILAYAH</span>
-            <h2 id="paslaten-map-title">Paslaten 1 dari Udara</h2>
-            <p>Lihat lokasi dan kondisi wilayah Paslaten 1 melalui tampilan satelit tiga dimensi yang dapat dijelajahi secara interaktif.</p>
+            <h2 id="paslaten-map-title">Jelajahi Paslaten 1</h2>
+            <p>Lihat lokasi dan pembagian lingkungan di Kelurahan Paslaten 1 melalui peta interaktif.</p>
           </div>
           <div class="paslaten-map-frame" id="paslaten-map-frame" aria-busy="true">
-            <div class="paslaten-map-canvas" id="paslaten-map-canvas"></div>
-            <div class="paslaten-map-toolbar" role="group" aria-label="Tampilan peta">
-              <div class="paslaten-map-modes">
+            <div class="paslaten-map-canvas" id="paslaten-map-canvas" role="region" aria-label="Peta wilayah dan tujuh lingkungan Paslaten 1"></div>
+            <div class="paslaten-map-toolbar" role="group" aria-label="Kontrol peta">
+              <div class="paslaten-map-segment" role="group" aria-label="Jenis peta">
                 <button type="button" data-map-action="satellite" aria-pressed="true" disabled>Satelit</button>
-                <button type="button" data-map-action="roadmap" aria-pressed="false" disabled>Peta</button>
+                <button type="button" data-map-action="map" aria-pressed="false" disabled>Peta</button>
               </div>
-              <button type="button" data-map-action="tilt" aria-pressed="true" disabled>3D</button>
+              <div class="paslaten-map-segment" role="group" aria-label="Dimensi peta">
+                <button type="button" data-map-action="2d" aria-pressed="false" disabled>2D</button>
+                <button type="button" data-map-action="3d" aria-pressed="true" disabled>3D</button>
+              </div>
               <button type="button" data-map-action="center" disabled>Pusatkan</button>
             </div>
-            <div class="paslaten-map-navigation" role="group" aria-label="Navigasi peta">
-              <button type="button" data-map-action="zoom-in" aria-label="Perbesar peta" disabled>+</button>
-              <button type="button" data-map-action="zoom-out" aria-label="Perkecil peta" disabled>&minus;</button>
-              <button type="button" data-map-action="north" aria-label="Arahkan peta ke utara" disabled>&#8593;</button>
-              <button type="button" data-map-action="fullscreen" aria-label="Buka layar penuh" disabled>&#x26F6;</button>
-            </div>
             <div class="paslaten-map-status" id="paslaten-map-status" role="status" aria-live="polite">
-              <span class="paslaten-map-status-icon" aria-hidden="true">&#9678;</span>
-              <strong>Jelajahi Paslaten 1</strong>
-              <p id="paslaten-map-message">Peta interaktif akan dimuat saat bagian ini terlihat.</p>
-              <a href="https://www.google.com/maps/search/?api=1&amp;query=1.32778%2C124.85722" target="_blank" rel="noopener noreferrer">Buka lokasi di Google Maps &#8599;</a>
+              <strong>Memuat peta Paslaten 1...</strong>
+              <p id="paslaten-map-message"></p>
             </div>
           </div>
           <div class="paslaten-map-caption">
             <span>Paslaten 1 &middot; Tomohon Timur</span>
-            <p>Geser untuk menjelajah. Gunakan dua jari atau Ctrl + scroll untuk zoom.</p>
+            <p>Gunakan dua jari untuk menjelajah di HP. Klik nomor lingkungan untuk melihat data penduduk 2026.</p>
           </div>
-          <noscript><p>Aktifkan JavaScript untuk menjelajahi peta tiga dimensi.</p></noscript>
+          <noscript><p>Aktifkan JavaScript untuk menjelajahi peta wilayah Paslaten 1.</p></noscript>
         </div>
       </section>
     </main>
@@ -1483,7 +1479,6 @@
          ===================================================== -->
 
     <script src="../js/main.js"></script>
-    <script src="../js/maps-config.js"></script>
-    <script src="../js/paslaten-map.js" defer></script>
+    <script type="module" src="../js/kontak-map.js"></script>
   </body>
 </html>
