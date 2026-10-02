@@ -3333,7 +3333,7 @@ footer {
 
 .stats-detail-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
 }
 
@@ -3349,7 +3349,7 @@ footer {
 }
 
 .stats-detail-card--staff {
-    grid-column: span 2;
+    grid-column: span 1;
 }
 
 .stats-detail-label {
@@ -3793,8 +3793,7 @@ footer {
         gap: 9px;
     }
 
-    .stats-detail-card--wide,
-    .stats-detail-card--staff {
+    .stats-detail-card--wide {
         grid-column: span 2;
     }
 
