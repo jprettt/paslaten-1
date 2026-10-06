@@ -1,0 +1,143 @@
+{
+  "tanggalTtd": "6 Oktober 2026",
+  "kotaTtd": "Tomohon",
+  "penandaTangan": {
+    "jabatan": "Lurah Paslaten Satu",
+    "nama": "Konny Roky Worung, ST",
+    "nip": "197510072006041015"
+  },
+  "nodes": [
+    {
+      "id": "lurah",
+      "jabatan": "Lurah Paslaten Satu",
+      "labelTingkat": "Tingkat 1 · Pimpinan",
+      "kategori": "administrator",
+      "eselon": "IV/a",
+      "atasanId": null,
+      "B": 1,
+      "K": 1,
+      "pegawai": [
+        {
+          "nama": "Konny Roky Worung, ST",
+          "pendidikan": "S1",
+          "status": "PNS",
+          "golongan": "III/d"
+        }
+      ]
+    },
+    {
+      "id": "sekretaris",
+      "jabatan": "Sekretaris Kelurahan",
+      "labelTingkat": "Tingkat 2 · Pengawas",
+      "kategori": "pengawas",
+      "eselon": "IV/b",
+      "atasanId": "lurah",
+      "B": 1,
+      "K": 1,
+      "pegawai": [
+        {
+          "nama": "Reince R. Jacob, SIP, MAP",
+          "pendidikan": "S2",
+          "status": "PNS",
+          "golongan": "III/d"
+        }
+      ]
+    },
+    {
+      "id": "kasi-pembangunan",
+      "jabatan": "Kasi Pembangunan dan Keuangan",
+      "labelTingkat": "Tingkat 2 · Pengawas",
+      "kategori": "pengawas",
+      "eselon": "IV/b",
+      "atasanId": "lurah",
+      "B": 1,
+      "K": 1,
+      "pegawai": [
+        {
+          "nama": "Ria Pingkan Kalalo",
+          "pendidikan": "SLTA",
+          "status": "PNS",
+          "golongan": "III/c"
+        }
+      ]
+    },
+    {
+      "id": "kasi-pemerintahan",
+      "jabatan": "Kasi Pemerintahan, Ketenteraman dan Ketertiban",
+      "labelTingkat": "Tingkat 2 · Pengawas",
+      "kategori": "pengawas",
+      "eselon": "IV/b",
+      "atasanId": "lurah",
+      "B": 1,
+      "K": 1,
+      "pegawai": [
+        {
+          "nama": "Meidi Jefri Simboh, S.H",
+          "pendidikan": "S1",
+          "status": "PNS",
+          "golongan": "III/c"
+        }
+      ]
+    },
+    {
+      "id": "penelaah",
+      "jabatan": "Penelaah Teknis Kebijakan",
+      "labelTingkat": "Tingkat 3 · Pelaksana",
+      "kategori": "pelaksana",
+      "eselon": null,
+      "atasanId": "sekretaris",
+      "B": 1,
+      "K": 1,
+      "pegawai": [
+        {
+          "nama": "Voike G. Walewangko, SE",
+          "pendidikan": "S1",
+          "status": "PNS",
+          "golongan": "III/c"
+        }
+      ]
+    },
+    {
+      "id": "operator-layanan",
+      "jabatan": "Operator Layanan Operasional",
+      "labelTingkat": "Non Struktural",
+      "kategori": "nonstruktural",
+      "eselon": null,
+      "atasanId": "kasi-pembangunan",
+      "B": 2,
+      "K": 2,
+      "pegawai": [
+        {
+          "nama": "Anggli Robert Kristofel Katiho",
+          "pendidikan": "SLTA",
+          "status": "PPPK_PW",
+          "golongan": null
+        },
+        {
+          "nama": "Nansi Tiske Clara Taroreh",
+          "pendidikan": "SLTA",
+          "status": "PPPK_PW",
+          "golongan": null
+        }
+      ]
+    },
+    {
+      "id": "pengadministrasi",
+      "jabatan": "Pengadministrasi Perkantoran",
+      "labelTingkat": "Tingkat 3 · Pelaksana",
+      "kategori": "pelaksana",
+      "eselon": null,
+      "atasanId": "penelaah",
+      "B": 1,
+      "K": 1,
+      "pegawai": [
+        {
+          "nama": "Alfien Kaparang",
+          "pendidikan": "SLTA",
+          "status": "PNS",
+          "golongan": "II/d"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
 /* =====================================================
    style.css
@@ -4832,4 +4832,796 @@ footer {
         font-size: .66rem;
     }
 }
+
+
+/* =====================================================
+   STRUKTUR PEMERINTAHAN
+   Semua token diambil dari design system yang sudah ada.
+   ===================================================== */
+
+/* ---- Warna per kategori ---- */
+:root {
+    --sp-admin:          #1a5c50;   /* administrator  — hijau tua (brand) */
+    --sp-admin-fg:       #ffffff;
+    --sp-admin-border:   #154f45;
+    --sp-pengawas:       #2d906e;   /* pengawas       — hijau sedang (brand) */
+    --sp-pengawas-fg:    #ffffff;
+    --sp-pengawas-border:#206b52;
+    --sp-pelaksana:      #c97c1a;   /* pelaksana      — oranye hangat */
+    --sp-pelaksana-fg:   #ffffff;
+    --sp-pelaksana-border:#a56314;
+    --sp-nonstruk:       #d63384;   /* non struktural — pink */
+    --sp-nonstruk-fg:    #ffffff;
+    --sp-nonstruk-border:#b0276c;
+    --sp-pppk-color:     #7c3aed;   /* teks PPPK Paruh Waktu — ungu */
+    --sp-line-color:     rgba(26,92,80,.2);
+    --sp-card-bg:        rgba(255,255,255,.95);
+    --sp-card-shadow:    0 4px 20px rgba(20,60,50,.07);
+    --sp-card-radius:    14px;
+}
+
+/* ---- Header Row ---- */
+.sp-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sp-legend-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    flex-shrink: 0;
+    padding: .55rem 1.1rem;
+    font-size: .82rem;
+    min-height: 44px;
+    white-space: nowrap;
+}
+
+/* ---- Ringkasan (collapsible details) ---- */
+.sp-summary-details {
+    margin-bottom: 1.75rem;
+    border: 1px solid rgba(26,92,80,.1);
+    border-radius: 16px;
+    background: var(--sp-card-bg);
+    box-shadow: var(--sp-card-shadow);
+    overflow: hidden;
+}
+
+.sp-summary-toggle {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    padding: 1rem 1.15rem;
+    cursor: pointer;
+    color: var(--color-green-dark);
+    font-family: var(--font-heading);
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    list-style: none;
+    user-select: none;
+    min-height: 48px;
+}
+
+.sp-summary-toggle::-webkit-details-marker { display: none; }
+
+.sp-summary-chevron {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--color-mid-gray);
+    transition: transform .25s ease;
+}
+
+.sp-summary-details[open] .sp-summary-chevron {
+    transform: rotate(180deg);
+}
+
+.sp-summary-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    border-top: 1px solid rgba(26,92,80,.08);
+}
+
+.sp-summary-group {
+    padding: .85rem 1.15rem;
+    border-right: 1px solid rgba(26,92,80,.08);
+}
+
+.sp-summary-group:nth-child(even) { border-right: 0; }
+
+.sp-summary-group h4 {
+    margin: 0 0 .45rem;
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.sp-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .2rem 0;
+    font-size: .78rem;
+    color: var(--color-dark);
+    border-bottom: 1px solid rgba(26,92,80,.05);
+}
+
+.sp-summary-row:last-child { border-bottom: 0; }
+
+.sp-summary-row span { color: var(--color-mid-gray); }
+
+.sp-summary-val {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-green-dark) !important;
+}
+
+/* ---- Card Jabatan ---- */
+.sp-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding: .85rem 1rem;
+    border: 2px solid transparent;
+    border-radius: var(--sp-card-radius);
+    background: var(--sp-card-bg);
+    box-shadow: var(--sp-card-shadow);
+    min-width: 0;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sp-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(20,60,50,.11);
+    }
+}
+
+/* Warna strip kiri + border sesuai kategori */
+.sp-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: var(--sp-card-radius) 0 0 var(--sp-card-radius);
+}
+
+.sp-card[data-kategori="administrator"]  { border-color: rgba(26,92,80,.18); }
+.sp-card[data-kategori="administrator"]::before  { background: var(--sp-admin); }
+
+.sp-card[data-kategori="pengawas"]       { border-color: rgba(45,144,110,.18); }
+.sp-card[data-kategori="pengawas"]::before       { background: var(--sp-pengawas); }
+
+.sp-card[data-kategori="pelaksana"]      { border-color: rgba(201,124,26,.18); }
+.sp-card[data-kategori="pelaksana"]::before      { background: var(--sp-pelaksana); }
+
+.sp-card[data-kategori="nonstruktural"]  { border-color: rgba(214,51,132,.18); }
+.sp-card[data-kategori="nonstruktural"]::before  { background: var(--sp-nonstruk); }
+
+/* Badge tingkat */
+.sp-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: .18rem .55rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sp-card[data-kategori="administrator"]  .sp-badge { background: var(--sp-admin);    color: var(--sp-admin-fg); }
+.sp-card[data-kategori="pengawas"]       .sp-badge { background: var(--sp-pengawas); color: var(--sp-pengawas-fg); }
+.sp-card[data-kategori="pelaksana"]      .sp-badge { background: var(--sp-pelaksana);color: var(--sp-pelaksana-fg); }
+.sp-card[data-kategori="nonstruktural"]  .sp-badge { background: var(--sp-nonstruk); color: var(--sp-nonstruk-fg); }
+
+/* Judul jabatan */
+.sp-card-jabatan {
+    margin: .2rem 0 0;
+    color: var(--color-green-dark);
+    font-family: var(--font-heading);
+    font-size: .95rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -.015em;
+}
+
+/* Nama + pendidikan pegawai */
+.sp-card-pegawai-list {
+    margin: .3rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.sp-card-pegawai-item {
+    display: flex;
+    flex-direction: column;
+    gap: .05rem;
+}
+
+.sp-card-nama {
+    font-family: var(--font-body);
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+.sp-card-nama--pppk {
+    color: var(--sp-pppk-color);
+}
+
+.sp-card-status-badge {
+    display: inline-block;
+    padding: .1rem .38rem;
+    border-radius: 999px;
+    background: rgba(124,58,237,.1);
+    color: var(--sp-pppk-color);
+    font-size: .56rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+
+.sp-card-pendidikan {
+    font-size: .7rem;
+    color: var(--color-mid-gray);
+}
+
+/* Badge B/K kekuatan pegawai */
+.sp-card-bk {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    margin-top: .35rem;
+    align-self: flex-start;
+    padding: .2rem .55rem;
+    border-radius: 999px;
+    background: rgba(26,92,80,.07);
+    color: var(--color-green-dark);
+    font-family: var(--font-body);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+/* =============================================
+   MOBILE TREE — Vertikal, garis kiri, indentasi
+   ============================================= */
+
+.sp-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Setiap tingkat (level) dalam pohon */
+.sp-level {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Wrapper node + children-nya */
+.sp-node-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Node card wrapper — posisi relatif untuk garis */
+.sp-node-wrap {
+    position: relative;
+    padding: 6px 0 6px 0;
+}
+
+/* Garis vertikal kiri + horizontal ke card (mobile) */
+.sp-node-wrap--child {
+    padding-left: 1.5rem;
+}
+
+.sp-node-wrap--child::before {
+    content: "";
+    position: absolute;
+    left: .6rem;
+    top: 0;
+    bottom: 50%;
+    width: 2px;
+    background: var(--sp-line-color);
+    border-radius: 1px;
+}
+
+.sp-node-wrap--child::after {
+    content: "";
+    position: absolute;
+    left: .6rem;
+    top: 50%;
+    width: .9rem;
+    height: 2px;
+    background: var(--sp-line-color);
+    border-radius: 1px;
+}
+
+/* Baris sibling horisontal (mobile) — sambung garis vertikal */
+.sp-siblings {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+}
+
+.sp-siblings::before {
+    content: "";
+    position: absolute;
+    left: .6rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--sp-line-color);
+    border-radius: 1px;
+}
+
+/* Children group — indentasi */
+.sp-children {
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--sp-line-color);
+    margin-left: .6rem;
+    margin-bottom: .25rem;
+}
+
+/* =============================================
+   DESKTOP TREE — Horizontal, pohon ke bawah
+   ≥ 1024px
+   ============================================= */
+
+@media (min-width: 1024px) {
+    /* Reset mobile flex */
+    .sp-tree {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+
+    /* Root node (Lurah) — di tengah atas */
+    .sp-tree > .sp-node-group > .sp-node-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 0 0 0 0;
+    }
+
+    .sp-tree > .sp-node-group > .sp-node-wrap::before,
+    .sp-tree > .sp-node-group > .sp-node-wrap::after { display: none; }
+
+    /* Level 2 — 3 anak lurah baris horizontal */
+    .sp-tree > .sp-node-group > .sp-children {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 0;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings::before {
+        /* Garis horizontal atas menghubungkan 3 Kasi */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        width: auto;
+        background: var(--sp-line-color);
+    }
+
+    /* Garis vertikal dari Lurah turun ke garis horizontal */
+    .sp-tree > .sp-node-group > .sp-node-wrap + .sp-children {
+        position: relative;
+        margin-top: 0;
+    }
+
+    .sp-tree > .sp-node-group > .sp-node-wrap + .sp-children::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 2rem;
+        margin: 0 auto;
+        background: var(--sp-line-color);
+    }
+
+    /* Card di desktop — lebar tetap */
+    .sp-card {
+        width: 210px;
+    }
+
+    /* Level 2 node-group */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    /* Garis vertikal dari node level-2 ke card */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-top: 0;
+    }
+
+    /* Garis dari horizontal atas ke card level 2 */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 1.5rem;
+        background: var(--sp-line-color);
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::after {
+        display: none;
+    }
+
+    /* Children level-3 — di bawah masing-masing level-2 */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        position: relative;
+    }
+
+    /* Garis vertikal level-2 → level-3 */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 1.75rem;
+        background: var(--sp-line-color);
+        margin: 0 auto;
+    }
+
+    /* Level-3 siblings (bisa > 1) */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings::before {
+        display: none;
+    }
+
+    /* Level-3 node-wrap */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::before,
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::after {
+        display: none;
+    }
+
+    /* Level-4 (Pengadministrasi, anak dari Penelaah) */
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 1.5rem;
+        background: var(--sp-line-color);
+        margin: 0 auto;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings::before {
+        display: none;
+    }
+}
+
+/* =============================================
+   LEGEND DIALOG & BACKDROP
+   ============================================= */
+
+.sp-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(13,31,42,.5);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.sp-backdrop.sp-open {
+    display: block;
+}
+
+.sp-backdrop.sp-visible {
+    opacity: 1;
+}
+
+.sp-dialog {
+    position: fixed;
+    z-index: 301;
+    background: var(--color-white);
+    outline: none;
+    /* Bottom-sheet default (mobile) */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    padding: 0 0 env(safe-area-inset-bottom, 0);
+    box-shadow: 0 -8px 40px rgba(13,31,42,.18);
+    transform: translateY(100%);
+    transition: transform .3s cubic-bezier(.32,.72,0,1);
+    max-height: 85dvh;
+    overflow-y: auto;
+}
+
+.sp-dialog[aria-hidden="false"] {
+    transform: translateY(0);
+}
+
+.sp-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.2rem .8rem;
+    border-bottom: 1px solid rgba(26,92,80,.08);
+    position: sticky;
+    top: 0;
+    background: var(--color-white);
+    z-index: 1;
+}
+
+.sp-dialog-header h3 {
+    margin: 0;
+    color: var(--color-green-dark);
+    font-size: 1.05rem;
+}
+
+.sp-dialog-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(26,92,80,.07);
+    color: var(--color-green-dark);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background .2s;
+}
+
+.sp-dialog-close:hover { background: rgba(26,92,80,.14); }
+.sp-dialog-close:focus-visible { outline: 2px solid var(--color-green); outline-offset: 2px; }
+
+.sp-legend-list {
+    padding: .8rem 1.2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.sp-legend-item {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+}
+
+.sp-legend-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.sp-legend-item div {
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+}
+
+.sp-legend-item strong {
+    font-size: .88rem;
+    color: var(--color-dark);
+}
+
+.sp-legend-item span {
+    font-size: .72rem;
+    color: var(--color-mid-gray);
+}
+
+/* Desktop: modal tengah */
+@media (min-width: 640px) {
+    .sp-dialog {
+        bottom: auto;
+        left: 50%;
+        top: 50%;
+        right: auto;
+        transform: translate(-50%, -48%) scale(.96);
+        border-radius: 20px;
+        width: min(440px, 92vw);
+        max-height: 80vh;
+        opacity: 0;
+        transition:
+            transform .25s cubic-bezier(.32,.72,0,1),
+            opacity .2s ease;
+    }
+
+    .sp-dialog[aria-hidden="false"] {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* =============================================
+   TANDA TANGAN
+   ============================================= */
+
+.sp-signature {
+    margin-top: 2rem;
+    text-align: right;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(26,92,80,.08);
+}
+
+.sp-signature p {
+    margin: 0;
+    color: var(--color-mid-gray);
+    font-size: .8rem;
+    line-height: 1.65;
+}
+
+.sp-signature strong {
+    display: block;
+    margin-top: .5rem;
+    color: var(--color-green-dark);
+    font-family: var(--font-heading);
+    font-size: .95rem;
+    font-weight: 700;
+}
+
+.sp-signature small {
+    font-size: .72rem;
+    color: var(--color-mid-gray);
+}
+
+/* =============================================
+   FOCUS / AKSESIBILITAS
+   ============================================= */
+
+.sp-legend-btn:focus-visible,
+.sp-summary-toggle:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+/* =============================================
+   RESPONSIVE TWEAKS
+   ============================================= */
+
+@media (max-width: 640px) {
+    .sp-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sp-card {
+        padding: .75rem .85rem;
+    }
+
+    .sp-card-jabatan {
+        font-size: .88rem;
+    }
+
+    .sp-summary-body {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 380px) {
+    .sp-summary-body {
+        grid-template-columns: 1fr;
+    }
+
+    .sp-summary-group { border-right: 0; border-bottom: 1px solid rgba(26,92,80,.08); }
+    .sp-summary-group:last-child { border-bottom: 0; }
+}
+
+/* =============================================
+   DARK MODE
+   (hanya aktif jika browser/OS pakai dark)
+   ============================================= */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sp-card-bg:     rgba(20,40,35,.92);
+        --sp-card-shadow: 0 4px 20px rgba(0,0,0,.25);
+        --sp-line-color:  rgba(100,200,160,.18);
+    }
+
+    .sp-summary-details,
+    .sp-dialog {
+        background: #1a2e28;
+        border-color: rgba(100,200,160,.12);
+    }
+
+    .sp-dialog-header {
+        background: #1a2e28;
+        border-bottom-color: rgba(100,200,160,.1);
+    }
+
+    .sp-card-jabatan { color: #c8e6d8; }
+    .sp-card-nama    { color: #e0f0e8; }
+
+    .sp-summary-toggle { color: #c8e6d8; }
+    .sp-summary-group h4 { color: var(--color-gold-light); }
+    .sp-summary-row { color: #d8ede5; border-bottom-color: rgba(100,200,160,.07); }
+    .sp-summary-val { color: var(--color-green-pale) !important; }
+
+    .sp-dialog-close {
+        background: rgba(100,200,160,.1);
+        color: #c8e6d8;
+    }
+
+    .sp-legend-item strong { color: #e0f0e8; }
+
+    .sp-signature p,
+    .sp-signature small { color: rgba(200,230,216,.6); }
+    .sp-signature strong { color: #c8e6d8; }
+}
+
+
 

@@ -7,7 +7,7 @@
 
     <meta
       name="description"
-      content="Tentang Kelurahan Paslaten 1 — gambaran umum, wilayah, dan pemerintahan."
+      content="Tentang Kelurahan Paslaten 1 — gambaran umum, wilayah, pemerintahan, dan struktur organisasi."
     />
 
     <title>Tentang Paslaten 1 — Kelurahan Paslaten 1, Kota Tomohon</title>
@@ -712,7 +712,7 @@
 
           <a href="#wilayah"> Wilayah </a>
 
-          <a href="#pemerintahan"> Pemerintahan </a>
+          <a href="#struktur-pemerintahan"> Struktur Pemerintahan </a>
         </div>
       </nav>
 
@@ -899,71 +899,113 @@
         </div>
       </section>
 
+
       <!-- =================================================
-             PEMERINTAHAN
-             ================================================= -->
+           STRUKTUR PEMERINTAHAN
+           ================================================= -->
 
-      <section class="editorial-section" id="pemerintahan">
+      <section class="editorial-section editorial-section--soft" id="struktur-pemerintahan" aria-labelledby="sp-heading">
         <div class="container">
-          <div class="editorial-heading editorial-heading--wide">
-            <span class="editorial-kicker"> PEMERINTAHAN </span>
 
-            <h2>Pemerintahan Kelurahan</h2>
-
-            <p>
-              Paslaten 1 merupakan kelurahan yang secara administratif dipimpin
-              oleh seorang Lurah yang bertanggung jawab kepada Camat Tomohon
-              Timur. Kantor kelurahan berlokasi di Jl. Kalooran.
-            </p>
-          </div>
-
-          <div class="about-government-grid">
-            <!-- LURAH -->
-
-            <article class="about-government-card">
-              <span> 01 </span>
-
-              <h3>Lurah</h3>
-
-              <p>[Akan dilengkapi]</p>
-            </article>
-
-            <!-- SEKRETARIS -->
-
-            <article class="about-government-card">
-              <span> 02 </span>
-
-              <h3>Sekretaris Kelurahan</h3>
-
-              <p>[Akan dilengkapi]</p>
-            </article>
-
-            <!-- STRUKTUR -->
-
-            <article class="about-government-card">
-              <span> 03 </span>
-
-              <h3>Struktur Pemerintahan</h3>
-
-              <p>[Data struktur pemerintahan akan dilengkapi]</p>
-            </article>
-
-            <!-- ALAMAT -->
-
-            <article
-              class="about-government-card about-government-card--accent"
+          <!-- ── HEADER ROW ── -->
+          <div class="sp-header-row">
+            <div class="editorial-heading editorial-heading--wide" style="margin-bottom:0;">
+              <span class="editorial-kicker">PEMERINTAHAN</span>
+              <h2 id="sp-heading">Struktur Pemerintahan</h2>
+              <p>Kelurahan Paslaten Satu &mdash; Kecamatan Tomohon Timur, Kota Tomohon</p>
+            </div>
+            <button
+              class="sp-legend-btn btn btn-outline"
+              id="sp-legend-btn"
+              aria-expanded="false"
+              aria-controls="sp-legend-dialog"
+              aria-haspopup="dialog"
+              type="button"
             >
-              <span> 04 </span>
-
-              <h3>Alamat Kantor</h3>
-
-              <p>
-                Jl. Kalooran, Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon
-              </p>
-            </article>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 8h.01M12 12v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Keterangan Warna
+            </button>
           </div>
+
+
+          <!-- ── BAGAN POHON ── -->
+          <div class="sp-tree" id="sp-tree" role="tree" aria-label="Bagan struktur pemerintahan">
+            <!-- Diisi oleh JS -->
+          </div>
+
+          <!-- ── TANDA TANGAN ── -->
+          <div class="sp-signature" id="sp-signature" aria-label="Tanda tangan pejabat">
+            <!-- Diisi oleh JS -->
+          </div>
+
         </div>
       </section>
+
+      <!-- ── LEGEND DIALOG (bottom-sheet mobile / modal desktop) ── -->
+      <div
+        class="sp-backdrop"
+        id="sp-backdrop"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="sp-dialog"
+        id="sp-legend-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sp-dialog-title"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <div class="sp-dialog-header">
+          <h3 id="sp-dialog-title">Keterangan Warna</h3>
+          <button class="sp-dialog-close" id="sp-dialog-close" aria-label="Tutup keterangan warna" type="button">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <ul class="sp-legend-list" role="list">
+          <li class="sp-legend-item">
+            <span class="sp-legend-swatch" style="background:#1a5c50;" aria-hidden="true"></span>
+            <div>
+              <strong>Administrator</strong>
+              <span>Tingkat 1 &mdash; Lurah</span>
+            </div>
+          </li>
+          <li class="sp-legend-item">
+            <span class="sp-legend-swatch" style="background:#2d906e;" aria-hidden="true"></span>
+            <div>
+              <strong>Pengawas</strong>
+              <span>Tingkat 2 &mdash; Sekretaris &amp; Kasi</span>
+            </div>
+          </li>
+          <li class="sp-legend-item">
+            <span class="sp-legend-swatch" style="background:#c97c1a;" aria-hidden="true"></span>
+            <div>
+              <strong>Pelaksana</strong>
+              <span>Tingkat 3 &mdash; Staf Fungsional</span>
+            </div>
+          </li>
+          <li class="sp-legend-item">
+            <span class="sp-legend-swatch" style="background:#d63384;" aria-hidden="true"></span>
+            <div>
+              <strong>Non Struktural</strong>
+              <span>Di luar hirarki struktural</span>
+            </div>
+          </li>
+          <li class="sp-legend-item">
+            <span class="sp-legend-swatch" style="background:#7c3aed;" aria-hidden="true"></span>
+            <div>
+              <strong>PPPK Paruh Waktu</strong>
+              <span>Warna nama pegawai berstatus PPPK PW</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
     </main>
 
     <!-- =====================================================
@@ -1008,5 +1050,6 @@
          ===================================================== -->
 
     <script src="../js/main.js"></script>
+    <script src="../js/struktur-pemerintahan.js"></script>
   </body>
 </html>
