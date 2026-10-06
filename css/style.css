@@ -4855,7 +4855,7 @@ footer {
     --sp-nonstruk-border:#b0276c;
     --sp-pppk-color:     #7c3aed;   /* teks PPPK Paruh Waktu — ungu */
     --sp-line-color:     rgba(26,92,80,.2);
-    --sp-card-bg:        rgba(255,255,255,.95);
+    --sp-card-bg:        #ffffff;
     --sp-card-shadow:    0 4px 20px rgba(20,60,50,.07);
     --sp-card-radius:    14px;
 }
@@ -4964,17 +4964,17 @@ footer {
     color: var(--color-green-dark) !important;
 }
 
-/* ---- Card Jabatan ---- */
+/* ---- Card Jabatan (Model Kartu Sejarah) ---- */
 .sp-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: .3rem;
-    padding: .85rem 1rem;
-    border: 2px solid transparent;
-    border-radius: var(--sp-card-radius);
-    background: var(--sp-card-bg);
-    box-shadow: var(--sp-card-shadow);
+    padding: 1.35rem 1.25rem 1.25rem;
+    border: 1px solid rgba(26, 92, 80, 0.1);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(20, 60, 50, 0.05);
+    overflow: hidden;
     min-width: 0;
     transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -4982,121 +4982,90 @@ footer {
 @media (hover: hover) and (pointer: fine) {
     .sp-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(20,60,50,.11);
+        box-shadow: 0 8px 30px rgba(20, 60, 50, 0.1);
     }
 }
 
-/* Warna strip kiri + border sesuai kategori */
-.sp-card::before {
-    content: "";
+/* Watermark Tingkat (menggantikan '03' di kartu sejarah) */
+.sp-card-index {
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    border-radius: var(--sp-card-radius) 0 0 var(--sp-card-radius);
+    right: 1.15rem;
+    top: 0.75rem;
+    color: rgba(45, 144, 110, 0.18);
+    font-family: var(--font-heading);
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    user-select: none;
+    text-transform: capitalize;
 }
 
-.sp-card[data-kategori="administrator"]  { border-color: rgba(26,92,80,.18); }
-.sp-card[data-kategori="administrator"]::before  { background: var(--sp-admin); }
-
-.sp-card[data-kategori="pengawas"]       { border-color: rgba(45,144,110,.18); }
-.sp-card[data-kategori="pengawas"]::before       { background: var(--sp-pengawas); }
-
-.sp-card[data-kategori="pelaksana"]      { border-color: rgba(201,124,26,.18); }
-.sp-card[data-kategori="pelaksana"]::before      { background: var(--sp-pelaksana); }
-
-.sp-card[data-kategori="nonstruktural"]  { border-color: rgba(214,51,132,.18); }
-.sp-card[data-kategori="nonstruktural"]::before  { background: var(--sp-nonstruk); }
-
-/* Badge tingkat */
-.sp-badge {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    padding: .18rem .55rem;
-    border-radius: 999px;
-    font-family: var(--font-body);
-    font-size: .58rem;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.sp-card[data-kategori="administrator"]  .sp-badge { background: var(--sp-admin);    color: var(--sp-admin-fg); }
-.sp-card[data-kategori="pengawas"]       .sp-badge { background: var(--sp-pengawas); color: var(--sp-pengawas-fg); }
-.sp-card[data-kategori="pelaksana"]      .sp-badge { background: var(--sp-pelaksana);color: var(--sp-pelaksana-fg); }
-.sp-card[data-kategori="nonstruktural"]  .sp-badge { background: var(--sp-nonstruk); color: var(--sp-nonstruk-fg); }
-
-/* Judul jabatan */
+/* Judul Jabatan (menggantikan 'Penemuan Kalimpesan' h3) */
 .sp-card-jabatan {
-    margin: .2rem 0 0;
+    position: relative;
+    z-index: 2;
+    margin: 0 0 0.5rem;
+    padding-right: 5.2rem;
     color: var(--color-green-dark);
     font-family: var(--font-heading);
-    font-size: .95rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -.015em;
+    line-height: 1.3;
+    letter-spacing: -.025em;
 }
 
-/* Nama + pendidikan pegawai */
+/* Daftar Pegawai */
 .sp-card-pegawai-list {
-    margin: .3rem 0 0;
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: .25rem;
+    gap: 0.75rem;
 }
 
 .sp-card-pegawai-item {
     display: flex;
     flex-direction: column;
-    gap: .05rem;
+    align-items: flex-start;
 }
 
+.sp-card-pegawai-item + .sp-card-pegawai-item {
+    padding-top: 0.65rem;
+    border-top: 1px dashed rgba(26, 92, 80, 0.12);
+}
+
+/* Nama Lengkap Pegawai */
 .sp-card-nama {
+    position: relative;
+    z-index: 2;
+    margin: 0;
     font-family: var(--font-body);
-    font-size: .8rem;
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--color-dark);
-    line-height: 1.3;
+    line-height: 1.35;
 }
 
-.sp-card-nama--pppk {
-    color: var(--sp-pppk-color);
-}
-
-.sp-card-status-badge {
-    display: inline-block;
-    padding: .1rem .38rem;
-    border-radius: 999px;
-    background: rgba(124,58,237,.1);
-    color: var(--sp-pppk-color);
-    font-size: .56rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    align-self: flex-start;
-}
-
-.sp-card-pendidikan {
-    font-size: .7rem;
-    color: var(--color-mid-gray);
-}
-
-/* Badge B/K kekuatan pegawai */
-.sp-card-bk {
+/* Tag Pendidikan Terakhir (menggantikan 'Syukuran Kedua' pill tag) */
+.sp-card-tag {
+    position: relative;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
-    gap: .3rem;
-    margin-top: .35rem;
     align-self: flex-start;
-    padding: .2rem .55rem;
+    margin-top: 0.55rem;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(26, 92, 80, 0.15);
     border-radius: 999px;
-    background: rgba(26,92,80,.07);
+    background: rgba(26, 92, 80, 0.03);
     color: var(--color-green-dark);
     font-family: var(--font-body);
-    font-size: .62rem;
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: .04em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 /* =============================================
@@ -5251,7 +5220,7 @@ footer {
 
     /* Card di desktop — lebar tetap */
     .sp-card {
-        width: 210px;
+        width: 230px;
     }
 
     /* Level 2 node-group */
@@ -5506,38 +5475,6 @@ footer {
 }
 
 /* =============================================
-   TANDA TANGAN
-   ============================================= */
-
-.sp-signature {
-    margin-top: 2rem;
-    text-align: right;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(26,92,80,.08);
-}
-
-.sp-signature p {
-    margin: 0;
-    color: var(--color-mid-gray);
-    font-size: .8rem;
-    line-height: 1.65;
-}
-
-.sp-signature strong {
-    display: block;
-    margin-top: .5rem;
-    color: var(--color-green-dark);
-    font-family: var(--font-heading);
-    font-size: .95rem;
-    font-weight: 700;
-}
-
-.sp-signature small {
-    font-size: .72rem;
-    color: var(--color-mid-gray);
-}
-
-/* =============================================
    FOCUS / AKSESIBILITAS
    ============================================= */
 
@@ -5559,11 +5496,11 @@ footer {
     }
 
     .sp-card {
-        padding: .75rem .85rem;
+        padding: 1.25rem 1.1rem 1.1rem;
     }
 
     .sp-card-jabatan {
-        font-size: .88rem;
+        font-size: .98rem;
     }
 
     .sp-summary-body {
@@ -5580,48 +5517,6 @@ footer {
     .sp-summary-group:last-child { border-bottom: 0; }
 }
 
-/* =============================================
-   DARK MODE
-   (hanya aktif jika browser/OS pakai dark)
-   ============================================= */
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --sp-card-bg:     rgba(20,40,35,.92);
-        --sp-card-shadow: 0 4px 20px rgba(0,0,0,.25);
-        --sp-line-color:  rgba(100,200,160,.18);
-    }
-
-    .sp-summary-details,
-    .sp-dialog {
-        background: #1a2e28;
-        border-color: rgba(100,200,160,.12);
-    }
-
-    .sp-dialog-header {
-        background: #1a2e28;
-        border-bottom-color: rgba(100,200,160,.1);
-    }
-
-    .sp-card-jabatan { color: #c8e6d8; }
-    .sp-card-nama    { color: #e0f0e8; }
-
-    .sp-summary-toggle { color: #c8e6d8; }
-    .sp-summary-group h4 { color: var(--color-gold-light); }
-    .sp-summary-row { color: #d8ede5; border-bottom-color: rgba(100,200,160,.07); }
-    .sp-summary-val { color: var(--color-green-pale) !important; }
-
-    .sp-dialog-close {
-        background: rgba(100,200,160,.1);
-        color: #c8e6d8;
-    }
-
-    .sp-legend-item strong { color: #e0f0e8; }
-
-    .sp-signature p,
-    .sp-signature small { color: rgba(200,230,216,.6); }
-    .sp-signature strong { color: #c8e6d8; }
-}
 
 
 

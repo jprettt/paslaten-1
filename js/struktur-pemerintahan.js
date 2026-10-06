@@ -124,25 +124,33 @@
       .replace(/"/g, '&quot;');
   }
 
+  function getTingkatLabel(node) {
+    if (!node.labelTingkat) return '';
+    var parts = node.labelTingkat.split(/[·•]/);
+    if (parts.length > 1) {
+      return parts[parts.length - 1].trim();
+    }
+    return node.labelTingkat.replace(/^Tingkat\s*\d+\s*/i, '').trim();
+  }
+
   /* =====================================================
-     3. BUILD CARD HTML
+     3. BUILD CARD HTML (Model Kartu Sejarah)
      ===================================================== */
 
   function buildCard(node) {
-    const pegawaiItems = node.pegawai.map(function (p) {
-      var isPPPK = p.status === 'PPPK_PW';
-      return '<li class="sp-card-pegawai-item">' +
-        '<span class="sp-card-nama' + (isPPPK ? ' sp-card-nama--pppk' : '') + '">' + esc(p.nama) + '</span>' +
-        (isPPPK ? '<span class="sp-card-status-badge">PPPK Paruh Waktu</span>' : '') +
-        '<span class="sp-card-pendidikan">' + esc(p.pendidikan) + '</span>' +
-        '</li>';
+    var tingkat = getTingkatLabel(node);
+
+    var pegawaiItems = node.pegawai.map(function (p) {
+      return '<div class="sp-card-pegawai-item">' +
+        '<p class="sp-card-nama">' + esc(p.nama) + '</p>' +
+        (p.pendidikan ? '<span class="sp-card-tag">' + esc(p.pendidikan) + '</span>' : '') +
+        '</div>';
     }).join('');
 
-    return '<article class="sp-card" data-kategori="' + esc(node.kategori) + '" aria-label="' + esc(node.jabatan) + '">' +
-      '<span class="sp-badge">' + esc(node.labelTingkat) + '</span>' +
+    return '<article class="sp-card" aria-label="' + esc(node.jabatan) + '">' +
+      (tingkat ? '<span class="sp-card-index" aria-hidden="true">' + esc(tingkat) + '</span>' : '') +
       '<h3 class="sp-card-jabatan">' + esc(node.jabatan) + '</h3>' +
-      '<ul class="sp-card-pegawai-list" role="list" aria-label="Pegawai">' + pegawaiItems + '</ul>' +
-      '<span class="sp-card-bk" aria-label="Kekuatan pegawai: terisi ' + node.B + ', kebutuhan ' + node.K + '">B\u00a0' + node.B + '\u00a0/\u00a0K\u00a0' + node.K + '</span>' +
+      '<div class="sp-card-pegawai-list">' + pegawaiItems + '</div>' +
       '</article>';
   }
 
@@ -224,19 +232,7 @@
   }
 
   /* =====================================================
-     6. BUILD TANDA TANGAN
-     ===================================================== */
-
-  function buildSignature(data) {
-    var ttd = data.penandaTangan;
-    return '<p>' + esc(data.kotaTtd) + ', ' + esc(data.tanggalTtd) + '</p>' +
-      '<p>' + esc(ttd.jabatan) + '</p>' +
-      '<strong>' + esc(ttd.nama) + '</strong>' +
-      '<small>NIP.\u00a0' + esc(ttd.nip) + '</small>';
-  }
-
-  /* =====================================================
-     7. LEGEND DIALOG (bottom-sheet / modal)
+     6. LEGEND DIALOG (bottom-sheet / modal)
      ===================================================== */
 
   function initLegendDialog() {
@@ -297,7 +293,7 @@
   }
 
   /* =====================================================
-     8. INIT
+     7. INIT
      ===================================================== */
 
   function init() {
@@ -309,9 +305,6 @@
 
     var summaryEl = document.getElementById('sp-summary-body');
     if (summaryEl) summaryEl.innerHTML = buildSummary(nodes);
-
-    var sigEl = document.getElementById('sp-signature');
-    if (sigEl) sigEl.innerHTML = buildSignature(data);
 
     initLegendDialog();
   }
