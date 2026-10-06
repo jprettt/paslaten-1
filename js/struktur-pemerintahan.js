@@ -93,7 +93,7 @@
         B: 2, K: 2,
         pegawai: [
           { nama: 'Anggli Robert Kristofel Katiho', pendidikan: 'SLTA', status: 'PPPK_PW', golongan: null },
-          { nama: 'Nansi Tiske Clara Taroreh',      pendidikan: 'SLTA', status: 'PPPK_PW', golongan: null }
+          { nama: 'Nansi Tiske Clara Taroreh', pendidikan: 'SLTA', status: 'PPPK_PW', golongan: null }
         ]
       },
       {
@@ -219,7 +219,7 @@
     }).join('');
 
     // Status
-    var totalPNS  = allPegawai.filter(function (p) { return p.status === 'PNS'; }).length;
+    var totalPNS = allPegawai.filter(function (p) { return p.status === 'PNS'; }).length;
     var totalPPPK = allPegawai.filter(function (p) { return p.status === 'PPPK_PW'; }).length;
 
     // B/K total
@@ -229,12 +229,12 @@
     return '<div class="sp-summary-group"><h4>Per Golongan</h4>' + golRows + '</div>' +
       '<div class="sp-summary-group"><h4>Per Eselon</h4>' + eselonRows + '</div>' +
       '<div class="sp-summary-group"><h4>Status Kepegawaian</h4>' +
-        '<div class="sp-summary-row"><span>PNS</span><strong class="sp-summary-val">' + totalPNS + '</strong></div>' +
-        '<div class="sp-summary-row"><span>PPPK Paruh Waktu</span><strong class="sp-summary-val">' + totalPPPK + '</strong></div>' +
+      '<div class="sp-summary-row"><span>PNS</span><strong class="sp-summary-val">' + totalPNS + '</strong></div>' +
+      '<div class="sp-summary-row"><span>PPPK Paruh Waktu</span><strong class="sp-summary-val">' + totalPPPK + '</strong></div>' +
       '</div>' +
       '<div class="sp-summary-group"><h4>Kekuatan Total</h4>' +
-        '<div class="sp-summary-row"><span>Terisi (B)</span><strong class="sp-summary-val">' + totalB + '</strong></div>' +
-        '<div class="sp-summary-row"><span>Kebutuhan (K)</span><strong class="sp-summary-val">' + totalK + '</strong></div>' +
+      '<div class="sp-summary-row"><span>Terisi (B)</span><strong class="sp-summary-val">' + totalB + '</strong></div>' +
+      '<div class="sp-summary-row"><span>Kebutuhan (K)</span><strong class="sp-summary-val">' + totalK + '</strong></div>' +
       '</div>';
   }
 
@@ -243,8 +243,8 @@
      ===================================================== */
 
   function initLegendDialog() {
-    var btn      = document.getElementById('sp-legend-btn');
-    var dialog   = document.getElementById('sp-legend-dialog');
+    var btn = document.getElementById('sp-legend-btn');
+    var dialog = document.getElementById('sp-legend-dialog');
     var backdrop = document.getElementById('sp-backdrop');
     var closeBtn = document.getElementById('sp-dialog-close');
 
@@ -290,13 +290,52 @@
       ).filter(function (el) { return !el.disabled; });
       if (!focusable.length) return;
       var first = focusable[0];
-      var last  = focusable[focusable.length - 1];
+      var last = focusable[focusable.length - 1];
       if (e.shiftKey) {
         if (document.activeElement === first) { e.preventDefault(); last.focus(); }
       } else {
-        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     });
+  }
+
+  /* =====================================================
+     6. SCROLL ANIMATION (MOTION CHOREOGRAPHY)
+     ===================================================== */
+
+  function initScrollAnimation() {
+    var treeEl = document.getElementById('sp-tree');
+    var sectionEl = document.getElementById('struktur-pemerintahan');
+    if (!treeEl || !sectionEl) return;
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    treeEl.classList.add('sp-motion-ready');
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            treeEl.classList.add('sp-animated');
+            observer.unobserve(entry.target);
+
+            // Setelah sekuens selesai (3.1s), hapus batasan animasi agar hover bekerja normal
+            setTimeout(function () {
+              treeEl.classList.add('sp-animation-done');
+            }, 3100);
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px -20px 0px'
+      });
+
+      observer.observe(sectionEl);
+    } else {
+      treeEl.classList.add('sp-animated');
+    }
   }
 
   /* =====================================================
@@ -304,7 +343,7 @@
      ===================================================== */
 
   function init() {
-    var data  = STRUKTUR_DATA;
+    var data = STRUKTUR_DATA;
     var nodes = data.nodes;
 
     var treeEl = document.getElementById('sp-tree');
@@ -314,6 +353,7 @@
     if (summaryEl) summaryEl.innerHTML = buildSummary(nodes);
 
     initLegendDialog();
+    initScrollAnimation();
   }
 
   if (document.readyState === 'loading') {

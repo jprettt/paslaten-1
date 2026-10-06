@@ -1,0 +1,79 @@
+[
+  {
+    "lingkungan": 1,
+    "pala": {
+      "nama": "Aldo Mumu",
+      "telepon": ""
+    },
+    "wakil": {
+      "nama": "Jefry Montolalu",
+      "telepon": "082192745729"
+    }
+  },
+  {
+    "lingkungan": 2,
+    "pala": {
+      "nama": "Rocky Frengky Frits Lempas",
+      "telepon": "085298499171"
+    },
+    "wakil": {
+      "nama": "Adri Langingi",
+      "telepon": ""
+    }
+  },
+  {
+    "lingkungan": 3,
+    "pala": {
+      "nama": "Sonny Rumagit",
+      "telepon": "083149474680"
+    },
+    "wakil": {
+      "nama": "Alin Supit",
+      "telepon": "089633318880"
+    }
+  },
+  {
+    "lingkungan": 4,
+    "pala": {
+      "nama": "John Willem Poluan",
+      "telepon": ""
+    },
+    "wakil": {
+      "nama": "Anita Diana Sangki",
+      "telepon": "085343517818"
+    }
+  },
+  {
+    "lingkungan": 5,
+    "pala": {
+      "nama": "Ferry Rarobong",
+      "telepon": ""
+    },
+    "wakil": {
+      "nama": "Rosmita Gosal",
+      "telepon": ""
+    }
+  },
+  {
+    "lingkungan": 6,
+    "pala": {
+      "nama": "Noldy Youdy Posumah",
+      "telepon": "082188137898"
+    },
+    "wakil": {
+      "nama": "Djony Johanes Ngantung",
+      "telepon": "081220585405"
+    }
+  },
+  {
+    "lingkungan": 7,
+    "pala": {
+      "nama": "Aneke Tulandi",
+      "telepon": "0895355679080"
+    },
+    "wakil": {
+      "nama": "Jeane Rapar",
+      "telepon": "085396272937"
+    }
+  }
+]

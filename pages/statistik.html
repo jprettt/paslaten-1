@@ -171,6 +171,401 @@
           font-size: 0.65rem;
         }
       }
+
+      /* ============================================================
+         FLOATING SOURCE BUTTON (SEPERTI HALAMAN SEJARAH)
+         ============================================================ */
+
+      .stats-source-floating {
+        position: fixed;
+        right: 1.4rem;
+        bottom: 1.4rem;
+        z-index: 1500;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        min-height: 48px;
+        padding: 0.7rem 1.1rem;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        color: #ffffff;
+        background: rgba(16, 63, 56, 0.96);
+        box-shadow: 0 10px 30px rgba(5, 30, 26, 0.24);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 700;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .stats-source-floating:hover {
+        transform: translateY(-3px);
+        background: #19594d;
+        box-shadow: 0 14px 34px rgba(5, 30, 26, 0.3);
+      }
+
+      .stats-source-floating-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1rem;
+        line-height: 1;
+      }
+
+      /* ============================================================
+         SOURCE MODAL BACKDROP & DIALOG
+         ============================================================ */
+
+      .stats-source-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        background: rgba(6, 27, 24, 0.68);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        transition:
+          opacity 0.25s ease,
+          visibility 0.25s ease;
+      }
+
+      .stats-source-modal.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .stats-source-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .stats-source-dialog {
+        position: relative;
+        z-index: 2;
+        width: min(760px, 100%);
+        height: 75svh;
+        max-height: 75svh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        border: none;
+        border-radius: 24px;
+        background: transparent;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+        scrollbar-width: none;
+        transform: translateY(18px) scale(0.985);
+        transition: transform 0.28s ease;
+      }
+
+      .stats-source-dialog::-webkit-scrollbar {
+        display: none;
+      }
+
+      .stats-source-modal.is-open .stats-source-dialog {
+        transform: translateY(0) scale(1);
+      }
+
+      /* ============================================================
+         SOURCE HEADER BOX (WHITE)
+         ============================================================ */
+
+      .stats-source-dialog-header {
+        position: relative;
+        overflow: hidden;
+        padding: 3rem 4.6rem 2.2rem 1.6rem;
+        background: #ffffff;
+        color: var(--color-darkest);
+        border-radius: 24px 24px 0 0;
+        border-bottom: 1px solid rgba(16, 63, 56, 0.08);
+      }
+
+      .stats-source-dialog-header::after {
+        content: "SUMBER";
+        position: absolute;
+        right: -0.6rem;
+        bottom: -1.2rem;
+        color: rgba(16, 63, 56, 0.045);
+        font-family: var(--font-heading);
+        font-size: clamp(5rem, 15vw, 8rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.075em;
+        pointer-events: none;
+      }
+
+      .stats-source-dialog-header .editorial-kicker {
+        position: relative;
+        z-index: 2;
+        color: #c89f33;
+      }
+
+      .stats-source-dialog-header h2 {
+        position: relative;
+        z-index: 2;
+        max-width: 520px;
+        margin: 0.55rem 0 0;
+        color: #103f38;
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        line-height: 0.96;
+        letter-spacing: -0.055em;
+      }
+
+      .stats-source-dialog-header p {
+        position: relative;
+        z-index: 2;
+        max-width: 560px;
+        margin: 1rem 0 0;
+        color: #6a7772;
+        font-size: 0.76rem;
+        line-height: 1.72;
+      }
+
+      .stats-source-close {
+        position: absolute;
+        z-index: 10;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(16, 63, 56, 0.13);
+        border-radius: 50%;
+        color: #103f38;
+        background: rgba(16, 63, 56, 0.045);
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .stats-source-close:hover {
+        background: rgba(16, 63, 56, 0.1);
+        border-color: rgba(16, 63, 56, 0.22);
+        transform: rotate(5deg);
+      }
+
+      .stats-source-close svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      /* ============================================================
+         SOURCE BODY & ENTRIES
+         ============================================================ */
+
+      .stats-source-dialog-body {
+        display: block;
+        padding: 0;
+        background: transparent;
+      }
+
+      .stats-source-entry {
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        color: #ffffff;
+      }
+
+      .stats-source-entry--01 {
+        background: #10483f;
+      }
+
+      .stats-source-entry--02 {
+        background: #0e3f37;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .stats-source-entry--03 {
+        background: #0c3932;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 0 0 24px 24px;
+      }
+
+      .stats-source-entry-main {
+        padding: 2.1rem 1.6rem;
+      }
+
+      .stats-source-entry-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .stats-source-entry-number {
+        color: var(--color-gold-light);
+        font-size: 0.63rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .stats-source-entry-type {
+        padding: 0.32rem 0.65rem;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 999px;
+        color: rgba(255, 255, 255, 0.88);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.52rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .stats-source-entry h3 {
+        max-width: 570px;
+        margin: 1.35rem 0 0;
+        color: #ffffff;
+        font-size: clamp(1.25rem, 3.5vw, 1.8rem);
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+      }
+
+      .stats-source-entry p {
+        max-width: 600px;
+        margin: 0.9rem 0 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.76rem;
+        line-height: 1.75;
+      }
+
+      .stats-source-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        max-width: 600px;
+        margin-top: 1.3rem;
+        padding-top: 1.1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .stats-source-note svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: var(--color-gold-light);
+      }
+
+      .stats-source-note p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.72rem;
+        line-height: 1.6;
+      }
+
+      .stats-source-action {
+        margin-top: 1.25rem;
+      }
+
+      .stats-source-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.6rem 1.15rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.09);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #ffffff;
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease,
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .stats-source-link-btn:hover {
+        background: var(--color-gold);
+        border-color: var(--color-gold);
+        color: var(--color-darkest);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(201, 168, 76, 0.3);
+      }
+
+      .stats-source-link-btn svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+      }
+
+      /* ============================================================
+         RESPONSIVE (MOBILE)
+         ============================================================ */
+
+      @media (max-width: 640px) {
+        .stats-source-floating {
+          right: 0.9rem;
+          bottom: 0.9rem;
+          min-height: 43px;
+          padding: 0.55rem 0.9rem;
+          font-size: 0.65rem;
+        }
+
+        .stats-source-modal {
+          align-items: flex-end;
+          padding: 0 0.65rem 0;
+        }
+
+        .stats-source-dialog {
+          width: 100%;
+          max-height: 75svh;
+          border-radius: 22px 22px 0 0;
+          box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.28);
+          transform: translateY(45px);
+        }
+
+        .stats-source-modal.is-open .stats-source-dialog {
+          transform: translateY(0);
+        }
+
+        .stats-source-dialog-header {
+          padding: 2.7rem 3.7rem 1.8rem 1rem;
+          border-radius: 22px 22px 0 0;
+          background: #ffffff;
+        }
+
+        .stats-source-dialog-header::after {
+          right: -1rem;
+          bottom: -0.7rem;
+          font-size: 5rem;
+          color: rgba(16, 63, 56, 0.04);
+        }
+
+        .stats-source-dialog-header h2 {
+          font-size: clamp(1.9rem, 9vw, 2.55rem);
+        }
+
+        .stats-source-entry-main {
+          padding: 1.8rem 1.15rem;
+        }
+      }
     </style>
   </head>
 
@@ -2137,6 +2532,281 @@
       </div>
     </footer>
 
+    <!-- ============================================================
+         FLOATING SOURCE BUTTON (SEPERTI HALAMAN SEJARAH)
+         ============================================================ -->
+
+    <button
+      type="button"
+      class="stats-source-floating"
+      id="stats-source-open"
+      aria-haspopup="dialog"
+      aria-controls="stats-source-modal"
+    >
+      <span class="history-source-floating-text"> Sumber </span>
+
+      <span class="stats-source-floating-arrow" aria-hidden="true"> ↑ </span>
+    </button>
+
+    <!-- ============================================================
+         SOURCE MODAL
+         ============================================================ -->
+
+    <div
+      class="stats-source-modal"
+      id="stats-source-modal"
+      aria-hidden="true"
+    >
+      <!-- BACKDROP -->
+      <div
+        class="stats-source-modal-backdrop"
+        data-stats-source-close
+      ></div>
+
+      <!-- ========================================================
+           SOURCE DIALOG (SETENGAH / TIGA PEREMPAT HALAMAN)
+           ======================================================== -->
+
+      <section
+        class="stats-source-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="stats-source-title"
+      >
+        <!-- ====================================================
+             WHITE TITLE BOX
+             ==================================================== -->
+
+        <div class="stats-source-dialog-header">
+          <button
+            type="button"
+            class="stats-source-close"
+            id="stats-source-close"
+            aria-label="Tutup sumber data statistik"
+          >
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </button>
+
+          <span class="editorial-kicker"> SUMBER DATA STATISTIK </span>
+
+          <h2 id="stats-source-title">
+            Dasar &amp; Rujukan
+            <br />
+            Data Statistik
+          </h2>
+
+          <p>
+            Informasi statistik Kelurahan Paslaten 1 dihimpun dari sistem informasi kependudukan kelurahan serta publikasi resmi Badan Pusat Statistik (BPS) Kota Tomohon.
+          </p>
+        </div>
+
+        <!-- ====================================================
+             SOURCE BODY
+             ==================================================== -->
+
+        <div class="stats-source-dialog-body">
+          <!-- =================================================
+               SOURCE 01: Aplikasi Andal by Taspen
+               ================================================= -->
+
+          <article class="stats-source-entry stats-source-entry--01">
+            <div class="stats-source-entry-main">
+              <div class="stats-source-entry-top">
+                <span class="stats-source-entry-number"> 01 </span>
+                <span class="stats-source-entry-type"> Data Kependudukan 2026 </span>
+              </div>
+
+              <h3>Data dari Aplikasi Andal by Taspen</h3>
+
+              <p>
+                Data mutakhir kependudukan Kelurahan Paslaten 1 tahun 2026 yang bersumber langsung dari Aplikasi Andal by Taspen. Mencakup jumlah total penduduk (2.195 jiwa), komposisi jenis kelamin (1.109 laki-laki &amp; 1.086 perempuan), jumlah 747 Kartu Keluarga (KK), serta pembagian rincian demografi di Lingkungan 1 hingga 7.
+              </p>
+
+              <div class="stats-source-note">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+
+                <p>
+                  Sistem informasi terverifikasi pengelolaan data kependudukan dan pensiunan di tingkat kelurahan.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- =================================================
+               SOURCE 02: BPS Tomohon Timur Dalam Angka 2025
+               ================================================= -->
+
+          <article class="stats-source-entry stats-source-entry--02">
+            <div class="stats-source-entry-main">
+              <div class="stats-source-entry-top">
+                <span class="stats-source-entry-number"> 02 </span>
+                <span class="stats-source-entry-type"> Publikasi BPS 2025 </span>
+              </div>
+
+              <h3>Kecamatan Tomohon Timur Dalam Angka 2025</h3>
+
+              <p>
+                Publikasi statistik resmi tahunan yang diterbitkan oleh Badan Pusat Statistik (BPS) Kota Tomohon pada 26 September 2025 (Nomor Publikasi: 1102001.7173030). Menyajikan data statistik sektoral, sosial, geografi, dan sarana prasarana publik di wilayah Kecamatan Tomohon Timur.
+              </p>
+
+              <div class="stats-source-action">
+                <a
+                  href="https://tomohonkota.bps.go.id/id/publication/2025/09/26/a1be3f64f3b4d97374ca8218/kecamatan-tomohon-timur-dalam-angka-2025.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="stats-source-link-btn"
+                >
+                  <span>Buka Publikasi BPS 2025</span>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- =================================================
+               SOURCE 03: BPS Tomohon Timur Dalam Angka 2024
+               ================================================= -->
+
+          <article class="stats-source-entry stats-source-entry--03">
+            <div class="stats-source-entry-main">
+              <div class="stats-source-entry-top">
+                <span class="stats-source-entry-number"> 03 </span>
+                <span class="stats-source-entry-type"> Publikasi BPS 2024 </span>
+              </div>
+
+              <h3>Kecamatan Tomohon Timur Dalam Angka 2024</h3>
+
+              <p>
+                Publikasi statistik resmi yang diterbitkan oleh Badan Pusat Statistik (BPS) Kota Tomohon pada 26 September 2024 (Nomor Publikasi: 1102001.7173030). Menjadi rujukan data luas wilayah, batas administrasi, fasilitas pemerintahan, dan komparasi pertumbuhan kependudukan.
+              </p>
+
+              <div class="stats-source-action">
+                <a
+                  href="https://tomohonkota.bps.go.id/id/publication/2024/09/26/139774934096714046022f05/kecamatan-tomohon-timur-dalam-angka-2024.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="stats-source-link-btn"
+                >
+                  <span>Buka Publikasi BPS 2024</span>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         GLOBAL JS & STATS SOURCE MODAL SCRIPT
+         ============================================================ -->
+
     <script src="../js/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sourceOpen = document.getElementById("stats-source-open");
+        const sourceModal = document.getElementById("stats-source-modal");
+        const sourceClose = document.getElementById("stats-source-close");
+        const sourceBackdrop = sourceModal
+          ? sourceModal.querySelector("[data-stats-source-close]")
+          : null;
+        const sourceDialog = sourceModal
+          ? sourceModal.querySelector(".stats-source-dialog")
+          : null;
+
+        let previousBodyOverflow = "";
+
+        function openSourceModal() {
+          if (!sourceModal) {
+            return;
+          }
+
+          if (sourceDialog) {
+            sourceDialog.scrollTop = 0;
+          }
+
+          previousBodyOverflow = document.body.style.overflow;
+          sourceModal.classList.add("is-open");
+          sourceModal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+
+          if (sourceClose) {
+            setTimeout(function () {
+              sourceClose.focus();
+            }, 100);
+          }
+        }
+
+        function closeSourceModal() {
+          if (!sourceModal) {
+            return;
+          }
+
+          sourceModal.classList.remove("is-open");
+          sourceModal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = previousBodyOverflow;
+
+          if (sourceOpen) {
+            setTimeout(function () {
+              sourceOpen.focus();
+            }, 100);
+          }
+        }
+
+        if (sourceOpen) {
+          sourceOpen.addEventListener("click", openSourceModal);
+        }
+
+        if (sourceClose) {
+          sourceClose.addEventListener("click", closeSourceModal);
+        }
+
+        if (sourceBackdrop) {
+          sourceBackdrop.addEventListener("click", closeSourceModal);
+        }
+
+        document.addEventListener("keydown", function (event) {
+          if (
+            event.key === "Escape" &&
+            sourceModal &&
+            sourceModal.classList.contains("is-open")
+          ) {
+            closeSourceModal();
+          }
+        });
+      });
+    </script>
   </body>
 </html>

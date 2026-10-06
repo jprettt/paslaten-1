@@ -65,41 +65,104 @@
       }
 
       /* =====================================================
-           CARD
+           FLIP CARD 3D CONTAINER & STRUCTURE
+           ===================================================== */
+
+      .pala-card-wrapper {
+        perspective: 1200px;
+        height: 100%;
+      }
+
+      .pala-flip-card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        outline: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.25s ease;
+      }
+
+      .pala-flip-card:focus-visible {
+        outline: 2px solid var(--color-green-dark);
+        outline-offset: 4px;
+        border-radius: 20px;
+      }
+
+      .pala-flip-card.is-flipped:focus-visible {
+        outline-color: var(--color-gold-light);
+      }
+
+      /* Hover desktop: efek ringan (naik sedikit), jangan flip otomatis */
+      @media (hover: hover) and (pointer: fine) {
+        .pala-flip-card:hover {
+          transform: translateY(-4px);
+        }
+
+        .pala-flip-card:hover .pala-contact-card.pala-card-front {
+          border-color: rgba(45, 144, 110, 0.28);
+          box-shadow: 0 15px 36px rgba(13, 31, 42, 0.07);
+        }
+
+        .pala-flip-card:hover .pala-contact-card.pala-card-back {
+          border-color: rgba(255, 255, 255, 0.22);
+          box-shadow: 0 16px 36px rgba(13, 31, 42, 0.25);
+        }
+      }
+
+      .pala-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .pala-flip-card.is-flipped .pala-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      /* =====================================================
+           CARD SIDES (FRONT & BACK)
            ===================================================== */
 
       .pala-contact-card {
         position: relative;
-
         min-height: 235px;
-
         display: flex;
         flex-direction: column;
-
         padding: 1.35rem;
-
         overflow: hidden;
-
         border: 1px solid rgba(26, 92, 80, 0.1);
-
         border-radius: 20px;
-
         background: #ffffff;
-
         box-shadow: 0 8px 30px rgba(13, 31, 42, 0.035);
-
         transition:
-          transform 0.25s ease,
           border-color 0.25s ease,
           box-shadow 0.25s ease;
       }
 
-      .pala-contact-card:hover {
-        transform: translateY(-4px);
+      .pala-contact-card.pala-card-front,
+      .pala-contact-card.pala-card-back {
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
 
-        border-color: rgba(45, 144, 110, 0.28);
+      .pala-contact-card.pala-card-front {
+        transform: rotateY(0deg);
+      }
 
-        box-shadow: 0 15px 36px rgba(13, 31, 42, 0.07);
+      .pala-contact-card.pala-card-back {
+        transform: rotateY(180deg);
       }
 
       /* =====================================================
@@ -271,6 +334,129 @@
       }
 
       /* =====================================================
+           TELEPON & WHATSAPP LINK
+           ===================================================== */
+
+      .pala-phone-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .pala-phone-link {
+        color: var(--color-darkest);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .pala-phone-link:hover {
+        color: var(--color-green-dark);
+        text-decoration: underline;
+      }
+
+      .pala-wa-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        background: #25D366;
+        color: #ffffff;
+        text-decoration: none;
+        flex-shrink: 0;
+        transition:
+          transform 0.2s ease,
+          filter 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .pala-wa-btn:hover {
+        transform: scale(1.1);
+        filter: brightness(1.05);
+        box-shadow: 0 2px 6px rgba(37, 211, 102, 0.35);
+      }
+
+      .pala-wa-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+      }
+
+      /* =====================================================
+           HINT FLIP
+           ===================================================== */
+
+      .pala-flip-hint {
+        position: relative;
+        z-index: 2;
+        margin-top: auto;
+        padding-top: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        font-weight: 500;
+        color: #7b8d86;
+        opacity: 0.85;
+        transition:
+          opacity 0.2s ease,
+          color 0.2s ease;
+        user-select: none;
+      }
+
+      .pala-flip-card:hover .pala-flip-hint {
+        opacity: 1;
+        color: var(--color-green-dark);
+      }
+
+      .pala-flip-hint-icon {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
+      }
+
+      /* =====================================================
+           PREFERS REDUCED MOTION (CROSSFADE)
+           ===================================================== */
+
+      @media (prefers-reduced-motion: reduce) {
+        .pala-flip-card:hover {
+          transform: none;
+        }
+
+        .pala-card-inner {
+          transition: none;
+          transform: none !important;
+        }
+
+        .pala-contact-card.pala-card-front {
+          transition: opacity 0.3s ease;
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .pala-contact-card.pala-card-back {
+          transform: none !important;
+          transition: opacity 0.3s ease;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .pala-flip-card.is-flipped .pala-contact-card.pala-card-front {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .pala-flip-card.is-flipped .pala-contact-card.pala-card-back {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+
+      /* =====================================================
            DECORATIVE NUMBER
            ===================================================== */
 
@@ -296,50 +482,85 @@
       }
 
       /* =====================================================
-           FEATURED CARD
-           LINGKUNGAN 1
+           WARNA SISI BELAKANG (WAKIL PALA)
+           MENGIKUTI GAYA WARNA CARD ALAMAT (HIJAU TUA)
            ===================================================== */
 
-      .pala-contact-card--featured {
-        color: #ffffff;
+      .pala-contact-card.pala-card-back {
+        color: var(--color-white);
 
-        border-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.08);
 
-        background: linear-gradient(145deg, var(--color-green-dark), #216d5d);
+        background: var(--bg-card-featured);
+
+        box-shadow: 0 8px 30px rgba(13, 31, 42, 0.12);
       }
 
-      .pala-contact-card--featured h3 {
-        color: #ffffff;
+      .pala-contact-card.pala-card-back .pala-card-label {
+        color: var(--color-gold);
       }
 
-      .pala-contact-card--featured .pala-card-number {
+      .pala-contact-card.pala-card-back .pala-card-number {
         color: var(--color-gold-light);
 
-        border-color: rgba(255, 255, 255, 0.15);
-
-        background: rgba(255, 255, 255, 0.07);
-      }
-
-      .pala-contact-card--featured .pala-detail-icon {
-        color: var(--color-gold-light);
+        border: 1px solid rgba(255, 255, 255, 0.15);
 
         background: rgba(255, 255, 255, 0.08);
       }
 
-      .pala-contact-card--featured .pala-detail-label {
-        color: rgba(255, 255, 255, 0.55);
+      .pala-contact-card.pala-card-back h3 {
+        color: var(--color-white);
       }
 
-      .pala-contact-card--featured .pala-detail-value {
-        color: #ffffff;
+      .pala-contact-card.pala-card-back .pala-detail-icon {
+        color: var(--color-gold-light);
+
+        background: rgba(255, 255, 255, 0.12);
       }
 
-      .pala-contact-card--featured .pala-detail-value--empty {
+      .pala-contact-card.pala-card-back .pala-detail-label {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .pala-contact-card.pala-card-back .pala-detail-value,
+      .pala-contact-card.pala-card-back .pala-phone-link {
+        color: var(--color-white);
+      }
+
+      .pala-contact-card.pala-card-back .pala-phone-link:hover {
+        color: var(--color-gold-light);
+
+        text-decoration: underline;
+      }
+
+      .pala-contact-card.pala-card-back .pala-detail-value--empty {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .pala-contact-card.pala-card-back .pala-card-watermark {
+        color: rgba(255, 255, 255, 0.06);
+      }
+
+      .pala-contact-card.pala-card-back .pala-flip-hint {
         color: rgba(255, 255, 255, 0.65);
       }
 
-      .pala-contact-card--featured .pala-card-watermark {
-        color: rgba(255, 255, 255, 0.045);
+      .pala-flip-card:hover .pala-contact-card.pala-card-back .pala-flip-hint {
+        color: var(--color-white);
+
+        opacity: 1;
+      }
+
+      .pala-contact-card.pala-card-back .pala-wa-btn {
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.35),
+          0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      .pala-contact-card.pala-card-back .pala-wa-btn:hover {
+        box-shadow:
+          0 0 0 1.5px rgba(255, 255, 255, 0.6),
+          0 4px 12px rgba(37, 211, 102, 0.4);
       }
 
       /* =====================================================
@@ -886,484 +1107,7 @@
 
           <!-- GRID -->
 
-          <div class="pala-contact-grid">
-            <!-- =====================================
-                         LINGKUNGAN 1
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 01 </span>
-              </div>
-
-              <h3>Lingkungan 1</h3>
-
-              <div class="pala-card-details">
-                <!-- NAMA -->
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-
-                <!-- TELEPON -->
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 1 </span>
-            </article>
-
-            <!-- =====================================
-                         LINGKUNGAN 2
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 02 </span>
-              </div>
-
-              <h3>Lingkungan 2</h3>
-
-              <div class="pala-card-details">
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 2 </span>
-            </article>
-
-            <!-- =====================================
-                         LINGKUNGAN 3
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 03 </span>
-              </div>
-
-              <h3>Lingkungan 3</h3>
-
-              <div class="pala-card-details">
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 3 </span>
-            </article>
-
-            <!-- =====================================
-                         LINGKUNGAN 4
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 04 </span>
-              </div>
-
-              <h3>Lingkungan 4</h3>
-
-              <div class="pala-card-details">
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 4 </span>
-            </article>
-
-            <!-- =====================================
-                         LINGKUNGAN 5
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 05 </span>
-              </div>
-
-              <h3>Lingkungan 5</h3>
-
-              <div class="pala-card-details">
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 5 </span>
-            </article>
-
-            <!-- =====================================
-                         LINGKUNGAN 6
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 06 </span>
-              </div>
-
-              <h3>Lingkungan 6</h3>
-
-              <div class="pala-card-details">
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value">Youdy Posumah</span>
-                  </span>
-                </div>
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <a class="pala-detail-value" href="tel:082188137898">082188137898</a>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 6 </span>
-            </article>
-
-            <!-- =====================================
-                         LINGKUNGAN 7
-                         ===================================== -->
-
-            <article class="pala-contact-card">
-              <div class="pala-card-top">
-                <span class="pala-card-label"> Pala </span>
-
-                <span class="pala-card-number"> 07 </span>
-              </div>
-
-              <h3>Lingkungan 7</h3>
-
-              <div class="pala-card-details">
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="8"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      ></circle>
-                      <path
-                        d="M4.5 20c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Nama Pala </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-
-                <div class="pala-detail">
-                  <span class="pala-detail-icon">
-                    <svg fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M6.6 2.8h3l1.5 4.4-2.1 1.5a15.1 15.1 0 006.3 6.3l1.5-2.1 4.4 1.5v3A2.6 2.6 0 0118.6 20C10.5 19.6 4.4 13.5 4 5.4A2.6 2.6 0 016.6 2.8z"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.8"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <span class="pala-detail-content">
-                    <span class="pala-detail-label"> Telepon / WhatsApp </span>
-
-                    <span class="pala-detail-value pala-detail-value--empty">
-                      [Akan dilengkapi]
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <span aria-hidden="true" class="pala-card-watermark"> 7 </span>
-            </article>
-          </div>
+          <div class="pala-contact-grid" id="pala-contact-grid"></div>
 
           <!-- NOTE -->
 
@@ -1475,6 +1219,7 @@
          ===================================================== -->
 
     <script src="../js/main.js"></script>
+    <script src="../js/kontak-pala.js"></script>
     <script type="module" src="../js/kontak-map.js"></script>
   </body>
 </html>

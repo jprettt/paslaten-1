@@ -56,6 +56,8 @@ a {
     /* navbar, footer, hero bg */
     --color-green-dark: #1a5c50;
     /* section aksen gelap, page-header */
+    --bg-card-featured: linear-gradient(145deg, var(--color-green-dark), #216d5d);
+    /* gradient hijau tua kartu featured / alamat */
     --color-green: #2d906e;
     /* tombol utama, link, aksen */
     --color-green-light: #5aaa87;
@@ -4108,7 +4110,7 @@ footer {
 .contact-hero-visual svg { position:absolute; z-index:2; right:5.2rem; top:50%; width:130px; height:130px; transform:translateY(-50%); opacity:.9; }
 .contact-modern-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
 .contact-modern-card { position:relative; min-height:155px; padding:1.2rem; overflow:hidden; border-radius:18px; }
-.contact-modern-card--featured { grid-column:span 3; min-height:190px; color:white; border-color:transparent; background:linear-gradient(145deg,var(--color-green-dark),#216d5d); }
+.contact-modern-card--featured { grid-column:span 3; min-height:190px; color:white; border-color:transparent; background:var(--bg-card-featured); }
 .contact-card-label { color:var(--color-gold); font-size:.66rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
 .contact-modern-card h3 { position:relative; z-index:2; margin:1rem 0 0; color:var(--color-green-dark); font-size:1rem; }
 .contact-modern-card--featured h3 { color:white; font-size:clamp(1.6rem,4vw,2.3rem); }
@@ -5325,6 +5327,274 @@ footer {
 }
 
 /* =============================================
+   STRUKTUR PEMERINTAHAN — SCROLL ENTRANCE MOTION
+   Sekuens bertahap & bergiliran (Staggered):
+   - Desktop: berurutan dari KIRI ke KANAN
+   - Mobile:  berurutan dari ATAS ke BAWAH
+   ============================================= */
+
+/* Keadaan awal sebelum terpicu */
+#sp-tree.sp-motion-ready:not(.sp-animated) .sp-card,
+#sp-tree.sp-motion-ready:not(.sp-animated) .sp-children::before,
+#sp-tree.sp-motion-ready:not(.sp-animated) .sp-siblings::before,
+#sp-tree.sp-motion-ready:not(.sp-animated) .sp-node-wrap::before,
+#sp-tree.sp-motion-ready:not(.sp-animated) .sp-node-group--child::before,
+#sp-tree.sp-motion-ready:not(.sp-animated) .sp-node-group--child::after {
+    opacity: 0;
+}
+
+/* Keyframes */
+@keyframes spCardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Muncul meluncur lembut dari sebelah KIRI (Desktop) */
+@keyframes spCardSlideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-18px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Muncul meluncur lembut dari sebelah ATAS (Mobile) */
+@keyframes spCardSlideFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-16px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes spLineRevealDown {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 0 100% 0);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes spLineRevealCenter {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 50% 0 50%);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes spLineRevealRight {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* 1. LURAH (Level 0) */
+#sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) > .sp-node-group[data-depth="0"] > .sp-node-wrap > .sp-card {
+    animation: spCardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+/* =============================================
+   2 & 3. DESKTOP MOTION (Stagger dari KIRI ke KANAN)
+   ============================================= */
+@media (min-width: 1024px) {
+    /* Lurah vertikal drop ke crossbar */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"]::before {
+        animation: spLineRevealDown 0.35s ease 0.55s both;
+    }
+
+    /* Horizontal crossbar */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings::before {
+        animation: spLineRevealCenter 0.4s ease 0.70s both;
+    }
+
+    /* Garis turun ke Pengawas 1 (Kiri - Sekretaris) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap::before {
+        animation: spLineRevealDown 0.3s ease 0.85s both;
+    }
+
+    /* Kartu Pengawas 1 (Kiri - Sekretaris) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromLeft 0.48s cubic-bezier(0.16, 1, 0.3, 1) 0.98s both;
+    }
+
+    /* Garis turun ke Pengawas 2 (Tengah - Kasi Pembangunan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) > .sp-node-wrap::before {
+        animation: spLineRevealDown 0.3s ease 1.12s both;
+    }
+
+    /* Kartu Pengawas 2 (Tengah - Kasi Pembangunan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromLeft 0.48s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+    }
+
+    /* Garis turun ke Pengawas 3 (Kanan - Kasi Pemerintahan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(3) > .sp-node-wrap::before {
+        animation: spLineRevealDown 0.3s ease 1.38s both;
+    }
+
+    /* Kartu Pengawas 3 (Kanan - Kasi Pemerintahan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(3) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromLeft 0.48s cubic-bezier(0.16, 1, 0.3, 1) 1.50s both;
+    }
+
+    /* Garis turun dari Sekretaris ke Staf 1 (Penelaah) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children[data-depth="1"]::before {
+        animation: spLineRevealDown 0.3s ease 1.70s both;
+    }
+
+    /* Kartu Staf 1 (Penelaah - kolom kiri) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromLeft 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.82s both;
+    }
+
+    /* Garis turun ke Staf 2 (Pengadministrasi) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children[data-depth="1"] > .sp-siblings > .sp-node-group + .sp-node-group::before {
+        animation: spLineRevealDown 0.3s ease 1.95s both;
+    }
+
+    /* Kartu Staf 2 (Pengadministrasi - kolom kiri bawah) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children > .sp-siblings > .sp-node-group:nth-child(2) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromLeft 0.45s cubic-bezier(0.16, 1, 0.3, 1) 2.08s both;
+    }
+
+    /* Garis turun dari Kasi Pembangunan ke Staf 3 (Operator Layanan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) .sp-children[data-depth="1"]::before {
+        animation: spLineRevealDown 0.3s ease 2.22s both;
+    }
+
+    /* Kartu Staf 3 (Operator Layanan - kolom tengah) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) .sp-children > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromLeft 0.45s cubic-bezier(0.16, 1, 0.3, 1) 2.35s both;
+    }
+}
+
+/* =============================================
+   2 & 3. MOBILE MOTION (Stagger dari ATAS ke BAWAH)
+   ============================================= */
+@media (max-width: 1023px) {
+    /* Spine luar dari Lurah turun ke bawah */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group--child::before {
+        animation: spLineRevealDown 0.6s ease 0.55s both;
+    }
+
+    /* Cabang siku ke Pengawas 1 (Atas - Sekretaris) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1)::after {
+        animation: spLineRevealRight 0.3s ease 0.72s both;
+    }
+
+    /* Kartu Pengawas 1 (Atas - Sekretaris) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromTop 0.48s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+    }
+
+    /* Cabang siku ke Pengawas 2 (Tengah - Kasi Pembangunan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2)::after {
+        animation: spLineRevealRight 0.3s ease 1.05s both;
+    }
+
+    /* Kartu Pengawas 2 (Tengah - Kasi Pembangunan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromTop 0.48s cubic-bezier(0.16, 1, 0.3, 1) 1.18s both;
+    }
+
+    /* Cabang siku ke Pengawas 3 (Bawah - Kasi Pemerintahan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(3)::after {
+        animation: spLineRevealRight 0.3s ease 1.38s both;
+    }
+
+    /* Kartu Pengawas 3 (Bawah - Kasi Pemerintahan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(3) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromTop 0.48s cubic-bezier(0.16, 1, 0.3, 1) 1.50s both;
+    }
+
+    /* Spine dalam di bawah Sekretaris */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children[data-depth="1"] .sp-node-group--child::before {
+        animation: spLineRevealDown 0.45s ease 1.68s both;
+    }
+
+    /* Cabang horizontal ke Staf 1 (Penelaah) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children > .sp-siblings > .sp-node-group:nth-child(1)::after {
+        animation: spLineRevealRight 0.28s ease 1.75s both;
+    }
+
+    /* Kartu Staf 1 (Penelaah - atas) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromTop 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.88s both;
+    }
+
+    /* Cabang horizontal ke Staf 2 (Pengadministrasi) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children > .sp-siblings > .sp-node-group:nth-child(2)::after {
+        animation: spLineRevealRight 0.28s ease 1.98s both;
+    }
+
+    /* Kartu Staf 2 (Pengadministrasi - tengah) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(1) .sp-children > .sp-siblings > .sp-node-group:nth-child(2) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromTop 0.45s cubic-bezier(0.16, 1, 0.3, 1) 2.10s both;
+    }
+
+    /* Spine dalam di bawah Kasi Pembangunan */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) .sp-children[data-depth="1"] .sp-node-group--child::before {
+        animation: spLineRevealDown 0.35s ease 2.20s both;
+    }
+
+    /* Cabang horizontal ke Staf 3 (Operator Layanan) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) .sp-children > .sp-siblings > .sp-node-group:nth-child(1)::after {
+        animation: spLineRevealRight 0.28s ease 2.26s both;
+    }
+
+    /* Kartu Staf 3 (Operator Layanan - bawah) */
+    #sp-tree.sp-motion-ready.sp-animated:not(.sp-animation-done) .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group:nth-child(2) .sp-children > .sp-siblings > .sp-node-group:nth-child(1) > .sp-node-wrap > .sp-card {
+        animation: spCardSlideFromTop 0.45s cubic-bezier(0.16, 1, 0.3, 1) 2.38s both;
+    }
+}
+
+/* SETELAH SELESAI (.sp-animation-done) — Lepas batasan animasi agar interaksi hover bekerja normal */
+#sp-tree.sp-animation-done .sp-card,
+#sp-tree.sp-animation-done .sp-children::before,
+#sp-tree.sp-animation-done .sp-siblings::before,
+#sp-tree.sp-animation-done .sp-node-wrap::before,
+#sp-tree.sp-animation-done .sp-node-group--child::before,
+#sp-tree.sp-animation-done .sp-node-group--child::after {
+    opacity: 1;
+    clip-path: none;
+    animation: none;
+}
+
+
+/* =============================================
    LEGEND DIALOG & BACKDROP
    ============================================= */
 
@@ -5589,19 +5859,18 @@ footer {
 .kl-badge-wrap {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(26, 92, 80, 0.05);
-    border: 1px solid rgba(26, 92, 80, 0.14);
+    gap: 0.45rem;
+    padding: 0;
+    background: transparent;
+    border: none;
 }
 
 .kl-badge-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #2d906e;
-    box-shadow: 0 0 6px rgba(45, 144, 110, 0.5);
+    background: var(--color-gold);
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.45);
     flex-shrink: 0;
 }
 
