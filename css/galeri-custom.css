@@ -1,0 +1,290 @@
+/* Custom CSS for Gallery and Lightbox */
+
+/* Image covering the placeholder */
+.gallery-modern-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+}
+.gallery-modern-placeholder img.loaded {
+    opacity: 1;
+}
+
+/* Ensure number stays on top */
+.gallery-modern-placeholder span.gallery-num {
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--color-green-dark);
+}
+
+/* Hover effect on desktop */
+@media (hover: hover) and (pointer: fine) {
+    .gallery-photo-btn:hover .gallery-modern-placeholder img {
+        transform: scale(1.05);
+    }
+}
+
+/* Clean up button wrapper styles */
+.gallery-photo-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: inherit;
+    overflow: hidden;
+}
+.gallery-photo-btn:focus-visible {
+    outline: 3px solid var(--color-green);
+    outline-offset: 2px;
+}
+
+/* Caption and Maps Link styles */
+.gallery-modern-item figcaption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    position: relative;
+    z-index: 2;
+}
+.gallery-caption-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-dark);
+}
+.gallery-map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: var(--color-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+.gallery-map-link:hover {
+    color: var(--color-green-dark);
+}
+.gallery-map-link svg {
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   LAYOUT PATTERNS (NTH-CHILD)
+   ===================================================== */
+
+/* Mobile Pattern: 1 full, 2-2-2, 1 full */
+@media (max-width: 640px) {
+    /* override style.css behavior for specific layout */
+    .gallery-modern-item {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+    .gallery-modern-item:nth-child(8n + 1) { grid-column: span 2 !important; }
+    .gallery-modern-item:nth-child(8n + 8) { grid-column: span 2 !important; }
+}
+
+/* Tablet Pattern (approx 641px - 1024px): 3 columns */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .gallery-modern-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+    .gallery-modern-item {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+    .gallery-modern-item:nth-child(5n + 1) { grid-column: span 2 !important; }
+    .gallery-modern-item:nth-child(5n + 4) { grid-column: span 2 !important; }
+}
+
+/* Desktop Pattern: 4 columns, bento style */
+@media (min-width: 1025px) {
+    .gallery-modern-item {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+    .gallery-modern-item:nth-child(8n + 1) { grid-column: span 2 !important; grid-row: span 2 !important; }
+    .gallery-modern-item:nth-child(8n + 4) { grid-column: span 2 !important; }
+    .gallery-modern-item:nth-child(8n + 6) { grid-column: span 2 !important; grid-row: span 2 !important; }
+    .gallery-modern-item:nth-child(8n + 7) { grid-column: span 2 !important; }
+    
+    /* Make placeholders inside row-span-2 taller automatically by resetting min-height overrides */
+    .gallery-modern-item:nth-child(8n + 1) .gallery-modern-placeholder,
+    .gallery-modern-item:nth-child(8n + 6) .gallery-modern-placeholder {
+        min-height: 390px;
+    }
+}
+
+
+/* =====================================================
+   LIGHTBOX STYLES
+   ===================================================== */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lightbox-overlay {
+        transition: none;
+    }
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s ease;
+}
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 4rem; /* space for arrows */
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    z-index: 10;
+}
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+@media (max-width: 640px) {
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+    }
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
+    .lightbox-content { padding: 0; }
+}
+
+.lightbox-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.2s ease, transform 0.3s ease;
+    transform: scale(0.98);
+}
+.lightbox-overlay.active #lightbox-img {
+    transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #lightbox-img {
+        transition: none;
+        transform: scale(1);
+    }
+}
+
+.lightbox-loader {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.2);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.lightbox-footer {
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+.lightbox-counter {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
+}
+.lightbox-caption {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+.lightbox-map-link {
+    color: var(--color-gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.lightbox-map-link:hover {
+    text-decoration: underline;
+}
