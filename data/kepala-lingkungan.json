@@ -1,0 +1,79 @@
+[
+  {
+    "lingkungan": 1,
+    "kepala": {
+      "nama": "Aldo Mumu",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Jefry Montolalu",
+      "foto": ""
+    }
+  },
+  {
+    "lingkungan": 2,
+    "kepala": {
+      "nama": "Rocky Frengky Frits Lempas",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Adri Langingi",
+      "foto": ""
+    }
+  },
+  {
+    "lingkungan": 3,
+    "kepala": {
+      "nama": "Sonny Rumagit",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Alin Supit",
+      "foto": ""
+    }
+  },
+  {
+    "lingkungan": 4,
+    "kepala": {
+      "nama": "John Willem Poluan",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Anita Diana Sangki",
+      "foto": ""
+    }
+  },
+  {
+    "lingkungan": 5,
+    "kepala": {
+      "nama": "Ferry Rarobong",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Rosnita Gosal",
+      "foto": ""
+    }
+  },
+  {
+    "lingkungan": 6,
+    "kepala": {
+      "nama": "Noldy Youdy Posumah",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Djony Johanes Ngantung",
+      "foto": ""
+    }
+  },
+  {
+    "lingkungan": 7,
+    "kepala": {
+      "nama": "Aneke Tulandi",
+      "foto": ""
+    },
+    "wakil": {
+      "nama": "Jeane Rapar",
+      "foto": ""
+    }
+  }
+]

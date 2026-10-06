@@ -4854,7 +4854,7 @@ footer {
     --sp-nonstruk-fg:    #ffffff;
     --sp-nonstruk-border:#b0276c;
     --sp-pppk-color:     #7c3aed;   /* teks PPPK Paruh Waktu — ungu */
-    --sp-line-color:     rgba(26,92,80,.2);
+    --sp-line-color:     rgba(26, 92, 80, 0.28);
     --sp-card-bg:        #ffffff;
     --sp-card-shadow:    0 4px 20px rgba(20,60,50,.07);
     --sp-card-radius:    14px;
@@ -5069,7 +5069,7 @@ footer {
 }
 
 /* =============================================
-   MOBILE TREE — Vertikal, garis kiri, indentasi
+   MOBILE TREE — Hierarki Berjenjang & Garis Presisi
    ============================================= */
 
 .sp-tree {
@@ -5078,78 +5078,66 @@ footer {
     gap: 0;
 }
 
-/* Setiap tingkat (level) dalam pohon */
-.sp-level {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-/* Wrapper node + children-nya */
-.sp-node-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-/* Node card wrapper — posisi relatif untuk garis */
+/* Wrapper tiap node (card) */
 .sp-node-wrap {
     position: relative;
-    padding: 6px 0 6px 0;
+    padding: 6px 0;
 }
 
-/* Garis vertikal kiri + horizontal ke card (mobile) */
-.sp-node-wrap--child {
-    padding-left: 1.5rem;
+/* Container anak dari sebuah node */
+.sp-children {
+    position: relative;
+    margin-left: 0.85rem;
+    padding-left: 0;
 }
 
-.sp-node-wrap--child::before {
-    content: "";
-    position: absolute;
-    left: .6rem;
-    top: 0;
-    bottom: 50%;
-    width: 2px;
-    background: var(--sp-line-color);
-    border-radius: 1px;
-}
-
-.sp-node-wrap--child::after {
-    content: "";
-    position: absolute;
-    left: .6rem;
-    top: 50%;
-    width: .9rem;
-    height: 2px;
-    background: var(--sp-line-color);
-    border-radius: 1px;
-}
-
-/* Baris sibling horisontal (mobile) — sambung garis vertikal */
+/* Container saudara (siblings) yang berisi anak-anak selevel */
 .sp-siblings {
     display: flex;
     flex-direction: column;
     gap: 0;
     position: relative;
+    padding-left: 0;
 }
 
-.sp-siblings::before {
+/* Tiap anak (node-group) */
+.sp-node-group--child {
+    position: relative;
+    padding-left: 1.15rem;
+}
+
+/* 1. Garis vertikal (spine) di sisi kiri anak */
+.sp-node-group--child::before {
     content: "";
     position: absolute;
-    left: .6rem;
+    left: 0;
     top: 0;
     bottom: 0;
     width: 2px;
     background: var(--sp-line-color);
-    border-radius: 1px;
 }
 
-/* Children group — indentasi */
-.sp-children {
-    padding-left: 1.1rem;
-    border-left: 2px solid var(--sp-line-color);
-    margin-left: .6rem;
-    margin-bottom: .25rem;
+/* Anak pertama: garis vertikal menyambung langsung ke dasar kartu induk tanpa jeda */
+.sp-node-group--child:first-child::before {
+    top: -6px;
+}
+
+/* Anak terakhir di cabangnya: garis vertikal BERHENTI di siku kartu, tidak tembus ke bawah */
+.sp-node-group--last::before {
+    bottom: auto;
+    height: 1.7rem;
+}
+
+/* 2. Garis cabang horizontal: dari garis vertikal tegak lurus masuk ke kartu */
+.sp-node-group--child::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.7rem;
+    width: 1.15rem;
+    height: 2px;
+    background: var(--sp-line-color);
+    pointer-events: none;
 }
 
 /* =============================================
@@ -5158,178 +5146,181 @@ footer {
    ============================================= */
 
 @media (min-width: 1024px) {
-    /* Reset mobile flex */
+    /* 1. Matikan semua garis & siku khusus mobile */
+    .sp-node-group--child::before,
+    .sp-node-group--child::after {
+        display: none !important;
+    }
+
+    .sp-children {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .sp-siblings {
+        padding-left: 0 !important;
+    }
+
+    /* 2. Container bagan desktop */
     .sp-tree {
+        display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0;
         overflow-x: auto;
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
     }
 
-    /* Root node (Lurah) — di tengah atas */
-    .sp-tree > .sp-node-group > .sp-node-wrap {
-        display: flex;
-        justify-content: center;
-        padding: 0 0 0 0;
-    }
-
-    .sp-tree > .sp-node-group > .sp-node-wrap::before,
-    .sp-tree > .sp-node-group > .sp-node-wrap::after { display: none; }
-
-    /* Level 2 — 3 anak lurah baris horizontal */
-    .sp-tree > .sp-node-group > .sp-children {
-        border-left: 0;
-        margin-left: 0;
-        padding-left: 0;
-    }
-
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings {
-        flex-direction: row;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 0;
-    }
-
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings::before {
-        /* Garis horizontal atas menghubungkan 3 Kasi */
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        width: auto;
-        background: var(--sp-line-color);
-    }
-
-    /* Garis vertikal dari Lurah turun ke garis horizontal */
-    .sp-tree > .sp-node-group > .sp-node-wrap + .sp-children {
-        position: relative;
-        margin-top: 0;
-    }
-
-    .sp-tree > .sp-node-group > .sp-node-wrap + .sp-children::before {
-        content: "";
-        display: block;
-        width: 2px;
-        height: 2rem;
-        margin: 0 auto;
-        background: var(--sp-line-color);
-    }
-
-    /* Card di desktop — lebar tetap */
+    /* Lebar tetap kartu di desktop */
     .sp-card {
         width: 230px;
     }
 
-    /* Level 2 node-group */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 1 1 0;
-        min-width: 0;
-    }
-
-    /* Garis vertikal dari node level-2 ke card */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap {
+    .sp-node-wrap {
         padding: 0;
         display: flex;
         justify-content: center;
         position: relative;
-        margin-top: 0;
     }
 
-    /* Garis dari horizontal atas ke card level 2 */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::before {
+    /* 3. Tingkat 0 (Lurah) di tengah atas */
+    .sp-tree > .sp-node-group[data-depth="0"] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Container anak Lurah (Level 1) */
+    .sp-children[data-depth="0"] {
+        position: relative;
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Garis vertikal dari Lurah turun ke horizontal crossbar */
+    .sp-children[data-depth="0"]::before {
         content: "";
-        display: block;
         position: absolute;
-        top: -1.5rem;
+        top: -2rem;
         left: 50%;
         transform: translateX(-50%);
         width: 2px;
-        height: 1.5rem;
+        height: 2rem;
         background: var(--sp-line-color);
+        display: block !important;
     }
 
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::after {
-        display: none;
+    /* 4. Baris 3 Kolom Level 1 (Sekretaris, Kasi Pembangunan, Kasi Pemerintahan) */
+    .sp-children[data-depth="0"] > .sp-siblings {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        position: relative;
+        padding-top: 2rem;
     }
 
-    /* Children level-3 — di bawah masing-masing level-2 */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children {
-        border-left: 0;
-        margin-left: 0;
-        padding-left: 0;
-        margin-top: 0;
+    /* Horizontal crossbar: menghubungkan tepat dari tengah kolom 1 (115px) ke tengah kolom 3 (115px) */
+    .sp-children[data-depth="0"] > .sp-siblings::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 115px;
+        right: 115px;
+        height: 2px;
+        background: var(--sp-line-color);
+        display: block !important;
+    }
+
+    /* Tiap kolom dari 3 kolom */
+    .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0;
-        position: relative;
+        width: 230px;
     }
 
-    /* Garis vertikal level-2 → level-3 */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children::before {
+    /* Garis vertikal dari horizontal crossbar turun ke masing-masing kartu Level 1 */
+    .sp-children[data-depth="0"] > .sp-siblings > .sp-node-group > .sp-node-wrap::before {
         content: "";
-        display: block;
+        position: absolute;
+        top: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 2rem;
+        background: var(--sp-line-color);
+        display: block !important;
+    }
+
+    /* 5. Cabang Turunan di Dalam Kolom (Level 2 & Level 3) */
+    .sp-children[data-depth="1"],
+    .sp-children[data-depth="2"] {
+        position: relative;
+        margin-top: 1.75rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Garis vertikal penghubung dari kartu atasan ke kartu bawahan */
+    .sp-children[data-depth="1"]::before,
+    .sp-children[data-depth="2"]::before {
+        content: "";
+        position: absolute;
+        top: -1.75rem;
+        left: 50%;
+        transform: translateX(-50%);
         width: 2px;
         height: 1.75rem;
         background: var(--sp-line-color);
-        margin: 0 auto;
+        display: block !important;
     }
 
-    /* Level-3 siblings (bisa > 1) */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings {
+    .sp-children[data-depth="1"] > .sp-siblings,
+    .sp-children[data-depth="2"] > .sp-siblings {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
         gap: 0;
     }
 
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings::before {
-        display: none;
+    .sp-children[data-depth="1"] > .sp-siblings::before,
+    .sp-children[data-depth="2"] > .sp-siblings::before {
+        display: none !important;
     }
 
-    /* Level-3 node-wrap */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap {
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::before,
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-node-wrap::after {
-        display: none;
-    }
-
-    /* Level-4 (Pengadministrasi, anak dari Penelaah) */
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children {
-        border-left: 0;
-        margin-left: 0;
-        padding-left: 0;
+    .sp-children[data-depth="1"] > .sp-siblings > .sp-node-group,
+    .sp-children[data-depth="2"] > .sp-siblings > .sp-node-group {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 230px;
     }
 
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children::before {
+    /* Garis vertikal antara staf sejajar di kolom Sekretaris */
+    .sp-children[data-depth="1"] > .sp-siblings > .sp-node-group + .sp-node-group {
+        margin-top: 1.75rem;
+        position: relative;
+    }
+
+    .sp-children[data-depth="1"] > .sp-siblings > .sp-node-group + .sp-node-group::before {
         content: "";
-        display: block;
+        position: absolute;
+        top: -1.75rem;
+        left: 50%;
+        transform: translateX(-50%);
         width: 2px;
-        height: 1.5rem;
+        height: 1.75rem;
         background: var(--sp-line-color);
-        margin: 0 auto;
-    }
-
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .sp-tree > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings > .sp-node-group > .sp-children > .sp-siblings::before {
-        display: none;
+        display: block !important;
     }
 }
 
@@ -5490,32 +5481,373 @@ footer {
    ============================================= */
 
 @media (max-width: 640px) {
+    #struktur-pemerintahan .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
     .sp-header-row {
         flex-direction: column;
         align-items: flex-start;
     }
 
+    /* Kartu Lurah di mobile memiliki aksen pimpinan */
+    .sp-tree > .sp-node-group[data-depth="0"] > .sp-node-wrap > .sp-card {
+        border-top: 3px solid var(--color-green);
+        box-shadow: 0 4px 18px rgba(20, 60, 50, 0.08);
+    }
+
     .sp-card {
-        padding: 1.25rem 1.1rem 1.1rem;
+        padding: 0.95rem 1rem 0.9rem;
+        border-radius: 18px;
+    }
+
+    .sp-card-index {
+        font-size: 0.7rem;
+        font-weight: 800;
+        top: 0.75rem;
+        right: 0.85rem;
+        max-width: 48%;
+        text-align: right;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing: 0.03em;
+        color: rgba(45, 144, 110, 0.32);
     }
 
     .sp-card-jabatan {
-        font-size: .98rem;
+        font-size: 0.96rem;
+        padding-right: 4.8rem;
+        margin-bottom: 0.35rem;
+        line-height: 1.32;
     }
 
-    .sp-summary-body {
-        grid-template-columns: 1fr 1fr;
+    .sp-card-nama {
+        font-size: 0.85rem;
+        line-height: 1.35;
+    }
+
+    .sp-card-tag {
+        margin-top: 0.45rem;
+        font-size: 0.6rem;
+        padding: 0.22rem 0.55rem;
+        letter-spacing: 0.06em;
     }
 }
 
-@media (max-width: 380px) {
-    .sp-summary-body {
-        grid-template-columns: 1fr;
+/* =====================================================
+   KEPALA LINGKUNGAN (Perangkat Kewilayahan)
+   Mobile-first, kartu elegan & rapi untuk 7 lingkungan
+   ===================================================== */
+
+#kepala-lingkungan {
+    border-top: 1px solid rgba(26, 92, 80, 0.08);
+}
+
+.kl-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+/* Kartu Lingkungan */
+.kl-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.35rem 1.3rem;
+    border: 1px solid rgba(26, 92, 80, 0.1);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(20, 60, 50, 0.05);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .kl-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(20, 60, 50, 0.1);
+        border-color: rgba(26, 92, 80, 0.22);
+    }
+}
+
+/* Header Kartu (Badge Lingkungan + Nomor Watermark) */
+.kl-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+}
+
+.kl-badge-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(26, 92, 80, 0.05);
+    border: 1px solid rgba(26, 92, 80, 0.14);
+}
+
+.kl-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2d906e;
+    box-shadow: 0 0 6px rgba(45, 144, 110, 0.5);
+    flex-shrink: 0;
+}
+
+.kl-card-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-green-dark);
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
+
+.kl-card-watermark {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: rgba(45, 144, 110, 0.18);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+}
+
+/* Daftar Orang di Dalam Kartu */
+.kl-people-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* Baris Orang */
+.kl-person {
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+    min-width: 0;
+}
+
+/* Kepala Lingkungan — Ditonjolkan Utama */
+.kl-person--kepala {
+    padding: 0.85rem 0.95rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(26, 92, 80, 0.04) 0%, rgba(45, 144, 110, 0.02) 100%);
+    border: 1px solid rgba(26, 92, 80, 0.1);
+}
+
+/* Wakil Kepala Lingkungan — Sedikit Lebih Kecil */
+.kl-person--wakil {
+    padding: 0.6rem 0.95rem;
+    border-radius: 14px;
+}
+
+/* Avatar Wrappers & Lingkaran */
+.kl-avatar-wrap {
+    flex-shrink: 0;
+}
+
+.kl-avatar {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    user-select: none;
+}
+
+.kl-avatar--kepala {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #1a5c50 0%, #2d906e 100%);
+    color: #ffffff;
+    font-size: 0.98rem;
+    letter-spacing: 0.04em;
+    box-shadow: 0 4px 12px rgba(26, 92, 80, 0.22);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.kl-avatar--wakil {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(45, 144, 110, 0.18) 0%, rgba(26, 92, 80, 0.12) 100%);
+    color: var(--color-green-dark);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    border: 1.5px solid rgba(26, 92, 80, 0.18);
+}
+
+.kl-avatar-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 3px 10px rgba(20, 60, 50, 0.12);
+}
+
+.kl-person--wakil .kl-avatar-img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Informasi Orang (Jabatan + Nama) */
+.kl-person-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.kl-role-label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.kl-role-label--kepala {
+    font-size: 0.65rem;
+    color: var(--color-green);
+}
+
+.kl-role-label--wakil {
+    font-size: 0.6rem;
+    color: var(--color-mid-gray);
+}
+
+.kl-person-name {
+    margin: 0;
+    font-family: var(--font-heading);
+    line-height: 1.32;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.kl-person-name--kepala {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--color-green-dark);
+}
+
+.kl-person-name--wakil {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+/* Divider Antara Kepala dan Wakil */
+.kl-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(26, 92, 80, 0.12), transparent);
+    margin: 0 0.5rem;
+}
+
+/* Animasi Halus Saat Scroll (Hormati prefers-reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+    .kl-card {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.25s ease,
+                    border-color 0.25s ease;
     }
 
-    .sp-summary-group { border-right: 0; border-bottom: 1px solid rgba(26,92,80,.08); }
-    .sp-summary-group:last-child { border-bottom: 0; }
+    .kl-card.kl-card--visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .kl-card.kl-card--visible:hover {
+            transform: translateY(-4px);
+        }
+    }
 }
+
+/* Tablet (640px - 1023px): 2 Kolom Seimbang */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .kl-grid {
+        gap: 1.35rem;
+    }
+
+    .kl-card {
+        flex: 0 1 calc(50% - 0.7rem);
+        max-width: calc(50% - 0.7rem);
+    }
+}
+
+/* Desktop Menengah (1024px - 1279px): 3 Kolom Seimbang */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .kl-grid {
+        gap: 1.5rem;
+    }
+
+    .kl-card {
+        flex: 0 1 calc(33.333% - 1.05rem);
+        max-width: calc(33.333% - 1.05rem);
+    }
+}
+
+/* Desktop Luas (≥ 1280px): 4 Kolom di Baris 1, 3 Kolom di Baris 2 (Terpusat Sempurna) */
+@media (min-width: 1280px) {
+    .kl-grid {
+        gap: 1.5rem;
+    }
+
+    .kl-card {
+        flex: 0 1 calc(25% - 1.2rem);
+        max-width: calc(25% - 1.2rem);
+        min-width: 250px;
+    }
+}
+
+/* Mobile Khusus (≤ 640px): Sentuhan Bersih */
+@media (max-width: 640px) {
+    #kepala-lingkungan .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .kl-grid {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .kl-card {
+        padding: 1.15rem 1.05rem 1.05rem;
+        border-radius: 18px;
+    }
+
+    .kl-person--kepala {
+        padding: 0.75rem 0.85rem;
+    }
+
+    .kl-person-name--kepala {
+        font-size: 0.94rem;
+    }
+
+    .kl-person-name--wakil {
+        font-size: 0.85rem;
+    }
+}
+
 
 
 

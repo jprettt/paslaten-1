@@ -102,7 +102,7 @@
         labelTingkat: 'Tingkat 3 \u00b7 Pelaksana',
         kategori: 'pelaksana',
         eselon: null,
-        atasanId: 'penelaah',
+        atasanId: 'sekretaris',
         B: 1, K: 1,
         pegawai: [
           { nama: 'Alfien Kaparang', pendidikan: 'SLTA', status: 'PNS', golongan: 'II/d' }
@@ -158,28 +158,35 @@
      4. BUILD TREE RECURSIVELY
      ===================================================== */
 
-  function buildNodeGroup(node, allNodes, isChild) {
+  function buildNodeGroup(node, allNodes, depth, isLast) {
     var children = allNodes.filter(function (n) { return n.atasanId === node.id; });
-    var wrapClass = isChild ? 'sp-node-wrap sp-node-wrap--child' : 'sp-node-wrap';
 
     var childrenHtml = '';
     if (children.length > 0) {
-      var siblingItems = children.map(function (child) {
-        return buildNodeGroup(child, allNodes, false);
+      var siblingItems = children.map(function (child, idx) {
+        var isLastChild = (idx === children.length - 1);
+        return buildNodeGroup(child, allNodes, depth + 1, isLastChild);
       }).join('');
-      childrenHtml = '<div class="sp-children"><div class="sp-siblings" role="group">' + siblingItems + '</div></div>';
+      childrenHtml = '<div class="sp-children" data-depth="' + depth + '">' +
+        '<div class="sp-siblings" role="group">' + siblingItems + '</div>' +
+        '</div>';
     }
 
-    return '<div class="sp-node-group" role="treeitem">' +
-      '<div class="' + wrapClass + '">' + buildCard(node) + '</div>' +
+    var groupClasses = ['sp-node-group'];
+    if (depth > 0) groupClasses.push('sp-node-group--child');
+    if (isLast) groupClasses.push('sp-node-group--last');
+
+    return '<div class="' + groupClasses.join(' ') + '" role="treeitem" data-depth="' + depth + '">' +
+      '<div class="sp-node-wrap">' + buildCard(node) + '</div>' +
       childrenHtml +
       '</div>';
   }
 
   function buildTree(nodes) {
     var roots = nodes.filter(function (n) { return n.atasanId === null; });
-    return roots.map(function (root) {
-      return buildNodeGroup(root, nodes, false);
+    return roots.map(function (root, idx) {
+      var isLast = (idx === roots.length - 1);
+      return buildNodeGroup(root, nodes, 0, isLast);
     }).join('');
   }
 
