@@ -7,7 +7,8 @@ const momenFallback = [
     { file: "jalan-jalan-akamsi.mp4", day: 3, keterangan: "Jalan-jalan bersama anak-anak dari Paslaten 1 untuk observasi kebutuhan program kerja" },
     { file: "lagi-ibadah.mp4", day: 4, keterangan: "Ibadah bersama seluruh anggota KKT di GMIM Maranatha Paslaten" },
     { file: "merayakan ultah.mp4", day: 14, keterangan: "Merayakan ulang tahun Pak Lurah" },
-    { file: "tebak tebakan.mp4", day: 3, keterangan: "Main tebak-tebakan sama anak-anak Paslaten" }
+    { file: "tebak tebakan.mp4", day: 3, keterangan: "Main tebak-tebakan sama anak-anak Paslaten" },
+    { file: "stok snack.mp4", day: 4, keterangan: "infoo minimart di akom" }
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
