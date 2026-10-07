@@ -1,0 +1,93 @@
+[
+  {
+    "divisi": "Pengurus Inti",
+    "nama": "Nidal Sumardi",
+    "nim": "210611020649",
+    "jabatan": "Koordinator Posko",
+    "foto": "../assets/images/anggota/nidal.jpg"
+  },
+  {
+    "divisi": "Pengurus Inti",
+    "nama": "Ribka Sumarauw",
+    "nim": "231011030041",
+    "jabatan": "Sekretaris",
+    "foto": "../assets/images/anggota/ribka.jpg"
+  },
+  {
+    "divisi": "Pengurus Inti",
+    "nama": "Sofia Nur Mokoginta",
+    "nim": "230511060022",
+    "jabatan": "Bendahara",
+    "foto": "../assets/images/anggota/sofia.jpg"
+  },
+  {
+    "divisi": "Divisi Humas",
+    "nama": "Bagus Pratama",
+    "nim": "230211050003",
+    "jabatan": "Koordinator",
+    "foto": "../assets/images/anggota/bagus.jpg"
+  },
+  {
+    "divisi": "Divisi Humas",
+    "nama": "Rafaelito Soputan",
+    "nim": "230211050035",
+    "jabatan": "Anggota",
+    "foto": "../assets/images/anggota/rafaelito.jpg"
+  },
+  {
+    "divisi": "Divisi PDD",
+    "nama": "Karlin Wantri",
+    "nim": "230811060005",
+    "jabatan": "Koordinator",
+    "foto": "../assets/images/anggota/karlin.jpg"
+  },
+  {
+    "divisi": "Divisi PDD",
+    "nama": "Regita Massie",
+    "nim": "230411040041",
+    "jabatan": "Anggota",
+    "foto": "../assets/images/anggota/regita.jpg"
+  },
+  {
+    "divisi": "Divisi PDD",
+    "nama": "Kimberly Latuni",
+    "nim": "230811010073",
+    "jabatan": "Anggota",
+    "foto": "../assets/images/anggota/kimberly.jpg"
+  },
+  {
+    "divisi": "Divisi Program & Perlengkapan",
+    "nama": "Fajrin Mardi",
+    "nim": "230211040025",
+    "jabatan": "Koordinator",
+    "foto": "../assets/images/anggota/fajrin.jpg"
+  },
+  {
+    "divisi": "Divisi Program & Perlengkapan",
+    "nama": "Yulison Kogi",
+    "nim": "230111040121",
+    "jabatan": "Anggota",
+    "foto": "../assets/images/anggota/yulison.jpg"
+  },
+  {
+    "divisi": "Divisi Program & Perlengkapan",
+    "nama": "Helena Sumeke",
+    "nim": "230311060048",
+    "jabatan": "Anggota",
+    "foto": "../assets/images/anggota/helena.jpg"
+  },
+  {
+    "divisi": "Divisi Pelaporan",
+    "nama": "Jonathan Sitanggang",
+    "nim": "230211060042",
+    "jabatan": "Koordinator",
+    "foto": "../assets/images/anggota/jonathan.jpg"
+  },
+  {
+    "divisi": "Divisi Pelaporan",
+    "nama": "Varel Sumampouw",
+    "nim": "230211060106",
+    "jabatan": "Anggota",
+    "foto": "../assets/images/anggota/varel.jpg"
+  }
+]

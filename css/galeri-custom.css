@@ -84,6 +84,26 @@
    LAYOUT PATTERNS (NTH-CHILD)
    ===================================================== */
 
+/* Scroll Animation */
+.gallery-modern-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-modern-item {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+.gallery-modern-item.gallery-animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Mobile Pattern: 1 full, 2-2-2, 1 full */
 @media (max-width: 640px) {
     /* override style.css behavior for specific layout */

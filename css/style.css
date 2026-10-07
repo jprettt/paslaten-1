@@ -4981,6 +4981,18 @@ footer {
     transition: transform .2s ease, box-shadow .2s ease;
 }
 
+/* Aksen garis atas dengan gradien modern (Global untuk Mobile & Desktop) */
+.sp-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(110deg, var(--color-green), var(--color-green-light), var(--color-gold-light));
+    z-index: 1;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .sp-card:hover {
         transform: translateY(-2px);
@@ -5089,7 +5101,7 @@ footer {
 /* Container anak dari sebuah node */
 .sp-children {
     position: relative;
-    margin-left: 0.85rem;
+    margin-left: 1.5rem; /* Increased to avoid hitting the card's 14px border radius */
     padding-left: 0;
 }
 
@@ -5117,17 +5129,23 @@ footer {
     bottom: 0;
     width: 2px;
     background: var(--sp-line-color);
+    z-index: -1;
 }
 
 /* Anak pertama: garis vertikal menyambung langsung ke dasar kartu induk tanpa jeda */
 .sp-node-group--child:first-child::before {
-    top: -6px;
+    top: -24px; /* Reaches higher to go behind the parent card safely */
 }
 
 /* Anak terakhir di cabangnya: garis vertikal BERHENTI di siku kartu, tidak tembus ke bawah */
 .sp-node-group--last::before {
     bottom: auto;
     height: 1.7rem;
+}
+
+/* Jika anak pertama sekaligus terakhir, tinggi harus ditambahkan kompensasi top */
+.sp-node-group--child:first-child.sp-node-group--last::before {
+    height: calc(1.7rem + 24px);
 }
 
 /* 2. Garis cabang horizontal: dari garis vertikal tegak lurus masuk ke kartu */
@@ -5140,6 +5158,7 @@ footer {
     height: 2px;
     background: var(--sp-line-color);
     pointer-events: none;
+    z-index: -1;
 }
 
 /* =============================================
@@ -5223,7 +5242,8 @@ footer {
         align-items: flex-start;
         gap: 2rem;
         position: relative;
-        padding-top: 2rem;
+        /* padding-top dihapus agar crossbar di top: 0 tidak bergeser turun di beberapa browser */
+        width: max-content; /* Fix crossbar width */
     }
 
     /* Horizontal crossbar: menghubungkan tepat dari tengah kolom 1 (115px) ke tengah kolom 3 (115px) */
@@ -5245,6 +5265,7 @@ footer {
         flex-direction: column;
         align-items: center;
         width: 230px;
+        margin-top: 2rem; /* Jarak dipindahkan ke sini */
     }
 
     /* Garis vertikal dari horizontal crossbar turun ke masing-masing kartu Level 1 */
@@ -6116,6 +6137,461 @@ footer {
         font-size: 0.85rem;
     }
 }
+
+/* =============================================
+   ENHANCEMENT DESKTOP (Struktur Pemerintahan)
+   Dipisah dalam media query sendiri agar aman
+   ============================================= */
+@media (min-width: 1024px) {
+    .sp-card {
+        padding: 1.85rem 1.75rem 1.6rem;
+        box-shadow: 0 16px 40px rgba(20, 60, 50, 0.05), 0 2px 10px rgba(20, 60, 50, 0.02);
+        border: none;
+        border-radius: 28px;
+    }
+
+    /* Sesuaikan radius ujung atas agar border tetap rata dengan gradien global */
+    .sp-card::after {
+        border-radius: 28px 28px 0 0;
+    }
+
+    .sp-card-index {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        color: var(--color-green-dark);
+        font-family: var(--font-body);
+        font-size: 0.725rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: rgba(26, 92, 80, 0.05);
+        padding: 0.4rem 0.85rem;
+        border-radius: 999px;
+        box-shadow: inset 0 0 0 1px rgba(26, 92, 80, 0.1);
+        z-index: 2;
+    }
+
+    .sp-card-jabatan {
+        padding-right: 0;
+        font-size: 1.15rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .sp-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 45px rgba(20, 60, 50, 0.08), 0 4px 15px rgba(20, 60, 50, 0.03);
+    }
+}
+
+/* =============================================
+   ANGGOTA KELOMPOK KKT
+   ============================================= */
+
+/* Main Section */
+.kkt-main-section {
+    padding: 2rem 0 6rem;
+}
+
+/* Strip Summary */
+.kkt-summary-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem 0.5rem;
+    box-shadow: 0 8px 28px rgba(20, 60, 50, 0.035);
+    border: 1px solid rgba(26, 92, 80, 0.08);
+    margin: 0 auto 2rem;
+    max-width: 760px;
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.kkt-summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid rgba(26, 92, 80, 0.1);
+}
+
+.kkt-summary-item:last-child {
+    border-right: none;
+}
+
+.kkt-summary-item strong {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-green-dark);
+    line-height: 1.2;
+}
+
+.kkt-summary-item span {
+    font-size: 0.65rem;
+    color: var(--color-mid-gray);
+    margin-top: 0.25rem;
+}
+
+/* Animations */
+.kkt-animate-in {
+    animation: kktFadeInUp 0.5s ease forwards;
+}
+
+@keyframes kktFadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =============================================
+   ANGGOTA KELOMPOK KKT (Simplified)
+   ============================================= */
+
+/* Section & Headings */
+.kkt-section {
+    margin-bottom: 0;
+    position: relative;
+}
+
+.kkt-divisi-group {
+    margin-top: 3.5rem; /* ~56px jarak antar section */
+    position: relative;
+}
+
+/* Background Silhouette Icons */
+.kkt-bg-icon {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    color: var(--color-green-dark);
+    opacity: 0.08; /* Tebal tapi tidak mengganggu */
+    z-index: 0; /* Tetap di belakang foto */
+    pointer-events: none;
+}
+
+/* Position Variations */
+.bg-pos-top-right {
+    top: -3.5rem;
+    right: -2rem;
+    transform: rotate(12deg);
+}
+
+.bg-pos-center-right {
+    top: 30%;
+    right: -3rem;
+    transform: translateY(-50%) rotate(-8deg);
+}
+
+.bg-pos-bottom-right {
+    bottom: -2rem;
+    right: -2rem;
+    transform: rotate(5deg);
+}
+
+.bg-pos-bottom-left {
+    bottom: -3rem;
+    left: -2rem;
+    transform: rotate(-15deg);
+}
+
+/* Ensure grid sits above the icon overlay */
+.kkt-divisi-grid, .kkt-tree {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 639px) {
+    .kkt-bg-icon {
+        width: 250px;
+        height: 250px;
+    }
+    .bg-pos-top-right { top: -2rem; right: -1.5rem; }
+    .bg-pos-center-right { top: 20%; right: -2rem; }
+    .bg-pos-bottom-right { bottom: -1rem; right: -1.5rem; }
+    .bg-pos-bottom-left { bottom: -1rem; left: -1.5rem; }
+}
+
+.kkt-section-heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin: 0 0 1.25rem 0; /* ~20px jarak heading ke foto */
+    text-align: left;
+    position: relative;
+    padding-left: 0.95rem;
+}
+
+.kkt-section-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-gold);
+}
+
+/* Item Base (No Card Box) */
+.kkt-item {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(15px);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kkt-item {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    .kkt-item-img {
+        transition: opacity 0.5s ease !important;
+    }
+}
+
+/* Media (Photo) */
+.kkt-item-media {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 0.85rem;
+    background: transparent;
+}
+
+.kkt-item-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.kkt-item-img.loaded {
+    opacity: 1;
+}
+
+/* Hover Effects */
+@media (hover: hover) and (pointer: fine) {
+    .kkt-item:hover .kkt-item-img {
+        transform: scale(1.04);
+    }
+    .kkt-item:hover .kkt-item-name {
+        color: var(--color-green-dark);
+    }
+}
+
+/* Placeholder */
+.kkt-item-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 144, 110, 0.1);
+}
+
+.kkt-placeholder-text {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-green-dark);
+}
+
+/* Text Content */
+.kkt-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+}
+
+.kkt-item-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin: 0 0 0.2rem 0;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.kkt-item-role {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-mid-gray);
+    margin: 0 0 0.2rem 0;
+}
+
+/* Khusus Koordinator */
+.kkt-role-koor {
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+.kkt-item-nim {
+    font-size: 0.75rem;
+    color: rgba(0,0,0,0.4);
+    margin: 0;
+}
+
+.kkt-item-nim-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Pengurus Inti Layout */
+.kkt-pengurus-inti {
+    margin-bottom: 0;
+}
+
+.kkt-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    position: relative;
+}
+
+.kkt-tree-top {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.kkt-tree-bottom {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.kkt-tree-top .kkt-item,
+.kkt-tree-bottom .kkt-item {
+    flex: 0 0 calc(50% - 0.625rem);
+    max-width: calc(50% - 0.625rem);
+}
+
+/* Divisi Grid (Flex) */
+.kkt-divisi-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: flex-start; /* Left aligned */
+}
+
+.kkt-divisi-grid > .kkt-item {
+    /* Mobile: 2 cols */
+    flex: 0 0 calc(50% - 0.625rem);
+    max-width: calc(50% - 0.625rem);
+}
+
+/* =============================================
+   RESPONSIVE KKT
+   ============================================= */
+
+@media (min-width: 640px) {
+    .kkt-summary-strip {
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    .kkt-summary-item strong { font-size: 1.4rem; }
+    .kkt-summary-item span { font-size: 0.8rem; }
+    
+    .kkt-divisi-grid > .kkt-item {
+        /* Tablet: 3 cols */
+        flex: 0 0 calc(33.3333% - 0.8333rem);
+        max-width: calc(33.3333% - 0.8333rem);
+    }
+    .kkt-tree-top .kkt-item,
+    .kkt-tree-bottom .kkt-item {
+        flex: 0 0 calc(33.3333% - 0.8333rem);
+        max-width: calc(33.3333% - 0.8333rem);
+    }
+}
+
+@media (min-width: 1024px) {
+    .kkt-summary-strip {
+        gap: 2rem;
+        padding: 2rem;
+        margin: 0 auto 2.5rem;
+    }
+    .kkt-summary-item strong { font-size: 1.8rem; }
+    .kkt-summary-item span { font-size: 0.85rem; }
+    
+    .kkt-divisi-group {
+        margin-top: 4rem; /* 64px on desktop */
+    }
+
+    /* Desktop Cards */
+    /* Desktop: 4 cols */
+    .kkt-divisi-grid > .kkt-item {
+        flex: 0 0 calc(25% - 0.9375rem);
+        max-width: calc(25% - 0.9375rem);
+    }
+    .kkt-tree-top .kkt-item,
+    .kkt-tree-bottom .kkt-item {
+        flex: 0 0 calc(25% - 0.9375rem);
+        max-width: calc(25% - 0.9375rem);
+    }
+
+    /* Pengurus Inti Desktop Pyramid */
+    .kkt-tree-top::after {
+        content: "";
+        position: absolute;
+        bottom: -0.75rem; /* half of 1.5rem gap */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 0.75rem;
+        border-left: 1px dashed rgba(26, 92, 80, 0.35); /* Changed to dashed */
+        z-index: 1;
+    }
+
+    .kkt-tree-bottom {
+        gap: 2.5rem; 
+        margin-top: 1.5rem; /* ~24px instead of large 56px */
+        z-index: 2;
+        position: relative;
+    }
+
+    /* Konektor Horizontal */
+    .kkt-tree-bottom::before {
+        content: "";
+        position: absolute;
+        top: -0.75rem; /* half of 1.5rem gap */
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(25% + 1.5625rem); /* span between the 2 items */
+        height: 0.75rem;
+        border-left: 1px dashed rgba(26, 92, 80, 0.35);
+        border-right: 1px dashed rgba(26, 92, 80, 0.35);
+        border-top: 1px dashed rgba(26, 92, 80, 0.35);
+        z-index: 1;
+    }
+}
+
+
+
 
 
 

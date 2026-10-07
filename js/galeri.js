@@ -59,6 +59,23 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.appendChild(figure);
     });
     
+    // Setup Scroll Animation using IntersectionObserver (with stagger)
+    const observer = new IntersectionObserver((entries) => {
+        let delayIndex = 0;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.transitionDelay = `${delayIndex * 0.1}s`;
+                entry.target.classList.add('gallery-animate-in');
+                observer.unobserve(entry.target);
+                delayIndex++;
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll('.gallery-modern-item').forEach(item => {
+        observer.observe(item);
+    });
+    
     // Build lightbox HTML
     const lightboxHtml = `
         <div id="gallery-lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Galeri Foto Fullscreen">
