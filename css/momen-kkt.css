@@ -1,0 +1,492 @@
+/* =====================================================
+   MOMEN KKT — Fullscreen Vertical Video Feed
+   Activated on scroll, takes over viewport like Reels
+   ===================================================== */
+
+/* ---- Teaser Section ---- */
+.momen-teaser {
+    position: relative;
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(13, 31, 42, 0.03) 20%,
+        rgba(13, 31, 42, 0.08) 40%,
+        rgba(13, 31, 42, 0.2) 60%,
+        rgba(13, 31, 42, 0.5) 80%,
+        var(--color-darkest) 100%
+    );
+}
+
+.momen-teaser-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+}
+
+.momen-teaser-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-mid-gray);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.momen-teaser-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: momenTeaserPulse 2.5s ease-in-out infinite;
+}
+
+.momen-teaser-hint svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
+}
+
+@keyframes momenTeaserPulse {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(6px); opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .momen-teaser-hint { animation: none; }
+}
+
+/* ---- Fullscreen Feed (fixed, takes over viewport) ---- */
+.momen-feed-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 10000;
+    background: #000000;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .momen-feed-fullscreen { transition: none; }
+}
+
+.momen-feed-fullscreen::-webkit-scrollbar {
+    display: none;
+}
+
+.momen-feed-fullscreen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Hide navbar when feed is active and set body background to black to fix safe area bleeding */
+body.momen-active {
+    background-color: #000000 !important;
+}
+body.momen-active #navbar,
+body.momen-active header {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ---- Single Slide ---- */
+.momen-slide {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+}
+
+/* ---- Video ---- */
+.momen-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000000;
+}
+
+/* Kill ALL default browser video UI */
+.momen-video::-webkit-media-controls,
+.momen-video::-webkit-media-controls-enclosure,
+.momen-video::-webkit-media-controls-panel,
+.momen-video::-webkit-media-controls-start-playback-button,
+.momen-video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+video::-moz-media-controls { display: none !important; }
+
+/* ---- Gradient overlay at bottom ---- */
+.momen-slide-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ---- Info ---- */
+.momen-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.25rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+    z-index: 2;
+}
+
+.momen-day {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 0.4rem;
+}
+
+.momen-caption {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 85%;
+}
+
+/* ---- Play/Pause Tap Indicator ---- */
+.momen-play-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    z-index: 3;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.momen-play-indicator.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.momen-play-indicator svg {
+    width: 28px;
+    height: 28px;
+    fill: #ffffff;
+    stroke: none;
+}
+
+/* ---- Back Button (top left) ---- */
+.momen-back-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10003;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.momen-back-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.momen-back-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: #ffffff;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ---- Mute Button (top right) ---- */
+.momen-mute-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10003;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.momen-mute-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.momen-mute-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ---- Position Dots ---- */
+.momen-dots {
+    position: fixed;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10002;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.momen-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: background 0.3s ease, height 0.3s ease;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.momen-dot.active {
+    height: 18px;
+    border-radius: 3px;
+    background: var(--color-gold);
+}
+
+/* ---- Swipe Hint ---- */
+.momen-hint {
+    position: absolute;
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: hintBounceUp 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.momen-hint svg {
+    width: 18px;
+    height: 18px;
+    stroke: #ffffff;
+    fill: none;
+    opacity: 0.5;
+}
+
+@keyframes hintBounceUp {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .momen-hint { animation: none; }
+}
+
+.momen-hint.hidden {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* ---- Loading State ---- */
+.momen-loader {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+}
+
+.momen-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    border-top-color: var(--color-gold);
+    border-radius: 50%;
+    animation: momenSpin 0.8s linear infinite;
+}
+
+@keyframes momenSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ---- Error State ---- */
+.momen-error {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 2rem;
+    background: #000000;
+}
+
+.momen-error.show { display: flex; }
+
+.momen-retry-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.momen-retry-btn:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* ---- Closing Section ---- */
+.momen-closing {
+    background: var(--color-green-dark) !important;
+    overflow: hidden;
+}
+
+.momen-closing::before,
+.momen-closing::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.momen-closing::before { width: 400px; height: 400px; top: -100px; right: -100px; }
+.momen-closing::after { width: 300px; height: 300px; bottom: -80px; left: -80px; }
+
+.momen-closing-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+}
+
+.momen-closing-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+}
+
+.momen-closing-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 380px;
+    margin: 0 auto 2.5rem;
+}
+
+.momen-closing-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.momen-closing-btn {
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.momen-btn-replay { background: var(--color-gold); color: var(--color-darkest); }
+.momen-btn-replay:hover { background: var(--color-gold-light); transform: translateY(-2px); }
+.momen-btn-back { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.2); }
+.momen-btn-back:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+@media (min-width: 768px) {
+    .momen-info { padding: 2rem; }
+    .momen-caption { font-size: 1rem; max-width: 60%; }
+    .momen-closing-title { font-size: 2.5rem; }
+    .momen-teaser { padding: 5rem 2rem 4rem; }
+    .momen-teaser-title { font-size: 1.6rem; }
+}

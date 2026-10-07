@@ -833,29 +833,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function handleNavbarScroll() {
-
         if (!navbar) {
             return;
         }
 
-
-        if (
-            window.scrollY >
-            SCROLL_THRESHOLD
-        ) {
-
-            navbar.classList.add(
-                'scrolled'
-            );
-
+        if (window.scrollY > SCROLL_THRESHOLD) {
+            navbar.classList.add('scrolled');
         } else {
-
-            navbar.classList.remove(
-                'scrolled'
-            );
-
+            navbar.classList.remove('scrolled');
         }
-
     }
 
 
