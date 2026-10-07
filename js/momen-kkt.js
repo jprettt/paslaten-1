@@ -30,8 +30,8 @@ function initMomen(data, container) {
             <p class="momen-teaser-title">Momen KKT</p>
             <p class="momen-teaser-desc">Potongan cerita selama 23 hari di Paslaten 1</p>
             <div class="momen-teaser-hint" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                <span>Scroll ke bawah</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                <span>Tarik ke atas</span>
             </div>
         </div>
     `;
@@ -86,14 +86,16 @@ function initMomen(data, container) {
                 <svg viewBox="0 0 24 24" class="momen-icon-unmuted" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="none"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
             </button>
             <div class="momen-dots" id="momen-dots">${dotsHtml}</div>
-            ${slidesHtml}
-            <div class="momen-slide momen-closing" data-momen-index="${data.length}">
-                <div class="momen-closing-inner">
-                    <h2 class="momen-closing-title">Terima Kasih, Paslaten 1.</h2>
-                    <p class="momen-closing-subtitle">23 hari mungkin singkat, tetapi cukup untuk meninggalkan banyak cerita.</p>
-                    <div class="momen-closing-actions">
-                        <button class="momen-closing-btn momen-btn-replay" aria-label="Putar ulang dari awal">Putar Ulang</button>
-                        <button class="momen-closing-btn momen-btn-back" aria-label="Kembali ke atas halaman">Kembali ke Atas</button>
+            <div class="momen-feed-scrollable" id="momen-feed-scrollable">
+                ${slidesHtml}
+                <div class="momen-slide momen-closing" data-momen-index="${data.length}">
+                    <div class="momen-closing-inner">
+                        <h2 class="momen-closing-title">Terima Kasih, Paslaten 1.</h2>
+                        <p class="momen-closing-subtitle">23 hari mungkin singkat, tetapi cukup untuk meninggalkan banyak cerita.</p>
+                        <div class="momen-closing-actions">
+                            <button class="momen-closing-btn momen-btn-replay" aria-label="Putar ulang dari awal">Putar Ulang</button>
+                            <button class="momen-closing-btn momen-btn-back" aria-label="Kembali ke atas halaman">Kembali ke Atas</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,15 +105,16 @@ function initMomen(data, container) {
 
     // --- References ---
     const feed = document.getElementById('momen-feed');
+    const feedScrollable = document.getElementById('momen-feed-scrollable');
     const backBtn = document.getElementById('momen-back');
     const muteBtn = document.getElementById('momen-mute');
     const dotsEl = document.getElementById('momen-dots');
     const dots = dotsEl.querySelectorAll('.momen-dot');
-    const slides = feed.querySelectorAll('.momen-slide');
+    const slides = feedScrollable.querySelectorAll('.momen-slide');
     const hint = feed.querySelector('.momen-hint');
     const teaser = document.getElementById('momen-teaser');
-    const replayBtn = feed.querySelector('.momen-btn-replay');
-    const closingBackBtn = feed.querySelector('.momen-btn-back');
+    const replayBtn = feedScrollable.querySelector('.momen-btn-replay');
+    const closingBackBtn = feedScrollable.querySelector('.momen-btn-back');
 
     // --- Activate / Deactivate Feed ---
     function activateFeed() {
@@ -121,7 +124,7 @@ function initMomen(data, container) {
         isMuted = true;
         updateMuteUI();
 
-        feed.scrollTop = 0;
+        feedScrollable.scrollTop = 0;
         updateDots(0);
         feed.classList.add('active');
         document.body.classList.add('momen-active');
@@ -151,16 +154,36 @@ function initMomen(data, container) {
         teaser.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // --- Teaser Observer (triggers feed activation) ---
-    const teaserObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
-                activateFeed();
-            }
-        });
-    }, { threshold: 0.8 });
+    // --- Swipe/Scroll Past Bottom to Activate ---
+    let isAtBottom = false;
+    
+    window.addEventListener('scroll', () => {
+        // Detect if user is at the bottom of the page
+        isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
+    });
 
-    teaserObserver.observe(teaser);
+    window.addEventListener('wheel', (e) => {
+        if (isAtBottom && e.deltaY > 50 && !feedActive) {
+            activateFeed();
+        }
+    }, { passive: true });
+
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!isAtBottom || feedActive) return;
+        let touchEndY = e.touches[0].clientY;
+        if (touchStartY - touchEndY > 40) { // Swiped up past bottom
+            activateFeed();
+        }
+    }, { passive: true });
+
+    // Fallback: Tap teaser to play
+    teaser.addEventListener('click', activateFeed);
+    teaser.style.cursor = 'pointer';
 
     // --- Back / Close ---
     backBtn.addEventListener('click', deactivateFeed);
@@ -225,7 +248,7 @@ function initMomen(data, container) {
                 if (idx < data.length) pauseVideo(idx);
             }
         });
-    }, { root: feed, threshold: 0.6 });
+    }, { root: feedScrollable, threshold: 0.6 });
 
     slides.forEach(slide => videoObserver.observe(slide));
 
@@ -301,7 +324,7 @@ function initMomen(data, container) {
 
     // --- Closing Section ---
     if (replayBtn) replayBtn.addEventListener('click', () => {
-        feed.scrollTo({ top: 0, behavior: 'smooth' });
+        feedScrollable.scrollTo({ top: 0, behavior: 'smooth' });
     });
     if (closingBackBtn) closingBackBtn.addEventListener('click', deactivateFeed);
 
