@@ -822,6 +822,31 @@
               <span aria-hidden="true" class="region-card-number"> 07 </span>
             </div>
           </dl>
+
+          <!-- =====================================
+               PETA 3D
+               ===================================== -->
+          <div class="peta3d-header">
+            <h3 class="peta3d-title">Peta 3D Wilayah</h3>
+            <p class="peta3d-desc">Tampilan tiga dimensi wilayah Kelurahan Paslaten Satu.</p>
+            <div class="peta3d-btn-wrapper">
+              <button id="peta3d-btn" type="button" class="peta3d-btn-main" aria-expanded="false" aria-controls="peta3d-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="peta3d-btn-icon">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <span id="peta3d-btn-text">Lihat Peta 3D</span>
+              </button>
+            </div>
+            
+            <div id="peta3d-box" role="region" aria-label="Peta 3D Kelurahan Paslaten Satu">
+              <!-- JS injected content -->
+            </div>
+            
+            <div class="peta3d-caption">Ilustrasi 3D, bukan peta resmi.</div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -914,6 +939,36 @@
   <script src="../js/main.js"></script>
   <script src="../js/struktur-pemerintahan.js"></script>
   <script src="../js/kepala-lingkungan.js"></script>
+  <!-- Peta 3D Handler -->
+  <script defer src="../assets/js/peta-3d.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("peta3d-btn");
+      const box = document.getElementById("peta3d-box");
+      if(!btn || !box) return;
+      
+      btn.addEventListener("click", () => {
+        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+        if (!isExpanded) {
+          box.classList.add("is-open");
+          if (window.Peta3D) window.Peta3D.open(box);
+          btn.setAttribute("aria-expanded", "true");
+          const btnText = document.getElementById("peta3d-btn-text");
+          if(btnText) btnText.textContent = "Tutup Peta 3D";
+          
+          setTimeout(() => {
+            box.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 100);
+        } else {
+          box.classList.remove("is-open");
+          if (window.Peta3D) window.Peta3D.close();
+          btn.setAttribute("aria-expanded", "false");
+          const btnText = document.getElementById("peta3d-btn-text");
+          if(btnText) btnText.textContent = "Lihat Peta 3D";
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
