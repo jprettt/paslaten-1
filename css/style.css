@@ -6809,3 +6809,209 @@ footer {
   margin-top: 8px;
   text-align: center;
 }
+
+/* INFO BUTTON & PANEL */
+.peta3d__info-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.05);
+  z-index: 6;
+}
+
+.peta3d__info-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-white, #fff);
+  color: var(--color-dark, #1f2937);
+  z-index: 15;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  max-height: 75%;
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+.peta3d__info-panel.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.peta3d__info-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+  z-index: 1;
+}
+.peta3d__info-close:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.peta3d__info-content {
+  padding: 20px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.peta3d__info-header {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-right: 24px;
+}
+.peta3d__info-title {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 4px;
+  color: #555;
+}
+
+.peta3d__info-divider {
+  border: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+  margin: 12px 0;
+}
+
+.peta3d__info-meta {
+  width: 100%;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+.peta3d__info-meta td {
+  padding: 2px 0;
+}
+.peta3d__info-meta td:first-child {
+  color: #666;
+  width: 40%;
+}
+
+.peta3d__info-scale {
+  text-align: center;
+  margin: 16px 0;
+}
+.peta3d__info-scalebar {
+  display: flex;
+  width: 150px;
+  height: 6px;
+  margin: 6px auto;
+  border: 1px solid #111;
+}
+.peta3d__info-scalesegment {
+  flex: 1;
+  height: 100%;
+}
+.peta3d__info-scalelabels {
+  display: flex;
+  justify-content: space-between;
+  width: 160px;
+  margin: 0 auto;
+  font-size: 0.7rem;
+}
+.peta3d__info-scalecaption {
+  font-size: 0.7rem;
+  color: #777;
+  margin-top: 4px;
+}
+
+.peta3d__info-legend-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.peta3d__info-legend-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.peta3d__info-legend-grouptitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 4px;
+}
+.peta3d__info-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.peta3d__info-legend-swatch {
+  width: 22px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.peta3d__info-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #444;
+}
+
+@media (min-width: 768px) {
+  .peta3d__ctrl {
+    right: 64px;
+  }
+  .peta3d__info-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .peta3d__info-panel {
+    top: 60px;
+    bottom: auto;
+    left: auto;
+    right: 12px;
+    width: 360px;
+    max-height: 85%;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transform: translateX(20px);
+  }
+  .peta3d__info-panel.is-open {
+    transform: translateX(0);
+  }
+  .peta3d__info-legend-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .peta3d__info-legend-group {
+    width: calc(50% - 6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .peta3d__info-panel {
+    transition: none;
+  }
+}

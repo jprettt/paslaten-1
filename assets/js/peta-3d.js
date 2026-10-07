@@ -111,6 +111,105 @@ function build(container, THREE) {
  ctrl.append(rotBtn, resetBtn, topBtn, lab, fsBtn);
  container.appendChild(ctrl);
  
+ // Info button
+ const infoBtn = document.createElement('button');
+ infoBtn.type = 'button';
+ infoBtn.className = 'peta3d__btn peta3d__info-btn';
+ infoBtn.setAttribute('aria-label', 'Informasi peta');
+ infoBtn.setAttribute('aria-expanded', 'false');
+ infoBtn.setAttribute('aria-controls', 'peta3d-info-panel');
+ infoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+ container.appendChild(infoBtn);
+ 
+ // Info panel
+ const infoPanel = document.createElement('div');
+ infoPanel.id = 'peta3d-info-panel';
+ infoPanel.className = 'peta3d__info-panel';
+ infoPanel.setAttribute('role', 'dialog');
+ infoPanel.setAttribute('aria-label', 'Informasi peta');
+ 
+ const closeInfoBtn = document.createElement('button');
+ closeInfoBtn.type = 'button';
+ closeInfoBtn.className = 'peta3d__btn peta3d__info-close';
+ closeInfoBtn.setAttribute('aria-label', 'Tutup panel informasi');
+ closeInfoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+ infoPanel.appendChild(closeInfoBtn);
+ 
+ const infoContent = document.createElement('div');
+ infoContent.className = 'peta3d__info-content';
+ infoPanel.appendChild(infoContent);
+ container.appendChild(infoPanel);
+ 
+ if (window.PETA3D_INFO) {
+  const data = window.PETA3D_INFO;
+  
+  const scale = document.createElement('div'); scale.className = 'peta3d__info-scale';
+  const stext = document.createElement('div'); stext.textContent = data.skala.teks; scale.appendChild(stext);
+  const sbar = document.createElement('div'); sbar.className = 'peta3d__info-scalebar';
+  for(let i=0; i<4; i++){ const sseg = document.createElement('div'); sseg.className='peta3d__info-scalesegment'; sseg.style.background = i%2===0?'#111':'#fff'; sbar.appendChild(sseg); }
+  scale.appendChild(sbar);
+  const slabels = document.createElement('div'); slabels.className = 'peta3d__info-scalelabels';
+  data.skala.label.forEach(l => { const s = document.createElement('span'); s.textContent = l; slabels.appendChild(s); });
+  scale.appendChild(slabels);
+  const scaption = document.createElement('div'); scaption.className = 'peta3d__info-scalecaption'; scaption.textContent = data.skala.catatan; scale.appendChild(scaption);
+  infoContent.appendChild(scale);
+  
+  const legTitle = document.createElement('div'); legTitle.className = 'peta3d__info-legend-title'; legTitle.textContent = 'KETERANGAN'; infoContent.appendChild(legTitle);
+  const legGrid = document.createElement('div'); legGrid.className = 'peta3d__info-legend-grid';
+  data.legenda.forEach(group => {
+   const gdiv = document.createElement('div'); gdiv.className = 'peta3d__info-legend-group';
+   const gt = document.createElement('div'); gt.className = 'peta3d__info-legend-grouptitle'; gt.textContent = group.judul; gdiv.appendChild(gt);
+   group.item.forEach(it => {
+    const item = document.createElement('div'); item.className = 'peta3d__info-legend-item';
+    const swatch = document.createElement('div'); swatch.className = 'peta3d__info-legend-swatch';
+    if(it.tipe === 'garis-putus') swatch.style.background = '#444';
+    const swInner = document.createElement('div');
+    if(it.tipe === 'kotak'){ swInner.style.width='100%'; swInner.style.height='100%'; swInner.style.background = it.warna; }
+    else if(it.tipe === 'garis'){ swInner.style.width='100%'; swInner.style.height=it.tebal+'px'; swInner.style.background = it.warna; swInner.style.marginTop=((12-it.tebal)/2)+'px'; }
+    else if(it.tipe === 'garis-putus'){ swInner.style.width='100%'; swInner.style.height=it.tebal+'px'; swInner.style.borderTop=it.tebal+'px dashed '+it.warna; swInner.style.marginTop=((12-it.tebal)/2)+'px'; }
+    swatch.appendChild(swInner); item.appendChild(swatch);
+    const l = document.createElement('span'); l.textContent = it.label; item.appendChild(l);
+    gdiv.appendChild(item);
+   });
+   legGrid.appendChild(gdiv);
+  });
+  infoContent.appendChild(legGrid);
+  
+  const div2 = document.createElement('hr'); div2.className = 'peta3d__info-divider'; infoContent.appendChild(div2);
+  const footer = document.createElement('div'); footer.className = 'peta3d__info-footer';
+  data.produksi.forEach(p => { const d = document.createElement('div'); d.textContent = p; footer.appendChild(d); });
+  const st = document.createElement('div'); st.style.marginTop='8px'; st.textContent='SUMBER:'; footer.appendChild(st);
+  data.sumber.forEach(s => { const d = document.createElement('div'); d.textContent = '- '+s; footer.appendChild(d); });
+  infoContent.appendChild(footer);
+ }
+ 
+ let infoOpen = false;
+ function toggleInfo() {
+  infoOpen = !infoOpen;
+  if(infoOpen){
+   infoPanel.classList.add('is-open');
+   infoBtn.setAttribute('aria-expanded', 'true');
+   closeInfoBtn.focus();
+  } else {
+   infoPanel.classList.remove('is-open');
+   infoBtn.setAttribute('aria-expanded', 'false');
+   infoBtn.focus();
+  }
+ }
+ infoBtn.onclick = toggleInfo;
+ closeInfoBtn.onclick = toggleInfo;
+ 
+ ['pointerdown','pointermove','pointerup','wheel','touchstart','touchmove','touchend'].forEach(evt => {
+  infoPanel.addEventListener(evt, e => e.stopPropagation(), {passive:false});
+ });
+ 
+ document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && infoOpen) toggleInfo();
+ });
+ canvas.addEventListener('pointerdown', e => {
+  if(infoOpen && window.innerWidth >= 768) toggleInfo();
+ });
+ 
  // Instructions text
  const instText = document.createElement('div');
  instText.className = 'peta3d__instructions';
