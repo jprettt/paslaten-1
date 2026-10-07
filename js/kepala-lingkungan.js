@@ -115,8 +115,8 @@
   function renderCard(item) {
     var indexText = formatIndex(item.lingkungan);
 
-    var kepalaHtml = renderPersonRow(item.kepala, 'Kepala Lingkungan', 'kepala');
-    var wakilHtml = renderPersonRow(item.wakil, 'Wakil Kepala Lingkungan', 'wakil');
+    var kepalaHtml = renderPersonRow(item.kepala, 'Kepala Lingkungan (Data 2026)', 'kepala');
+    var wakilHtml = renderPersonRow(item.wakil, 'Wakil Kepala Lingkungan (Data 2026)', 'wakil');
 
     return '<article class="kl-card" role="listitem" aria-label="Lingkungan ' + esc(item.lingkungan) + '">' +
       '<div class="kl-card-header">' +

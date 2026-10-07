@@ -6264,6 +6264,7 @@ footer {
 .kkt-divisi-group {
     margin-top: 3.5rem; /* ~56px jarak antar section */
     position: relative;
+    overflow: hidden;
 }
 
 /* Background Silhouette Icons */
@@ -6461,6 +6462,8 @@ footer {
 /* Pengurus Inti Layout */
 .kkt-pengurus-inti {
     margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .kkt-tree {

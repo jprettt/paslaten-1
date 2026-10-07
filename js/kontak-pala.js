@@ -83,7 +83,7 @@
   function renderCardSide(item, isWakil) {
     var person = isWakil ? item.wakil : item.pala;
     var sideClass = isWakil ? 'pala-card-back' : 'pala-card-front';
-    var labelTop = isWakil ? 'Wakil Pala' : 'Pala';
+    var labelTop = isWakil ? 'Wakil Pala (Data 2026)' : 'Pala (Data 2026)';
     var labelNama = isWakil ? 'Nama Wakil Pala' : 'Nama Pala';
     var hintText = isWakil ? 'Ketuk untuk lihat Pala' : 'Ketuk untuk lihat Wakil';
     var numText = formatNumber(item.lingkungan);

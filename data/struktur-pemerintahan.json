@@ -9,7 +9,7 @@
   "nodes": [
     {
       "id": "lurah",
-      "jabatan": "Lurah Paslaten Satu",
+      "jabatan": "Lurah Paslaten Satu (Data 2026)",
       "labelTingkat": "Tingkat 1 · Pimpinan",
       "kategori": "administrator",
       "eselon": "IV/a",
@@ -27,7 +27,7 @@
     },
     {
       "id": "sekretaris",
-      "jabatan": "Sekretaris Kelurahan",
+      "jabatan": "Sekretaris Kelurahan (Data 2026)",
       "labelTingkat": "Tingkat 2 · Pengawas",
       "kategori": "pengawas",
       "eselon": "IV/b",

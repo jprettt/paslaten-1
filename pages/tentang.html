@@ -1,1014 +1,919 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="utf-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
 
-    <meta
-      name="description"
-      content="Tentang Kelurahan Paslaten 1 — gambaran umum, wilayah, pemerintahan, dan struktur organisasi."
-    />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Tentang Paslaten 1 — Kelurahan Paslaten 1, Kota Tomohon</title>
+  <meta name="description"
+    content="Tentang Kelurahan Paslaten 1 — gambaran umum, wilayah, pemerintahan, dan struktur organisasi." />
 
-    <link href="../css/style.css" rel="stylesheet" />
+  <title>Tentang Paslaten 1 — Kelurahan Paslaten 1, Kota Tomohon</title>
 
-    <!-- =====================================================
+  <link href="../css/style.css" rel="stylesheet" />
+
+  <!-- =====================================================
          STYLE KHUSUS SECTION WILAYAH
          ===================================================== -->
 
-    <style>
-      /* =====================================================
+  <style>
+    /* =====================================================
            WILAYAH SECTION
            ===================================================== */
 
-      .about-region-section {
-        position: relative;
+    .about-region-section {
+      position: relative;
 
-        overflow: hidden;
+      overflow: hidden;
 
-        color: #ffffff;
+      color: #ffffff;
 
-        background: linear-gradient(145deg, #154f45, #0f473e);
-      }
+      background: linear-gradient(145deg, #154f45, #0f473e);
+    }
 
-      /* =====================================================
+    /* =====================================================
            LAYOUT UTAMA
            ===================================================== */
 
-      .about-region-layout {
-        display: grid;
+    .about-region-layout {
+      display: grid;
 
-        grid-template-columns:
-          minmax(0, 0.75fr)
-          minmax(0, 1.25fr);
+      grid-template-columns:
+        minmax(0, 0.75fr) minmax(0, 1.25fr);
 
-        gap: clamp(2rem, 5vw, 4rem);
+      gap: clamp(2rem, 5vw, 4rem);
 
-        align-items: start;
-      }
+      align-items: start;
+    }
 
-      /* =====================================================
+    /* =====================================================
            BAGIAN KIRI
            ===================================================== */
 
-      .about-region-title h2 {
-        margin: 0.45rem 0 0;
+    .about-region-title h2 {
+      margin: 0.45rem 0 0;
 
-        color: #ffffff;
+      color: #ffffff;
 
-        font-family: var(--font-heading);
+      font-family: var(--font-heading);
 
-        font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
 
-        line-height: 1.05;
+      line-height: 1.05;
 
-        letter-spacing: -0.04em;
-      }
+      letter-spacing: -0.04em;
+    }
 
-      .about-region-word {
-        margin-top: 2.4rem;
+    .about-region-word {
+      margin-top: 2.4rem;
 
-        color: rgba(240, 208, 128, 0.13);
+      color: rgba(240, 208, 128, 0.13);
 
-        font-family: var(--font-heading);
+      font-family: var(--font-heading);
 
-        font-size: clamp(3.4rem, 8vw, 7rem);
+      font-size: clamp(3.4rem, 8vw, 7rem);
 
-        font-weight: 700;
+      font-weight: 700;
 
-        line-height: 0.9;
+      line-height: 0.9;
 
-        letter-spacing: -0.06em;
-      }
+      letter-spacing: -0.06em;
+    }
 
-      /* =====================================================
+    /* =====================================================
            BAGIAN KANAN
            ===================================================== */
 
-      .about-region-content {
-        min-width: 0;
-      }
+    .about-region-content {
+      min-width: 0;
+    }
 
-      .about-region-description {
-        max-width: 680px;
+    .about-region-description {
+      max-width: 680px;
 
-        margin: 0 0 1.5rem;
+      margin: 0 0 1.5rem;
 
-        color: rgba(255, 255, 255, 0.74);
+      color: rgba(255, 255, 255, 0.74);
 
-        font-family: var(--font-body);
+      font-family: var(--font-body);
 
-        font-size: 0.9rem;
+      font-size: 0.9rem;
 
-        line-height: 1.8;
-      }
+      line-height: 1.8;
+    }
 
-      /* =====================================================
+    /* =====================================================
            GRID CARD
            ===================================================== */
 
-      .region-card-grid {
-        display: grid;
+    .region-card-grid {
+      display: grid;
 
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        gap: 10px;
-      }
+      gap: 10px;
+    }
 
-      /* =====================================================
+    /* =====================================================
            CARD
            ===================================================== */
 
-      .region-card {
-        position: relative;
+    .region-card {
+      position: relative;
 
-        min-height: 118px;
+      min-height: 118px;
 
-        padding: 1.15rem;
+      padding: 1.15rem;
 
-        overflow: hidden;
+      overflow: hidden;
 
-        border: 1px solid rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255, 255, 255, 0.11);
 
-        border-radius: 16px;
+      border-radius: 16px;
 
-        background: rgba(255, 255, 255, 0.055);
+      background: rgba(255, 255, 255, 0.055);
 
-        backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
 
-        -webkit-backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
 
-        transition:
-          transform 0.22s ease,
-          background-color 0.22s ease,
-          border-color 0.22s ease;
-      }
+      transition:
+        transform 0.22s ease,
+        background-color 0.22s ease,
+        border-color 0.22s ease;
+    }
 
-      .region-card:hover {
-        transform: translateY(-3px);
+    .region-card:hover {
+      transform: translateY(-3px);
 
-        border-color: rgba(240, 208, 128, 0.25);
+      border-color: rgba(240, 208, 128, 0.25);
 
-        background: rgba(255, 255, 255, 0.085);
-      }
+      background: rgba(255, 255, 255, 0.085);
+    }
 
-      /* =====================================================
+    /* =====================================================
            KELURAHAN
            CARD FULL WIDTH
            ===================================================== */
 
-      .region-card--featured {
-        grid-column: 1 / -1;
+    .region-card--featured {
+      grid-column: 1 / -1;
 
-        min-height: 135px;
+      min-height: 135px;
 
-        border-color: rgba(240, 208, 128, 0.22);
+      border-color: rgba(240, 208, 128, 0.22);
 
-        background: rgba(255, 255, 255, 0.085);
-      }
+      background: rgba(255, 255, 255, 0.085);
+    }
 
-      /* =====================================================
+    /* =====================================================
            LABEL
            ===================================================== */
 
-      .region-card dt {
-        position: relative;
+    .region-card dt {
+      position: relative;
 
-        z-index: 2;
+      z-index: 2;
 
-        margin: 0;
+      margin: 0;
 
-        color: var(--color-gold-light);
+      color: var(--color-gold-light);
 
-        font-family: var(--font-body);
+      font-family: var(--font-body);
 
-        font-size: 0.65rem;
+      font-size: 0.65rem;
 
-        font-weight: 700;
+      font-weight: 700;
 
-        letter-spacing: 0.1em;
+      letter-spacing: 0.1em;
 
-        text-transform: uppercase;
-      }
+      text-transform: uppercase;
+    }
 
-      /* =====================================================
+    /* =====================================================
            VALUE
            ===================================================== */
 
-      .region-card dd {
-        position: relative;
+    .region-card dd {
+      position: relative;
 
-        z-index: 2;
+      z-index: 2;
 
-        margin: 0.65rem 0 0;
+      margin: 0.65rem 0 0;
 
-        color: #ffffff;
+      color: #ffffff;
 
-        font-family: var(--font-heading);
+      font-family: var(--font-heading);
 
-        font-size: clamp(1.05rem, 2vw, 1.35rem);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
 
-        font-weight: 650;
+      font-weight: 650;
 
-        line-height: 1.25;
+      line-height: 1.25;
 
-        letter-spacing: -0.02em;
-      }
+      letter-spacing: -0.02em;
+    }
 
-      .region-card--featured dd {
-        font-size: clamp(1.45rem, 3vw, 2rem);
-      }
+    .region-card--featured dd {
+      font-size: clamp(1.45rem, 3vw, 2rem);
+    }
 
-      /* =====================================================
+    /* =====================================================
            DECORATIVE NUMBER
            ===================================================== */
 
-      .region-card-number {
-        position: absolute;
+    .region-card-number {
+      position: absolute;
 
-        right: 0.75rem;
+      right: 0.75rem;
 
-        bottom: -0.8rem;
+      bottom: -0.8rem;
 
-        z-index: 0;
+      z-index: 0;
 
-        color: rgba(255, 255, 255, 0.045);
+      color: rgba(255, 255, 255, 0.045);
 
-        font-family: var(--font-heading);
+      font-family: var(--font-heading);
 
-        font-size: 5rem;
+      font-size: 5rem;
 
-        font-weight: 700;
+      font-weight: 700;
 
-        line-height: 1;
+      line-height: 1;
 
-        pointer-events: none;
-      }
+      pointer-events: none;
+    }
 
-      .region-card--featured .region-card-number {
-        color: rgba(240, 208, 128, 0.06);
+    .region-card--featured .region-card-number {
+      color: rgba(240, 208, 128, 0.06);
 
-        font-size: 6rem;
-      }
+      font-size: 6rem;
+    }
 
-      /* =====================================================
+    /* =====================================================
            TABLET
            ===================================================== */
 
-      @media (max-width: 900px) {
-        .about-region-layout {
-          grid-template-columns: 1fr;
+    @media (max-width: 900px) {
+      .about-region-layout {
+        grid-template-columns: 1fr;
 
-          gap: 2rem;
-        }
-
-        .about-region-word {
-          margin-top: 1.5rem;
-
-          font-size: clamp(3rem, 12vw, 5rem);
-        }
+        gap: 2rem;
       }
 
-      /* =====================================================
+      .about-region-word {
+        margin-top: 1.5rem;
+
+        font-size: clamp(3rem, 12vw, 5rem);
+      }
+    }
+
+    /* =====================================================
            MOBILE
            ===================================================== */
 
-      @media (max-width: 640px) {
-        .about-region-layout {
-          gap: 1.5rem;
-        }
+    @media (max-width: 640px) {
+      .about-region-layout {
+        gap: 1.5rem;
+      }
 
-        .about-region-title h2 {
-          max-width: 300px;
+      .about-region-title h2 {
+        max-width: 300px;
 
-          font-size: clamp(1.65rem, 8vw, 2.15rem);
-        }
+        font-size: clamp(1.65rem, 8vw, 2.15rem);
+      }
 
-        .about-region-word {
-          margin-top: 1.15rem;
+      .about-region-word {
+        margin-top: 1.15rem;
 
-          font-size: 3.4rem;
-        }
+        font-size: 3.4rem;
+      }
 
-        .about-region-description {
-          margin-bottom: 1.15rem;
+      .about-region-description {
+        margin-bottom: 1.15rem;
 
-          font-size: 0.78rem;
+        font-size: 0.78rem;
 
-          line-height: 1.7;
-        }
+        line-height: 1.7;
+      }
 
-        /*
+      /*
              * TETAP 2 KOLOM DI MOBILE
              * sesuai permintaan.
              */
 
-        .region-card-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+      .region-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
 
-          gap: 8px;
-        }
+        gap: 8px;
+      }
 
-        /*
+      /*
              * Kelurahan tetap full kiri-kanan.
              */
 
-        .region-card--featured {
-          grid-column: 1 / -1;
+      .region-card--featured {
+        grid-column: 1 / -1;
 
-          min-height: 110px;
-        }
-
-        .region-card {
-          min-height: 105px;
-
-          padding: 1rem;
-
-          border-radius: 14px;
-        }
-
-        .region-card dt {
-          font-size: 0.57rem;
-
-          letter-spacing: 0.08em;
-        }
-
-        .region-card dd {
-          margin-top: 0.55rem;
-
-          font-size: 0.9rem;
-        }
-
-        .region-card--featured dd {
-          font-size: 1.3rem;
-        }
-
-        .region-card-number {
-          right: 0.45rem;
-
-          bottom: -0.55rem;
-
-          font-size: 4rem;
-        }
-
-        .region-card--featured .region-card-number {
-          font-size: 4.8rem;
-        }
+        min-height: 110px;
       }
 
-      /* =====================================================
+      .region-card {
+        min-height: 105px;
+
+        padding: 1rem;
+
+        border-radius: 14px;
+      }
+
+      .region-card dt {
+        font-size: 0.57rem;
+
+        letter-spacing: 0.08em;
+      }
+
+      .region-card dd {
+        margin-top: 0.55rem;
+
+        font-size: 0.9rem;
+      }
+
+      .region-card--featured dd {
+        font-size: 1.3rem;
+      }
+
+      .region-card-number {
+        right: 0.45rem;
+
+        bottom: -0.55rem;
+
+        font-size: 4rem;
+      }
+
+      .region-card--featured .region-card-number {
+        font-size: 4.8rem;
+      }
+    }
+
+    /* =====================================================
            VERY SMALL MOBILE
            ===================================================== */
 
-      @media (max-width: 350px) {
-        .region-card {
-          padding: 0.85rem;
-        }
-
-        .region-card dt {
-          font-size: 0.52rem;
-        }
-
-        .region-card dd {
-          font-size: 0.82rem;
-        }
+    @media (max-width: 350px) {
+      .region-card {
+        padding: 0.85rem;
       }
-    </style>
-  </head>
 
-  <body class="about-page modern-inner-page">
-    <!-- =====================================================
+      .region-card dt {
+        font-size: 0.52rem;
+      }
+
+      .region-card dd {
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="about-page modern-inner-page">
+  <!-- =====================================================
          NAVBAR
          ===================================================== -->
 
-    <header>
-      <nav aria-label="Navigasi utama" id="navbar">
-        <div class="navbar-inner">
-          <!-- BRAND -->
+  <header>
+    <nav aria-label="Navigasi utama" id="navbar">
+      <div class="navbar-inner">
+        <!-- BRAND -->
 
-          <div class="nav-brand">
-            <a class="nav-brand-link" href="../index.html">
-              <img
-                alt="Logo Kota Tomohon"
-                class="nav-logo-img"
-                src="../assets/images/hero/logo tomohon.png"
-              />
+        <div class="nav-brand">
+          <a class="nav-brand-link" href="../index.html">
+            <img alt="Logo Kota Tomohon" class="nav-logo-img" src="../assets/images/hero/logo tomohon.png" />
 
-              <div class="nav-brand-text">
-                <span class="nav-brand-title"> PASLATEN 1 </span>
+            <div class="nav-brand-text">
+              <span class="nav-brand-title"> PASLATEN 1 </span>
 
-                <span class="nav-brand-subtitle"> Tomohon Timur </span>
-              </div>
-            </a>
-          </div>
-
-          <!-- DESKTOP NAV -->
-
-          <ul class="nav-menu" id="nav-menu">
-            <li>
-              <a href="../index.html"> Beranda </a>
-            </li>
-
-            <li>
-              <a class="active" href="tentang.html"> Tentang Paslaten </a>
-            </li>
-
-            <li>
-              <a href="sejarah.html"> Sejarah </a>
-            </li>
-
-            <li>
-              <a href="statistik.html"> Statistik </a>
-            </li>
-
-            <li>
-              <a href="galeri.html"> Galeri </a>
-            </li>
-
-            <li>
-              <a href="anggota-kkt.html"> Anggota KKT </a>
-            </li>
-
-            <li>
-              <a href="kontak.html"> Kontak </a>
-            </li>
-          </ul>
-
-          <!-- HAMBURGER -->
-
-          <button
-            aria-controls="drawer-menu"
-            aria-expanded="false"
-            aria-label="Buka menu"
-            class="nav-hamburger"
-            id="nav-hamburger"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+              <span class="nav-brand-subtitle"> Tomohon Timur </span>
+            </div>
+          </a>
         </div>
-      </nav>
-    </header>
 
-    <!-- =====================================================
+        <!-- DESKTOP NAV -->
+
+        <ul class="nav-menu" id="nav-menu">
+          <li>
+            <a href="../index.html"> Beranda </a>
+          </li>
+
+          <li>
+            <a class="active" href="tentang.html"> Tentang Paslaten </a>
+          </li>
+
+          <li>
+            <a href="sejarah.html"> Sejarah </a>
+          </li>
+
+          <li>
+            <a href="statistik.html"> Statistik </a>
+          </li>
+
+          <li>
+            <a href="galeri.html"> Galeri </a>
+          </li>
+
+          <li>
+            <a href="anggota-kkt.html"> Anggota KKT </a>
+          </li>
+
+          <li>
+            <a href="kontak.html"> Kontak </a>
+          </li>
+        </ul>
+
+        <!-- HAMBURGER -->
+
+        <button aria-controls="drawer-menu" aria-expanded="false" aria-label="Buka menu" class="nav-hamburger"
+          id="nav-hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =====================================================
          DRAWER BACKDROP
          ===================================================== -->
 
-    <div aria-hidden="true" class="drawer-backdrop" id="drawer-backdrop"></div>
+  <div aria-hidden="true" class="drawer-backdrop" id="drawer-backdrop"></div>
 
-    <!-- =====================================================
+  <!-- =====================================================
          DRAWER
          ===================================================== -->
 
-    <aside
-      aria-hidden="true"
-      aria-label="Menu navigasi"
-      class="drawer"
-      id="drawer-menu"
-      role="dialog"
-    >
-      <div class="drawer-header">
-        <div class="drawer-brand">
-          <img
-            alt="Logo Tomohon"
-            class="drawer-logo"
-            src="../assets/images/hero/logo tomohon.png"
-          />
+  <aside aria-hidden="true" aria-label="Menu navigasi" class="drawer" id="drawer-menu" role="dialog">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img alt="Logo Tomohon" class="drawer-logo" src="../assets/images/hero/logo tomohon.png" />
 
-          <div class="drawer-brand-text">
-            <span class="drawer-brand-title"> Paslaten 1 </span>
+        <div class="drawer-brand-text">
+          <span class="drawer-brand-title"> Paslaten 1 </span>
 
-            <span class="drawer-brand-sub"> Kota Tomohon </span>
-          </div>
+          <span class="drawer-brand-sub"> Kota Tomohon </span>
         </div>
-
-        <button aria-label="Tutup menu" class="drawer-close" id="drawer-close">
-          <svg fill="none" height="22" viewBox="0 0 22 22" width="22">
-            <path
-              d="M5 5l12 12M17 5L5 17"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-width="2"
-            ></path>
-          </svg>
-        </button>
       </div>
 
-      <nav aria-label="Menu halaman">
-        <ul class="drawer-nav">
-          <!-- BERANDA -->
+      <button aria-label="Tutup menu" class="drawer-close" id="drawer-close">
+        <svg fill="none" height="22" viewBox="0 0 22 22" width="22">
+          <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="../index.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M3 12L12 3l9 9"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
+    <nav aria-label="Menu halaman">
+      <ul class="drawer-nav">
+        <!-- BERANDA -->
 
-                  <path
-                    d="M9 21V12h6v9"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="../index.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path d="M3 12L12 3l9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"></path>
 
-              <span class="drawer-link-text"> Beranda </span>
-            </a>
-          </li>
+                <path d="M9 21V12h6v9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- TENTANG -->
+            <span class="drawer-link-text"> Beranda </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link active" href="tentang.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <circle
-                    cx="12"
-                    cy="8"
-                    r="4"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  ></circle>
+        <!-- TENTANG -->
 
-                  <path
-                    d="M4 20c0-4 3.6-7 8-7s8 3 8 7"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link active" href="tentang.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"></circle>
 
-              <span class="drawer-link-text"> Tentang Paslaten </span>
-            </a>
-          </li>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+                </path>
+              </svg>
+            </span>
 
-          <!-- SEJARAH -->
+            <span class="drawer-link-text"> Tentang Paslaten </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="sejarah.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2a10 10 0 100 20A10 10 0 0012 2z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  ></path>
+        <!-- SEJARAH -->
 
-                  <path
-                    d="M12 6v6l4 2"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="sejarah.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"></path>
 
-              <span class="drawer-link-text"> Sejarah </span>
-            </a>
-          </li>
+                <path d="M12 6v6l4 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- STATISTIK -->
+            <span class="drawer-link-text"> Sejarah </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="statistik.html">
-              <span class="drawer-icon">
-                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M5 19V11M12 19V5M19 19V8"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
+        <!-- STATISTIK -->
 
-                  <path
-                    d="M3 19h18"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="statistik.html">
+            <span class="drawer-icon">
+              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                <path d="M5 19V11M12 19V5M19 19V8" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
 
-              <span class="drawer-link-text"> Statistik </span>
-            </a>
-          </li>
+                <path d="M3 19h18" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- GALERI -->
+            <span class="drawer-link-text"> Statistik </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="galeri.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <rect
-                    height="18"
-                    rx="3"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    width="18"
-                    x="3"
-                    y="3"
-                  ></rect>
+        <!-- GALERI -->
 
-                  <circle
-                    cx="8.5"
-                    cy="8.5"
-                    r="1.5"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  ></circle>
+        <li class="drawer-item">
+          <a class="drawer-link" href="galeri.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <rect height="18" rx="3" stroke="currentColor" stroke-width="2" width="18" x="3" y="3"></rect>
 
-                  <path
-                    d="M21 15l-5-5L5 21"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+                <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"></circle>
 
-              <span class="drawer-link-text"> Galeri </span>
-            </a>
-          </li>
+                <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- ANGGOTA KKT -->
-          <li class="drawer-item">
-            <a href="anggota-kkt.html" class="drawer-link">
-              <span class="drawer-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </span>
-              <span class="drawer-link-text"> Anggota KKT </span>
-            </a>
-          </li>
+            <span class="drawer-link-text"> Galeri </span>
+          </a>
+        </li>
 
-          <!-- KONTAK -->
+        <!-- ANGGOTA KKT -->
+        <li class="drawer-item">
+          <a href="anggota-kkt.html" class="drawer-link">
+            <span class="drawer-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </span>
+            <span class="drawer-link-text"> Anggota KKT </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="kontak.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <!-- KONTAK -->
 
-              <span class="drawer-link-text"> Kontak </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <li class="drawer-item">
+          <a class="drawer-link" href="kontak.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
+                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </span>
 
-      <div class="drawer-footer">
-        <p>Kelurahan Paslaten 1</p>
+            <span class="drawer-link-text"> Kontak </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-        <p>Kecamatan Tomohon Timur</p>
-      </div>
-    </aside>
+    <div class="drawer-footer">
+      <p>Kelurahan Paslaten 1</p>
 
-    <!-- =====================================================
+      <p>Kecamatan Tomohon Timur</p>
+    </div>
+  </aside>
+
+  <!-- =====================================================
          MAIN
          ===================================================== -->
 
-    <main>
-      <!-- =================================================
+  <main>
+    <!-- =================================================
              HERO
              ================================================= -->
 
-      <section
-        aria-labelledby="about-title"
-        class="editorial-hero about-modern-hero"
-      >
-        <div class="container editorial-hero-inner">
-          <div class="editorial-hero-copy">
-            <span class="editorial-eyebrow"> TENTANG KELURAHAN </span>
+    <section aria-labelledby="about-title" class="editorial-hero about-modern-hero">
+      <div class="container editorial-hero-inner">
+        <div class="editorial-hero-copy">
+          <span class="editorial-eyebrow"> TENTANG KELURAHAN </span>
 
-            <h1 id="about-title">Paslaten 1</h1>
+          <h1 id="about-title">Paslaten 1</h1>
 
-            <p class="editorial-hero-subtitle">Tomohon Timur</p>
+          <p class="editorial-hero-subtitle">Tomohon Timur</p>
 
-            <span aria-hidden="true" class="editorial-hero-divider"></span>
-          </div>
-
-          <div aria-hidden="true" class="editorial-hero-art about-modern-art">
-            <img
-              alt=""
-              class="about-modern-tower"
-              src="../assets/images/tentang/menara.png"
-            />
-          </div>
+          <span aria-hidden="true" class="editorial-hero-divider"></span>
         </div>
-      </section>
 
-      <!-- =================================================
+        <div aria-hidden="true" class="editorial-hero-art about-modern-art">
+          <img alt="" class="about-modern-tower" src="../assets/images/tentang/menara.png" />
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================
              JUMP NAVIGATION
              ================================================= -->
 
-      <nav aria-label="Navigasi isi halaman Tentang" class="editorial-jump">
-        <div class="container editorial-jump-inner">
-          <a href="#gambaran-umum"> Gambaran Umum </a>
+    <nav aria-label="Navigasi isi halaman Tentang" class="editorial-jump">
+      <div class="container editorial-jump-inner">
+        <a href="#gambaran-umum"> Gambaran Umum </a>
 
-          <a href="#wilayah"> Wilayah </a>
+        <a href="#wilayah"> Wilayah </a>
 
-          <a href="#struktur-pemerintahan"> Struktur Pemerintahan </a>
+        <a href="#struktur-pemerintahan"> Struktur Pemerintahan </a>
 
-          <a href="#kepala-lingkungan"> Kepala Lingkungan </a>
-        </div>
-      </nav>
+        <a href="#kepala-lingkungan"> Kepala Lingkungan </a>
+      </div>
+    </nav>
 
-      <!-- =================================================
+    <!-- =================================================
              GAMBARAN UMUM
              ================================================= -->
 
-      <section class="editorial-section" id="gambaran-umum">
-        <div class="container">
-          <div class="editorial-heading">
-            <span class="editorial-kicker"> GAMBARAN UMUM </span>
+    <section class="editorial-section" id="gambaran-umum">
+      <div class="container">
+        <div class="editorial-heading">
+          <span class="editorial-kicker"> GAMBARAN UMUM </span>
 
-            <h2>Kelurahan Paslaten 1</h2>
-          </div>
-
-          <div class="about-story-grid">
-            <article class="about-story-card">
-              <p>
-                Kelurahan Paslaten 1 (atau Paslaten 1) adalah salah satu
-                kelurahan yang berada di wilayah Kecamatan Tomohon Timur, Kota
-                Tomohon, Provinsi Sulawesi Utara. Kota Tomohon dikenal sebagai
-                kota bunga dan kota pariwisata di Sulawesi Utara, dan Paslaten 1
-                merupakan bagian dari kawasan kota tersebut.
-              </p>
-
-              <p>
-                Wilayah Paslaten 1 berada di dataran tinggi dengan ketinggian
-                sekitar 927 meter di atas permukaan laut. Karakter wilayah
-                dataran tinggi ini memberikan kondisi iklim yang sejuk, menjadi
-                salah satu ciri khas kawasan Tomohon secara umum.
-              </p>
-            </article>
-
-            <aside aria-label="Ringkasan wilayah" class="about-fact-rail">
-              <div>
-                <strong> 2,96 </strong>
-
-                <span> km² </span>
-
-                <small> Luas Wilayah </small>
-              </div>
-
-              <div>
-                <strong> ±927 </strong>
-
-                <span> mdpl </span>
-
-                <small> Ketinggian </small>
-              </div>
-
-              <div>
-                <strong> 95446 </strong>
-
-                <small> Kode Pos </small>
-              </div>
-            </aside>
-          </div>
+          <h2>Kelurahan Paslaten 1</h2>
         </div>
-      </section>
 
-      <!-- =================================================
+        <div class="about-story-grid">
+          <article class="about-story-card">
+            <p>
+              Kelurahan Paslaten 1 (atau Paslaten 1) adalah salah satu
+              kelurahan yang berada di wilayah Kecamatan Tomohon Timur, Kota
+              Tomohon, Provinsi Sulawesi Utara. Kota Tomohon dikenal sebagai
+              kota bunga dan kota pariwisata di Sulawesi Utara, dan Paslaten 1
+              merupakan bagian dari kawasan kota tersebut.
+            </p>
+
+            <p>
+              Wilayah Paslaten 1 berada di dataran tinggi dengan ketinggian
+              sekitar 927 meter di atas permukaan laut. Karakter wilayah
+              dataran tinggi ini memberikan kondisi iklim yang sejuk, menjadi
+              salah satu ciri khas kawasan Tomohon secara umum.
+            </p>
+          </article>
+
+          <aside aria-label="Ringkasan wilayah" class="about-fact-rail">
+            <div>
+              <strong> 2,96 </strong>
+
+              <span> km² </span>
+
+              <small> Luas Wilayah </small>
+            </div>
+
+            <div>
+              <strong> ±927 </strong>
+
+              <span> mdpl </span>
+
+              <small> Ketinggian </small>
+            </div>
+
+            <div>
+              <strong> 95446 </strong>
+
+              <small> Kode Pos </small>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================
              LETAK DAN KONDISI WILAYAH
              ================================================= -->
 
-      <section class="editorial-section about-region-section" id="wilayah">
-        <div class="container about-region-layout">
-          <!-- =========================================
+    <section class="editorial-section about-region-section" id="wilayah">
+      <div class="container about-region-layout">
+        <!-- =========================================
                      TITLE
                      ========================================= -->
 
-          <div class="about-region-title">
-            <span class="editorial-kicker editorial-kicker--light">
-              GEOGRAFIS
-            </span>
+        <div class="about-region-title">
+          <span class="editorial-kicker editorial-kicker--light">
+            GEOGRAFIS
+          </span>
 
-            <h2>Letak dan Kondisi Wilayah</h2>
+          <h2>Letak dan Kondisi Wilayah</h2>
 
-            <div class="about-region-word">Wilayah</div>
-          </div>
+          <div class="about-region-word">Wilayah</div>
+        </div>
 
-          <!-- =========================================
+        <!-- =========================================
                      CONTENT
                      ========================================= -->
 
-          <div class="about-region-content">
-            <p class="about-region-description">
-              Paslaten 1 terletak dalam kawasan dataran tinggi Kota Tomohon yang
-              memiliki konteks geografis berkaitan dengan kawasan Gunung Lokon
-              dan Gunung Mahawu — dua gunung berapi yang menjadi bagian dari
-              lanskap geografis Kota Tomohon dan sekitarnya.
-            </p>
+        <div class="about-region-content">
+          <p class="about-region-description">
+            Paslaten 1 terletak dalam kawasan dataran tinggi Kota Tomohon yang
+            memiliki konteks geografis berkaitan dengan kawasan Gunung Lokon
+            dan Gunung Mahawu — dua gunung berapi yang menjadi bagian dari
+            lanskap geografis Kota Tomohon dan sekitarnya.
+          </p>
 
-            <!-- =====================================
+          <!-- =====================================
                          CARD GRID
                          ===================================== -->
 
-            <dl class="region-card-grid">
-              <!-- ===============================
+          <dl class="region-card-grid">
+            <!-- ===============================
                              01 KELURAHAN
                              FULL WIDTH
                              =============================== -->
 
-              <div class="region-card region-card--featured">
-                <dt>Kelurahan</dt>
+            <div class="region-card region-card--featured">
+              <dt>Kelurahan</dt>
 
-                <dd>Paslaten 1</dd>
+              <dd>Paslaten 1</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 01 </span>
-              </div>
+              <span aria-hidden="true" class="region-card-number"> 01 </span>
+            </div>
 
-              <!-- ===============================
+            <!-- ===============================
                              02 KECAMATAN
                              =============================== -->
 
-              <div class="region-card">
-                <dt>Kecamatan</dt>
+            <div class="region-card">
+              <dt>Kecamatan</dt>
 
-                <dd>Tomohon Timur</dd>
+              <dd>Tomohon Timur</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 02 </span>
-              </div>
+              <span aria-hidden="true" class="region-card-number"> 02 </span>
+            </div>
 
-              <!-- ===============================
+            <!-- ===============================
                              03 KOTA
                              =============================== -->
 
-              <div class="region-card">
-                <dt>Kota</dt>
+            <div class="region-card">
+              <dt>Kota</dt>
 
-                <dd>Tomohon</dd>
+              <dd>Tomohon</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 03 </span>
-              </div>
+              <span aria-hidden="true" class="region-card-number"> 03 </span>
+            </div>
 
-              <!-- ===============================
+            <!-- ===============================
                              04 PROVINSI
                              =============================== -->
 
-              <div class="region-card">
-                <dt>Provinsi</dt>
+            <div class="region-card">
+              <dt>Provinsi</dt>
 
-                <dd>Sulawesi Utara</dd>
+              <dd>Sulawesi Utara</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 04 </span>
-              </div>
+              <span aria-hidden="true" class="region-card-number"> 04 </span>
+            </div>
 
-              <!-- ===============================
+            <!-- ===============================
                              05 KODE POS
                              =============================== -->
 
-              <div class="region-card">
-                <dt>Kode Pos</dt>
+            <div class="region-card">
+              <dt>Kode Pos</dt>
 
-                <dd>95446</dd>
+              <dd>95446</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 05 </span>
-              </div>
+              <span aria-hidden="true" class="region-card-number"> 05 </span>
+            </div>
 
-              <!-- ===============================
+            <!-- ===============================
                              06 LUAS WILAYAH
                              =============================== -->
 
-              <div class="region-card">
-                <dt>Luas Wilayah</dt>
+            <div class="region-card">
+              <dt>Luas Wilayah</dt>
 
-                <dd>2,96 km²</dd>
+              <dd>2,96 km²</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 06 </span>
-              </div>
+              <span aria-hidden="true" class="region-card-number"> 06 </span>
+            </div>
 
-              <!-- ===============================
+            <!-- ===============================
                              07 KETINGGIAN
                              =============================== -->
 
-              <div class="region-card">
-                <dt>Ketinggian</dt>
+            <div class="region-card">
+              <dt>Ketinggian</dt>
 
-                <dd>±927 mdpl</dd>
+              <dd>±927 mdpl</dd>
 
-                <span aria-hidden="true" class="region-card-number"> 07 </span>
-              </div>
-            </dl>
-          </div>
+              <span aria-hidden="true" class="region-card-number"> 07 </span>
+            </div>
+          </dl>
         </div>
-      </section>
+      </div>
+    </section>
 
 
-      <!-- =================================================
+    <!-- =================================================
            STRUKTUR PEMERINTAHAN
            ================================================= -->
 
-      <section class="editorial-section editorial-section--soft" id="struktur-pemerintahan" aria-labelledby="sp-heading">
-        <div class="container">
+    <section class="editorial-section editorial-section--soft" id="struktur-pemerintahan" aria-labelledby="sp-heading">
+      <div class="container">
 
-          <!-- ── HEADER ROW ── -->
-          <div class="sp-header-row">
-            <div class="editorial-heading editorial-heading--wide" style="margin-bottom:0;">
-              <span class="editorial-kicker">PEMERINTAHAN</span>
-              <h2 id="sp-heading">Struktur Pemerintahan</h2>
-              <p>Kelurahan Paslaten Satu &mdash; Kecamatan Tomohon Timur, Kota Tomohon</p>
-            </div>
+        <!-- ── HEADER ROW ── -->
+        <div class="sp-header-row">
+          <div class="editorial-heading editorial-heading--wide" style="margin-bottom:0;">
+            <span class="editorial-kicker">PEMERINTAHAN</span>
+            <h2 id="sp-heading">Struktur Pemerintahan</h2>
+            <p>Kelurahan Paslaten Satu &mdash; Kecamatan Tomohon Timur, Kota Tomohon (Data 2026)</p>
           </div>
-
-
-          <!-- ── BAGAN POHON ── -->
-          <div class="sp-tree" id="sp-tree" role="tree" aria-label="Bagan struktur pemerintahan">
-            <!-- Diisi oleh JS -->
-          </div>
-
         </div>
-      </section>
 
-      <!-- =================================================
+
+        <!-- ── BAGAN POHON ── -->
+        <div class="sp-tree" id="sp-tree" role="tree" aria-label="Bagan struktur pemerintahan">
+          <!-- Diisi oleh JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================
            KEPALA LINGKUNGAN
            ================================================= -->
 
-      <section class="editorial-section" id="kepala-lingkungan" aria-labelledby="kl-heading">
-        <div class="container">
-          <div class="editorial-heading editorial-heading--wide">
-            <span class="editorial-kicker">PERANGKAT KEWILAYAHAN</span>
-            <h2 id="kl-heading">Kepala Lingkungan</h2>
-            <p>Pemimpin di setiap lingkungan Kelurahan Paslaten Satu</p>
-          </div>
-
-          <div class="kl-grid" id="kl-grid" role="list" aria-label="Daftar Kepala dan Wakil Kepala Lingkungan">
-            <!-- Diisi secara dinamis oleh js/kepala-lingkungan.js -->
-          </div>
+    <section class="editorial-section" id="kepala-lingkungan" aria-labelledby="kl-heading">
+      <div class="container">
+        <div class="editorial-heading editorial-heading--wide">
+          <span class="editorial-kicker">PERANGKAT KEWILAYAHAN</span>
+          <h2 id="kl-heading">Kepala Lingkungan</h2>
+          <p>Pemimpin di setiap lingkungan Kelurahan Paslaten Satu (Data 2026)</p>
         </div>
-      </section>
 
-    </main>
+        <div class="kl-grid" id="kl-grid" role="list" aria-label="Daftar Kepala dan Wakil Kepala Lingkungan">
+          <!-- Diisi secara dinamis oleh js/kepala-lingkungan.js -->
+        </div>
+      </div>
+    </section>
 
-    <!-- =====================================================
+  </main>
+
+  <!-- =====================================================
          FOOTER
          ===================================================== -->
 
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <h3>Kelurahan Paslaten 1</h3>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3>Kelurahan Paslaten 1</h3>
 
-            <p>
-              Kecamatan Tomohon Timur, Kota Tomohon
-              <br />
-              Sulawesi Utara — Kode Pos 95446
-            </p>
+          <p>
+            Kecamatan Tomohon Timur, Kota Tomohon
+            <br />
+            Sulawesi Utara — Kode Pos 95446
+          </p>
 
-            <p
-              style="
+          <p style="
                 margin-top: 0.5rem;
                 font-size: 0.85rem;
                 color: rgba(255, 255, 255, 0.5);
-              "
-            >
-              Website Profil — KKT 149 UNSRAT Posko Paslaten 1
-            </p>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>
-            Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko
-            Paslaten 1, Kota Tomohon
+              ">
+            Website Profil — KKT 149 UNSRAT Posko Paslaten 1
           </p>
         </div>
       </div>
-    </footer>
 
-    <!-- =====================================================
+      <div class="footer-bottom">
+        <p>
+          Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko
+          Paslaten 1, Kota Tomohon
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================
          JAVASCRIPT
          ===================================================== -->
 
-    <script src="../js/main.js"></script>
-    <script src="../js/struktur-pemerintahan.js"></script>
-    <script src="../js/kepala-lingkungan.js"></script>
-  </body>
+  <script src="../js/main.js"></script>
+  <script src="../js/struktur-pemerintahan.js"></script>
+  <script src="../js/kepala-lingkungan.js"></script>
+</body>
+
 </html>
