@@ -63,6 +63,7 @@ const TEMPAT_DATA = [
     {
         nama: "SMP-SMA Lentera Harapan Tomohon",
         kategori: "Pendidikan & Kesehatan",
+        foto: "lentera harapan.jpeg",
         maps: "https://maps.app.goo.gl/7RmMv1fx5ZFRL57w9"
     },
     {
@@ -86,6 +87,7 @@ const TEMPAT_DATA = [
     {
         nama: "Terminal Beriman Tomohon",
         kategori: "Ekonomi & Kuliner",
+        foto: "terminal.jpeg",
         maps: "https://maps.app.goo.gl/Vo2is1jmB7zSh2aM9"
     },
     {
@@ -111,6 +113,7 @@ const TEMPAT_DATA = [
     {
         nama: "Menara Alfa Omega",
         kategori: "Landmark & Sejarah",
+        foto: "alfa omega.png",
         maps: "https://maps.app.goo.gl/tYqKJpTJNgrJXcxy5"
     }
 ];
