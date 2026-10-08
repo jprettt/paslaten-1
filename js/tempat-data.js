@@ -22,11 +22,13 @@ const TEMPAT_DATA = [
     {
         nama: "Gereja GMIM Maranatha Paslaten",
         kategori: "Ibadah",
+        foto: "maranatha.png",
         maps: "https://maps.app.goo.gl/U9vCzed5nggg6EWR9"
     },
     {
         nama: "Gereja GMIM Sion Tomohon",
         kategori: "Ibadah",
+        foto: "sion.png",
         maps: "https://maps.app.goo.gl/6wZN2yBnHFNaeJRn6"
     },
     {
@@ -46,6 +48,7 @@ const TEMPAT_DATA = [
     {
         nama: "Kantor Kelurahan Paslaten Satu",
         kategori: "Pemerintahan",
+        foto: "kantor lurah.jpeg",
         maps: "https://maps.app.goo.gl/xVgriAcPcfdskUNU8"
     },
     {
@@ -69,6 +72,7 @@ const TEMPAT_DATA = [
     {
         nama: "Puskesmas Pembantu Paslaten Satu",
         kategori: "Pendidikan & Kesehatan",
+        foto: "puskesmas pembantu.jpeg",
         maps: "https://maps.app.goo.gl/M2D3mqRqxas2WowE8"
     },
     {
