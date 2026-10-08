@@ -1,12 +1,7 @@
 const galeriData = [
-    { file: "gereja-katolik.jpeg", keterangan: "Gereja Katolik Paroki Trinitas Mahakudus", maps: "https://maps.app.goo.gl/6kCWuU1NB3r22EK3A" },
-    { file: "jordan-bakery.jpeg", keterangan: "Jordan Bakery", maps: "https://maps.app.goo.gl/UVgGTZqEJ8dGLvhB6" },
-    { file: "monumen-wilken.jpeg", keterangan: "Monumen Pandita N.P. Wilken", maps: "https://maps.app.goo.gl/gXpXiMtiATpjZ8pv7" },
-    { file: "pembenahan.jpeg", keterangan: "Mempercantik halaman kantor lurah" },
-    { file: "pasar-beriman.jpeg", keterangan: "Pasar Beriman Tomohon", maps: "https://maps.app.goo.gl/DUgJAGF78cpSBXJd6" },
-    { file: "pt-timur.jpeg", keterangan: "PT. Timur Jaya Dayatama", maps: "https://maps.app.goo.gl/ejkrWu5z975CA3aL6" },
     { file: "kerja-bakti.jpg", keterangan: "Kerja bakti membersihkan halaman kantor lurah" },
-    { file: "gmim.jpeg", keterangan: "Gereja GMIM Wilken Paslaten", maps: "https://maps.app.goo.gl/vex1rmHMrdZ9PHuJ6" }
+    { file: "pembenahan.jpeg", keterangan: "Mempercantik halaman kantor lurah" },
+    { file: "posyandu.jpeg", keterangan: "Kegiatan posyandu di kantor lurah" }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {

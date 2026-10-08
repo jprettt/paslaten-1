@@ -1,0 +1,399 @@
+/* =====================================================
+   tempat-penting.css
+   Styles for the "Tempat Penting" page
+   Reuses tokens & components from style.css and galeri-custom.css
+   ===================================================== */
+
+/* ── HERO VISUAL ─────────────────────────────────────── */
+.tempat-hero-visual {
+    position: relative;
+    min-height: 280px;
+    align-self: stretch;
+}
+.tempat-hero-pin {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translateY(-50%) rotate(-45deg);
+    border-radius: 50% 50% 50% 0;
+    background: rgba(201,168,76,.15);
+    border: 1px solid rgba(240,208,128,.22);
+}
+.tempat-hero-pin::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background: rgba(240,208,128,.35);
+}
+.tempat-hero-ring {
+    position: absolute;
+    right: 8rem;
+    bottom: 20px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px solid rgba(240,208,128,.14);
+}
+.tempat-hero-dot {
+    position: absolute;
+    right: 2rem;
+    top: 35px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(201,168,76,.10);
+}
+
+@media (max-width: 640px) {
+    .tempat-hero-visual {
+        position: absolute;
+        right: 0; bottom: 0;
+        width: 48%; height: 100%;
+        min-height: 0;
+    }
+    .tempat-hero-pin {
+        right: 12px;
+        width: 72px; height: 72px;
+    }
+    .tempat-hero-pin::after { width: 20px; height: 20px; }
+    .tempat-hero-ring {
+        right: 50px;
+        bottom: 10px;
+        width: 110px; height: 110px;
+    }
+    .tempat-hero-dot {
+        right: 0; top: 40px;
+        width: 60px; height: 60px;
+    }
+}
+
+/* ── FILTER BAR ──────────────────────────────────────── */
+.tempat-filter-section {
+    position: sticky;
+    top: var(--navbar-height);
+    z-index: 80;
+    padding: .7rem 0;
+    border-bottom: 1px solid rgba(26,92,80,.08);
+    background: rgba(245,248,246,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.tempat-filter-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 .5rem;
+}
+.tempat-filter-bar::-webkit-scrollbar { display: none; }
+
+.tempat-chip {
+    flex: 0 0 auto;
+    padding: .5rem .85rem;
+    border: 1px solid rgba(26,92,80,.12);
+    border-radius: 999px;
+    background: var(--color-white);
+    color: var(--color-green-dark);
+    font-family: var(--font-body);
+    font-size: .72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.tempat-chip:hover {
+    border-color: var(--color-green);
+    color: var(--color-green);
+}
+.tempat-chip:focus-visible {
+    outline: 3px solid var(--color-green);
+    outline-offset: 2px;
+}
+.tempat-chip--active {
+    background: var(--color-green);
+    color: var(--color-white);
+    border-color: var(--color-green);
+}
+.tempat-chip--active:hover {
+    background: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    color: var(--color-white);
+}
+
+/* ── GRID ────────────────────────────────────────────── */
+.tempat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 11px;
+    transition: opacity .22s ease;
+}
+.tempat-grid--fading {
+    opacity: 0;
+}
+
+/* ── RESPONSIVE BENTO GRID ───────────────────────────── */
+
+/* Tablet: 3 columns with varied spans */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .tempat-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .tempat-card:first-child,
+    .tempat-card:nth-child(5n + 4) { 
+        grid-column: span 2; 
+    }
+}
+
+/* Mobile: 2 columns, some spanning 2 */
+@media (max-width: 640px) {
+    .tempat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+    .tempat-card:first-child,
+    .tempat-card:nth-child(5n + 5) { 
+        grid-column: span 2; 
+    }
+    .tempat-card .tempat-photo-area {
+        height: 145px; /* Match mobile gallery height */
+    }
+}
+
+/* Desktop: 4 columns, bento style layout */
+@media (min-width: 1025px) {
+    .tempat-card:nth-child(8n + 1),
+    .tempat-card:nth-child(8n + 6) { 
+        grid-column: span 2; 
+        grid-row: span 2; 
+    }
+    .tempat-card:nth-child(8n + 4),
+    .tempat-card:nth-child(8n + 7) { 
+        grid-column: span 2; 
+    }
+    
+    /* Make photo area taller for row-spanning cards */
+    .tempat-card:nth-child(8n + 1) .tempat-photo-btn,
+    .tempat-card:nth-child(8n + 6) .tempat-photo-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .tempat-card:nth-child(8n + 1) .tempat-photo-area,
+    .tempat-card:nth-child(8n + 6) .tempat-photo-area {
+        flex: 1;
+        height: auto;
+        min-height: 390px; /* Match desktop gallery featured height */
+    }
+}
+
+/* ── CARD ────────────────────────────────────────────── */
+.tempat-card {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid rgba(26,92,80,.10);
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 8px 28px rgba(20,60,50,.035);
+    display: flex;
+    flex-direction: column;
+
+    /* Scroll animation initial state */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease-out, transform .6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tempat-card {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .tempat-grid--fading {
+        transition: none !important;
+    }
+}
+
+.tempat-card.tempat-animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── PHOTO AREA ──────────────────────────────────────── */
+.tempat-photo-area {
+    position: relative;
+    height: 190px; /* Match gallery default height */
+    overflow: hidden;
+    background: linear-gradient(145deg, #e7f1ec, #f6f9f7);
+}
+
+.tempat-photo-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 0;
+    overflow: hidden;
+}
+.tempat-photo-btn:focus-visible {
+    outline: 3px solid var(--color-green);
+    outline-offset: 2px;
+}
+
+.tempat-photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    transition: transform .4s ease, opacity .4s ease;
+    opacity: 0;
+}
+.tempat-photo-area img.loaded {
+    opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .tempat-photo-btn:hover .tempat-photo-area img.loaded {
+        transform: scale(1.05);
+    }
+}
+
+/* ── PLACEHOLDER (no photo) ──────────────────────────── */
+.tempat-placeholder-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.tempat-placeholder-icon {
+    width: 40px;
+    height: 40px;
+    color: rgba(26,92,80,.25);
+}
+.tempat-placeholder-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.tempat-placeholder-label {
+    display: block;
+    margin-top: .4rem;
+    color: rgba(26,92,80,.30);
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .03em;
+}
+
+/* ── BADGE ───────────────────────────────────────────── */
+.tempat-badge {
+    position: absolute;
+    left: .65rem;
+    top: .65rem;
+    z-index: 2;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--color-green-dark);
+    font-family: var(--font-heading);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* ── CAPTION ─────────────────────────────────────────── */
+.tempat-caption {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding: .8rem 1rem;
+    background: white;
+    min-height: 52px;
+}
+
+.tempat-nama {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tempat-alamat {
+    margin: 0;
+    font-size: .68rem;
+    color: var(--color-mid-gray);
+    opacity: .75;
+    line-height: 1.4;
+}
+
+.tempat-deskripsi {
+    margin: 0;
+    font-size: .72rem;
+    color: var(--color-mid-gray);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tempat-maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .68rem;
+    color: var(--color-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color .2s ease;
+    margin-top: auto;
+}
+.tempat-maps-link:hover {
+    color: var(--color-green-dark);
+}
+.tempat-maps-link svg {
+    flex-shrink: 0;
+}
+
+/* ── GALLERY CROSS-LINK ──────────────────────────────── */
+.galeri-cross-link {
+    display: block;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: .82rem;
+    color: var(--color-mid-gray);
+}
+.galeri-cross-link a {
+    color: var(--color-green);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+.galeri-cross-link a:hover {
+    color: var(--color-green-dark);
+    text-decoration: underline;
+}

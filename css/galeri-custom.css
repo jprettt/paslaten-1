@@ -104,14 +104,15 @@
     transform: translateY(0);
 }
 
-/* Mobile Pattern: 1 full, 2-2-2, 1 full */
+/* Mobile Pattern: 1st full-width, rest 2-col. Safe for any count. */
 @media (max-width: 640px) {
     /* override style.css behavior for specific layout */
     .gallery-modern-item {
         grid-column: span 1 !important;
         grid-row: span 1 !important;
     }
-    .gallery-modern-item:nth-child(8n + 1) { grid-column: span 2 !important; }
+    .gallery-modern-item:first-child { grid-column: span 2 !important; }
+    /* When more items are added, every 8th also goes full-width */
     .gallery-modern-item:nth-child(8n + 8) { grid-column: span 2 !important; }
 }
 
@@ -124,24 +125,21 @@
         grid-column: span 1 !important;
         grid-row: span 1 !important;
     }
-    .gallery-modern-item:nth-child(5n + 1) { grid-column: span 2 !important; }
-    .gallery-modern-item:nth-child(5n + 4) { grid-column: span 2 !important; }
 }
 
-/* Desktop Pattern: 4 columns, bento style */
+/* Desktop Pattern: for small counts, simple uniform grid; bento kicks in at 4+ */
 @media (min-width: 1025px) {
     .gallery-modern-item {
         grid-column: span 1 !important;
         grid-row: span 1 !important;
     }
-    .gallery-modern-item:nth-child(8n + 1) { grid-column: span 2 !important; grid-row: span 2 !important; }
-    .gallery-modern-item:nth-child(8n + 4) { grid-column: span 2 !important; }
-    .gallery-modern-item:nth-child(8n + 6) { grid-column: span 2 !important; grid-row: span 2 !important; }
-    .gallery-modern-item:nth-child(8n + 7) { grid-column: span 2 !important; }
+    /* First item spans wider for visual interest */
+    .gallery-modern-item:first-child { grid-column: span 2 !important; }
+    /* Additional bento rules kick in with more items */
+    .gallery-modern-item:nth-child(8n + 6) { grid-column: span 2 !important; }
     
-    /* Make placeholders inside row-span-2 taller automatically by resetting min-height overrides */
-    .gallery-modern-item:nth-child(8n + 1) .gallery-modern-placeholder,
-    .gallery-modern-item:nth-child(8n + 6) .gallery-modern-placeholder {
+    /* Taller placeholder for wide items */
+    .gallery-modern-item:first-child .gallery-modern-placeholder {
         min-height: 390px;
     }
 }
