@@ -182,9 +182,9 @@ function initMomen(data, container) {
         if (!isAtBottom || feedActive) return;
 
         // Hanya memicu jika swipe dimulai dari elemen teaser 
-        // atau dari bagian bawah layar (bottom 25%)
+        // atau dari bagian bawah layar (bottom 15%)
         const isFromTeaser = touchTarget && touchTarget.closest('#momen-teaser');
-        const isFromBottomScreen = touchStartY > (window.innerHeight * 0.75);
+        const isFromBottomScreen = touchStartY > (window.innerHeight * 0.85);
         if (!isFromTeaser && !isFromBottomScreen) return;
 
         let touchEndY = e.touches[0].clientY;
