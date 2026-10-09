@@ -1288,63 +1288,133 @@ and
 
 }
 
-/* Elegant hero actions; override the runtime unified button styles. */
+/* Elegant hero actions; override the runtime unified button styles (Modern Liquid Glass). */
 #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
 #hero .hero-actions-unified #btn-kenali.hero-primary-action {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
   border-radius: 14px !important;
-  font-weight: 600 !important;
-  letter-spacing: .01em !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.12) !important;
-  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease !important;
+  font-weight: 500 !important;
+  letter-spacing: .02em !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) brightness(1.1) !important;
+  backdrop-filter: blur(24px) saturate(160%) brightness(1.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top-color: rgba(255, 255, 255, 0.45) !important;
+  border-left-color: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.35) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
-#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial {
-  background: linear-gradient(135deg,rgba(26,92,80,.96),rgba(17,62,54,.96)) !important;
-  border: 1px solid rgba(200,230,216,.35) !important;
+
+/* Remove chunky pseudo-elements */
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial::before,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action::before,
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial::after,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action::after {
+  display: none !important;
 }
-#hero .hero-actions-unified #btn-kenali.hero-primary-action {
-  background: linear-gradient(135deg,#e2c574,var(--color-gold)) !important;
-  border: 1px solid rgba(240,208,128,.65) !important;
-  color: var(--color-darkest) !important;
-}
+
+/* Lingkaran Ikon Panah (Anak Tombol) */
 #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow,
 #hero .hero-actions-unified #btn-kenali.hero-primary-action span {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  flex-shrink: 0;
-  width: 24px !important;
-  height: 24px !important;
-  border: 0 !important;
-  border-radius: 7px !important;
-  background: rgba(255,255,255,.1) !important;
+  flex-shrink: 0 !important;
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
-#hero .hero-actions-unified #btn-kenali.hero-primary-action span {
-  background: rgba(13,31,42,.08) !important;
-  font-size: 1rem !important;
+
+/* Interactions: Hover */
+@media (hover: hover) and (pointer: fine) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:hover,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+    border-top-color: rgba(255, 255, 255, 0.6) !important;
+    border-left-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.45) !important;
+  }
 }
-#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:hover {
-  background: linear-gradient(135deg,#216d5e,var(--color-green-dark)) !important;
-  border-color: rgba(200,230,216,.65) !important;
-  box-shadow: 0 9px 24px rgba(0,0,0,.2) !important;
+
+/* Interactions: Active */
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:active,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action:active {
+  transform: translateY(0) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.15) 100%) !important;
 }
-#hero .hero-actions-unified #btn-kenali.hero-primary-action:hover {
-  background: linear-gradient(135deg,var(--color-gold-light),#d8b65c) !important;
-  border-color: var(--color-gold-light) !important;
-  box-shadow: 0 9px 24px rgba(0,0,0,.2) !important;
-}
+
+/* Interactions: Focus Visible */
 #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:focus-visible,
 #hero .hero-actions-unified #btn-kenali.hero-primary-action:focus-visible {
-  outline: 2px solid var(--color-gold-light);
-  outline-offset: 4px;
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
+
+/* Mobile Adjustments */
 @media (max-width:374px) {
   #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow,
   #hero .hero-actions-unified #btn-kenali.hero-primary-action span {
-    width: 20px !important;
-    height: 20px !important;
+    width: 22px !important;
+    height: 22px !important;
   }
 }
-@media (prefers-reduced-motion:reduce) {
+@media (max-width:768px) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action {
+    backdrop-filter: blur(16px) saturate(160%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(160%) brightness(1.1) !important;
+  }
+}
+
+/* Fallback & Accessibility */
+@supports not (backdrop-filter: blur(14px)) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--color-green-dark) !important;
+    text-shadow: none !important;
+    border-color: transparent !important;
+  }
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action span {
+    color: var(--color-green-dark) !important;
+    border-color: rgba(26, 92, 80, 0.3) !important;
+    background: rgba(26, 92, 80, 0.08) !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--color-green-dark) !important;
+    text-shadow: none !important;
+    border-color: transparent !important;
+  }
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action span {
+    color: var(--color-green-dark) !important;
+    border-color: rgba(26, 92, 80, 0.3) !important;
+    background: rgba(26, 92, 80, 0.08) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
   #hero .hero-actions-unified #btn-kenali.hero-primary-action {
     transition: none !important;

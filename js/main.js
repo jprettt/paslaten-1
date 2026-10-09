@@ -1,4 +1,4 @@
-/*
+﻿/*
  * main.js
  * Website Profil Kelurahan Paslaten 1
  */
@@ -838,9 +838,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (window.scrollY > SCROLL_THRESHOLD) {
-            navbar.classList.add('scrolled');
+            navbar.classList.add('scrolled', 'is-scrolled');
         } else {
-            navbar.classList.remove('scrolled');
+            navbar.classList.remove('scrolled', 'is-scrolled');
         }
     }
 
@@ -868,9 +868,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } else {
 
-            navbar.classList.add(
-                'scrolled'
-            );
+            navbar.classList.add('scrolled', 'is-scrolled');
 
         }
 

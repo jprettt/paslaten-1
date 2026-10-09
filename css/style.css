@@ -2647,9 +2647,10 @@ footer {
     /* Slide dari kanan */
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Border kiri emas */
     border-left: 2px solid rgba(201, 168, 76, 0.45);
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
 }
 
 .drawer.drawer-open {
