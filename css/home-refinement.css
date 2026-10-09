@@ -126,7 +126,11 @@
    ============================================================ */
 
 .hero-navbar-wordmark {
-  display: none;
+  display: flex;
+  position: absolute;
+  top: 1rem;
+  left: calc(50% - min(550px, 50%) + 1rem);
+  z-index: 5;
 
   flex-direction: column;
   align-items: flex-start;
@@ -138,23 +142,18 @@
   text-decoration: none;
 }
 
-
-#navbar:not(.scrolled) .hero-navbar-wordmark {
-  display: flex !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-
 #navbar:not(.scrolled) .nav-brand {
   display: none !important;
 }
 
-
-#navbar.scrolled .hero-navbar-wordmark {
-  display: none !important;
+.hero-scroll-hamburger {
+  display: flex;
+  position: absolute;
+  top: calc(.8rem + 11px);
+  right: calc(50% - min(550px, 50%) + 1rem);
+  z-index: 5;
+  pointer-events: auto;
 }
-
 
 #navbar.scrolled .nav-brand {
   display: flex !important;

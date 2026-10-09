@@ -42,6 +42,56 @@ document.addEventListener('DOMContentLoaded', function () {
         document.title
     );
 
+    // Navigasi chip untuk bagian halaman: tandai bagian aktif saat diklik
+    // atau saat bagian tersebut memasuki area baca di viewport.
+    document.querySelectorAll('.editorial-jump').forEach(function (jumpNav) {
+        var links = Array.from(jumpNav.querySelectorAll('a[href^="#"]'));
+        var visibleTargets = new Set();
+
+        function setActiveLink(link) {
+            links.forEach(function (item) {
+                item.classList.toggle('is-active', item === link);
+            });
+        }
+
+        links.forEach(function (link) {
+            link.addEventListener('click', function () {
+                setActiveLink(link);
+            });
+        });
+
+        if (links.length) setActiveLink(links[0]);
+
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) visibleTargets.add(entry.target);
+                    else visibleTargets.delete(entry.target);
+                });
+
+                var currentTarget = Array.from(visibleTargets).sort(function (a, b) {
+                    return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+                })[0];
+
+                if (currentTarget) {
+                    var currentLink = links.find(function (link) {
+                        return link.getAttribute('href') === '#' + currentTarget.id;
+                    });
+                    if (currentLink) setActiveLink(currentLink);
+                }
+            }, {
+                rootMargin: '-86px 0px -35% 0px',
+                threshold: 0
+            });
+
+            links.forEach(function (link) {
+                var targetId = link.getAttribute('href').slice(1);
+                var target = document.getElementById(targetId);
+                if (target) observer.observe(target);
+            });
+        }
+    });
+
 
     // ================================================================
     // 1. HERO ACTION BUTTONS
@@ -828,6 +878,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'navbar'
         );
 
+    var isHomeNavbar = !!(navbar && navbar.closest('#site-header'));
 
     var SCROLL_THRESHOLD = 60;
 
@@ -837,7 +888,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        if (window.scrollY > SCROLL_THRESHOLD) {
+        var shouldShowNavbar = window.scrollY > SCROLL_THRESHOLD;
+
+        if (isHomeNavbar && heroSection) {
+            var heroBottom = heroSection.getBoundingClientRect().bottom + window.scrollY;
+            shouldShowNavbar = window.scrollY >= heroBottom;
+        }
+
+        if (shouldShowNavbar) {
             navbar.classList.add('scrolled', 'is-scrolled');
         } else {
             navbar.classList.remove('scrolled', 'is-scrolled');
@@ -848,6 +906,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var heroSection =
         document.getElementById(
             'hero'
+        ) || document.querySelector(
+            '.editorial-hero, .stats-hero'
         );
 
 
@@ -862,6 +922,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     passive: true
                 }
             );
+
+            if (isHomeNavbar) {
+                window.addEventListener('resize', handleNavbarScroll, { passive: true });
+            }
 
 
             handleNavbarScroll();
@@ -879,10 +943,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // 3. MOBILE DRAWER
     // ================================================================
 
-    var hamburger =
-        document.getElementById(
-            'nav-hamburger'
-        );
+    var hamburgers = Array.from(
+        document.querySelectorAll('.nav-hamburger')
+    );
 
 
     var drawer =
@@ -936,14 +999,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-        if (hamburger) {
-
-            hamburger.setAttribute(
-                'aria-expanded',
-                'true'
-            );
-
-        }
+        hamburgers.forEach(function (hamburger) {
+            hamburger.setAttribute('aria-expanded', 'true');
+        });
 
 
         document.body.style.overflow =
@@ -992,14 +1050,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-        if (hamburger) {
-
-            hamburger.setAttribute(
-                'aria-expanded',
-                'false'
-            );
-
-        }
+        hamburgers.forEach(function (hamburger) {
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
 
 
         document.body.style.overflow =
@@ -1008,8 +1061,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    if (hamburger) {
-
+    hamburgers.forEach(function (hamburger) {
         hamburger.addEventListener(
             'click',
             function () {
@@ -1033,8 +1085,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
         );
-
-    }
+    });
 
 
     if (drawerClose) {

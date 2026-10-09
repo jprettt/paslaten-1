@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="id">
 <head>
@@ -7,6 +7,7 @@
 <meta content="Galeri foto dokumentasi kegiatan masyarakat di Kelurahan Paslaten 1, Kota Tomohon." name="description"/>
 <title>Galeri — Kelurahan Paslaten 1, Kota Tomohon</title>
 <link href="../css/style.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/css/hero-art.css"/>
 <link href="../css/galeri-custom.css" rel="stylesheet"/>
 <link href="../css/tempat-penting.css" rel="stylesheet"/>
 </head>
@@ -65,17 +66,40 @@
 <main>
 <section aria-labelledby="gallery-title" class="editorial-hero gallery-modern-hero">
 <div class="container editorial-hero-inner">
+<div class="hero-art hero-art--galeri" aria-hidden="true">
+<svg viewBox="0 0 200 200" fill="none" stroke="url(#ha-gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+  <defs>
+    <linearGradient id="ha-gold" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="180" y2="190">
+      <stop offset="0" stop-color="#f6e7b0"/><stop offset=".45" stop-color="#d4af4a"/><stop offset=".75" stop-color="#b8892b"/><stop offset="1" stop-color="#e8cf8b"/>
+    </linearGradient>
+    <radialGradient id="ha-aura" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#e8cf8b" stop-opacity=".16"/><stop offset="1" stop-color="#e8cf8b" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="gl-mask"><rect width="200" height="200" fill="#fff"/><path d="M64 62 H136 V152 H64 Z" fill="#000"/></mask>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#ha-aura)" stroke="none"/>
+  <circle class="ha-spin" cx="100" cy="100" r="92" stroke-width=".9" stroke-dasharray="1.5 5"/>
+  <circle class="ha-draw" pathLength="1" cx="100" cy="100" r="84" stroke-width=".8" style="--d:0s"/>
+
+  <g class="ha-sway" style="--ox:100px;--oy:108px">
+    <g mask="url(#gl-mask)" stroke-opacity=".75">
+      <g class="ha-fan-a"><path class="ha-draw" pathLength="1" style="--d:.3s" d="M64 62 H136 V152 H64 Z M72 70 H128 V128 H72 Z"/></g>
+      <g class="ha-fan-b"><path class="ha-draw" pathLength="1" style="--d:.5s" d="M64 62 H136 V152 H64 Z M72 70 H128 V128 H72 Z M72 112 L90 96 L104 110 L116 98 L128 112"/></g>
+    </g>
+    <path class="ha-draw" pathLength="1" style="--d:.8s" d="M64 62 H136 V152 H64 Z M72 70 H128 V128 H72 Z"/>
+    <path class="ha-draw" pathLength="1" style="--d:1.4s" d="M72 128 L90 100 L102 114 L112 96 L128 118"/>
+    <circle class="ha-draw" pathLength="1" style="--d:1.7s" cx="112" cy="84" r="6"/>
+    <path class="ha-draw" pathLength="1" style="--d:1.9s" d="M76 138 H108 M76 144 H96"/><circle class="ha-flash" cx="132" cy="64" r="9" fill="url(#ha-gold)" stroke="none" style="--d:2s"/><path class="ha-scan" stroke-opacity=".7" d="M74 72 H126" style="--d:1s"/><g class="ha-rot" style="--ox:112px;--oy:84px"><path stroke-opacity=".7" d="M112 74 V70 M119 77 L122 74 M122 84 H126 M119 91 L122 94 M112 94 V98 M105 91 L102 94 M102 84 H98 M105 77 L102 74"/></g>
+  </g>
+  <path class="ha-twinkle" style="--d:2.4s;--ox:152px;--oy:64px" d="M152 50 L155 61 L166 64 L155 67 L152 78 L149 67 L138 64 L149 61 Z"/>
+  <path class="ha-twinkle" style="--d:3.2s;--ox:50px;--oy:56px" d="M50 48 L52 54 L58 56 L52 58 L50 64 L48 58 L42 56 L48 54 Z"/><path class="ha-twinkle" style="--d:3.8s;--ox:170px;--oy:120px" d="M170 114 L171.6 118.4 L176 120 L171.6 121.6 L170 126 L168.4 121.6 L164 120 L168.4 118.4 Z"/>
+</svg>
+</div>
 <div class="editorial-hero-copy">
 <span class="editorial-eyebrow">DOKUMENTASI KELURAHAN</span>
 <h1 id="gallery-title">Galeri</h1>
 <p class="editorial-hero-subtitle">Paslaten 1 · Tomohon Timur</p>
 <span aria-hidden="true" class="editorial-hero-divider"></span>
-</div>
-<div aria-hidden="true" class="gallery-hero-visual">
-<span class="gallery-hero-frame gallery-hero-frame--one"></span>
-<span class="gallery-hero-frame gallery-hero-frame--two"></span>
-<span class="gallery-hero-frame gallery-hero-frame--three"></span>
-<span class="gallery-hero-dot"></span>
 </div>
 </div>
 </section>
@@ -115,5 +139,6 @@
 </footer>
 <script src="../js/main.js"></script>
 <script src="../js/galeri.js"></script>
+<script src="../assets/js/hero-art.js" defer></script>
 </body>
 </html>

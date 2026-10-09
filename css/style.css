@@ -3,7 +3,7 @@
 /* =====================================================
    style.css
    Website Profil Kelurahan Paslaten Satu
-   KKT 149 UNSRAT â€“ Posko Paslaten 1, Kota Tomohon
+   KKT 149 UNSRAT – Posko Paslaten 1, Kota Tomohon
    ===================================================== */
 
 /* =====================================================
@@ -40,17 +40,17 @@ a {
 }
 
 /* =====================================================
-   DESIGN TOKENS â€” PalÃ©t Final
-   4 warna referensi dari palÃ©t resmi website
+   DESIGN TOKENS — Palét Final
+   4 warna referensi dari palét resmi website
    ===================================================== */
 
 :root {
     /*
-     * PALÃ‰T UTAMA (dari atas ke bawah gambar referensi)
-     * 1. Darkest  â€” navy teal pekat:   #0d1f2a
-     * 2. Dark     â€” teal hijau:         #1a5c50
-     * 3. Medium   â€” hijau sedang:       #2d906e
-     * 4. Light    â€” sage hijau muda:    #8ec1a2
+     * PALET UTAMA (dari atas ke bawah gambar referensi)
+     * 1. Darkest  — navy teal pekat:   #0d1f2a
+     * 2. Dark     — teal hijau:         #1a5c50
+     * 3. Medium   — hijau sedang:       #2d906e
+     * 4. Light    — sage hijau muda:    #8ec1a2
      */
     --color-darkest: #0d1f2a;
     /* navbar, footer, hero bg */
@@ -67,7 +67,7 @@ a {
     --color-sage: #8ec1a2;
     /* elemen dekoratif, badge */
 
-    /* Emas / aksen â€” dipertahankan */
+    /* Emas / aksen — dipertahankan */
     --color-gold: #c9a84c;
     --color-gold-light: #f0d080;
 
@@ -110,7 +110,7 @@ body {
     font-weight: 400;
     color: var(--color-dark);
     /*
-     * Background pola batik halus â€” berlaku di seluruh halaman.
+     * Background pola batik halus — berlaku di seluruh halaman.
      * Path relatif terhadap css/style.css.
      * Section hijau/gelap akan menutupi pola ini dengan background-color solid mereka.
      */
@@ -340,7 +340,7 @@ a:hover {
    Transparan di atas hero, solid hijau setelah scroll
    ===================================================== */
 
-/* Header di beranda (index.html) â€” fixed di atas hero */
+/* Header di beranda (index.html) — fixed di atas hero */
 #site-header {
     position: fixed;
     top: 0;
@@ -349,7 +349,7 @@ a:hover {
     z-index: 200;
 }
 
-/* Header di halaman dalam (pages/) â€” sticky biasa */
+/* Header di halaman dalam (pages/) — sticky biasa */
 header:not(#site-header) {
     position: sticky;
     top: 0;
@@ -368,7 +368,7 @@ header:not(#site-header) {
     transition: background-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Kondisi setelah scroll â€” class ditambahkan oleh JS */
+/* Kondisi setelah scroll — class ditambahkan oleh JS */
 /* Juga aktif secara instan di halaman selain beranda */
 #navbar.scrolled {
     background-color: var(--color-green-dark);
@@ -397,7 +397,7 @@ header:not(#site-header) {
     display: flex;
 }
 
-/* Teks brand di beranda â€” tersembunyi saat transparan, muncul saat solid */
+/* Teks brand di beranda — tersembunyi saat transparan, muncul saat solid */
 /* Modifier khusus: .nav-brand-text--hero */
 .nav-brand-text--hero {
     opacity: 0;
@@ -412,7 +412,7 @@ header:not(#site-header) {
     pointer-events: none;
 }
 
-/* Saat navbar sudah scrolled (solid) â€” teks muncul */
+/* Saat navbar sudah scrolled (solid) — teks muncul */
 #navbar.scrolled .nav-brand-text--hero {
     opacity: 1;
     max-width: 180px;
@@ -431,7 +431,7 @@ header:not(#site-header) {
     text-decoration: none;
 }
 
-/* Logo placeholder â€” ganti dengan <img> setelah logo tersedia */
+/* Logo placeholder — ganti dengan <img> setelah logo tersedia */
 .nav-logo-placeholder {
     width: 36px;
     height: 36px;
@@ -471,7 +471,7 @@ header:not(#site-header) {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-white);
-    /* putih â€” kontras terhadap hijau tua */
+    /* putih — kontras terhadap hijau tua */
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -486,7 +486,7 @@ header:not(#site-header) {
     text-transform: uppercase;
 }
 
-/* Logo asli â€” gambar logo Kota Tomohon */
+/* Logo asli — gambar logo Kota Tomohon */
 .nav-logo-img {
     width: 44px;
     height: 44px;
@@ -564,7 +564,7 @@ header:not(#site-header) {
 }
 
 /* =====================================================
-   HERO â€” FULL SCREEN SLIDESHOW
+   HERO — FULL SCREEN SLIDESHOW
    ===================================================== */
 
 /* Animasi fade-in untuk teks hero */
@@ -660,10 +660,10 @@ header:not(#site-header) {
 }
 
 /* =============================================================
-   HERO TYPOGRAPHY â€” Hierarki 5 level, mobile-first
+   HERO TYPOGRAPHY — Hierarki 5 level, mobile-first
    ============================================================= */
 
-/* Scrim radial halus di belakang teks â€” bukan box/oval */
+/* Scrim radial halus di belakang teks — bukan box/oval */
 .hero-text-scrim {
     position: absolute;
     inset: 0;
@@ -677,7 +677,7 @@ header:not(#site-header) {
     pointer-events: none;
 }
 
-/* HERO CENTER â€” text group sedikit naik dari center */
+/* HERO CENTER — text group sedikit naik dari center */
 .hero-content--center {
     display: flex;
     align-items: center;
@@ -709,7 +709,7 @@ header:not(#site-header) {
     z-index: 2;
 }
 
-/* 1. EYEBROW â€” SELAMAT DATANG DI */
+/* 1. EYEBROW — SELAMAT DATANG DI */
 .hero-eyebrow {
     font-family: var(--font-body);
     font-size: clamp(9px, 2.4vw, 11px);
@@ -722,7 +722,7 @@ header:not(#site-header) {
     animation: heroFadeUp 0.7s 0.05s ease both;
 }
 
-/* 2 & 3. HEADING GROUP â€” Kelurahan + Paslaten 1 */
+/* 2 & 3. HEADING GROUP — Kelurahan + Paslaten 1 */
 .hero-heading-group {
     display: flex;
     flex-direction: column;
@@ -732,7 +732,7 @@ header:not(#site-header) {
     animation: heroFadeUp 0.8s 0.15s ease both;
 }
 
-/* 2. "Kelurahan" â€” pendahulu, lebih kecil */
+/* 2. "Kelurahan" — pendahulu, lebih kecil */
 .hero-sub {
     display: block;
     font-family: var(--font-heading);
@@ -744,7 +744,7 @@ header:not(#site-header) {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* 3. "Paslaten 1" â€” DOMINAN, fokus utama visual */
+/* 3. "Paslaten 1" — DOMINAN, fokus utama visual */
 .hero-main {
     display: block;
     font-family: var(--font-heading);
@@ -756,7 +756,7 @@ header:not(#site-header) {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* 4. "Tomohon Timur" â€” secondary location */
+/* 4. "Tomohon Timur" — secondary location */
 .hero-secondary {
     font-family: var(--font-body);
     font-size: clamp(15px, 4vw, 18px);
@@ -768,7 +768,7 @@ header:not(#site-header) {
     animation: heroFadeUp 0.8s 0.25s ease both;
 }
 
-/* 5. "Kota Tomohon Â· Sulawesi Utara" */
+/* 5. "Kota Tomohon · Sulawesi Utara" */
 .hero-location-small {
     font-family: var(--font-body);
     font-size: clamp(10px, 2.6vw, 12px);
@@ -780,7 +780,7 @@ header:not(#site-header) {
     animation: heroFadeUp 0.8s 0.32s ease both;
 }
 
-/* Legacy â€” pertahankan untuk kompatibilitas desktop/page lain */
+/* Legacy — pertahankan untuk kompatibilitas desktop/page lain */
 .hero-title {
     font-family: var(--font-heading);
     font-size: 4rem;
@@ -793,7 +793,7 @@ header:not(#site-header) {
     animation: heroFadeUp 0.9s 0.2s ease both;
 }
 
-/* Tombol Kenali Paslaten 1 â€” glassmorphism, menyatu dengan hero */
+/* Tombol Kenali Paslaten 1 — glassmorphism, menyatu dengan hero */
 .btn-hero-jelajahi {
     display: inline-flex;
     align-items: center;
@@ -958,7 +958,7 @@ header:not(#site-header) {
 #statistik {
     padding: var(--space-lg) 0;
     background-color: var(--color-darkest);
-    /* warna 1 â€” paling gelap */
+    /* warna 1 — paling gelap */
     border-top: 3px solid var(--color-gold);
     border-bottom: 3px solid var(--color-gold);
 }
@@ -1233,7 +1233,7 @@ main > .page-section:nth-of-type(even) .container {
    ===================================================== */
 
 .page-header {
-    /* Background dihilangkan â€” pola batik body terlihat */
+    /* Background dihilangkan — pola batik body terlihat */
     background-color: transparent;
     padding: var(--space-lg) 0 var(--space-md) 0;
     border-bottom: 3px solid var(--color-gold);
@@ -1242,13 +1242,13 @@ main > .page-section:nth-of-type(even) .container {
 
 .page-header h1 {
     color: var(--color-darkest);
-    /* gelap â€” terbaca di atas pola batik putih */
+    /* gelap — terbaca di atas pola batik putih */
     margin-bottom: 0.25rem;
 }
 
 .page-header p {
     color: var(--color-mid-gray);
-    /* abu hijau â€” terbaca di pola batik */
+    /* abu hijau — terbaca di pola batik */
     margin: 0;
 }
 
@@ -1729,7 +1729,7 @@ main > .page-section:nth-of-type(even) .container {
 }
 
 /* =====================================================
-   INFO LIST (halaman Tentang â€” identitas wilayah)
+   INFO LIST (halaman Tentang — identitas wilayah)
    ===================================================== */
 
 .info-list {
@@ -1927,7 +1927,7 @@ main > .page-section:nth-of-type(even) .container {
 
 footer {
     background-color: var(--color-green-dark);
-    /* hijau teal â€” sama dengan navbar */
+    /* hijau teal — sama dengan navbar */
     color: rgba(255, 255, 255, 0.85);
     padding: var(--space-lg) 0 var(--space-sm) 0;
     border-top: 3px solid var(--color-gold);
@@ -2009,7 +2009,7 @@ footer {
         font-size: 1.35rem;
     }
 
-    /* Hero title â€” tablet */
+    /* Hero title — tablet */
     .hero-title {
         font-size: 2.8rem;
     }
@@ -2045,12 +2045,12 @@ footer {
 
 }
 
-/* Mobile: max-width 640px â€” hamburger menu aktif */
+/* Mobile: max-width 640px — hamburger menu aktif */
 @media (max-width: 640px) {
 
-    /* Background batik portrait â€” khusus mobile
+    /* Background batik portrait — khusus mobile
        Tampil ukuran asli (auto) lalu tile/repeat mengisi background
-       JANGAN pakai cover â€” itu yang bikin terlalu zoom */
+       JANGAN pakai cover — itu yang bikin terlalu zoom */
     body {
         background-image: url('../assets/images/hero/bg putih pt.png');
         background-size: 120%;
@@ -2137,10 +2137,10 @@ footer {
         border-bottom: none;
     }
 
-    /* Hero typography mobile â€” dihandle oleh clamp() */
+    /* Hero typography mobile — dihandle oleh clamp() */
     /* Tidak diperlukan override terpisah */
 
-    /* Caption â€” lebih pendek di mobile */
+    /* Caption — lebih pendek di mobile */
     .hero-caption {
         max-width: 200px;
         font-size: 0.72rem;
@@ -2190,7 +2190,7 @@ footer {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* Hidden by default â€” dipicu oleh JS saat tombol diklik */
+    /* Hidden by default — dipicu oleh JS saat tombol diklik */
     opacity: 0;
     pointer-events: none;
     /* Transisi: fade masuk + ganti warna slide halus */
@@ -2202,8 +2202,8 @@ footer {
     pointer-events: all;
 }
 
-/* Warna per slide â€” ditoggle oleh JS via obGoTo() */
-/* Slide 0 (1) â€” navy teal dengan sentuhan emas */
+/* Warna per slide — ditoggle oleh JS via obGoTo() */
+/* Slide 0 (1) — navy teal dengan sentuhan emas */
 .ob-overlay.ob-at-0 {
     --ob-scene-background: #0d2235;
     background-color: var(--ob-scene-background);
@@ -2214,7 +2214,7 @@ footer {
     );
 }
 
-/* Slide 1 (2) â€” hijau hutan tua */
+/* Slide 1 (2) — hijau hutan tua */
 .ob-overlay.ob-at-1 {
     --ob-scene-background: #0a2218;
     background-color: var(--ob-scene-background);
@@ -2225,7 +2225,7 @@ footer {
     );
 }
 
-/* Slide 2 (3) â€” plum/ungu malam, jelas berbeda dari dua slide lain */
+/* Slide 2 (3) — plum/ungu malam, jelas berbeda dari dua slide lain */
 .ob-overlay.ob-at-2 {
     --ob-scene-background: #1a0f2e;
     background-color: var(--ob-scene-background);
@@ -2292,7 +2292,7 @@ footer {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* Slide sendiri transparan â€” warna dari .ob-overlay */
+    /* Slide sendiri transparan — warna dari .ob-overlay */
     background-color: transparent;
 }
 
@@ -2303,7 +2303,7 @@ footer {
     align-items: flex-end;
     justify-content: center;
     position: relative;
-    /* JANGAN pakai overflow:hidden â€” akan memotong gambar */
+    /* JANGAN pakai overflow:hidden — akan memotong gambar */
     overflow: visible;
     padding: 0.5rem 1rem 0;
 }
@@ -2315,7 +2315,7 @@ footer {
     display: block;
 }
 
-/* Gradient fade bawah â€” hanya dekorasi, tidak memotong gambar */
+/* Gradient fade bawah — hanya dekorasi, tidak memotong gambar */
 .ob-visual::after {
     content: '';
     position: absolute;
@@ -2329,7 +2329,7 @@ footer {
 }
 
 /* ============================================================
-   IMAGE STAGE â€” container gambar slide 1 & 2
+   IMAGE STAGE — container gambar slide 1 & 2
    Pendekatan: gambar utama adalah elemen flow biasa (bukan absolute)
    Gambar pendukung: absolute relatif ke .ob-img-stage
    ============================================================ */
@@ -2344,7 +2344,7 @@ footer {
     justify-content: center;
 }
 
-/* Gambar utama â€” flow normal, besar, terpusat */
+/* Gambar utama — flow normal, besar, terpusat */
 .ob-img-primary {
     display: block;
     width: clamp(200px, 80%, 320px);
@@ -2356,7 +2356,7 @@ footer {
     z-index: 2;
 }
 
-/* Gambar pendukung â€” absolute dalam .ob-img-stage */
+/* Gambar pendukung — absolute dalam .ob-img-stage */
 .ob-img-secondary {
     position: absolute;
     bottom: 0;
@@ -2380,7 +2380,7 @@ footer {
     right: 0;
 }
 
-/* Glow dekoratif â€” di belakang stage */
+/* Glow dekoratif — di belakang stage */
 .ob-glow {
     position: absolute;
     top: 30%;
@@ -2605,7 +2605,7 @@ footer {
 }
 
 /* =================================================================
-   DRAWER MENU â€” slide dari kanan, 55% lebar layar
+   DRAWER MENU — slide dari kanan, 55% lebar layar
    ================================================================= */
 
 /* --- Backdrop gelap semi-transparan --- */
@@ -2632,7 +2632,7 @@ footer {
     top: 0;
     right: 0;
     height: 100%;
-    width: 62%;          /* ~55â€“62% layar mobile */
+    width: 62%;          /* ~55–62% layar mobile */
     max-width: 300px;
     z-index: 8100;
     /* Background: gambar batik hijau langsung */
@@ -2707,7 +2707,7 @@ footer {
     color: rgba(255, 255, 255, 0.45);
 }
 
-/* Tombol tutup (Ã—) */
+/* Tombol tutup (×) */
 .drawer-close {
     background: transparent;
     border: 0;
@@ -2848,21 +2848,8 @@ footer {
     min-height: 360px;
     overflow: hidden;
     background:
-        radial-gradient(circle at 78% 42%, rgba(142, 193, 162, 0.10), transparent 31%),
         linear-gradient(135deg, #15584d 0%, var(--color-green-dark) 48%, #12483f 100%);
     color: var(--color-white);
-}
-
-.stats-hero::after {
-    content: "";
-    position: absolute;
-    right: -90px;
-    bottom: -170px;
-    width: 410px;
-    height: 410px;
-    border: 1px solid rgba(240, 208, 128, 0.13);
-    border-radius: 50%;
-    pointer-events: none;
 }
 
 .stats-hero-inner {
@@ -2924,84 +2911,6 @@ footer {
     color: rgba(255, 255, 255, 0.68);
     font-size: 0.9rem;
     line-height: 1.7;
-}
-
-.stats-hero-visual {
-    position: relative;
-    min-height: 300px;
-    align-self: stretch;
-}
-
-.stats-hero-orbit {
-    position: absolute;
-    border-radius: 50%;
-}
-
-.stats-hero-orbit--outer {
-    right: 1.5rem;
-    top: 50%;
-    width: 250px;
-    height: 250px;
-    transform: translateY(-48%);
-    border: 1px solid rgba(240, 208, 128, 0.24);
-}
-
-.stats-hero-orbit--inner {
-    right: 4.65rem;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    transform: translateY(-48%);
-    background: rgba(201, 168, 76, 0.10);
-    border: 1px solid rgba(240, 208, 128, 0.20);
-}
-
-.stats-hero-number {
-    position: absolute;
-    right: 4.5rem;
-    top: 50%;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(-58%);
-}
-
-.stats-hero-number span {
-    color: var(--color-white);
-    font-family: var(--font-heading);
-    font-size: clamp(2.6rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-}
-
-.stats-hero-number small {
-    margin-top: 0.45rem;
-    color: var(--color-gold-light);
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-.stats-hero-bars {
-    position: absolute;
-    right: 0;
-    bottom: 2rem;
-    display: flex;
-    align-items: flex-end;
-    gap: 7px;
-    width: 105px;
-    height: 72px;
-}
-
-.stats-hero-bars i {
-    flex: 1;
-    height: var(--h);
-    min-height: 10px;
-    border-radius: 5px 5px 2px 2px;
-    background: linear-gradient(to top, rgba(201, 168, 76, 0.4), var(--color-gold-light));
 }
 
 .stats-overview,
@@ -3705,44 +3614,6 @@ footer {
         display: none;
     }
 
-    .stats-hero-visual {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 48%;
-        height: 100%;
-        min-height: 0;
-    }
-
-    .stats-hero-orbit--outer {
-        right: -34px;
-        width: 190px;
-        height: 190px;
-    }
-
-    .stats-hero-orbit--inner {
-        right: 5px;
-        width: 112px;
-        height: 112px;
-    }
-
-    .stats-hero-number {
-        right: 13px;
-        top: 50%;
-    }
-
-    .stats-hero-number span {
-        font-size: 2.4rem;
-    }
-
-    .stats-hero-bars {
-        right: 2px;
-        bottom: 22px;
-        width: 78px;
-        height: 52px;
-        opacity: 0.8;
-    }
-
     .stats-overview,
     .stats-section,
     .stats-note-section {
@@ -3848,14 +3719,6 @@ footer {
         font-size: 0.92rem;
     }
 
-    .stats-hero-number {
-        right: 3px;
-    }
-
-    .stats-hero-number span {
-        font-size: 2rem;
-    }
-
     .stats-overview-grid,
     .stats-economy-grid {
         grid-template-columns: 1fr 1fr;
@@ -3956,42 +3819,79 @@ footer {
 }
 .editorial-hero-art { position: relative; align-self: stretch; min-width: 0; }
 
-.about-modern-tower,
-.history-modern-book {
-    position: absolute;
-    right: -2.5rem;
-    bottom: 0;
-    width: min(110%, 470px);
-    height: 100%;
-    max-width: none;
-    object-fit: contain;
-    object-position: right bottom;
-}
-.history-modern-book { width: min(100%, 430px); right: -1rem; }
-
 .editorial-jump {
     position: sticky;
-    top: var(--navbar-height);
-    z-index: 80;
-    padding: .7rem 0;
+    top: 74px;
+    z-index: 150;
+    padding: .25rem 0;
     border-bottom: 1px solid rgba(26,92,80,.08);
-    background: rgba(245,248,246,.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(245,248,246,.94);
+    box-shadow: none;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
-.editorial-jump-inner { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.editorial-jump-inner {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+}
 .editorial-jump-inner::-webkit-scrollbar { display: none; }
 .editorial-jump a {
+    position: relative;
     flex: 0 0 auto;
-    padding: .5rem .85rem;
-    border: 1px solid rgba(26,92,80,.12);
-    border-radius: 999px;
-    background: var(--color-white);
+    padding: .45rem .3rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--color-green-dark);
     font-size: .72rem;
     font-weight: 600;
     white-space: nowrap;
+    scroll-snap-align: start;
+    transition: color .2s ease, opacity .2s ease;
 }
+.editorial-jump a:hover,
+.editorial-jump a:focus-visible {
+    background: transparent;
+    color: var(--color-green);
+}
+.editorial-jump a.is-active {
+    background: transparent;
+    color: var(--color-green-dark);
+}
+.editorial-jump a.is-active::after {
+    content: "";
+    position: absolute;
+    right: .3rem;
+    bottom: -.28rem;
+    left: .3rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-gold);
+}
+.modern-inner-page .editorial-jump {
+    top: 74px;
+    border-bottom-color: rgba(26,92,80,.08);
+    background: rgba(245,248,246,.94);
+    box-shadow: none;
+}
+.modern-inner-page .editorial-jump a {
+    border: 0;
+    background: transparent;
+    color: var(--color-green-dark);
+}
+.modern-inner-page .editorial-jump a:hover,
+.modern-inner-page .editorial-jump a:focus-visible {
+    background: transparent;
+    color: var(--color-green);
+}
+.modern-inner-page .editorial-jump a.is-active {
+    background: transparent;
+    color: var(--color-green-dark);
+}
+.about-page section[id] { scroll-margin-top: 132px; }
 
 .editorial-section { padding: clamp(2.2rem, 5vw, 4.25rem) 0; }
 .editorial-section--soft {
@@ -4081,12 +3981,6 @@ footer {
 
 /* GALLERY */
 .gallery-modern-hero { min-height: 330px; }
-.gallery-hero-visual { position: relative; min-height: 280px; align-self: stretch; }
-.gallery-hero-frame { position: absolute; display:block; border-radius: 14px; border: 1px solid rgba(240,208,128,.28); background: rgba(255,255,255,.045); box-shadow: 0 18px 50px rgba(0,0,0,.08); }
-.gallery-hero-frame--one { width: 170px; height: 210px; right: 3.5rem; bottom: -24px; transform: rotate(7deg); }
-.gallery-hero-frame--two { width: 130px; height: 160px; right: 11rem; bottom: 28px; transform: rotate(-8deg); }
-.gallery-hero-frame--three { width: 105px; height: 125px; right: 0; bottom: 48px; transform: rotate(13deg); }
-.gallery-hero-dot { position:absolute; right: 8rem; top: 42px; width: 90px; height:90px; border-radius:50%; background: rgba(201,168,76,.13); }
 .gallery-heading-row { display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; max-width:none; }
 .gallery-status-badge { padding:.42rem .7rem; border-radius:999px; border:1px solid rgba(26,92,80,.12); background:white; color:var(--color-mid-gray); font-size:.65rem; font-weight:600; white-space:nowrap; }
 .gallery-intro { max-width:650px; margin:-.6rem 0 1.7rem; color:var(--color-mid-gray); font-size:.88rem; line-height:1.7; }
@@ -4140,8 +4034,6 @@ footer {
     .editorial-hero h1 { font-size:clamp(2.5rem,13vw,3.3rem); }
     .editorial-hero-subtitle { font-size:.98rem; }
     .editorial-hero-art { position:absolute; right:0; bottom:0; width:48%; height:100%; }
-    .about-modern-tower { right:-1.8rem; width:min(58vw,290px); }
-    .history-modern-book { right:-1rem; width:min(55vw,270px); }
     .editorial-section { padding:2rem 0; }
     .about-story-grid,
     .history-intro-grid,
@@ -4162,11 +4054,6 @@ footer {
     .history-modern-item { grid-template-columns:42px minmax(0,1fr); gap:10px; }
     .history-modern-timeline::before { left:20px; }
     .history-modern-marker { width:42px; height:42px; }
-    .gallery-hero-visual { position:absolute; right:0; bottom:0; width:50%; height:100%; min-height:0; }
-    .gallery-hero-frame--one { width:115px; height:150px; right:12px; bottom:-18px; }
-    .gallery-hero-frame--two { width:90px; height:115px; right:82px; bottom:25px; }
-    .gallery-hero-frame--three { width:68px; height:88px; right:-10px; bottom:55px; }
-    .gallery-hero-dot { width:70px; height:70px; right:58px; top:46px; }
     .gallery-heading-row { align-items:flex-start; }
     .gallery-modern-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
     .gallery-modern-item--featured { grid-column:span 2; grid-row:auto; }
@@ -4186,8 +4073,6 @@ footer {
     .editorial-hero-copy { width:72%; }
     .editorial-eyebrow { font-size:.6rem; letter-spacing:.16em; }
     .editorial-hero h1 { font-size:2.4rem; }
-    .about-modern-tower { width:54vw; }
-    .history-modern-book { width:52vw; }
     .about-info-grid,
     .about-government-grid,
     .contact-modern-grid { grid-template-columns:1fr 1fr; }
@@ -7015,4 +6900,175 @@ footer {
   .peta3d__info-panel {
     transition: none;
   }
+}
+
+/* Shared navbar and title treatment for every inner page */
+#site-header {
+    padding: .8rem 1rem 0;
+    pointer-events: none;
+}
+
+:is(.modern-inner-page, .stats-page) header:not(#site-header) {
+    margin-bottom: -73px;
+    padding: .8rem 1rem 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+:is(.modern-inner-page, .stats-page) #navbar,
+#site-header #navbar {
+    min-height: 60px;
+    height: 60px;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    box-shadow: none;
+    transition: background-color .35s ease, box-shadow .35s ease, border-color .35s ease;
+    pointer-events: auto;
+}
+
+#site-header #navbar {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#site-header #navbar:not(.scrolled) {
+    pointer-events: none;
+}
+
+#site-header #navbar:not(.scrolled) #nav-hamburger {
+    display: none !important;
+}
+
+#site-header #navbar.scrolled #nav-hamburger {
+    display: flex;
+    pointer-events: auto;
+}
+
+:is(.modern-inner-page, .stats-page) #navbar.scrolled,
+#site-header #navbar.scrolled {
+    border: 1px solid rgba(240,208,128,.48);
+    background: linear-gradient(110deg, #174f46, #1a5c50 58%, #216d5d);
+    box-shadow: 0 10px 28px rgba(13,31,42,.16), inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+:is(.modern-inner-page, .stats-page, #site-header) .navbar-inner { padding: 0 1rem; }
+:is(.modern-inner-page, .stats-page, #site-header) .nav-brand { flex-shrink: 0; }
+:is(.modern-inner-page, .stats-page, #site-header) .nav-brand-link { gap: .7rem; }
+:is(.modern-inner-page, .stats-page, #site-header) .nav-logo-img {
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 2px 9px rgba(0,0,0,.14);
+}
+:is(.modern-inner-page, .stats-page, #site-header) .nav-brand-title { font-size: .94rem; letter-spacing: .07em; }
+:is(.modern-inner-page, .stats-page, #site-header) .nav-brand-subtitle { margin-top: .12rem; font-size: .61rem; letter-spacing: .13em; }
+:is(.modern-inner-page, .stats-page, #site-header) .nav-hamburger {
+    width: 38px;
+    height: 38px;
+    gap: 4px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    transition: opacity .2s ease, transform .2s ease;
+}
+:is(.modern-inner-page, .stats-page, #site-header) .nav-hamburger span { width: 16px; height: 2px; }
+:is(.modern-inner-page, .stats-page, #site-header) .nav-hamburger:hover { background: transparent; opacity: .78; }
+
+.modern-inner-page .editorial-hero {
+    min-height: 330px;
+    background:
+        linear-gradient(135deg, #174f46 0%, #1a5c50 56%, #10483f 100%);
+}
+.modern-inner-page .editorial-hero::before {
+    inset: auto -5rem -10rem auto;
+    width: 340px;
+    height: 340px;
+    border-color: rgba(240,208,128,.12);
+    box-shadow: 0 0 0 30px rgba(255,255,255,.018), 0 0 0 65px rgba(255,255,255,.014);
+}
+.modern-inner-page .editorial-hero-copy,
+.modern-inner-page .editorial-hero-art,
+.modern-inner-page .contact-hero-visual { transform: translateY(1.1rem); }
+.modern-inner-page .editorial-eyebrow { color: var(--color-gold-light); letter-spacing: .22em; }
+.modern-inner-page .editorial-hero h1 {
+    margin-top: .75rem;
+    font-size: clamp(2.7rem, 7.4vw, 5.2rem);
+    text-shadow: 0 5px 22px rgba(5,35,30,.18);
+}
+.modern-inner-page .editorial-hero-subtitle { margin-top: .75rem; color: rgba(255,255,255,.86); }
+.modern-inner-page .editorial-hero-divider {
+    width: 52px;
+    height: 3px;
+    margin-top: 1.15rem;
+    border-radius: 99px;
+    box-shadow: 0 0 14px rgba(240,208,128,.28);
+}
+
+.stats-page .stats-hero {
+    min-height: 330px;
+    background:
+        linear-gradient(135deg, #174f46 0%, #1a5c50 56%, #10483f 100%);
+}
+.stats-page .stats-hero-inner { min-height: inherit; grid-template-columns: 1fr; }
+.stats-page .stats-hero-copy { transform: translateY(1.1rem); }
+.stats-page .stats-eyebrow { color: var(--color-gold-light); }
+.stats-page .stats-hero h1 { font-size: clamp(2.7rem, 7.4vw, 5.2rem); }
+
+@media (max-width: 640px) {
+    .modern-inner-page .editorial-hero,
+    .modern-inner-page .editorial-hero-inner,
+    .stats-page .stats-hero,
+    .stats-page .stats-hero-inner { min-height: 300px; }
+    .modern-inner-page .editorial-hero h1,
+    .stats-page .stats-hero h1 { font-size: clamp(2.5rem, 13vw, 3.3rem); }
+}
+
+/* Lower title groups without increasing hero height */
+:is(.about-page, .history-page, .gallery-page) .editorial-hero-copy,
+.stats-page .stats-hero-copy { transform: translateY(2.1rem); }
+
+/* KKT hero: clearer title hierarchy and more room from the top edge */
+.kkt-page .editorial-hero-copy { transform: translateY(2rem); }
+.kkt-page .editorial-eyebrow {
+    font-size: .64rem;
+    letter-spacing: .17em;
+}
+.kkt-page .editorial-hero h1 {
+    margin-top: .55rem;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: .98;
+}
+.kkt-page .editorial-hero-subtitle {
+    max-width: 430px;
+    margin-top: .65rem;
+    font-size: clamp(.9rem, 2vw, 1.05rem);
+    line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+    .kkt-page .editorial-hero-copy { width: 68%; }
+    .kkt-page .editorial-hero h1 { font-size: clamp(2.25rem, 10.5vw, 2.8rem); }
+    .kkt-page .editorial-hero-subtitle { font-size: .88rem; line-height: 1.45; }
+}
+
+
+/* Compact population figure below the Statistik hero subtitle */
+.stats-hero-data-line{display:flex;align-items:baseline;gap:.45rem;margin:16px 0 0;padding-left:10px;border-left:2px solid var(--color-gold);color:rgba(255,255,255,.7);font-size:.78rem;line-height:1.2}
+.stats-hero-data-line strong{color:#fff;font-size:1rem;font-weight:700}
+.stats-hero-data-line span{color:rgba(255,255,255,.7)}
+.stats-page .stats-hero-inner{grid-template-columns:1fr}
+.modern-inner-page .gallery-modern-hero{background:linear-gradient(135deg,#174f46 0%,#1a5c50 56%,#10483f 100%)}
+.modern-inner-page .gallery-modern-hero::before{content:none}
+
+@media (max-width: 640px) {
+    .stats-page .stats-hero-copy {
+        width: calc(100% - 142px);
+        max-width: none;
+    }
 }

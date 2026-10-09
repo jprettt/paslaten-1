@@ -4,77 +4,7 @@
    Reuses tokens & components from style.css and galeri-custom.css
    ===================================================== */
 
-/* ── HERO VISUAL ─────────────────────────────────────── */
-.tempat-hero-visual {
-    position: relative;
-    min-height: 280px;
-    align-self: stretch;
-}
-.tempat-hero-pin {
-    position: absolute;
-    right: 4rem;
-    top: 50%;
-    width: 100px;
-    height: 100px;
-    transform: translateY(-50%) rotate(-45deg);
-    border-radius: 50% 50% 50% 0;
-    background: rgba(201,168,76,.15);
-    border: 1px solid rgba(240,208,128,.22);
-}
-.tempat-hero-pin::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 28px;
-    height: 28px;
-    transform: translate(-50%,-50%);
-    border-radius: 50%;
-    background: rgba(240,208,128,.35);
-}
-.tempat-hero-ring {
-    position: absolute;
-    right: 8rem;
-    bottom: 20px;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: 1px solid rgba(240,208,128,.14);
-}
-.tempat-hero-dot {
-    position: absolute;
-    right: 2rem;
-    top: 35px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(201,168,76,.10);
-}
-
-@media (max-width: 640px) {
-    .tempat-hero-visual {
-        position: absolute;
-        right: 0; bottom: 0;
-        width: 48%; height: 100%;
-        min-height: 0;
-    }
-    .tempat-hero-pin {
-        right: 12px;
-        width: 72px; height: 72px;
-    }
-    .tempat-hero-pin::after { width: 20px; height: 20px; }
-    .tempat-hero-ring {
-        right: 50px;
-        bottom: 10px;
-        width: 110px; height: 110px;
-    }
-    .tempat-hero-dot {
-        right: 0; top: 40px;
-        width: 60px; height: 60px;
-    }
-}
-
-/* ── FILTER BAR ──────────────────────────────────────── */
+/* FILTER BAR */
 .tempat-filter-section {
     position: sticky;
     top: var(--navbar-height);
