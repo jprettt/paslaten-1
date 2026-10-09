@@ -54,11 +54,13 @@ const TEMPAT_DATA = [
     {
         nama: "Kantor Kecamatan Tomohon Timur",
         kategori: "Pemerintahan",
+        foto: "kantor camat.png",
         maps: "https://maps.app.goo.gl/XJeRbzktxx2kY9GSA"
     },
     {
         nama: "Dinas Pendidikan & Kebudayaan Daerah Kota Tomohon",
         kategori: "Pemerintahan",
+        foto: "dinas pendidikan.png",
         maps: "https://maps.app.goo.gl/jnZ692PnUDQZrjQb7"
     },
 
@@ -78,6 +80,7 @@ const TEMPAT_DATA = [
     {
         nama: "Rumah Sakit GMIM Bethesda",
         kategori: "Pendidikan & Kesehatan",
+        foto: "rumah sakit bethesda.png",
         maps: "https://maps.app.goo.gl/646cqmWrjmh7r7uE9"
     },
 
@@ -109,6 +112,7 @@ const TEMPAT_DATA = [
     {
         nama: "Pusat Kuliner",
         kategori: "Ekonomi & Kuliner",
+        foto: "pusat kuliner.png",
         maps: "https://maps.app.goo.gl/tanmaAQ5JYAn9QYY8"
     },
 
