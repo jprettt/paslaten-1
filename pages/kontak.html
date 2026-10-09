@@ -1,961 +1,879 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="utf-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
 
-    <meta
-      name="description"
-      content="Kontak Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon, termasuk kontak Pala setiap lingkungan."
-    />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Kontak — Kelurahan Paslaten 1, Kota Tomohon</title>
+  <meta name="description"
+    content="Kontak Kelurahan Paslaten 1, Kecamatan Tomohon Timur, Kota Tomohon, termasuk kontak Pala setiap lingkungan." />
 
-    <link href="../css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css" />
-    <link rel="stylesheet" href="../css/paslaten-map.css" />
+  <title>Kontak — Kelurahan Paslaten 1, Kota Tomohon</title>
 
-    <!-- =====================================================
+  <link href="../css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="../css/paslaten-map.css" />
+
+  <!-- =====================================================
          STYLE KHUSUS HALAMAN KONTAK PALA
 
          Disimpan di sini agar tidak perlu mengubah style.css.
          ===================================================== -->
-    <style>
-      /* =====================================================
+  <style>
+    /* =====================================================
            SECTION PALA
            ===================================================== */
 
-      .pala-section {
-        position: relative;
-        overflow: hidden;
-      }
+    .pala-section {
+      position: relative;
+      overflow: hidden;
+    }
 
-      .pala-section-header {
-        max-width: 720px;
-        margin-bottom: 2rem;
-      }
+    .pala-section-header {
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
 
-      .pala-section-header h2 {
-        margin-top: 0.45rem;
-      }
+    .pala-section-header h2 {
+      margin-top: 0.45rem;
+    }
 
-      .pala-section-description {
-        max-width: 620px;
-        margin: 0.85rem 0 0;
+    .pala-section-description {
+      max-width: 620px;
+      margin: 0.85rem 0 0;
 
-        color: var(--color-mid-gray);
+      color: var(--color-mid-gray);
 
-        font-family: var(--font-body);
-        font-size: 0.9rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
 
-        line-height: 1.75;
-      }
+      line-height: 1.75;
+    }
 
-      /* =====================================================
+    /* =====================================================
            GRID PALA
            ===================================================== */
 
-      .pala-contact-grid {
-        display: grid;
+    .pala-contact-grid {
+      display: grid;
 
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
 
-        gap: 12px;
-      }
+      gap: 12px;
+    }
 
-      /* =====================================================
+    /* =====================================================
            FLIP CARD 3D CONTAINER & STRUCTURE
            ===================================================== */
 
-      .pala-card-wrapper {
-        perspective: 1200px;
-        height: 100%;
+    .pala-card-wrapper {
+      perspective: 1200px;
+      height: 100%;
+    }
+
+    .pala-flip-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.25s ease;
+    }
+
+    .pala-flip-card:focus-visible {
+      outline: 2px solid var(--color-green-dark);
+      outline-offset: 4px;
+      border-radius: 20px;
+    }
+
+    .pala-flip-card.is-flipped:focus-visible {
+      outline-color: var(--color-gold-light);
+    }
+
+    /* Hover desktop: efek ringan (naik sedikit), jangan flip otomatis */
+    @media (hover: hover) and (pointer: fine) {
+      .pala-flip-card:hover {
+        transform: translateY(-4px);
       }
 
-      .pala-flip-card {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        outline: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-        transition: transform 0.25s ease;
+      .pala-flip-card:hover .pala-contact-card.pala-card-front {
+        border-color: rgba(45, 144, 110, 0.28);
+        box-shadow: 0 15px 36px rgba(13, 31, 42, 0.07);
       }
 
-      .pala-flip-card:focus-visible {
-        outline: 2px solid var(--color-green-dark);
-        outline-offset: 4px;
-        border-radius: 20px;
+      .pala-flip-card:hover .pala-contact-card.pala-card-back {
+        border-color: rgba(255, 255, 255, 0.22);
+        box-shadow: 0 16px 36px rgba(13, 31, 42, 0.25);
       }
+    }
 
-      .pala-flip-card.is-flipped:focus-visible {
-        outline-color: var(--color-gold-light);
-      }
+    .pala-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-      /* Hover desktop: efek ringan (naik sedikit), jangan flip otomatis */
-      @media (hover: hover) and (pointer: fine) {
-        .pala-flip-card:hover {
-          transform: translateY(-4px);
-        }
+    .pala-flip-card.is-flipped .pala-card-inner {
+      transform: rotateY(180deg);
+    }
 
-        .pala-flip-card:hover .pala-contact-card.pala-card-front {
-          border-color: rgba(45, 144, 110, 0.28);
-          box-shadow: 0 15px 36px rgba(13, 31, 42, 0.07);
-        }
-
-        .pala-flip-card:hover .pala-contact-card.pala-card-back {
-          border-color: rgba(255, 255, 255, 0.22);
-          box-shadow: 0 16px 36px rgba(13, 31, 42, 0.25);
-        }
-      }
-
-      .pala-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .pala-flip-card.is-flipped .pala-card-inner {
-        transform: rotateY(180deg);
-      }
-
-      /* =====================================================
+    /* =====================================================
            CARD SIDES (FRONT & BACK)
            ===================================================== */
 
-      .pala-contact-card {
-        position: relative;
-        min-height: 235px;
-        display: flex;
-        flex-direction: column;
-        padding: 1.35rem;
-        overflow: hidden;
-        border: 1px solid rgba(26, 92, 80, 0.1);
-        border-radius: 20px;
-        background: #ffffff;
-        box-shadow: 0 8px 30px rgba(13, 31, 42, 0.035);
-        transition:
-          border-color 0.25s ease,
-          box-shadow 0.25s ease;
-      }
+    .pala-contact-card {
+      position: relative;
+      min-height: 235px;
+      display: flex;
+      flex-direction: column;
+      padding: 1.35rem;
+      overflow: hidden;
+      border: 1px solid rgba(26, 92, 80, 0.1);
+      border-radius: 20px;
+      background: #ffffff;
+      box-shadow: 0 8px 30px rgba(13, 31, 42, 0.035);
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
 
-      .pala-contact-card.pala-card-front,
-      .pala-contact-card.pala-card-back {
-        grid-row: 1 / 2;
-        grid-column: 1 / 2;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-      }
+    .pala-contact-card.pala-card-front,
+    .pala-contact-card.pala-card-back {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
 
-      .pala-contact-card.pala-card-front {
-        transform: rotateY(0deg);
-      }
+    .pala-contact-card.pala-card-front {
+      transform: rotateY(0deg);
+    }
 
-      .pala-contact-card.pala-card-back {
-        transform: rotateY(180deg);
-      }
+    .pala-contact-card.pala-card-back {
+      transform: rotateY(180deg);
+    }
 
-      /* =====================================================
+    /* =====================================================
            CARD HEADER
            ===================================================== */
 
-      .pala-card-top {
-        position: relative;
+    .pala-card-top {
+      position: relative;
 
-        z-index: 2;
+      z-index: 2;
 
-        display: flex;
+      display: flex;
 
-        align-items: center;
+      align-items: center;
 
-        justify-content: space-between;
+      justify-content: space-between;
 
-        gap: 1rem;
-      }
+      gap: 1rem;
+    }
 
-      .pala-card-label {
-        color: var(--color-gold);
+    .pala-card-label {
+      color: var(--color-gold);
 
-        font-family: var(--font-body);
+      font-family: var(--font-body);
 
-        font-size: 0.63rem;
+      font-size: 0.63rem;
 
-        font-weight: 700;
+      font-weight: 700;
 
-        letter-spacing: 0.12em;
+      letter-spacing: 0.12em;
 
-        text-transform: uppercase;
-      }
+      text-transform: uppercase;
+    }
 
-      .pala-card-number {
-        width: 34px;
-        height: 34px;
+    .pala-card-number {
+      width: 34px;
+      height: 34px;
 
-        flex-shrink: 0;
+      flex-shrink: 0;
 
-        display: flex;
+      display: flex;
 
-        align-items: center;
-        justify-content: center;
+      align-items: center;
+      justify-content: center;
 
-        border: 1px solid rgba(45, 144, 110, 0.15);
+      border: 1px solid rgba(45, 144, 110, 0.15);
 
-        border-radius: 50%;
+      border-radius: 50%;
 
-        color: var(--color-green-dark);
+      color: var(--color-green-dark);
 
-        background: rgba(45, 144, 110, 0.06);
+      background: rgba(45, 144, 110, 0.06);
 
-        font-family: var(--font-heading);
+      font-family: var(--font-heading);
 
-        font-size: 0.68rem;
+      font-size: 0.68rem;
 
-        font-weight: 700;
-      }
+      font-weight: 700;
+    }
 
-      /* =====================================================
+    /* =====================================================
            LINGKUNGAN TITLE
            ===================================================== */
 
-      .pala-contact-card h3 {
-        position: relative;
+    .pala-contact-card h3 {
+      position: relative;
 
-        z-index: 2;
+      z-index: 2;
 
-        margin: 1.35rem 0 0;
+      margin: 1.35rem 0 0;
 
-        color: var(--color-green-dark);
+      color: var(--color-green-dark);
 
-        font-family: var(--font-heading);
+      font-family: var(--font-heading);
 
-        font-size: clamp(1.25rem, 2vw, 1.55rem);
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
 
-        font-weight: 650;
+      font-weight: 650;
 
-        letter-spacing: -0.025em;
-      }
+      letter-spacing: -0.025em;
+    }
 
-      /* =====================================================
+    /* =====================================================
            DETAIL PALA
            ===================================================== */
 
-      .pala-card-details {
-        position: relative;
+    .pala-card-details {
+      position: relative;
 
-        z-index: 2;
+      z-index: 2;
 
-        display: grid;
+      display: grid;
 
-        gap: 0.85rem;
+      gap: 0.85rem;
 
-        margin-top: 1.35rem;
-      }
+      margin-top: 1.35rem;
+    }
 
-      .pala-detail {
-        display: flex;
+    .pala-detail {
+      display: flex;
 
-        align-items: flex-start;
+      align-items: flex-start;
 
-        gap: 0.75rem;
-      }
+      gap: 0.75rem;
+    }
 
-      .pala-detail-icon {
-        width: 34px;
-        height: 34px;
+    .pala-detail-icon {
+      width: 34px;
+      height: 34px;
 
-        flex-shrink: 0;
+      flex-shrink: 0;
 
-        display: flex;
+      display: flex;
 
-        align-items: center;
-        justify-content: center;
+      align-items: center;
+      justify-content: center;
 
-        border-radius: 10px;
+      border-radius: 10px;
 
-        color: var(--color-green-dark);
+      color: var(--color-green-dark);
 
-        background: rgba(45, 144, 110, 0.08);
-      }
+      background: rgba(45, 144, 110, 0.08);
+    }
 
-      .pala-detail-icon svg {
-        width: 16px;
-        height: 16px;
-      }
+    .pala-detail-icon svg {
+      width: 16px;
+      height: 16px;
+    }
 
-      .pala-detail-content {
-        min-width: 0;
+    .pala-detail-content {
+      min-width: 0;
 
-        display: flex;
-        flex-direction: column;
+      display: flex;
+      flex-direction: column;
 
-        gap: 0.15rem;
-      }
+      gap: 0.15rem;
+    }
 
-      .pala-detail-label {
-        color: var(--color-mid-gray);
+    .pala-detail-label {
+      color: var(--color-mid-gray);
 
-        font-family: var(--font-body);
+      font-family: var(--font-body);
 
-        font-size: 0.62rem;
+      font-size: 0.62rem;
 
-        font-weight: 600;
+      font-weight: 600;
 
-        letter-spacing: 0.05em;
+      letter-spacing: 0.05em;
 
-        text-transform: uppercase;
-      }
+      text-transform: uppercase;
+    }
 
-      .pala-detail-value {
-        color: var(--color-darkest);
+    .pala-detail-value {
+      color: var(--color-darkest);
 
-        font-family: var(--font-body);
+      font-family: var(--font-body);
 
-        font-size: 0.82rem;
+      font-size: 0.82rem;
 
-        font-weight: 600;
+      font-weight: 600;
 
-        line-height: 1.45;
-      }
+      line-height: 1.45;
+    }
 
-      .pala-detail-value--empty {
-        color: #8a9690;
+    .pala-detail-value--empty {
+      color: #8a9690;
 
-        font-weight: 500;
-      }
+      font-weight: 500;
+    }
 
-      /* =====================================================
+    /* =====================================================
            TELEPON & WHATSAPP LINK
            ===================================================== */
 
-      .pala-phone-row {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-      }
+    .pala-phone-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
 
-      .pala-phone-link {
-        color: var(--color-darkest);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
+    .pala-phone-link {
+      color: var(--color-darkest);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
 
-      .pala-phone-link:hover {
-        color: var(--color-green-dark);
-        text-decoration: underline;
-      }
+    .pala-phone-link:hover {
+      color: var(--color-green-dark);
+      text-decoration: underline;
+    }
 
-      .pala-wa-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        border-radius: 6px;
-        background: #25D366;
-        color: #ffffff;
-        text-decoration: none;
-        flex-shrink: 0;
-        transition:
-          transform 0.2s ease,
-          filter 0.2s ease,
-          box-shadow 0.2s ease;
-      }
+    .pala-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: #25D366;
+      color: #ffffff;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+    }
 
-      .pala-wa-btn:hover {
-        transform: scale(1.1);
-        filter: brightness(1.05);
-        box-shadow: 0 2px 6px rgba(37, 211, 102, 0.35);
-      }
+    .pala-wa-btn:hover {
+      transform: scale(1.1);
+      filter: brightness(1.05);
+      box-shadow: 0 2px 6px rgba(37, 211, 102, 0.35);
+    }
 
-      .pala-wa-btn svg {
-        width: 14px;
-        height: 14px;
-        fill: currentColor;
-      }
+    .pala-wa-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
 
-      /* =====================================================
+    /* =====================================================
            HINT FLIP
            ===================================================== */
 
-      .pala-flip-hint {
-        position: relative;
-        z-index: 2;
-        margin-top: auto;
-        padding-top: 1rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-family: var(--font-body);
-        font-size: 0.68rem;
-        font-weight: 500;
-        color: #7b8d86;
-        opacity: 0.85;
-        transition:
-          opacity 0.2s ease,
-          color 0.2s ease;
-        user-select: none;
-      }
+    .pala-flip-hint {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      padding-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: #7b8d86;
+      opacity: 0.85;
+      transition:
+        opacity 0.2s ease,
+        color 0.2s ease;
+      user-select: none;
+    }
 
-      .pala-flip-card:hover .pala-flip-hint {
-        opacity: 1;
-        color: var(--color-green-dark);
-      }
+    .pala-flip-card:hover .pala-flip-hint {
+      opacity: 1;
+      color: var(--color-green-dark);
+    }
 
-      .pala-flip-hint-icon {
-        width: 13px;
-        height: 13px;
-        flex-shrink: 0;
-      }
+    .pala-flip-hint-icon {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
 
-      /* =====================================================
+    /* =====================================================
            PREFERS REDUCED MOTION (CROSSFADE)
            ===================================================== */
 
-      @media (prefers-reduced-motion: reduce) {
-        .pala-flip-card:hover {
-          transform: none;
-        }
-
-        .pala-card-inner {
-          transition: none;
-          transform: none !important;
-        }
-
-        .pala-contact-card.pala-card-front {
-          transition: opacity 0.3s ease;
-          opacity: 1;
-          pointer-events: auto;
-        }
-
-        .pala-contact-card.pala-card-back {
-          transform: none !important;
-          transition: opacity 0.3s ease;
-          opacity: 0;
-          pointer-events: none;
-        }
-
-        .pala-flip-card.is-flipped .pala-contact-card.pala-card-front {
-          opacity: 0;
-          pointer-events: none;
-        }
-
-        .pala-flip-card.is-flipped .pala-contact-card.pala-card-back {
-          opacity: 1;
-          pointer-events: auto;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .pala-flip-card:hover {
+        transform: none;
       }
 
-      /* =====================================================
-           DECORATIVE NUMBER
-           ===================================================== */
+      .pala-card-inner {
+        transition: none;
+        transform: none !important;
+      }
 
-      .pala-card-watermark {
-        position: absolute;
+      .pala-contact-card.pala-card-front {
+        transition: opacity 0.3s ease;
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-        right: -0.05rem;
-        bottom: -1.2rem;
-
-        z-index: 0;
-
-        color: rgba(45, 144, 110, 0.045);
-
-        font-family: var(--font-heading);
-
-        font-size: 6.5rem;
-
-        font-weight: 700;
-
-        line-height: 1;
-
+      .pala-contact-card.pala-card-back {
+        transform: none !important;
+        transition: opacity 0.3s ease;
+        opacity: 0;
         pointer-events: none;
       }
 
-      /* =====================================================
+      .pala-flip-card.is-flipped .pala-contact-card.pala-card-front {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .pala-flip-card.is-flipped .pala-contact-card.pala-card-back {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    /* =====================================================
+           DECORATIVE NUMBER
+           ===================================================== */
+
+    .pala-card-watermark {
+      position: absolute;
+
+      right: -0.05rem;
+      bottom: -1.2rem;
+
+      z-index: 0;
+
+      color: rgba(45, 144, 110, 0.045);
+
+      font-family: var(--font-heading);
+
+      font-size: 6.5rem;
+
+      font-weight: 700;
+
+      line-height: 1;
+
+      pointer-events: none;
+    }
+
+    /* =====================================================
            WARNA SISI BELAKANG (WAKIL PALA)
            MENGIKUTI GAYA WARNA CARD ALAMAT (HIJAU TUA)
            ===================================================== */
 
-      .pala-contact-card.pala-card-back {
-        color: var(--color-white);
+    .pala-contact-card.pala-card-back {
+      color: var(--color-white);
 
-        border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
 
-        background: var(--bg-card-featured);
+      background: var(--bg-card-featured);
 
-        box-shadow: 0 8px 30px rgba(13, 31, 42, 0.12);
-      }
+      box-shadow: 0 8px 30px rgba(13, 31, 42, 0.12);
+    }
 
-      .pala-contact-card.pala-card-back .pala-card-label {
-        color: var(--color-gold);
-      }
+    .pala-contact-card.pala-card-back .pala-card-label {
+      color: var(--color-gold);
+    }
 
-      .pala-contact-card.pala-card-back .pala-card-number {
-        color: var(--color-gold-light);
+    .pala-contact-card.pala-card-back .pala-card-number {
+      color: var(--color-gold-light);
 
-        border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
 
-        background: rgba(255, 255, 255, 0.08);
-      }
+      background: rgba(255, 255, 255, 0.08);
+    }
 
-      .pala-contact-card.pala-card-back h3 {
-        color: var(--color-white);
-      }
+    .pala-contact-card.pala-card-back h3 {
+      color: var(--color-white);
+    }
 
-      .pala-contact-card.pala-card-back .pala-detail-icon {
-        color: var(--color-gold-light);
+    .pala-contact-card.pala-card-back .pala-detail-icon {
+      color: var(--color-gold-light);
 
-        background: rgba(255, 255, 255, 0.12);
-      }
+      background: rgba(255, 255, 255, 0.12);
+    }
 
-      .pala-contact-card.pala-card-back .pala-detail-label {
-        color: rgba(255, 255, 255, 0.72);
-      }
+    .pala-contact-card.pala-card-back .pala-detail-label {
+      color: rgba(255, 255, 255, 0.72);
+    }
 
-      .pala-contact-card.pala-card-back .pala-detail-value,
-      .pala-contact-card.pala-card-back .pala-phone-link {
-        color: var(--color-white);
-      }
+    .pala-contact-card.pala-card-back .pala-detail-value,
+    .pala-contact-card.pala-card-back .pala-phone-link {
+      color: var(--color-white);
+    }
 
-      .pala-contact-card.pala-card-back .pala-phone-link:hover {
-        color: var(--color-gold-light);
+    .pala-contact-card.pala-card-back .pala-phone-link:hover {
+      color: var(--color-gold-light);
 
-        text-decoration: underline;
-      }
+      text-decoration: underline;
+    }
 
-      .pala-contact-card.pala-card-back .pala-detail-value--empty {
-        color: rgba(255, 255, 255, 0.6);
-      }
+    .pala-contact-card.pala-card-back .pala-detail-value--empty {
+      color: rgba(255, 255, 255, 0.6);
+    }
 
-      .pala-contact-card.pala-card-back .pala-card-watermark {
-        color: rgba(255, 255, 255, 0.06);
-      }
+    .pala-contact-card.pala-card-back .pala-card-watermark {
+      color: rgba(255, 255, 255, 0.06);
+    }
 
-      .pala-contact-card.pala-card-back .pala-flip-hint {
-        color: rgba(255, 255, 255, 0.65);
-      }
+    .pala-contact-card.pala-card-back .pala-flip-hint {
+      color: rgba(255, 255, 255, 0.65);
+    }
 
-      .pala-flip-card:hover .pala-contact-card.pala-card-back .pala-flip-hint {
-        color: var(--color-white);
+    .pala-flip-card:hover .pala-contact-card.pala-card-back .pala-flip-hint {
+      color: var(--color-white);
 
-        opacity: 1;
-      }
+      opacity: 1;
+    }
 
-      .pala-contact-card.pala-card-back .pala-wa-btn {
-        box-shadow:
-          0 0 0 1px rgba(255, 255, 255, 0.35),
-          0 2px 8px rgba(0, 0, 0, 0.25);
-      }
+    .pala-contact-card.pala-card-back .pala-wa-btn {
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.35),
+        0 2px 8px rgba(0, 0, 0, 0.25);
+    }
 
-      .pala-contact-card.pala-card-back .pala-wa-btn:hover {
-        box-shadow:
-          0 0 0 1.5px rgba(255, 255, 255, 0.6),
-          0 4px 12px rgba(37, 211, 102, 0.4);
-      }
+    .pala-contact-card.pala-card-back .pala-wa-btn:hover {
+      box-shadow:
+        0 0 0 1.5px rgba(255, 255, 255, 0.6),
+        0 4px 12px rgba(37, 211, 102, 0.4);
+    }
 
-      /* =====================================================
+    /* =====================================================
            NOTE
            ===================================================== */
 
-      .pala-contact-note {
-        display: flex;
+    .pala-contact-note {
+      display: flex;
 
-        align-items: flex-start;
+      align-items: flex-start;
 
-        gap: 0.7rem;
+      gap: 0.7rem;
 
-        margin-top: 1.25rem;
+      margin-top: 1.25rem;
 
-        padding-top: 1rem;
+      padding-top: 1rem;
 
-        border-top: 1px solid rgba(26, 92, 80, 0.08);
-      }
+      border-top: 1px solid rgba(26, 92, 80, 0.08);
+    }
 
-      .pala-contact-note svg {
-        width: 17px;
-        height: 17px;
+    .pala-contact-note svg {
+      width: 17px;
+      height: 17px;
 
-        flex-shrink: 0;
+      flex-shrink: 0;
 
-        margin-top: 2px;
+      margin-top: 2px;
 
-        color: var(--color-green);
-      }
+      color: var(--color-green);
+    }
 
-      .pala-contact-note p {
-        margin: 0;
+    .pala-contact-note p {
+      margin: 0;
 
-        color: var(--color-mid-gray);
+      color: var(--color-mid-gray);
 
-        font-family: var(--font-body);
+      font-family: var(--font-body);
 
-        font-size: 0.73rem;
+      font-size: 0.73rem;
 
-        line-height: 1.6;
-      }
+      line-height: 1.6;
+    }
 
-      /* =====================================================
+    /* =====================================================
            TABLET
            ===================================================== */
 
-      @media (max-width: 900px) {
-        .pala-contact-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
+    @media (max-width: 900px) {
+      .pala-contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+    }
 
-      /* =====================================================
+    /* =====================================================
            MOBILE
            ===================================================== */
 
-      @media (max-width: 640px) {
-        .pala-section-header {
-          margin-bottom: 1.35rem;
-        }
-
-        .pala-section-description {
-          font-size: 0.78rem;
-
-          line-height: 1.65;
-        }
-
-        .pala-contact-grid {
-          grid-template-columns: 1fr;
-
-          gap: 10px;
-        }
-
-        .pala-contact-card {
-          min-height: 0;
-
-          padding: 1.15rem;
-
-          border-radius: 17px;
-        }
-
-        .pala-card-number {
-          width: 31px;
-          height: 31px;
-
-          font-size: 0.62rem;
-        }
-
-        .pala-contact-card h3 {
-          margin-top: 1.05rem;
-
-          font-size: 1.18rem;
-        }
-
-        .pala-card-details {
-          margin-top: 1.05rem;
-
-          gap: 0.7rem;
-        }
-
-        .pala-detail-icon {
-          width: 31px;
-          height: 31px;
-
-          border-radius: 9px;
-        }
-
-        .pala-detail-icon svg {
-          width: 15px;
-          height: 15px;
-        }
-
-        .pala-detail-value {
-          font-size: 0.77rem;
-        }
-
-        .pala-card-watermark {
-          right: 0.35rem;
-
-          bottom: -0.8rem;
-
-          font-size: 5rem;
-        }
+    @media (max-width: 640px) {
+      .pala-section-header {
+        margin-bottom: 1.35rem;
       }
-    </style>
-  </head>
 
-  <body class="contact-page modern-inner-page">
-    <!-- =====================================================
+      .pala-section-description {
+        font-size: 0.78rem;
+
+        line-height: 1.65;
+      }
+
+      .pala-contact-grid {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+      }
+
+      .pala-contact-card {
+        min-height: 0;
+
+        padding: 1.15rem;
+
+        border-radius: 17px;
+      }
+
+      .pala-card-number {
+        width: 31px;
+        height: 31px;
+
+        font-size: 0.62rem;
+      }
+
+      .pala-contact-card h3 {
+        margin-top: 1.05rem;
+
+        font-size: 1.18rem;
+      }
+
+      .pala-card-details {
+        margin-top: 1.05rem;
+
+        gap: 0.7rem;
+      }
+
+      .pala-detail-icon {
+        width: 31px;
+        height: 31px;
+
+        border-radius: 9px;
+      }
+
+      .pala-detail-icon svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .pala-detail-value {
+        font-size: 0.77rem;
+      }
+
+      .pala-card-watermark {
+        right: 0.35rem;
+
+        bottom: -0.8rem;
+
+        font-size: 5rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="contact-page modern-inner-page">
+  <!-- =====================================================
          NAVBAR
          ===================================================== -->
 
-    <header>
-      <nav aria-label="Navigasi utama" id="navbar">
-        <div class="navbar-inner">
-          <div class="nav-brand">
-            <a class="nav-brand-link" href="../index.html">
-              <img
-                alt="Logo Kota Tomohon"
-                class="nav-logo-img"
-                src="../assets/images/hero/logo tomohon.png"
-              />
+  <header>
+    <nav aria-label="Navigasi utama" id="navbar">
+      <div class="navbar-inner">
+        <div class="nav-brand">
+          <a class="nav-brand-link" href="../index.html">
+            <img alt="Logo Kota Tomohon" class="nav-logo-img" src="../assets/images/hero/logo tomohon.png" />
 
-              <div class="nav-brand-text">
-                <span class="nav-brand-title"> PASLATEN 1 </span>
+            <div class="nav-brand-text">
+              <span class="nav-brand-title"> PASLATEN 1 </span>
 
-                <span class="nav-brand-subtitle"> Tomohon Timur </span>
-              </div>
-            </a>
-          </div>
-
-          <ul class="nav-menu" id="nav-menu">
-            <li>
-              <a href="../index.html"> Beranda </a>
-            </li>
-
-            <li>
-              <a href="tentang.html"> Tentang Paslaten </a>
-            </li>
-
-            <li>
-              <a href="sejarah.html"> Sejarah </a>
-            </li>
-
-            <li>
-              <a href="statistik.html"> Statistik </a>
-            </li>
-
-            <li>
-              <a href="galeri.html"> Galeri </a>
-            </li>
-
-<li><a href="tempat-penting.html">Fasilitas & Landmark</a></li>
-            <li>
-              <a class="active" href="kontak.html"> Kontak </a>
-            </li>
-<li>
-              <a href="anggota-kkt.html"> Anggota KKT </a>
-            </li>
-          </ul>
-
-          <button
-            aria-controls="drawer-menu"
-            aria-expanded="false"
-            aria-label="Buka menu"
-            class="nav-hamburger"
-            id="nav-hamburger"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+              <span class="nav-brand-subtitle"> Tomohon Timur </span>
+            </div>
+          </a>
         </div>
-      </nav>
-    </header>
 
-    <!-- =====================================================
+        <ul class="nav-menu" id="nav-menu">
+          <li>
+            <a href="../index.html"> Beranda </a>
+          </li>
+
+          <li>
+            <a href="tentang.html"> Tentang Paslaten </a>
+          </li>
+
+          <li>
+            <a href="sejarah.html"> Sejarah </a>
+          </li>
+
+          <li>
+            <a href="statistik.html"> Statistik </a>
+          </li>
+
+          <li>
+            <a href="galeri.html"> Galeri </a>
+          </li>
+
+          <li><a href="tempat-penting.html">Fasilitas & Landmark</a></li>
+          <li>
+            <a class="active" href="kontak.html"> Kontak </a>
+          </li>
+          <li>
+            <a href="anggota-kkt.html"> Anggota KKT </a>
+          </li>
+        </ul>
+
+        <button aria-controls="drawer-menu" aria-expanded="false" aria-label="Buka menu" class="nav-hamburger"
+          id="nav-hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =====================================================
          DRAWER BACKDROP
          ===================================================== -->
 
-    <div aria-hidden="true" class="drawer-backdrop" id="drawer-backdrop"></div>
+  <div aria-hidden="true" class="drawer-backdrop" id="drawer-backdrop"></div>
 
-    <!-- =====================================================
+  <!-- =====================================================
          DRAWER MOBILE
          ===================================================== -->
 
-    <aside
-      aria-hidden="true"
-      aria-label="Menu navigasi"
-      class="drawer"
-      id="drawer-menu"
-      role="dialog"
-    >
-      <div class="drawer-header">
-        <div class="drawer-brand">
-          <img
-            alt="Logo Tomohon"
-            class="drawer-logo"
-            src="../assets/images/hero/logo tomohon.png"
-          />
+  <aside aria-hidden="true" aria-label="Menu navigasi" class="drawer" id="drawer-menu" role="dialog">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img alt="Logo Tomohon" class="drawer-logo" src="../assets/images/hero/logo tomohon.png" />
 
-          <div class="drawer-brand-text">
-            <span class="drawer-brand-title"> Paslaten 1 </span>
+        <div class="drawer-brand-text">
+          <span class="drawer-brand-title"> Paslaten 1 </span>
 
-            <span class="drawer-brand-sub"> Kota Tomohon </span>
-          </div>
+          <span class="drawer-brand-sub"> Kota Tomohon </span>
         </div>
-
-        <button aria-label="Tutup menu" class="drawer-close" id="drawer-close">
-          <svg fill="none" height="22" viewBox="0 0 22 22" width="22">
-            <path
-              d="M5 5l12 12M17 5L5 17"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-width="2"
-            ></path>
-          </svg>
-        </button>
       </div>
 
-      <nav aria-label="Menu halaman">
-        <ul class="drawer-nav">
-          <!-- BERANDA -->
+      <button aria-label="Tutup menu" class="drawer-close" id="drawer-close">
+        <svg fill="none" height="22" viewBox="0 0 22 22" width="22">
+          <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="../index.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M3 12L12 3l9 9"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
+    <nav aria-label="Menu halaman">
+      <ul class="drawer-nav">
+        <!-- BERANDA -->
 
-                  <path
-                    d="M9 21V12h6v9"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="../index.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path d="M3 12L12 3l9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"></path>
 
-              <span class="drawer-link-text"> Beranda </span>
-            </a>
-          </li>
+                <path d="M9 21V12h6v9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- TENTANG -->
+            <span class="drawer-link-text"> Beranda </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="tentang.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <circle
-                    cx="12"
-                    cy="8"
-                    r="4"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  ></circle>
+        <!-- TENTANG -->
 
-                  <path
-                    d="M4 20c0-4 3.6-7 8-7s8 3 8 7"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="tentang.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"></circle>
 
-              <span class="drawer-link-text"> Tentang Paslaten </span>
-            </a>
-          </li>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+                </path>
+              </svg>
+            </span>
 
-          <!-- SEJARAH -->
+            <span class="drawer-link-text"> Tentang Paslaten </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="sejarah.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2a10 10 0 100 20A10 10 0 0012 2z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  ></path>
+        <!-- SEJARAH -->
 
-                  <path
-                    d="M12 6v6l4 2"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="sejarah.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"></path>
 
-              <span class="drawer-link-text"> Sejarah </span>
-            </a>
-          </li>
+                <path d="M12 6v6l4 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- STATISTIK -->
+            <span class="drawer-link-text"> Sejarah </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="statistik.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M5 19V11M12 19V5M19 19V8"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
+        <!-- STATISTIK -->
 
-                  <path
-                    d="M3 19h18"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link" href="statistik.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path d="M5 19V11M12 19V5M19 19V8" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
 
-              <span class="drawer-link-text"> Statistik </span>
-            </a>
-          </li>
+                <path d="M3 19h18" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              </svg>
+            </span>
 
-          <!-- GALERI -->
+            <span class="drawer-link-text"> Statistik </span>
+          </a>
+        </li>
 
-          <li class="drawer-item">
-            <a class="drawer-link" href="galeri.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <rect
-                    height="18"
-                    rx="3"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    width="18"
-                    x="3"
-                    y="3"
-                  ></rect>
+        <!-- GALERI -->
 
-                  <circle
-                    cx="8.5"
-                    cy="8.5"
-                    r="1.5"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  ></circle>
+        <li class="drawer-item">
+          <a class="drawer-link" href="galeri.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <rect height="18" rx="3" stroke="currentColor" stroke-width="2" width="18" x="3" y="3"></rect>
 
-                  <path
-                    d="M21 15l-5-5L5 21"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+                <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"></circle>
 
-              <span class="drawer-link-text"> Galeri </span>
-            </a>
-          </li>
+                <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"></path>
+              </svg>
+            </span>
+
+            <span class="drawer-link-text"> Galeri </span>
+          </a>
+        </li>
 
         <!-- FASILITAS & LANDMARK -->
 
         <li class="drawer-item">
           <a class="drawer-link" href="tempat-penting.html">
             <span class="drawer-icon">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1118 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1118 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
             </span>
 
@@ -965,320 +883,292 @@
 
         <!-- KONTAK -->
 
-          <li class="drawer-item">
-            <a class="drawer-link active" href="kontak.html">
-              <span class="drawer-icon">
-                <svg fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+        <li class="drawer-item">
+          <a class="drawer-link active" href="kontak.html">
+            <span class="drawer-icon">
+              <svg fill="none" viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
+                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </span>
 
-              <span class="drawer-link-text"> Kontak </span>
-            </a>
-          </li>
+            <span class="drawer-link-text"> Kontak </span>
+          </a>
+        </li>
 
-<!-- ANGGOTA KKT -->
-          <li class="drawer-item">
-            <a href="anggota-kkt.html" class="drawer-link">
-              <span class="drawer-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </span>
-              <span class="drawer-link-text"> Anggota KKT </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <!-- ANGGOTA KKT -->
+        <li class="drawer-item">
+          <a href="anggota-kkt.html" class="drawer-link">
+            <span class="drawer-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </span>
+            <span class="drawer-link-text"> Anggota KKT </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <div class="drawer-footer">
-        <p>Kelurahan Paslaten 1</p>
+    <div class="drawer-footer">
+      <p>Kelurahan Paslaten 1</p>
 
-        <p>Kecamatan Tomohon Timur</p>
-      </div>
-    </aside>
+      <p>Kecamatan Tomohon Timur</p>
+    </div>
+  </aside>
 
-    <!-- =====================================================
+  <!-- =====================================================
          MAIN
          ===================================================== -->
 
-    <main>
-      <!-- =================================================
+  <main>
+    <!-- =================================================
              PAGE HERO
              ================================================= -->
 
-      <section
-        aria-labelledby="contact-title"
-        class="editorial-hero contact-modern-hero"
-      >
-        <div class="container editorial-hero-inner">
-          <div class="editorial-hero-copy">
-            <span class="editorial-eyebrow"> HUBUNGI KELURAHAN </span>
+    <section aria-labelledby="contact-title" class="editorial-hero contact-modern-hero">
+      <div class="container editorial-hero-inner">
+        <div class="editorial-hero-copy">
+          <span class="editorial-eyebrow"> HUBUNGI KELURAHAN </span>
 
-            <h1 id="contact-title">Kontak</h1>
+          <h1 id="contact-title">Kontak</h1>
 
-            <p class="editorial-hero-subtitle">Paslaten 1 · Tomohon Timur</p>
+          <p class="editorial-hero-subtitle">Paslaten 1 · Tomohon Timur</p>
 
-            <span aria-hidden="true" class="editorial-hero-divider"></span>
-          </div>
-
-          <div aria-hidden="true" class="contact-hero-visual">
-            <div class="contact-hero-ring"></div>
-
-            <svg fill="none" viewBox="0 0 120 120">
-              <path
-                d="M60 104s34-31 34-59a34 34 0 10-68 0c0 28 34 59 34 59z"
-                stroke="currentColor"
-                stroke-width="6"
-              ></path>
-
-              <circle
-                cx="60"
-                cy="45"
-                r="12"
-                stroke="currentColor"
-                stroke-width="6"
-              ></circle>
-            </svg>
-          </div>
+          <span aria-hidden="true" class="editorial-hero-divider"></span>
         </div>
-      </section>
 
-      <!-- =================================================
+        <div aria-hidden="true" class="contact-hero-visual">
+          <div class="contact-hero-ring"></div>
+
+          <svg fill="none" viewBox="0 0 120 120">
+            <path d="M60 104s34-31 34-59a34 34 0 10-68 0c0 28 34 59 34 59z" stroke="currentColor" stroke-width="6">
+            </path>
+
+            <circle cx="60" cy="45" r="12" stroke="currentColor" stroke-width="6"></circle>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================
              INFORMASI KONTAK KELURAHAN
              ================================================= -->
 
-      <section class="editorial-section contact-info-section" id="kontak">
-        <div class="container">
-          <div class="editorial-heading">
-            <span class="editorial-kicker"> INFORMASI KONTAK </span>
+    <section class="editorial-section contact-info-section" id="kontak">
+      <div class="container">
+        <div class="editorial-heading">
+          <span class="editorial-kicker"> INFORMASI KONTAK </span>
 
-            <h2>Terhubung dengan Kelurahan</h2>
-          </div>
-
-          <div class="contact-modern-grid">
-            <!-- ALAMAT -->
-
-            <article class="contact-modern-card contact-modern-card--featured">
-              <span class="contact-card-label"> Alamat </span>
-
-              <h3>Jl. Kalooran</h3>
-
-              <p>
-                Kelurahan Paslaten 1
-                <br />
-                Kecamatan Tomohon Timur
-                <br />
-                Kota Tomohon, Sulawesi Utara 95446
-              </p>
-
-              <div class="contact-card-mark">01</div>
-            </article>
-
-            <!-- JAM PELAYANAN -->
-
-            <article class="contact-modern-card" style="grid-column: 1 / -1;">
-              <span class="contact-card-label" style="display: inline-flex; align-items: center; gap: 4px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top: -2px;">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                Jam Pelayanan
-              </span>
-
-              <div style="display: flex; flex-wrap: wrap; gap: 3rem; position: relative; z-index: 2;">
-                <div>
-                  <h3>Senin &ndash; Kamis</h3>
-                  <div style="margin-top: 0.4rem; font-size: .95rem; color: var(--color-mid-gray);">08.00 &ndash; 16.30 WITA</div>
-                </div>
-                <div>
-                  <h3>Jumat</h3>
-                  <div style="margin-top: 0.4rem; font-size: .95rem; color: var(--color-mid-gray);">08.00 &ndash; 14.00 WITA</div>
-                </div>
-              </div>
-
-              <div class="contact-card-mark">02</div>
-            </article>
-
-            <!-- TELEPON -->
-
-            <article class="contact-modern-card">
-              <span class="contact-card-label"> Telepon </span>
-
-              <h3>[Akan dilengkapi]</h3>
-
-              <div class="contact-card-mark">03</div>
-            </article>
-
-            <!-- EMAIL -->
-
-            <article class="contact-modern-card">
-              <span class="contact-card-label"> Email </span>
-
-              <h3>[Akan dilengkapi]</h3>
-
-              <div class="contact-card-mark">04</div>
-            </article>
-
-            <!-- MEDIA SOSIAL -->
-
-            <article class="contact-modern-card">
-              <span class="contact-card-label"> Media Sosial </span>
-
-              <h3>[Akan dilengkapi]</h3>
-
-              <div class="contact-card-mark">05</div>
-            </article>
-          </div>
+          <h2>Terhubung dengan Kelurahan</h2>
         </div>
-      </section>
 
-      <!-- =================================================
+        <div class="contact-modern-grid">
+          <!-- ALAMAT -->
+
+          <article class="contact-modern-card contact-modern-card--featured">
+            <span class="contact-card-label"> Alamat </span>
+
+            <h3>Jl. Kalooran</h3>
+
+            <p>
+              Kelurahan Paslaten 1
+              <br />
+              Kecamatan Tomohon Timur
+              <br />
+              Kota Tomohon, Sulawesi Utara 95446
+            </p>
+
+            <div class="contact-card-mark">01</div>
+          </article>
+
+          <!-- JAM PELAYANAN -->
+
+          <article class="contact-modern-card" style="grid-column: 1 / -1;">
+            <span class="contact-card-label" style="display: inline-flex; align-items: center; gap: 4px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" style="margin-top: -2px;">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Jam Pelayanan
+            </span>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; position: relative; z-index: 2;">
+              <div>
+                <h3>Senin &ndash; Kamis</h3>
+                <div style="margin-top: 0.4rem; font-size: .95rem; color: var(--color-mid-gray);">08.00 &ndash; 16.30
+                  WITA</div>
+              </div>
+              <div>
+                <h3>Jumat</h3>
+                <div style="margin-top: 0.4rem; font-size: .95rem; color: var(--color-mid-gray);">08.00 &ndash; 14.00
+                  WITA</div>
+              </div>
+            </div>
+
+            <div class="contact-card-mark">02</div>
+          </article>
+
+          <!-- EMAIL -->
+
+          <article class="contact-modern-card" style="word-break: break-word;">
+            <span class="contact-card-label"> Email </span>
+
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; position: relative; z-index: 2;">
+              <h3 style="font-size: clamp(1rem, 2vw, 1.25rem); margin: 0;"><a href="mailto:kelurahanpaslatensatu@gmail.com" class="pala-phone-link" style="color: inherit;">kelurahanpaslatensatu@gmail.com</a></h3>
+              <a href="mailto:kelurahanpaslatensatu@gmail.com" class="pala-wa-btn" style="background: #ea4335; margin-top: 2px;" title="Kirim Email" aria-label="Kirim Email">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="contact-card-mark">03</div>
+          </article>
+
+          <!-- MEDIA SOSIAL -->
+
+          <article class="contact-modern-card">
+            <span class="contact-card-label"> Media Sosial </span>
+
+            <h3>[Akan dilengkapi]</h3>
+
+            <div class="contact-card-mark">04</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================
              KONTAK PALA SETIAP LINGKUNGAN
              ================================================= -->
 
-      <section
-        class="editorial-section editorial-section--soft pala-section"
-        id="kontak-pala"
-      >
-        <div class="container">
-          <!-- SECTION HEADING -->
+    <section class="editorial-section editorial-section--soft pala-section" id="kontak-pala">
+      <div class="container">
+        <!-- SECTION HEADING -->
 
-          <div class="pala-section-header">
-            <span class="editorial-kicker"> KONTAK LINGKUNGAN </span>
+        <div class="pala-section-header">
+          <span class="editorial-kicker"> KONTAK LINGKUNGAN </span>
 
-            <h2>Pala Setiap Lingkungan</h2>
+          <h2>Kepala Setiap Lingkungan</h2>
 
-            <p class="pala-section-description">
-              Hubungi Pala sesuai lingkungan tempat tinggal untuk kebutuhan
-              informasi dan koordinasi masyarakat di tingkat lingkungan. (Data 2026)
-            </p>
-          </div>
-
-          <!-- GRID -->
-
-          <div class="pala-contact-grid" id="pala-contact-grid"></div>
-
-          <!-- NOTE -->
-
-          <div class="pala-contact-note">
-            <svg fill="none" viewBox="0 0 24 24" aria-hidden="true">
-              <circle
-                cx="12"
-                cy="12"
-                r="9"
-                stroke="currentColor"
-                stroke-width="1.8"
-              ></circle>
-
-              <path
-                d="M12 10v6"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-width="1.8"
-              ></path>
-
-              <circle cx="12" cy="7" r="1" fill="currentColor"></circle>
-            </svg>
-
-            <p>
-              Informasi nama dan nomor kontak Pala akan ditampilkan setelah data
-              resmi tersedia.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- =================================================
-             LOKASI KANTOR
-             ================================================= -->
-
-      <section class="editorial-section paslaten-map-section" id="lokasi" aria-labelledby="paslaten-map-title">
-        <div class="container">
-          <div class="paslaten-map-heading">
-            <span class="editorial-kicker">JELAJAHI WILAYAH</span>
-            <h2 id="paslaten-map-title">Jelajahi Paslaten 1</h2>
-            <p>Lihat lokasi dan pembagian lingkungan di Kelurahan Paslaten 1 melalui peta interaktif.</p>
-          </div>
-          <div class="paslaten-map-frame" id="paslaten-map-frame" aria-busy="true">
-            <div class="paslaten-map-canvas" id="paslaten-map-canvas" role="region" aria-label="Peta wilayah dan tujuh lingkungan Paslaten 1"></div>
-            <div class="paslaten-map-toolbar" role="group" aria-label="Kontrol peta">
-              <div class="paslaten-map-segment" role="group" aria-label="Jenis peta">
-                <button type="button" data-map-action="satellite" aria-pressed="true" disabled>Satelit</button>
-                <button type="button" data-map-action="map" aria-pressed="false" disabled>Peta</button>
-              </div>
-              <div class="paslaten-map-segment" role="group" aria-label="Dimensi peta">
-                <button type="button" data-map-action="2d" aria-pressed="false" disabled>2D</button>
-                <button type="button" data-map-action="3d" aria-pressed="true" disabled>3D</button>
-              </div>
-              <button type="button" data-map-action="center" disabled>Pusatkan</button>
-            </div>
-            <div class="paslaten-map-status" id="paslaten-map-status" role="status" aria-live="polite">
-              <strong>Memuat peta Paslaten 1...</strong>
-              <p id="paslaten-map-message"></p>
-            </div>
-          </div>
-          <div class="paslaten-map-caption">
-            <span>Paslaten 1 &middot; Tomohon Timur</span>
-            <p>Gunakan dua jari untuk menjelajah di HP. Klik nomor lingkungan untuk melihat data penduduk 2026.</p>
-          </div>
-          <noscript><p>Aktifkan JavaScript untuk menjelajahi peta wilayah Paslaten 1.</p></noscript>
-        </div>
-      </section>
-    </main>
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <h3>Kelurahan Paslaten 1</h3>
-
-            <p>
-              Kecamatan Tomohon Timur, Kota Tomohon
-              <br />
-              Sulawesi Utara — Kode Pos 95446
-            </p>
-
-            <p
-              style="
-                margin-top: 0.5rem;
-                font-size: 0.85rem;
-                color: rgba(255, 255, 255, 0.5);
-              "
-            >
-              Website Profil — KKT 149 UNSRAT Posko Paslaten 1
-            </p>
-          </div>
+          <p class="pala-section-description">
+            Hubungi Kepala dan Wakil Kepala sesuai lingkungan tempat tinggal untuk kebutuhan
+            informasi dan koordinasi masyarakat di tingkat lingkungan. (Data 2026)
+          </p>
         </div>
 
-        <div class="footer-bottom">
+        <!-- GRID -->
+
+        <div class="pala-contact-grid" id="pala-contact-grid"></div>
+
+        <!-- NOTE -->
+
+        <div class="pala-contact-note">
+          <svg fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle>
+
+            <path d="M12 10v6" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+
+            <circle cx="12" cy="7" r="1" fill="currentColor"></circle>
+          </svg>
+
           <p>
-            Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko
-            Paslaten 1, Kota Tomohon
+            Informasi nama dan nomor kontak Kepala dan Wakil Kepala lingkungan berdasarkan data tahun 2026.
           </p>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <!-- =====================================================
+    <!-- =================================================
+             LOKASI KANTOR
+             ================================================= -->
+
+    <section class="editorial-section paslaten-map-section" id="lokasi" aria-labelledby="paslaten-map-title">
+      <div class="container">
+        <div class="paslaten-map-heading">
+          <span class="editorial-kicker">JELAJAHI WILAYAH</span>
+          <h2 id="paslaten-map-title">Jelajahi Paslaten 1</h2>
+          <p>Lihat lokasi dan pembagian lingkungan di Kelurahan Paslaten 1 melalui peta interaktif.</p>
+        </div>
+        <div class="paslaten-map-frame" id="paslaten-map-frame" aria-busy="true">
+          <div class="paslaten-map-canvas" id="paslaten-map-canvas" role="region"
+            aria-label="Peta wilayah dan tujuh lingkungan Paslaten 1"></div>
+          <div class="paslaten-map-toolbar" role="group" aria-label="Kontrol peta">
+            <div class="paslaten-map-segment" role="group" aria-label="Jenis peta">
+              <button type="button" data-map-action="satellite" aria-pressed="true" disabled>Satelit</button>
+              <button type="button" data-map-action="map" aria-pressed="false" disabled>Peta</button>
+            </div>
+            <div class="paslaten-map-segment" role="group" aria-label="Dimensi peta">
+              <button type="button" data-map-action="2d" aria-pressed="false" disabled>2D</button>
+              <button type="button" data-map-action="3d" aria-pressed="true" disabled>3D</button>
+            </div>
+            <button type="button" data-map-action="center" disabled>Pusatkan</button>
+          </div>
+          <div class="paslaten-map-status" id="paslaten-map-status" role="status" aria-live="polite">
+            <strong>Memuat peta Paslaten 1...</strong>
+            <p id="paslaten-map-message"></p>
+          </div>
+        </div>
+        <div class="paslaten-map-caption">
+          <span>Paslaten 1 &middot; Tomohon Timur</span>
+          <p>Gunakan dua jari untuk menjelajah di HP. Klik nomor lingkungan untuk melihat data penduduk 2026.</p>
+        </div>
+        <noscript>
+          <p>Aktifkan JavaScript untuk menjelajahi peta wilayah Paslaten 1.</p>
+        </noscript>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3>Kelurahan Paslaten 1</h3>
+
+          <p>
+            Kecamatan Tomohon Timur, Kota Tomohon
+            <br />
+            Sulawesi Utara — Kode Pos 95446
+          </p>
+
+          <p style="
+                margin-top: 0.5rem;
+                font-size: 0.85rem;
+                color: rgba(255, 255, 255, 0.5);
+              ">
+            Website Profil — KKT 149 UNSRAT Posko Paslaten 1
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          Website Profil Kelurahan Paslaten 1 &mdash; KKT 149 UNSRAT Posko
+          Paslaten 1, Kota Tomohon
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================
          JAVASCRIPT
          ===================================================== -->
 
-    <script src="../js/main.js"></script>
-    <script src="../js/kontak-pala.js"></script>
-    <script type="module" src="../js/kontak-map.js"></script>
-  </body>
+  <script src="../js/main.js"></script>
+  <script src="../js/kontak-pala.js"></script>
+  <script type="module" src="../js/kontak-map.js"></script>
+</body>
+
 </html>

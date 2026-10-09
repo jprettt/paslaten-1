@@ -83,9 +83,9 @@
   function renderCardSide(item, isWakil) {
     var person = isWakil ? item.wakil : item.pala;
     var sideClass = isWakil ? 'pala-card-back' : 'pala-card-front';
-    var labelTop = isWakil ? 'Wakil Pala (Data 2026)' : 'Pala (Data 2026)';
-    var labelNama = isWakil ? 'Nama Wakil Pala' : 'Nama Pala';
-    var hintText = isWakil ? 'Ketuk untuk lihat Pala' : 'Ketuk untuk lihat Wakil';
+    var labelTop = isWakil ? 'Wakil Kepala' : 'Kepala';
+    var labelNama = isWakil ? 'Nama Wakil Kepala' : 'Nama Kepala';
+    var hintText = isWakil ? 'Ketuk untuk lihat Kepala' : 'Ketuk untuk lihat Wakil';
     var numText = formatNumber(item.lingkungan);
 
     // Render nama
@@ -160,7 +160,7 @@
     var backHtml = renderCardSide(item, true);
 
     return '<div class="pala-card-wrapper">' +
-      '<div class="pala-flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Lingkungan ' + esc(item.lingkungan) + ', tampilkan Wakil Pala" data-lingkungan="' + esc(item.lingkungan) + '">' +
+      '<div class="pala-flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Lingkungan ' + esc(item.lingkungan) + ', tampilkan Wakil Kepala" data-lingkungan="' + esc(item.lingkungan) + '">' +
         '<div class="pala-card-inner">' +
           frontHtml +
           backHtml +
@@ -206,8 +206,8 @@
     cardEl.setAttribute(
       'aria-label',
       isFlipped
-        ? 'Lingkungan ' + lingkungan + ', tampilkan Pala'
-        : 'Lingkungan ' + lingkungan + ', tampilkan Wakil Pala'
+        ? 'Lingkungan ' + lingkungan + ', tampilkan Kepala'
+        : 'Lingkungan ' + lingkungan + ', tampilkan Wakil Kepala'
     );
 
     var frontEl = cardEl.querySelector('.pala-card-front');
