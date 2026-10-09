@@ -159,7 +159,7 @@ function initMomen(data, container) {
 
     // --- Swipe/Scroll Past Bottom to Activate ---
     let isAtBottom = false;
-    
+
     window.addEventListener('scroll', () => {
         // Detect if user is at the bottom of the page
         isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
@@ -184,7 +184,7 @@ function initMomen(data, container) {
         // Hanya memicu jika swipe dimulai dari elemen teaser 
         // atau dari bagian bawah layar (bottom 15%)
         const isFromTeaser = touchTarget && touchTarget.closest('#momen-teaser');
-        const isFromBottomScreen = touchStartY > (window.innerHeight * 0.85);
+        const isFromBottomScreen = touchStartY > (window.innerHeight * 0.95);
         if (!isFromTeaser && !isFromBottomScreen) return;
 
         let touchEndY = e.touches[0].clientY;
@@ -225,7 +225,7 @@ function initMomen(data, container) {
             video.muted = true;
             isMuted = true;
             updateMuteUI();
-            video.play().catch(() => {});
+            video.play().catch(() => { });
         });
     }
 
@@ -276,7 +276,7 @@ function initMomen(data, container) {
             if (e.target.closest('button') || e.target.closest('a')) return;
             if (!video) return;
             if (video.paused) {
-                video.play().catch(() => {});
+                video.play().catch(() => { });
                 if (playIcon) playIcon.style.display = 'block';
                 if (pauseIcon) pauseIcon.style.display = 'none';
             } else {
@@ -297,7 +297,7 @@ function initMomen(data, container) {
         if (retryBtn && video) retryBtn.addEventListener('click', () => {
             errorEl.classList.remove('show');
             video.load();
-            video.play().catch(() => {});
+            video.play().catch(() => { });
         });
     });
 
