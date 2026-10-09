@@ -2,7 +2,8 @@ const galeriData = [
     { file: "kerja-bakti.jpg", keterangan: "Kerja bakti membersihkan halaman kantor lurah" },
     { file: "pembenahan.jpeg", keterangan: "Mempercantik halaman kantor lurah" },
     { file: "posyandu.jpeg", keterangan: "Kegiatan posyandu di kantor lurah" },
-    { file: "pembagian mbg.jpeg", keterangan: "Pembagian Makan Bergizi Gratis di Kantor Lurah" }
+    { file: "pembagian mbg.jpeg", keterangan: "Pembagian Makan Bergizi Gratis di Kantor Lurah" },
+    { file: "ambilmbg.jpeg", keterangan: "Pengambilan Makan Bergizi Gratis oleh Lansia" }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {

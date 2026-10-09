@@ -147,8 +147,8 @@
     .tempat-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    .tempat-card:first-child,
-    .tempat-card:nth-child(5n + 4) { 
+    .tempat-card:nth-child(7n + 1),
+    .tempat-card:nth-child(7n + 4) { 
         grid-column: span 2; 
     }
 }
@@ -159,8 +159,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 9px;
     }
-    .tempat-card:first-child,
-    .tempat-card:nth-child(5n + 5) { 
+    .tempat-card:nth-child(5n + 1) { 
         grid-column: span 2; 
     }
     .tempat-card .tempat-photo-area {
@@ -171,24 +170,24 @@
 /* Desktop: 4 columns, bento style layout */
 @media (min-width: 1025px) {
     .tempat-card:nth-child(8n + 1),
-    .tempat-card:nth-child(8n + 6) { 
+    .tempat-card:nth-child(8n + 7) { 
         grid-column: span 2; 
         grid-row: span 2; 
     }
     .tempat-card:nth-child(8n + 4),
-    .tempat-card:nth-child(8n + 7) { 
+    .tempat-card:nth-child(8n + 8) { 
         grid-column: span 2; 
     }
     
     /* Make photo area taller for row-spanning cards */
     .tempat-card:nth-child(8n + 1) .tempat-photo-btn,
-    .tempat-card:nth-child(8n + 6) .tempat-photo-btn {
+    .tempat-card:nth-child(8n + 7) .tempat-photo-btn {
         flex: 1;
         display: flex;
         flex-direction: column;
     }
     .tempat-card:nth-child(8n + 1) .tempat-photo-area,
-    .tempat-card:nth-child(8n + 6) .tempat-photo-area {
+    .tempat-card:nth-child(8n + 7) .tempat-photo-area {
         flex: 1;
         height: auto;
         min-height: 390px; /* Match desktop gallery featured height */

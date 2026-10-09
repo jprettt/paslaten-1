@@ -14,7 +14,7 @@ const TEMPAT_KATEGORI = [
     "Pemerintahan",
     "Pendidikan & Kesehatan",
     "Ekonomi & Kuliner",
-    "Landmark & Sejarah"
+    "Landmark & Wisata"
 ];
 
 const TEMPAT_DATA = [
@@ -106,18 +106,28 @@ const TEMPAT_DATA = [
         foto: "pt-timur.jpeg",
         maps: "https://maps.app.goo.gl/ejkrWu5z975CA3aL6"
     },
+    {
+        nama: "Pusat Kuliner",
+        kategori: "Ekonomi & Kuliner",
+        maps: "https://maps.app.goo.gl/tanmaAQ5JYAn9QYY8"
+    },
 
-    // ── Landmark & Sejarah ──────────────────────────────────
+    // ── Landmark & Wisata ──────────────────────────────────
     {
         nama: "Monumen Pandita N.P. Wilken",
-        kategori: "Landmark & Sejarah",
+        kategori: "Landmark & Wisata",
         foto: "monumen-wilken.jpeg",
         maps: "https://maps.app.goo.gl/gXpXiMtiATpjZ8pv7"
     },
     {
         nama: "Menara Alfa Omega",
-        kategori: "Landmark & Sejarah",
+        kategori: "Landmark & Wisata",
         foto: "alfa omega.png",
         maps: "https://maps.app.goo.gl/tYqKJpTJNgrJXcxy5"
+    },
+    {
+        nama: "Taman Mimpi",
+        kategori: "Landmark & Wisata",
+        maps: "https://maps.app.goo.gl/qPdMYcbP3pxXEhPH6"
     }
 ];
