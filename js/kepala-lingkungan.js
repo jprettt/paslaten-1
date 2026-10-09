@@ -90,9 +90,9 @@
     if (person.foto && person.foto.trim() !== '') {
       avatarHtml = '<img class="kl-avatar-img" src="' + esc(person.foto) + '" alt="Foto ' + esc(person.nama) + '" loading="lazy">';
     } else {
-      var initials = getInitials(person.nama);
       var avatarClass = isKepala ? 'kl-avatar kl-avatar--kepala' : 'kl-avatar kl-avatar--wakil';
-      avatarHtml = '<div class="' + avatarClass + '" aria-hidden="true">' + esc(initials) + '</div>';
+      var defaultIcon = '<svg fill="currentColor" viewBox="0 0 24 24" style="width: 55%; height: 55%;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+      avatarHtml = '<div class="' + avatarClass + '" aria-hidden="true" style="display: flex; align-items: center; justify-content: center;">' + defaultIcon + '</div>';
     }
 
     var rowClass = isKepala ? 'kl-person kl-person--kepala' : 'kl-person kl-person--wakil';
