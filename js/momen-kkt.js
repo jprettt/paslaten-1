@@ -172,12 +172,21 @@ function initMomen(data, container) {
     }, { passive: true });
 
     let touchStartY = 0;
+    let touchTarget = null;
     window.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
+        touchTarget = e.target;
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
         if (!isAtBottom || feedActive) return;
+
+        // Hanya memicu jika swipe dimulai dari elemen teaser 
+        // atau dari bagian bawah layar (bottom 25%)
+        const isFromTeaser = touchTarget && touchTarget.closest('#momen-teaser');
+        const isFromBottomScreen = touchStartY > (window.innerHeight * 0.75);
+        if (!isFromTeaser && !isFromBottomScreen) return;
+
         let touchEndY = e.touches[0].clientY;
         if (touchStartY - touchEndY > 40) { // Swiped up past bottom
             activateFeed();
