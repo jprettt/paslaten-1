@@ -4000,9 +4000,6 @@ footer {
 
 /* CONTACT */
 .contact-modern-hero { min-height:330px; }
-.contact-hero-visual { position:relative; min-height:280px; align-self:stretch; color:var(--color-gold-light); }
-.contact-hero-ring { position:absolute; right:2.5rem; top:50%; width:220px; height:220px; transform:translateY(-50%); border-radius:50%; border:1px solid rgba(240,208,128,.2); background:rgba(201,168,76,.08); }
-.contact-hero-visual svg { position:absolute; z-index:2; right:5.2rem; top:50%; width:130px; height:130px; transform:translateY(-50%); opacity:.9; }
 .contact-modern-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
 .contact-modern-card { position:relative; min-height:155px; padding:1.2rem; overflow:hidden; border-radius:18px; }
 .contact-modern-card--featured { grid-column:span 3; min-height:190px; color:white; border-color:transparent; background:var(--bg-card-featured); }
@@ -4060,9 +4057,6 @@ footer {
     .gallery-modern-item--wide { grid-column:span 2; }
     .gallery-modern-placeholder { min-height:145px; }
     .gallery-modern-item--featured .gallery-modern-placeholder { min-height:260px; }
-    .contact-hero-visual { position:absolute; right:0; bottom:0; width:48%; height:100%; min-height:0; }
-    .contact-hero-ring { right:-26px; width:170px; height:170px; }
-    .contact-hero-visual svg { right:22px; width:95px; height:95px; }
     .contact-modern-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
     .contact-modern-card--featured { grid-column:span 2; }
     .contact-modern-card { min-height:135px; padding:1rem; }
@@ -6993,8 +6987,7 @@ footer {
     box-shadow: 0 0 0 30px rgba(255,255,255,.018), 0 0 0 65px rgba(255,255,255,.014);
 }
 .modern-inner-page .editorial-hero-copy,
-.modern-inner-page .editorial-hero-art,
-.modern-inner-page .contact-hero-visual { transform: translateY(1.1rem); }
+.modern-inner-page .editorial-hero-art { transform: translateY(1.1rem); }
 .modern-inner-page .editorial-eyebrow { color: var(--color-gold-light); letter-spacing: .22em; }
 .modern-inner-page .editorial-hero h1 {
     margin-top: .75rem;
@@ -7058,10 +7051,6 @@ footer {
 }
 
 
-/* Compact population figure below the Statistik hero subtitle */
-.stats-hero-data-line{display:flex;align-items:baseline;gap:.45rem;margin:16px 0 0;padding-left:10px;border-left:2px solid var(--color-gold);color:rgba(255,255,255,.7);font-size:.78rem;line-height:1.2}
-.stats-hero-data-line strong{color:#fff;font-size:1rem;font-weight:700}
-.stats-hero-data-line span{color:rgba(255,255,255,.7)}
 .stats-page .stats-hero-inner{grid-template-columns:1fr}
 .modern-inner-page .gallery-modern-hero{background:linear-gradient(135deg,#174f46 0%,#1a5c50 56%,#10483f 100%)}
 .modern-inner-page .gallery-modern-hero::before{content:none}
