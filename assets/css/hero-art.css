@@ -86,15 +86,9 @@
   opacity:var(--lit,1);z-index:-1;pointer-events:none;
 }
 
-/* cincin konsentris bertitik yang memancar dari ilustrasi */
-.hero-art::after{
-  content:"";position:absolute;left:50%;top:50%;width:360%;aspect-ratio:1/1;
-  transform:translate(-50%,-50%);
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400' fill='none' stroke='%23e8cf8b'%3E%3Ccircle cx='200' cy='200' r='118' stroke-opacity='.30' stroke-width='1' stroke-dasharray='1 7' stroke-linecap='round'/%3E%3Ccircle cx='200' cy='200' r='150' stroke-opacity='.16' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='186' stroke-opacity='.20' stroke-width='1' stroke-dasharray='4 10'/%3E%3Cg fill='%23e8cf8b' stroke='none'%3E%3Ccircle cx='318' cy='200' r='3' fill-opacity='.55'/%3E%3Ccircle cx='94' cy='128' r='2.4' fill-opacity='.45'/%3E%3Ccircle cx='258' cy='353' r='2.6' fill-opacity='.5'/%3E%3Ccircle cx='350' cy='122' r='2' fill-opacity='.4'/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat;
-  opacity:var(--ring,1);z-index:-1;pointer-events:none;
-  -webkit-mask-image:linear-gradient(90deg,transparent 8%,#000 40%);
-  mask-image:linear-gradient(90deg,transparent 8%,#000 40%);
-}
+/* Hilangkan cincin putus-putus dekoratif pada kartu judul halaman. */
+.editorial-hero .hero-art circle.ha-spin[r="92"],
+.editorial-hero .hero-art circle.ha-rot[r="78"]{display:none}
 
 /* vignette: tepi hero lebih gelap, sudut kiri bawah paling gelap */
 .hero-lit{
