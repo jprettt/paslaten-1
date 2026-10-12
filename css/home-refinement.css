@@ -1419,3 +1419,165 @@ and
     transition: none !important;
   }
 }
+
+/* Clearer hierarchy for the two hero actions. */
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action {
+  min-height: 44px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  text-shadow: none !important;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial {
+  background: linear-gradient(135deg, #f1dda0 0%, #d5b557 100%) !important;
+  border: 1px solid rgba(255, 239, 190, 0.82) !important;
+  color: #123e35 !important;
+  box-shadow: 0 8px 22px rgba(7, 32, 27, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+
+#hero .hero-actions-unified #btn-kenali.hero-primary-action {
+  background: linear-gradient(135deg, rgba(18, 77, 64, 0.94), rgba(11, 56, 47, 0.9)) !important;
+  border: 1px solid rgba(230, 203, 129, 0.48) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(7, 32, 27, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action span {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow {
+  background: rgba(18, 77, 64, 0.13) !important;
+  border: 1px solid rgba(18, 77, 64, 0.24) !important;
+  color: #123e35 !important;
+}
+
+#hero .hero-actions-unified #btn-kenali.hero-primary-action span {
+  background: rgba(230, 203, 129, 0.12) !important;
+  border: 1px solid rgba(230, 203, 129, 0.34) !important;
+  color: #f1dda0 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:hover {
+    transform: translateY(-2px) !important;
+    background: linear-gradient(135deg, #f8e9b8 0%, #e2c873 100%) !important;
+    box-shadow: 0 12px 28px rgba(7, 32, 27, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.68) !important;
+  }
+
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action:hover {
+    transform: translateY(-2px) !important;
+    background: linear-gradient(135deg, rgba(26, 96, 79, 0.98), rgba(14, 68, 57, 0.96)) !important;
+    border-color: rgba(241, 221, 160, 0.76) !important;
+    box-shadow: 0 12px 28px rgba(7, 32, 27, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:focus-visible,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action:focus-visible {
+  outline: 2px solid #f1dda0 !important;
+  outline-offset: 3px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action {
+    transition: none !important;
+  }
+}
+
+/* Simple white buttons with softer, rounder corners. */
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action {
+  height: 36px !important;
+  min-height: 36px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+  padding: 0 0.7rem !important;
+  border: 1px solid rgba(21, 62, 52, 0.12) !important;
+  border-radius: 16px !important;
+  background: radial-gradient(circle 11px at calc(100% - 22px) 50%, transparent 10.5px, #fff 11px) !important;
+  color: #111 !important;
+  font-size: 0.64rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+  box-shadow: 0 6px 18px rgba(7, 32, 27, 0.2) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-label,
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-label::before {
+  color: #111 !important;
+  font-size: 0.64rem !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action span {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 21px !important;
+  height: 21px !important;
+  border: 1px solid rgba(17, 17, 17, 0.2) !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  color: #111 !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial {
+  gap: 0.4rem !important;
+}
+
+#hero .hero-actions-unified #btn-kenali.hero-primary-action {
+  gap: 0.4rem !important;
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial .scroll-arrow svg {
+  width: 13px !important;
+  height: 13px !important;
+  color: #fff !important;
+  stroke-width: 2.8 !important;
+}
+
+#hero .hero-actions-unified #btn-kenali.hero-primary-action span {
+  color: #fff !important;
+  font-size: 0.82rem !important;
+  font-weight: 900 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:hover,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action:hover {
+    transform: translateY(-2px) !important;
+    background: radial-gradient(circle 11px at calc(100% - 22px) 50%, transparent 10.5px, #f8f6ee 11px) !important;
+    box-shadow: 0 10px 24px rgba(7, 32, 27, 0.25) !important;
+  }
+}
+
+#hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial:focus-visible,
+#hero .hero-actions-unified #btn-kenali.hero-primary-action:focus-visible {
+  outline: 2px solid var(--color-gold-light) !important;
+  outline-offset: 3px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
+  #hero .hero-actions-unified #btn-kenali.hero-primary-action {
+    transition: none !important;
+  }
+}
