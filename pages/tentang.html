@@ -250,6 +250,34 @@
       pointer-events: none;
     }
 
+    .region-card-compass {
+      position: absolute;
+      right: 0.75rem;
+      bottom: 0.55rem;
+      z-index: 0;
+      width: 3.25rem;
+      height: 3.25rem;
+      color: var(--color-gold-light);
+      opacity: 0.24;
+      pointer-events: none;
+    }
+
+    .region-card-compass svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+    }
+
+    .region-card-compass .compass-needle {
+      fill: currentColor;
+      stroke-width: 1;
+    }
+
     /* =====================================================
            TABLET
            ===================================================== */
@@ -334,6 +362,13 @@
         bottom: -0.55rem;
 
         font-size: 4rem;
+      }
+
+      .region-card-compass {
+        right: 0.45rem;
+        bottom: 0.45rem;
+        width: 2.55rem;
+        height: 2.55rem;
       }
 
       .region-card dd {
@@ -860,7 +895,15 @@
 
               <dd>Kelurahan Talete Satu</dd>
 
-              <span aria-hidden="true" class="region-card-number"> 01 </span>
+              <span aria-hidden="true" class="region-card-compass">
+                <svg viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="27" />
+                  <circle cx="32" cy="32" r="3" />
+                  <path d="M32 9v8M32 47v8M9 32h8M47 32h8M16 16l5 5M43 43l5 5M48 16l-5 5M21 43l-5 5" />
+                  <path class="compass-needle" d="M32 13 37 32 32 28 27 32Z" />
+                  <path d="m32 51-5-19 5 4 5-4Z" />
+                </svg>
+              </span>
             </div>
 
             <div class="region-card">
@@ -868,7 +911,15 @@
 
               <dd>Kelurahan Rurukan</dd>
 
-              <span aria-hidden="true" class="region-card-number"> 02 </span>
+              <span aria-hidden="true" class="region-card-compass">
+                <svg viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="27" />
+                  <circle cx="32" cy="32" r="3" />
+                  <path d="M32 9v8M32 47v8M9 32h8M47 32h8M16 16l5 5M43 43l5 5M48 16l-5 5M21 43l-5 5" />
+                  <path class="compass-needle" d="M51 32 32 37 36 32 32 27Z" />
+                  <path d="m13 32 19-5-4 5 4 5Z" />
+                </svg>
+              </span>
             </div>
 
             <div class="region-card">
@@ -876,7 +927,15 @@
 
               <dd>Kelurahan Paslaten Dua</dd>
 
-              <span aria-hidden="true" class="region-card-number"> 03 </span>
+              <span aria-hidden="true" class="region-card-compass">
+                <svg viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="27" />
+                  <circle cx="32" cy="32" r="3" />
+                  <path d="M32 9v8M32 47v8M9 32h8M47 32h8M16 16l5 5M43 43l5 5M48 16l-5 5M21 43l-5 5" />
+                  <path class="compass-needle" d="M32 51 27 32 32 36 37 32Z" />
+                  <path d="m32 13 5 19-5-4-5 4Z" />
+                </svg>
+              </span>
             </div>
 
             <div class="region-card">
@@ -884,7 +943,15 @@
 
               <dd>Kelurahan Kamasi &amp; Kelurahan Kolongan</dd>
 
-              <span aria-hidden="true" class="region-card-number"> 04 </span>
+              <span aria-hidden="true" class="region-card-compass">
+                <svg viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="27" />
+                  <circle cx="32" cy="32" r="3" />
+                  <path d="M32 9v8M32 47v8M9 32h8M47 32h8M16 16l5 5M43 43l5 5M48 16l-5 5M21 43l-5 5" />
+                  <path class="compass-needle" d="M13 32 32 27 28 32 32 37Z" />
+                  <path d="m51 32-19 5 4-5-4-5Z" />
+                </svg>
+              </span>
             </div>
           </dl>
 
