@@ -1420,6 +1420,20 @@ and
   }
 }
 
+/* Desktop: use the regular page links in the landing page navbar. */
+@media (min-width: 641px) {
+  .navbar-inner--hero .nav-menu {
+    display: flex;
+    margin-left: auto;
+    pointer-events: auto;
+  }
+
+  #site-header #navbar #nav-hamburger,
+  #hero-nav-hamburger {
+    display: none !important;
+  }
+}
+
 /* Clearer hierarchy for the two hero actions. */
 #hero .hero-actions-unified #hero-scroll-indicator.hero-scroll-indicator--editorial,
 #hero .hero-actions-unified #btn-kenali.hero-primary-action {
