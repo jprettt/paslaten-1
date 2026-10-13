@@ -4492,11 +4492,24 @@ footer {
 }
 
 .environment-toggle-label span {
+    display: inline-flex;
+    align-items: center;
     transition: transform .2s ease;
 }
 
+.environment-toggle-label svg {
+    display: block;
+    width: .72rem;
+    height: .72rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 .environment-card.is-expanded .environment-toggle-label span {
-    transform: rotate(135deg);
+    transform: rotate(90deg);
 }
 
 .environment-card-detail {

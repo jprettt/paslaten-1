@@ -132,6 +132,7 @@ const TEMPAT_DATA = [
     {
         nama: "Taman Mimpi",
         kategori: "Landmark & Wisata",
+        foto: "taman mimpi.jpeg",
         maps: "https://maps.app.goo.gl/qPdMYcbP3pxXEhPH6"
     }
 ];
