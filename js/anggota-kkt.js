@@ -79,7 +79,7 @@ function renderCard(anggota, customClass = '', isKoorUtama = false) {
             <div class="kkt-item-content">
                 <h4 class="kkt-item-name">${anggota.nama}</h4>
                 <p class="kkt-item-role ${roleClass}">${anggota.jabatan}</p>
-                <p class="kkt-item-nim"><span class="kkt-nim-label">NIM</span> <span class="kkt-item-nim-val">${anggota.nim}</span></p>
+                <p class="kkt-item-nim"><span class="kkt-item-nim-val">${anggota.nim}</span></p>
             </div>
         </article>
     `;
